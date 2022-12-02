@@ -7,6 +7,6 @@
 <title>병원 테스트 페이지입니다.</title>
 </head>
 <body>
-
+	<h1>병원 테스트 페이지입니다</h1>
 </body>
 </html>

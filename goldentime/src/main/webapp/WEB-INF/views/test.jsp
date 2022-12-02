@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>병원 테스트 페이지입니다.</title>
 </head>
 <body>
 

@@ -34,4 +34,5 @@ public class StaffController {
 	public boolean edit(@RequestBody StaffDto staffDto) {
 		return staffDao.edit(staffDto);	
 	}
+	
 }

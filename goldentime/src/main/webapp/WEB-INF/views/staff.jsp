@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<!-- 부트스트랩 -->
+<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
+<link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
 $(function(){
@@ -115,10 +119,10 @@ function loadList(){
 					$("[name=staffBirth]").val($(this).data("staffBirth"));
 				});
 				
-				//삭제 버튼
-				var span = $("<span>").text("x").attr("data-staffId",resp[i].staffId);
-				span.click(function(e){
-					e.stopPropagation();//전파 중지
+		//삭제 버튼
+		var span = $("<span>").text("x").attr("data-staffId",resp[i].staffId);
+		span.click(function(e){
+		e.stopPropagation();//전파 중지
 		
 			if(confirm("정말 삭제할까요?")){
 				var no = $(this).data("staffId");

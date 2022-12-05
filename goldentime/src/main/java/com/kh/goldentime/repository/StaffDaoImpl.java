@@ -40,5 +40,10 @@ public class StaffDaoImpl implements StaffDao{
 		int count = sqlSession.delete("staff.delete", staffId);
 		return count > 0;
 	}
-	
+
+	@Override
+	public String loginCheck(StaffDto staffDto) {
+		return sqlSession.selectOne("staff.loginCheck",staffDto);
+	}
+
 }

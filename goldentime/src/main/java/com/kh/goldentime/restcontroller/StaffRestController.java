@@ -35,5 +35,6 @@ public class StaffRestController {
 	public List<StaffDto> list(){
 		return staffDao.list();
 	}
+
 	
 }

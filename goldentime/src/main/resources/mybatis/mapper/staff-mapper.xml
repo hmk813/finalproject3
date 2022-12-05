@@ -8,17 +8,15 @@
 	<insert id="insert" parameterType="StaffDto">
 		insert into staff (
 			staff_id, staff_department_no, staff_birth, 
-			staff_birth, staff_phone, staff_address, 
-			staff_enroll_date, staff_leave_date, staff_state, 
-			staff_pw, staff_grade, staff_name, 
-			staff_leave_cnt, staff_dayoff
+			staff_phone, staff_address, staff_enroll_date, 
+			staff_leave_date, staff_state, staff_pw, 
+			staff_grade, staff_name, staff_leave_cnt, staff_dayoff
 		)
 		values(
 			#{staffId}, #{staffDepartmentNo}, #{staffBirth}, 
-			#{staffBirth}, #{staffPhone}, #{staffAddress}, 
-			#{staffEnrollDate}, #{staffLeaveDate}, #{staffState}, 
-			#{staffPw}, #{staffGrade}, #{staffName}, 
-			#{staffLeaveCnt}, #{staffDayoff}
+			#{staffPhone}, #{staffAddress}, #{staffEnrollDate}, 
+			#{staffLeaveDate}, #{staffState}, #{staffPw}, 
+			#{staffGrade}, #{staffName}, #{staffLeaveCnt}, #{staffDayoff}
 		)
 	</insert>
 	
@@ -31,19 +29,20 @@
 	<update id="edit" parameterType="StaffDto">
 		update staff
 		set
-			staff_department_no=#{staffDepartmentNo}
-			staff_birth=#{staffBirth}
-			staff_phone=#{staffPhone}
-			staff_adress=#{staffAddress}
-			staff_state=#{staffState}
-			staff_grade=#{staffGrade}
-			staff_leave_cnt=#{staffLeaveCnt}
+			staff_department_no=#{staffDepartmentNo}, 
+			staff_birth=#{staffBirth}, 
+			staff_phone=#{staffPhone}, 
+			staff_adress=#{staffAddress}, 
+			staff_enroll_date=#{staffEnrollDate}, 
+			staff_state=#{staffState}, 
+			staff_grade=#{staffGrade}, 
+			staff_leave_cnt=#{staffLeaveCnt}, 
 			staff_day_off=#{staffDayOff}
 		where
 				staff_id=#{staffId}
 	</update>
 	
-	<!-- 삭제 -->
+	<!-- 직원삭제 -->
  	<delete id="delete" parameterType="String">
  		delete staff where staff_id = #{staffId}
  	</delete>	

@@ -1,38 +1,44 @@
 package com.kh.goldentime.controller;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.goldentime.entity.StaffDto;
 import com.kh.goldentime.repository.StaffDao;
 
-@RestController
-@RequestMapping("/rest")
+@Controller
+@RequestMapping("/staff")
 public class StaffController {
 	
 	@Autowired
 	private StaffDao staffDao;
 	
-	@GetMapping("/staff") //목록
-	public List<StaffDto> list(){
-		return staffDao.list();
+	@GetMapping("/list")
+	public String list(Model model) {
+		return "staff/list";
 	}
 	
-	@PostMapping("/staff") //등록
-	public void insert(@RequestBody StaffDto staffDto) {
-		staffDao.insert(staffDto);
+	@GetMapping("/login")
+	public String login() {
+		return "staff/login";
 	}
-
-	@PutMapping("/staff") //수정
-	public boolean edit(@RequestBody StaffDto staffDto) {
-		return staffDao.edit(staffDto);	
+	
+	@PostMapping("/login")
+	public String login(HttpSession session,
+			@RequestParam String staffId,
+			@RequestParam String staffPw) {
+		StaffDto findDto = staffDao.selectOne(staffId);
+		
+		boolean isLogin = staffPw.equals(findDto.getStaffPw());
+		return staffPw;
+		
 	}
 	
 }

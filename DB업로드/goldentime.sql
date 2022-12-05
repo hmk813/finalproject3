@@ -9,7 +9,7 @@ CREATE TABLE staff (
 	staff_leave_date	date	NULL,
 	staff_state	char(1) DEFAULT 'y'	CHECK (staff_state in('y','f')) not null,
 	staff_pw	varchar2(20)	not NULL,
-	staff_grade	varchar2(9) default '일반' check(staff_grade in('관리자','팀장','과장','부장','사원')) NULL,
+	staff_grade	varchar2(9) default '' check(staff_grade in('관리자','팀장','과장','부장','사원')) NULL,
 	staff_name varchar2(12)	NULL,
 	staff_leave_cnt number(2) DEFAULT 0,
     staff_dayoff number(2) DEFAULT 0

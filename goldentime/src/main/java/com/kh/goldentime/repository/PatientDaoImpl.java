@@ -1,5 +1,7 @@
 package com.kh.goldentime.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,4 +19,8 @@ public class PatientDaoImpl implements PatientDao{
 		sqlSession.insert("patient.add", patientDto);
 	}
 	
+	@Override
+	public List<PatientDto> list() {
+		return sqlSession.selectList("patient.listt");
+	}
 }

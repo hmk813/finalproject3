@@ -46,11 +46,11 @@ img_staff_id references staff(staff_id) on delete cascade
 CREATE TABLE vacation (
 vacation_no	number	PRIMARY KEY,
 vacation_staff_id	references staff(staff_id) on delete set null,
-vacation_type	varchar(6) CHECK (vacation_type in('?���?','?���?','병�?')) not null,
+vacation_type	varchar(6) CHECK (vacation_type in('월차','연차','병가')) not null,
 vacation_start_date	date not NULL,
 vacation_day	number(2) DEFAULT 1 not NULL,
 vacation_recode	varchar2(60) not NULL,
-vacation_state	varchar2(6)	CHECK (vacation_state in('?��?��','반려')) not null
+vacation_state	varchar2(6)	CHECK (vacation_state in('승인','반려')) not null
 );
 
 --휴가 시퀀스 번호 생성
@@ -62,7 +62,7 @@ attandance_no number	PRIMARY KEY,
 attendance_staff_id	varchar2(30) references staff(staff_id) on delete set null,
 attendance_start_time	date not NULL,
 attendance_end_time	date NULL,
-attendance_work_state varchar2(10) DEFAULT '?��무중'  CHECK (attendance_work_state in('출근','결근','?��무중','?���?')) not null
+attendance_work_state varchar2(10) DEFAULT '근무중'  CHECK (attendance_work_state in('출근','결근','외근','업무중')) not null
 );
 
 --근태 시퀀스 번호 생성
@@ -104,10 +104,10 @@ reservation_content	varchar2(300) not NULL,
 reservation_time char(7) not NULL
 );
 
---진료번호 ?��???�� ?��?��
+--진료 예약 시퀀스 생성
 create sequence reservation_seq;
 
---?��?�� ?��?���? ?��?��
+--수술 테이블 생성
 CREATE TABLE operation (
 operation_no number	PRIMARY KEY,
 operation_diagnosis_no references reservation(reservation_no) on delete set null,
@@ -117,20 +117,20 @@ operation_content varchar2(300) not null,
 operation_title varchar2(100) not null
 );
 
---진료번호 ?��???�� ?��?��
+--수술 시퀀스 번호 생성
 create sequence operater_seq;
 
---���������̺�
+--수술방 테이블 생성
 CREATE TABLE operation_room (
 operation_room_no number PRIMARY key,
 operation_origin_no number references reservation(reservation_no) on delete set null,
-operation_state varchar2(12) check(operation_state in('�����Ϸ�','������','�������'))
+operation_state varchar2(12) check(operation_state in('수술완료','수술중','수술대기'))
 );
 
 create sequence operation_room_seq;
 
 
---캘린?�� ?��?���? ?��?��
+--캘린더 테이블 생성
 CREATE TABLE calender(
 calender_no	number	PRIMARY KEY,
 calender_staff_id	varchar2(30) references staff(staff_id) on delete set null,
@@ -144,13 +144,13 @@ calener_state	char(1)	NULL
 );
 
 
---캘린?�� 번호 ?��???�� ?��?��
+--캘린더 시퀀스 번호
 create sequence calender_seq;
 
---date format ���� (�ð����� �����ϱ� ���ؼ� ����)
+--date format
 alter session set nls_date_format = 'yyyy-MM-dd hh24:mi';
 
---�Կ����̺� ����
+--입원 테이블 생성
 CREATE TABLE hospitalize(
 hospitalize_no	number PRIMARY key,
 hospitalize_diagnosis_no	number	references diagnosis(diagnosis_no) on delete set null,
@@ -162,24 +162,25 @@ patient_guardian_name	varchar2(21) not NULL,
 patient_guardian_phone	varchar2(21) not NULL
 );
 
---�Կ� ��ȣ ������ ����
+--입원 시퀀스 번호 생성
 create sequence hospitalize_seq;
 
---���� ���̺� ����
+--병실 테이블 생성
 CREATE TABLE sickroom (
 sickroom_no number	PRIMARY key,
 hospitalize_sickroom_no	number references hospitalize(hospitalize_no) on delete set null,
 sickroom_size number(1) not NULL ,
-sickroom_state varchar(12) DEFAULT '�Կ���'  check(sickroom_state in('�Կ���','���')) not NULL,
+sickroom_state varchar(12) DEFAULT '입원중'  check(sickroom_state in('입원중','퇴원')) not NULL,
 sickroom_bed number(1) check(sickroom_bed > 0) UNIQUE not null
 );
 
---���� ����
+--진료 첨부파일 이미지
 CREATE TABLE diagnosis_img (
 img_attachment_no number references attachment(attachment_no) on delete set null,
 img_diagnosis_no number references diagnosis(diagnosis_no) on delete set null
 );
 
+--차트 테이블 생성
 CREATE TABLE chart(
 chart_no number	PRIMARY key,
 chart_diagnosis_no number references diagnosis(diagnosis_no) on delete set null,
@@ -189,11 +190,11 @@ chart_content varchar2(300)	not NULL,
 chrat_recodeTime date DEFAULT sysdate not null
 );
 
---�Կ� ��ȣ ������ ����
+--차트 시퀀스 번호 생성
 create sequence chart_seq;
 
 
---ä�ù� ���̺�
+
 CREATE TABLE chat_room(
 chat_room_no number	primary key,
 chat_room_state char(2)	not null
@@ -214,7 +215,5 @@ chat_msg_date date	DEFAULT sysdate
 );
 
 
-
---ä�� �޼��� ������ ����
 create sequence chat_msg_seq;
 

@@ -48,9 +48,9 @@
  	</delete>	
  	
  	<!-- 로그인 -->
- 	<select id="login" parameterType="StaffDto" resultType="StaffDto">
- 		select * from staff
- 		where staffId=#{staffId}, staffPw=#{staffPw}
+ 	<select id="loginCheck"  resultType="String">
+ 		select staffName from staff
+ 		where staffId=#{staffId} and staffPw=#{staffPw}
  	</select>
  	
  	<!-- 검색 -->

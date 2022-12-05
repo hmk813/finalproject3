@@ -6,6 +6,7 @@ import com.kh.goldentime.entity.StaffDto;
 
 public interface StaffDao {
 
+	public String loginCheck(StaffDto staffDto);//로그인
 	void insert(StaffDto staffDto); //등록
 	List<StaffDto> list(); //목록
 	StaffDto selectOne(String staffId);//단일조회

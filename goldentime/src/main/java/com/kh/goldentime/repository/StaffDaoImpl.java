@@ -41,4 +41,9 @@ public class StaffDaoImpl implements StaffDao{
 		return count > 0;
 	}
 
+	@Override
+	public String loginCheck(StaffDto staffDto) {
+		return sqlSession.selectOne("staff.loginCheck",staffDto);
+	}
+
 }

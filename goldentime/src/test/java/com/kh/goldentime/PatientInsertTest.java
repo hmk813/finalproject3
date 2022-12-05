@@ -24,7 +24,7 @@ public class PatientInsertTest {
 													.patientBlood("AB+")
 													.patientGender("M")
 													.patientAddress("서울특별시 강서구 어쩌로 107동 202호")
-													.patientPhone("010-1111-1111")	
+													.patientPhone("01011111111")	
 											.build();
 		sqlSession.insert("patient.add", patientDto);
 	}

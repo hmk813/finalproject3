@@ -15,4 +15,8 @@
 		#{patientGender}, #{patientAddress}, 
 		#{patientPhone}) 
 	</insert>
+	
+	<select id="listt" resultType="PatientDto">
+		select * from patient
+	</select>
 </mapper>

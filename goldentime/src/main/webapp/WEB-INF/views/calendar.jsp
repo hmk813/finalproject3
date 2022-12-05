@@ -80,5 +80,5 @@
  
   </body>
 </style>
- <div id="calendar"></div>     
+ <div style="width:600px;"id="calendar"></div>     
 </html>

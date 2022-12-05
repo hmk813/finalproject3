@@ -16,10 +16,9 @@ public class StaffDaoImpl implements StaffDao{
 	
 	@Override
 	public void insert(StaffDto staffDto) {
-		sqlSession.insert("staff.insert",staffDto);
-		
+		sqlSession.insert("staff.insert",staffDto);	
 	}
-	
+
 	@Override
 	public List<StaffDto> list() {
 		return sqlSession.selectList("staff.list");

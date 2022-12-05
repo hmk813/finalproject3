@@ -47,6 +47,12 @@
  		delete staff where staff_id = #{staffId}
  	</delete>	
  	
+ 	<!-- 로그인 -->
+ 	<select id="login" parameterType="StaffDto" resultType="StaffDto">
+ 		select * from staff
+ 		where staffId=#{staffId}, staffPw=#{staffPw}
+ 	</select>
+ 	
  	<!-- 검색 -->
 	<!-- <select id="list" resultType="StaffDto">
 		select * from staff 

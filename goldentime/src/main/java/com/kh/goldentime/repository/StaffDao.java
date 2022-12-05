@@ -11,4 +11,5 @@ public interface StaffDao {
 	StaffDto selectOne(String staffId);//단일조회
 	boolean edit(StaffDto staffDto);//수정
 	boolean delete(String staffId);//삭제
+	
 }

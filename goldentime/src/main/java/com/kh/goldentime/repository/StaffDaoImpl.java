@@ -40,5 +40,5 @@ public class StaffDaoImpl implements StaffDao{
 		int count = sqlSession.delete("staff.delete", staffId);
 		return count > 0;
 	}
-	
+
 }

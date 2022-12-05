@@ -13,7 +13,7 @@ public class StaffDto {
 		private String staffId;
 		private int staffDepartmentNo;
 		private int staffBirth;
-		private int staffTell;
+		private int staffPhone;
 		private String staffAddress;
 		private Date staffEnrollDate;
 		private Date staffLeaveDate;

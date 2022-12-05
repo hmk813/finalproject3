@@ -18,6 +18,10 @@ public class HyunJaeTest {
 //		attendanceDao.goWork(AttendanceDto.builder()
 //				.attendanceStaffId("aaa")
 //				.build());
+		String id = "aaa";
+		
+		System.out.println(attendanceDao.goWorkFind(id));
+		
 		
 		
 	}

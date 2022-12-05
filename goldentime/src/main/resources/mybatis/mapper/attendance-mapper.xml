@@ -17,7 +17,7 @@
   	 set  attendance_end_time=sysdate WHERE TO_CHAR(attendance_start_time,'YYYYMMDD')
   	  = TO_CHAR(SYSDATE,'YYYYMMDD') and attendance_staff_id=#{attendanceStaffId}
   </update>
-  
+  <!--오늘출근시간 조회구문-->
   <select id="goWorkfind" parameterType="String" resultType="AttendanceDto">
   	SELECT * FROM attendance
   	 WHERE TO_CHAR(attendance_start_time,'YYYYMMDD')

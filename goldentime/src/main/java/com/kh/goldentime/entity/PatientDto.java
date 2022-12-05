@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class PatientDto {
-	private int patient_no;
+	private int patientNo;
 	private Date patientBirth;
-	private String patientName, patientGender; 
-
+	private String patientName, patientGender, patientPhone,
+	patientAddress, patientBlood; 
 }

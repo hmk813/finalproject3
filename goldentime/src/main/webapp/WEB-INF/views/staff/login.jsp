@@ -4,26 +4,6 @@
 <link rel="stylesheet" type="text/css" href="./css/reset.css">
 <link rel="stylesheet" type="text/css" href="./css/commons.css">
 
-<style>
-        .input.NNNNN ~ .NNNNN-message ,
-        .input.NNNNY ~ .NNNNY-message ,
-        .input.fail ~ .fail-message {
-            display: block;
-        }
-        .input ~ .NNNNN-message {
-            color: red;
-            display: none;
-        }
-        .input ~ .NNNNY-message {
-            color: green;
-            display: none;
-        }
-        .input ~ .fail-message {
-            color: red;
-            display: none;
-        }
- </style>
-
 <form action="login" method="post">
 <div class="container-700">
 
@@ -38,16 +18,6 @@
 	</div>
 	<div class="row center">
 		<button class="btn btn-neutral" type="submit" name="login">로그인</button>
-	</div>
-	<div class="row center">
-	<c:if test="${param.error == null}">
-		<h1>마이페이지</h1>
-	</c:if>
-	</div>
-	<div class="row center">
-	<c:if test="${param.error != null}">
-		<h2 style="color:red">로그인 실패</h2>
-	</c:if>
 	</div>
 </div>
 </form>

@@ -143,9 +143,4 @@ public ResponseEntity<ByteArrayResource> download(
 	else {//파일 없음
 		//1) 우리가 정한 예외를 발생시키는 방법
 		throw new TargetNotFoundException("프로필 없음");
-		
-		//2) 사용자에게 못찾았음(404)을 전송
-		//return ResponseEntity.notFound().build();
 	}
-}
-}

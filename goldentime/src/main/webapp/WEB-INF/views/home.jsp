@@ -63,9 +63,6 @@
 		</div>
 			<div class="notice box">
 				<span class="c-title">공지사항</span>
-				<ul>
-						<li><a href="${nDetail }"><span>${notice.noticeTitle }</span></a></li>
-				</ul>
 			</div>
 			
 </body>

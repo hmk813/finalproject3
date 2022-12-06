@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @Builder @NoArgsConstructor @AllArgsConstructor
-public class AttachmentDto {
+public class AttachmentDto { //첨부파일DTO
 
 	private int attachmentNo;
 	private String attachmentName;

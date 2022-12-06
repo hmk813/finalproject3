@@ -1,7 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" type="text/css" href="./css/reset.css">
+<link rel="stylesheet" type="text/css" href="./css/commons.css">
 
+<style>
+        .input.NNNNN ~ .NNNNN-message ,
+        .input.NNNNY ~ .NNNNY-message ,
+        .input.fail ~ .fail-message {
+            display: block;
+        }
+        .input ~ .NNNNN-message {
+            color: red;
+            display: none;
+        }
+        .input ~ .NNNNY-message {
+            color: green;
+            display: none;
+        }
+        .input ~ .fail-message {
+            color: red;
+            display: none;
+        }
+ </style>
 
 <form action="login" method="post">
 <div class="container-700">

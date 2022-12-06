@@ -42,8 +42,13 @@ public class StaffDaoImpl implements StaffDao{
 	}
 
 	@Override
-	public String loginCheck(StaffDto staffDto) {
-		return sqlSession.selectOne("staff.loginCheck",staffDto);
+	public String login(StaffDto staffDto) {
+		return sqlSession.selectOne("staff.login",staffDto);
+	}
+
+	@Override
+	public boolean changePassword(String staffId, String staffPw) {
+		return sqlSession.selectOne(staffId);
 	}
 
 }

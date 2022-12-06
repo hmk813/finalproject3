@@ -23,7 +23,15 @@ public class AttendanceRestController {//근태 관리를 위한 비동기통신
 	
 	@PostMapping("/attendance")
 	public void goWork(@RequestBody AttendanceDto attendanceDto) {
-		attendanceDao.goWork(attendanceDto);
+		String id = "admin";
+		if(attendanceDao.goWorkFind(id)==null) {//만약 출근데이터가 null이면
+			//출근 구문 insert
+			attendanceDao.goWork(attendanceDto);
+		}else {//null값처리
+			attendanceDao.goWork(null);
+		}
+		
+		
 	}
 	
 	@PutMapping("/attendance")

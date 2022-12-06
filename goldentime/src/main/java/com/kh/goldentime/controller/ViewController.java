@@ -12,5 +12,10 @@ public class ViewController {
 		return "staff";
 	}
 	
+	@RequestMapping("/attendance")
+	public String attendance() {
+		return "attendance";
+	}
+	
 	
 }

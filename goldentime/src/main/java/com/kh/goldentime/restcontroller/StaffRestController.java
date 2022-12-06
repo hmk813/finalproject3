@@ -34,8 +34,6 @@ public class StaffRestController {
 	@GetMapping("/staff")//목록
 	public List<StaffDto> list(){
 		return staffDao.list();
-	}
-
-	
+	}	
 	
 }

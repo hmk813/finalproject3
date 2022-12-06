@@ -19,6 +19,10 @@
 <link href='fullcalendar/lib/main.css' rel='stylesheet' />
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src='fullcalendar/lib/main.js'></script>
+
+	<style>
+    </style>
+
 </head>
 <body>
 
@@ -64,6 +68,8 @@
 			<div class="notice box">
 				<span class="c-title">공지사항</span>
 			</div>
-			
+		
+		</div>
+	</main>
 </body>
 </html>

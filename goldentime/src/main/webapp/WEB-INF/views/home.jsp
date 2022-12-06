@@ -61,12 +61,6 @@
 						<li><a href="${nDetail }"><span>${notice.noticeTitle }</span></a></li>
 				</ul>
 			</div>
-</body>
-
-
-
-
-	
-	
+			
 </body>
 </html>

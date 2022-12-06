@@ -6,6 +6,7 @@
 
 <html>
 	<head>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 		<title>
 			<c:choose>
 				<c:when test="${param.title != null}">
@@ -32,7 +33,7 @@
 			}
 			
 			.header {
-			  background-color: black;
+			  background-color: skyblue;
 			  width: 100%;
 			  height: 100px;
 			}
@@ -71,11 +72,6 @@
 				    color: white;
 				}
 				
-				.fab {
-				    font-size: 35px;
-				    color: #1DA1F2;
-				}
-				
 				.fas {
 				    display: none;
 				}
@@ -91,10 +87,6 @@
 			
 			  	#menu {
 			    	display: none;
-			  	}
-			
-			  	.fab {
-			    	display : none;
 			  	}
 			
 			  	.fas {
@@ -113,7 +105,7 @@
 	        <header>
 				<section class="header">
 				    <div class="nav">
-					    <div class="title"><a href="/home">Home</a></div>
+					    <div class="title"><a href="/"><i class="fa-sharp fa-solid fa-hospital"></i></a></div>
 					    <ul id="menu">
 					      	<li><a href="">예약</a></li>
 					     	<li><a href="">환자 현황</a></li>
@@ -121,16 +113,11 @@
 					     	<li><a href="">수술 환자</a></li>
 					     	<li><a href="">입원 환자</a></li>
 					    </ul>
-					    <i class="fab fa-twitter-square"></i>
-					    <i class="fas fa-bars"></i>
+					    <i class="fas fa-sharp fa-solid fa-bars"></i>
 				    </div>
 			  	</section>
 			</header>
 			
-			
-	        <nav>
-			</nav>
-	
 	        <!-- 사이드바 + 컨텐츠 -->
             <section class="w-100">
 		

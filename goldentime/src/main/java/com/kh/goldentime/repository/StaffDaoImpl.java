@@ -41,14 +41,5 @@ public class StaffDaoImpl implements StaffDao{
 		return count > 0;
 	}
 
-	@Override
-	public String login(StaffDto staffDto) {
-		return sqlSession.selectOne("staff.login",staffDto);
-	}
-
-	@Override
-	public boolean changePassword(String staffId, String staffPw) {
-		return sqlSession.selectOne(staffId);
-	}
 
 }

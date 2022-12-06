@@ -12,8 +12,8 @@ public class StaffDto {
 
 		private String staffId;
 		private int staffDepartmentNo;
-		private int staffBirth;
-		private int staffTell;
+		private Date staffBirth;
+		private String staffPhone;
 		private String staffAddress;
 		private Date staffEnrollDate;
 		private Date staffLeaveDate;

@@ -70,6 +70,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- REST API 문서화를 위한 의존성  -->
+		<dependency>
+    		<groupId>org.springdoc</groupId>
+    		<artifactId>springdoc-openapi-ui</artifactId>
+    		<version>1.6.12</version>
+		</dependency>
 		
 			<!-- JSP를 사용하기 위한 의존성 -->
 		<dependency>

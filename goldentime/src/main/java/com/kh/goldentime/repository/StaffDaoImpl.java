@@ -16,10 +16,9 @@ public class StaffDaoImpl implements StaffDao{
 	
 	@Override
 	public void insert(StaffDto staffDto) {
-		sqlSession.insert("staff.insert",staffDto);
-		
+		sqlSession.insert("staff.insert",staffDto);	
 	}
-	
+
 	@Override
 	public List<StaffDto> list() {
 		return sqlSession.selectList("staff.list");
@@ -41,5 +40,10 @@ public class StaffDaoImpl implements StaffDao{
 		int count = sqlSession.delete("staff.delete", staffId);
 		return count > 0;
 	}
-	
+
+	@Override
+	public String loginCheck(StaffDto staffDto) {
+		return sqlSession.selectOne("staff.loginCheck",staffDto);
+	}
+
 }

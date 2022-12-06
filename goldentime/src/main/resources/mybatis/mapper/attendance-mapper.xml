@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="attendance">
+ 
+  <!--출근 insert 구문-->
+  <insert id="goWork" parameterType="AttendanceDto">
+	insert into attendance
+	(attandance_no,attendance_staff_id, attendance_start_time, attendance_work_state)
+	VALUES(attendance_seq.nextval,#{attendanceStaffId},sysdate,'업무중')
+  </insert>
+ 
+  <!--퇴근시간 update 구문-->
+  <update id="leavework" parameterType="AttendanceDto">
+  	update attendance
+  	 set  attendance_end_time=sysdate WHERE TO_CHAR(attendance_start_time,'YYYYMMDD')
+  	  = TO_CHAR(SYSDATE,'YYYYMMDD') and attendance_staff_id=#{attendanceStaffId}
+  </update>
+  <!--오늘출근시간 조회구문-->
+  <select id="goWorkfind" parameterType="String" resultType="AttendanceDto">
+  	SELECT * FROM attendance
+  	 WHERE TO_CHAR(attendance_start_time,'YYYYMMDD')
+  	  = TO_CHAR(SYSDATE,'YYYYMMDD') and attendance_staff_id=#{attendanceStaffId}
+  </select>
+  </mapper>

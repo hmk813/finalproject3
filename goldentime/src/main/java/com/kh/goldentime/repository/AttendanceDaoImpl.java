@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.goldentime.entity.AttendanceDto;
+import com.kh.goldentime.vo.AttendanceWorkTimeVO;
 
 @Repository
 public class AttendanceDaoImpl implements AttendanceDao {
@@ -26,5 +27,15 @@ public class AttendanceDaoImpl implements AttendanceDao {
 	@Override
 	public AttendanceDto goWorkFind(String attendanceStaffId) {
 		return sqlSession.selectOne("attendance.goWorkfind",attendanceStaffId);
+	}
+
+	@Override
+	public AttendanceWorkTimeVO stardEnd(String attendanceStaffId) {
+		return sqlSession.selectOne("attendance.startendtime",attendanceStaffId);
+	}
+
+	@Override
+	public AttendanceDto comeLate(String attendanceStaffId) {
+		return sqlSession.selectOne("attendance.comeLate",attendanceStaffId);
 	}
 }

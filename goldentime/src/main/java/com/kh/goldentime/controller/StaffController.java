@@ -82,6 +82,33 @@ public class StaffController {
 	
 	}
 	
+	
+	//비밀번호 확인
+	@GetMapping("/checkPassword")
+	public String checkPassword(Model model, HttpSession session) {
+		String staffId = (String) session.getAttribute(SessionConstant.ID);
+		StaffDto staffDto = staffDao.selectOne(staffId);
+		model.addAttribute("staffDto",staffDto);
+	
+		return "staff/checkPassword";
+	}
+	
+	@PostMapping("/checkPassword")
+	public String checkPassword(
+			@ModelAttribute StaffDto staffDto,
+			HttpSession session) {
+		
+		boolean checkPassword = staffDao.checkPassword(staffDto);
+		if(checkPassword) {
+			session.setAttribute("staff", staffDto);
+			
+			return "redirect:changePassword";
+		} else {
+			return "redirect:checkPassword?error";
+		}
+		
+	}
+	
 	//비밀번호 변경
 	@GetMapping("/password")
 	public String password() {
@@ -98,7 +125,11 @@ public class StaffController {
 			//비밀번호 검사
 			StaffDto staffDto = staffDao.selectOne(staffId);
 			boolean passwordMatch = beforePw.equals(staffDto.getStaffPw());
-			if(!passwordMatch) {
+		
+//		System.out.println(beforePw);
+//		System.out.println(afterPw);
+		
+		if(!passwordMatch) {
 				//return "redirect:password?error";
 				throw new Exception();
 			}
@@ -108,6 +139,7 @@ public class StaffController {
 			return "redirect:password_result";
 		}
 		catch(Exception e) {
+			e.printStackTrace();
 			return "redirect:password?error";
 		}
 	}

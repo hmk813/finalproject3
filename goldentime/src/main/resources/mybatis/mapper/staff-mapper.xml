@@ -53,11 +53,13 @@
  	</select>
  	
  	<!-- 비밀번호 변경-->
- 	<update id="password" parameterType="StaffDto">
+ 	<update id="password" parameterType="map">
  		update staff 
- 			set staff_pw = #{staffPw} 
+ 			set staff_pw = #{afterPw} 
  				where staff_id = #{staffId}
  	</update>
+ 	
+ 	
  	
  	<!-- 개인정보 변경 -->
  	<update id="information" parameterType="StaffDto">
@@ -68,6 +70,7 @@
  				where
  					staff_id = #{staffId}
  	</update>
+ 	
  	
  	<!-- 검색 -->
 	<!-- <select id="list" resultType="StaffDto">

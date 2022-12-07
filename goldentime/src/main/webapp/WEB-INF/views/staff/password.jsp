@@ -11,7 +11,7 @@
 	<form action="password" method="post">
 		
 		<input type="password" name ="beforePw" placeholder="기존 비밀번호">
-		<br><br>
+		<br><br> 
 		<input type="password" name ="afterPw" placeholder="바꿀 비밀번호">
 		<br><br>
 		<button type="submit">변경</button> 

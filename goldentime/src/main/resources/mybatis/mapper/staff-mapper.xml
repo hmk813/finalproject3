@@ -42,23 +42,16 @@
 				staff_id=#{staffId}
 	</update>
 	
-	<!-- 비밀번호 변경 -->
-	<update id="change" parameterType="staffDto">
-			update staff
-			set staffPw = #{staffPw}
-			where staffId = #{staffId}
-	</update>
-	
 	<!-- 직원삭제 -->
  	<delete id="delete" parameterType="String">
  		delete staff where staff_id = #{staffId}
  	</delete>	
- 	
- 	<!-- 로그인 -->
- 	<select id="login"  resultType="String">
- 		select staffName from staff
- 		where staffId=#{staffId} and staffPw=#{staffPw}
+ 
+	<!-- 로그인 여부 확인 -->
+ 	<select id="login" parameterType="String" resultType="StaffDto">
+ 		select * from staff where staff_id = #{staffId}
  	</select>
+ 	
  	
  	<!-- 검색 -->
 	<!-- <select id="list" resultType="StaffDto">

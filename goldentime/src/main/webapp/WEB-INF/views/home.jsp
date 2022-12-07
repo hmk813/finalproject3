@@ -31,8 +31,9 @@
 			<div class="myInfo box">
 				<span class="c-title">내 정보</span>
 				
-					<span class="material-icons" style="font-size: 80px;display: block;text-align: center">
+					<span class="material-icons" style="font-size: 80px;display: block;text-align: center">					
 							내정보
+							<!--  <img src="/image/test.jpg"  class="w-50"> -->
 					</span>
 				<div style="font-size:18px;">${loginUser.memberName } ${loginUser.rank }</div>
 				<div style="color: rgba(90, 90, 90); font-size:16px">${loginUser.division }</div>

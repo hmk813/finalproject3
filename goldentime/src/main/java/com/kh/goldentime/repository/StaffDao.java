@@ -10,9 +10,10 @@ public interface StaffDao {
 	List<StaffDto> list(); //목록
 	boolean edit(StaffDto staffDto);//수정
 	boolean delete(String staffId);//삭제
+
+	StaffDto selectOne(String staffId);//로그인 여부
 	
-	StaffDto selectOne(String staffId, String staffPw);
-	StaffDto selectOne(String loginId);
+	
 	
 	
 }

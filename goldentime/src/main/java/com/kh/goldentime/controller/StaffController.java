@@ -38,7 +38,7 @@ public class StaffController {
 	@PostMapping("/login")
 	public String login(@ModelAttribute StaffDto inputDto,
 			HttpSession session) {
-		StaffDto findDto = staffDao.selectOne(inputDto.getStaffId(),inputDto.getStaffPw());
+		StaffDto findDto = staffDao.selectOne(inputDto.getStaffId());
 		if(findDto == null) {
 			return "redirect:login?error";
 		}
@@ -49,7 +49,7 @@ public class StaffController {
 		if(passwordMatch) {
 			session.setAttribute(SessionConstant.ID, inputDto.getStaffId());
 			session.setAttribute(SessionConstant.GRADE, findDto.getStaffGrade());
-	
+				
 			return "redirect:/";
 		}
 		else {

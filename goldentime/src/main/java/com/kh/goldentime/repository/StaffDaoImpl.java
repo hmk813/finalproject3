@@ -38,18 +38,10 @@ public class StaffDaoImpl implements StaffDao{
 		return count > 0;
 	}
 
-	@Override
-	public StaffDto selectOne(String staffId, String staffPw) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override//로그인 여부 확인
+	public StaffDto selectOne(String staffId) {
+		return sqlSession.selectOne("staff.login",staffId);
+		
 	}
-
-	@Override
-	public StaffDto selectOne(String loginId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 	
 }

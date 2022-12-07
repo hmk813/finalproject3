@@ -30,6 +30,9 @@ public class AttendanceRestController {//근태 관리를 위한 비동기통신
 		if(attendanceDao.goWorkFind(id)==null) {//만약 출근데이터가 null이면
 			//출근 구문 insert
 			attendanceDao.goWork(attendanceDto);
+			if(attendanceDao.comeLate(id)!=null) {//만약 지각조회를 했는데 8시 30뷴 넘은 데이터가 있으면 지각
+				attendanceDao.comeLateUpate(id);
+			}
 		}else {//null값처리
 			attendanceDao.goWork(null);
 		}

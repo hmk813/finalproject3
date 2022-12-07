@@ -37,16 +37,25 @@
   <select id="comeLate" parameterType="String" resultType="AttendanceDto">
   	SELECT * FROM attendance
   	 WHERE
-  	 	attendance_staff_id='#{attendanceStaffId} and
+  	 	attendance_staff_id=#{attendanceStaffId} and
   	  	TO_CHAR(attendance_start_time,'yyyy-MM-dd hh24:mi:ss') >= 
   		(select to_char(trunc(sysdate)+ (INTERVAL '8' HOUR) + (INTERVAL '30' MINUTE), 'yyyy-MM-dd hh24:mi:ss') from dual)
   </select>
   
   <!-- 지각하면 지각이 처리되는 구문 -->
-  <insert id="comeLateinsert" parameterType="AttendanceDto">
-	insert into attendance
-	(attandance_no,attendance_staff_id, attendance_start_time, attendance_work_state)
-	VALUES(attendance_seq.nextval,#{attendanceStaffId},sysdate,'지각') 
-  </insert>
+  <update id="comeLateUpdate" parameterType="AttendanceDto">
+  	update attendance
+  	 set 
+  	 attendance_work_state='지각' 
+  	 where TO_CHAR(attendance_start_time,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')
+  	 and attendance_staff_id=#{attendanceStaffId}
+  </update>
+  
+  <!--직원별 오늘 근무 몇시간+정보(all) 했는지 구문 -->
+  <select id="totalWorkTime" parameterType="String" resultType="AttendanceTotalWorkTimeVO">
+	SELECT a.*,
+ 	(SELECT ROUND((TO_DATE(a.attendance_end_time, 'yyyy-MM-dd hh24:mi:ss') - TO_DATE(a.attendance_start_time, 'yyyy-MM-dd hh24:mi:ss')) * 24, 2) FROM dual) work_time
+ 	 FROM attendance a WHERE TO_CHAR(attendance_start_time,'YYYYMMDD')= TO_CHAR(SYSDATE,'YYYYMMDD') and attendance_staff_id=#{attendanceStaffId}
+  </select>
   
   </mapper>

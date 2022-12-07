@@ -51,11 +51,23 @@
   	 and attendance_staff_id=#{attendanceStaffId}
   </update>
   
-  <!--직원별 오늘 근무 몇시간+정보(all) 했는지 구문 -->
-  <select id="totalWorkTime" parameterType="String" resultType="AttendanceTotalWorkTimeVO">
-	SELECT a.*,
- 	(SELECT ROUND((TO_DATE(a.attendance_end_time, 'yyyy-MM-dd hh24:mi:ss') - TO_DATE(a.attendance_start_time, 'yyyy-MM-dd hh24:mi:ss')) * 24, 2) FROM dual) work_time
- 	 FROM attendance a WHERE TO_CHAR(attendance_start_time,'YYYYMMDD')= TO_CHAR(SYSDATE,'YYYYMMDD') and attendance_staff_id=#{attendanceStaffId}
+  <!--오늘의 근무시간 구문 -->
+  <select id="totalWorkTime" parameterType="String" resultType="TodayTotalWorkTimeVO">
+	select a.work_time from att_record a where a.attendance_start_time>to_char(sysdate,'yyyymmdd') and attendance_staff_id=#{attendanceStaffId}
   </select>
   
+  <!-- 출근 업무중 상태변경 
+	<update id="stateChage" parameterType="AttendanceDto">
+	<![CDATA[
+	update attendance set attendance_work_state=
+		(
+		case
+	    when(select a.worktime from att_record a where a.attendance_start_time>to_char(sysdate,'yyyymmdd') and attendance_staff_id=#{attendanceStaffId})>7 then '출근'
+	    when(select a.worktime from att_record a where a.attendance_start_time>to_char(sysdate,'yyyymmdd') and attendance_staff_id=#{attendanceStaffId})<7 then '업무중'
+	    end 
+		)
+	where attendance_start_time>to_char(sysdate,'yyyymmdd') and attendance_staff_id=#{attendanceStaffId}
+	]]>
+	</update>
+  -->
   </mapper>

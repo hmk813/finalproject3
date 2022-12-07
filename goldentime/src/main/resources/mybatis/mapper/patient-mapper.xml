@@ -4,7 +4,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="patient">
-	<insert id="add" parameterType="PatientDto">
+	<insert id="insert" parameterType="PatientDto">
 		insert into patient(
 			patient_no, patient_name, patient_birth, patient_blood,
 			patient_gender, patient_address,
@@ -16,7 +16,15 @@
 		#{patientPhone}) 
 	</insert>
 	
-	<select id="listt" resultType="PatientDto">
+	<select id="list" resultType="PatientDto">
 		select * from patient
 	</select>
+	
+	<update id="edit" parameterType="PatientDto">
+		update patient
+			set patient_name = #{patientName}, patient_birth = #{patientBirth},
+			patient_blood=#{patientBlood}, patient_gender = #{patientGender},
+			patient_address=#{patientAddress}, patient_phone=#{patientPhone}
+			where patient_no = #{patientNo}
+	</update>
 </mapper>

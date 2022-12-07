@@ -8,7 +8,7 @@
 <div class="container-700">
 
 	<div class="row center">
-		<h1>직원 메뉴</h1>
+		<h1>직원 로그인</h1>
 	</div>
 	<div class="row center">
 		<input class="input_underline" type="text" name="staffId" placeholder="아이디" required autocomplete="off">

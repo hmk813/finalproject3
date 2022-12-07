@@ -50,14 +50,14 @@ public class StaffController {
 			session.setAttribute(SessionConstant.ID, inputDto.getStaffId());
 			session.setAttribute(SessionConstant.GRADE, findDto.getStaffGrade());
 				
-			return "redirect:/";
+			return "redirect:/staff/mypage";
 		}
 		else {
 			return "redirect:login?error";
 		}
 	}
 	
-	
+	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute(SessionConstant.ID);
@@ -78,45 +78,109 @@ public class StaffController {
 		//불러온 회원 정보를 모델에 첨부한다
 		model.addAttribute("staffDto",staffDto);
 		
-		return "staff/mypage";
+		return "/staff/mypage";
 	
 	}
-
-//	//비밀번호 변경
-//	@GetMapping("/password")
-//	public String password() {
-//		return "staff/password";
-//	}
-//	
-//	@PostMapping("/password")
-//	public String password(HttpSession session,
-//			@RequestParam String beforePw,//사용자가 입력한 비밀번호
-//			@RequestParam String afterPw) {//사용자가 바꿀 비밀번호
-//		String staffId = (String) session.getAttribute(SessionConstant.ID);
-//		try { //비밀번호검사
-//			StaffDto staffDto = staffDao.selectOne(afterPw);
-//			boolean passwordMatch = beforePw.equals(staffDto.getStaffPw());
-//			if(!passwordMatch) {
-//				throw new Exception();
-//			}
-//		}
-//		
+	
+	
+	//비밀번호 확인
+	@GetMapping("/checkPassword")
+	public String checkPassword(Model model, HttpSession session) {
+		String staffId = (String) session.getAttribute(SessionConstant.ID);
+		StaffDto staffDto = staffDao.selectOne(staffId);
+		model.addAttribute("staffDto",staffDto);
+	
+		return "staff/checkPassword";
+	}
+	
+	@PostMapping("/checkPassword")
+	public String checkPassword(
+			@ModelAttribute StaffDto staffDto,
+			HttpSession session) {
+		
+		boolean checkPassword = staffDao.checkPassword(staffDto);
+		if(checkPassword) {
+			session.setAttribute("staff", staffDto);
 			
-////			//비밀번호 변경
-////			staffDao.changePassword(staffId, afterPw);
-////			return "redirect:password_result";
-////			}
-//			
-//			catch(Exception e) {
-//				return "redirect:password?error";
-//		}
-//	}
-//		
-//			@GetMapping("/password_result")
-//			public String passwordResult() {
-//				return "staff/passwordResult";
-//			}
-//}
+			return "redirect:changePassword";
+		} else {
+			return "redirect:checkPassword?error";
+		}
+		
+	}
+	
+	//비밀번호 변경
+	@GetMapping("/password")
+	public String password() {
+		return "staff/password";
+	}
+	
+	@PostMapping("/password")
+	public String password(
+			HttpSession session, 
+			@RequestParam String beforePw,//사용자가 입력한 기존비밀번호
+			@RequestParam String afterPw) {//사용자가 입력한 바꿀비밀번호
+		String staffId = (String) session.getAttribute(SessionConstant.ID);
+		try {
+			//비밀번호 검사
+			StaffDto staffDto = staffDao.selectOne(staffId);
+			boolean passwordMatch = beforePw.equals(staffDto.getStaffPw());
+		
+//		System.out.println(beforePw);
+//		System.out.println(afterPw);
+		
+		if(!passwordMatch) {
+				//return "redirect:password?error";
+				throw new Exception();
+			}
+			
+			//비밀번호 변경
+			staffDao.changePassword(staffId, afterPw);
+			return "redirect:password_result";
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return "redirect:password?error";
+		}
+	}
+	
+	@GetMapping("/password_result")
+	public String passwordResult() {
+		return "staff/passwordResult";
+	}
+		
+	
+	//개인정보 변경
+	@GetMapping("/information")
+	public String information(HttpSession session,Model model) {
+		String staffId = (String) session.getAttribute(SessionConstant.ID);
+		StaffDto staffDto = staffDao.selectOne(staffId);
+		model.addAttribute("staffDto", staffDto);
+		return "staff/information";
+			
+	}
+	
+	@PostMapping("/information")
+	public String information(HttpSession session,
+			@ModelAttribute StaffDto inputDto) {
+		String staffId = (String)session.getAttribute(SessionConstant.ID);
+		inputDto.setStaffId(staffId);
+		
+		//비밀번호 검사
+		StaffDto findDto = staffDao.selectOne(staffId);
+		boolean passwordMatch = 
+				inputDto.getStaffPw().equals(findDto.getStaffPw());
+		
+		//비밀번호 검사 통과했다면 개인정보 처리 가능
+		if(passwordMatch) {
+			staffDao.changeInformation(inputDto);
+			return "redirect:mypage";
+		}
+		else { //비밀번호 불일치
+			return "redirect:information?error";
+		}
+	}
+		
 
 @GetMapping("/download")
 @ResponseBody

@@ -17,10 +17,13 @@ public class moonkyuTest {
 	
 	@Test
 	public void test() {
-		//assertNotNull(sqlSession);
-		List<StaffDto> list = sqlSession.selectList("staff.list");
-		for(StaffDto staffDto : list) {
-			System.out.println(staffDto);
-		}
+//		//assertNotNull(sqlSession);
+//		List<StaffDto> list = sqlSession.selectList("staff.list");
+//		for(StaffDto staffDto : list) {
+//			System.out.println(staffDto);
+//		}
+//	}
 	}
 }
+
+

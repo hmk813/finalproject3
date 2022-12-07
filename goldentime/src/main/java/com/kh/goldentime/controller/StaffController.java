@@ -150,7 +150,7 @@ public class StaffController {
 	}
 		
 	
-	//개인정보 변경
+	//개인정보 변경 기능(자기자신)
 	@GetMapping("/information")
 	public String information(HttpSession session,Model model) {
 		String staffId = (String) session.getAttribute(SessionConstant.ID);

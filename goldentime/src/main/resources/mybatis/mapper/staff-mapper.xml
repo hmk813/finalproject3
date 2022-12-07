@@ -65,7 +65,7 @@
  	<update id="information" parameterType="StaffDto">
  		update staff
  				set 
- 					staff_phone = #{staffPhone}
+ 					staff_phone = #{staffPhone},
  					staff_address = #{staffAddress}
  				where
  					staff_id = #{staffId}

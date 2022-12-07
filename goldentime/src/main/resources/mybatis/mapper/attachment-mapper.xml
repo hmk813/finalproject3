@@ -22,7 +22,11 @@
 		)
 	</insert>
 	
-	<select id="find" parameterType="int" resultType="AttachmentDto">
+	<select id="list" resultType="AttachmentDto">
+		select * from attachment
+	</select>
+	
+	<select id="one" parameterType="int" resultType="AttachmentDto">
 		select * from attachment where attachment_no = #{attchmentNo}
 	</select>
 	

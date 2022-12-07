@@ -56,18 +56,22 @@
 	select a.work_time from att_record a where a.attendance_start_time>to_char(sysdate,'yyyymmdd') and attendance_staff_id=#{attendanceStaffId}
   </select>
   
-  <!-- 출근 업무중 상태변경 
-	<update id="stateChage" parameterType="AttendanceDto">
-	<![CDATA[
-	update attendance set attendance_work_state=
-		(
-		case
-	    when(select a.worktime from att_record a where a.attendance_start_time>to_char(sysdate,'yyyymmdd') and attendance_staff_id=#{attendanceStaffId})>7 then '출근'
-	    when(select a.worktime from att_record a where a.attendance_start_time>to_char(sysdate,'yyyymmdd') and attendance_staff_id=#{attendanceStaffId})<7 then '업무중'
-	    end 
-		)
+  <!-- 오늘 퇴근시간 -->
+  <select id="todayLeaveTime" parameterType="String" resultType="TimeFormatVO">
+  	select to_char(attendance_end_time,'yyyy-MM-dd hh24:mi:ss') time from attendance where TO_CHAR(attendance_start_time,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')
+  	 and attendance_staff_id=#{attendanceStaffId}
+  </select>
+  
+  <!-- 출근 업무중 상태변경 = 조퇴-->
+  <update id="leaveEarly" parameterType="String">
+  	update attendance set attendance_work_state='조퇴'
 	where attendance_start_time>to_char(sysdate,'yyyymmdd') and attendance_staff_id=#{attendanceStaffId}
-	]]>
-	</update>
-  -->
+  </update>
+  
+  <!-- 출근 업무중 상태변경 = 출근-->
+  <update id="normalWork" parameterType="String">
+  	update attendance set attendance_work_state='출근'
+	where attendance_start_time>to_char(sysdate,'yyyymmdd') and attendance_staff_id=#{attendanceStaffId}
+  </update>
+  
   </mapper>

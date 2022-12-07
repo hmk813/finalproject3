@@ -25,16 +25,21 @@ public class AttendanceRestController {//근태 관리를 위한 비동기통신
 	
 	//출근 등록 구문(post)
 	@PostMapping("/attendance")
-	public void goWork(@RequestBody AttendanceDto attendanceDto) {
+	public String goWork(@RequestBody AttendanceDto attendanceDto) {
 		String id = "admin1";
 		if(attendanceDao.goWorkFind(id)==null) {//만약 출근데이터가 null이면
 			//출근 구문 insert
 			attendanceDao.goWork(attendanceDto);
+			
 			if(attendanceDao.comeLate(id)!=null) {//만약 지각조회를 했는데 8시 30뷴 넘은 데이터가 있으면 지각
 				attendanceDao.comeLateUpate(id);
+				return "late";
+			}else {
+				return "good";
 			}
+			
 		}else {//null값처리
-			attendanceDao.goWork(null);
+			return "n";
 		}
 		
 		
@@ -43,6 +48,8 @@ public class AttendanceRestController {//근태 관리를 위한 비동기통신
 	//퇴근 등록 구문(put)
 	@PutMapping("/attendance")
 	public boolean leaveWork(@RequestBody AttendanceDto attendanceDto){
+		//8시간 이상이라면
+		//8시간 이하라면
 		return attendanceDao.leaveWork(attendanceDto);
 	}
 	

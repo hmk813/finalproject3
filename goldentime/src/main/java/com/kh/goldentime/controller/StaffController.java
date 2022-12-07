@@ -38,7 +38,7 @@ public class StaffController {
 	@PostMapping("/login")
 	public String login(@ModelAttribute StaffDto inputDto,
 			HttpSession session) {
-		StaffDto findDto = staffDao.selectOne(inputDto.getStaffId());
+		StaffDto findDto = staffDao.selectOne(inputDto.getStaffId(),inputDto.getStaffPw());
 		if(findDto == null) {
 			return "redirect:login?error";
 		}

@@ -14,32 +14,42 @@ public class StaffDaoImpl implements StaffDao{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@Override
+	
+	@Override//등록
 	public void insert(StaffDto staffDto) {
 		sqlSession.insert("staff.insert",staffDto);	
 	}
 
-	@Override
+	@Override//목록
 	public List<StaffDto> list() {
 		return sqlSession.selectList("staff.list");
 	}
 
-	@Override
-	public StaffDto selectOne(String staffId) {
-		return sqlSession.selectOne("staff.find", staffId);
-	}
 
-	@Override
+	@Override//수정
 	public boolean edit(StaffDto staffDto) {
 		int count = sqlSession.update("staff.edit", staffDto);
 		return count > 0;
 	}
 
-	@Override
+	@Override//삭제
 	public boolean delete(String staffId) {
 		int count = sqlSession.delete("staff.delete", staffId);
 		return count > 0;
 	}
 
+	@Override
+	public StaffDto selectOne(String staffId, String staffPw) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public StaffDto selectOne(String loginId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
 }

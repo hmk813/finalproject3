@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%-- 템플릿 페이지인 header.jsp를 동적으로 불러와라 --%>
+<jsp:include page="/WEB-INF/views/template/header.jsp">
+	<jsp:param value="메인페이지" name="title"/>
+</jsp:include>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +19,10 @@
 <link href='fullcalendar/lib/main.css' rel='stylesheet' />
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src='fullcalendar/lib/main.js'></script>
+
+	<style>
+    </style>
+
 </head>
 <body>
 
@@ -21,8 +31,9 @@
 			<div class="myInfo box">
 				<span class="c-title">내 정보</span>
 				
-					<span class="material-icons" style="font-size: 80px;display: block;text-align: center">
+					<span class="material-icons" style="font-size: 80px;display: block;text-align: center">					
 							내정보
+							<!--  <img src="/image/test.jpg"  class="w-50"> -->
 					</span>
 				<div style="font-size:18px;">${loginUser.memberName } ${loginUser.rank }</div>
 				<div style="color: rgba(90, 90, 90); font-size:16px">${loginUser.division }</div>
@@ -57,10 +68,9 @@
 		</div>
 			<div class="notice box">
 				<span class="c-title">공지사항</span>
-				<ul>
-						<li><a href="${nDetail }"><span>${notice.noticeTitle }</span></a></li>
-				</ul>
 			</div>
-			
+		
+		</div>
+	</main>
 </body>
 </html>

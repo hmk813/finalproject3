@@ -20,7 +20,8 @@ public class HyunJaeTest {
 //				.build());
 		String id = "aaa";
 		
-		System.out.println(attendanceDao.goWorkFind(id));
+//		System.out.println(attendanceDao.goWorkFind(id));
+		System.out.println(attendanceDao.stardEnd(id));
 		
 		
 		

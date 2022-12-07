@@ -33,4 +33,9 @@ public class CalendarController {
 		return result;
 	}
 	
+//	@RequestMapping("/calModal")
+//	@ResponseBody
+//	public String calModal() {
+//		return "calModal";
+//	}
 }

@@ -25,4 +25,28 @@
   	 WHERE TO_CHAR(attendance_start_time,'YYYYMMDD')
   	  = TO_CHAR(SYSDATE,'YYYYMMDD') and attendance_staff_id=#{attendanceStaffId}
   </select>
+  <!-- 출근 퇴근 시간 조회구문 -->
+  <select id="startendtime" parameterType="String" resultType="AttendanceWorkTimeVO">
+  	select to_char(a.attendance_start_time,'HH24:MI:SS')
+  	 start_time, to_char(a.attendance_end_time,'HH24:MI:SS')
+  	  end_time from attendance a 
+  	  where TO_CHAR(attendance_start_time,'YYYYMMDD')= TO_CHAR(SYSDATE,'YYYYMMDD')
+  	    and attendance_staff_id=#{attendanceStaffId}
+  </select>
+  <!-- 지각 조회구문 : 8시30분 이후넘으면... -->
+  <select id="comeLate" parameterType="String" resultType="AttendanceDto">
+  	SELECT * FROM attendance
+  	 WHERE
+  	 	attendance_staff_id='#{attendanceStaffId} and
+  	  	TO_CHAR(attendance_start_time,'yyyy-MM-dd hh24:mi:ss') >= 
+  		(select to_char(trunc(sysdate)+ (INTERVAL '8' HOUR) + (INTERVAL '30' MINUTE), 'yyyy-MM-dd hh24:mi:ss') from dual)
+  </select>
+  
+  <!-- 지각하면 지각이 처리되는 구문 -->
+  <insert id="comeLateinsert" parameterType="AttendanceDto">
+	insert into attendance
+	(attandance_no,attendance_staff_id, attendance_start_time, attendance_work_state)
+	VALUES(attendance_seq.nextval,#{attendanceStaffId},sysdate,'지각') 
+  </insert>
+  
   </mapper>

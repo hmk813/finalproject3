@@ -29,10 +29,6 @@
 				</th>
 			</tr>
 			<tr>
-				<th width="25%">아이디</th>
-				<td>${staffDto.staffId}</td>
-			</tr>
-			<tr>
 				<th>이름</th>
 				<td>${staffDto.staffName}</td>
 			</tr>

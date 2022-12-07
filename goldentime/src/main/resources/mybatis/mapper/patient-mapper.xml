@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="patient">
+	<insert id="add" parameterType="PatientDto">
+		insert into patient(
+			patient_no, patient_name, patient_birth, patient_blood,
+			patient_gender, patient_address,
+			patient_phone
+		)
+		values(patient_seq.nextval, #{patientName}, 
+		#{patientBirth}, #{patientBlood}, 
+		#{patientGender}, #{patientAddress}, 
+		#{patientPhone}) 
+	</insert>
+	
+	<select id="listt" resultType="PatientDto">
+		select * from patient
+	</select>
+</mapper>

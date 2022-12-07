@@ -52,6 +52,22 @@
  		select * from staff where staff_id = #{staffId}
  	</select>
  	
+ 	<!-- 비밀번호 변경-->
+ 	<update id="password" parameterType="StaffDto">
+ 		update staff 
+ 			set staff_pw = #{staffPw} 
+ 				where staff_id = #{staffId}
+ 	</update>
+ 	
+ 	<!-- 개인정보 변경 -->
+ 	<update id="information" parameterType="StaffDto">
+ 		update staff
+ 				set 
+ 					staff_phone = #{staffPhone}
+ 					staff_address = #{staffAddress}
+ 				where
+ 					staff_id = #{staffId}
+ 	</update>
  	
  	<!-- 검색 -->
 	<!-- <select id="list" resultType="StaffDto">

@@ -13,7 +13,9 @@ public interface StaffDao {
 
 	StaffDto selectOne(String staffId);//로그인 여부
 	
+	boolean changePassword(String staffId, String staffPw);//비밀번호 변경
 	
-	
+	boolean changeInformation(StaffDto staffDto);//개인정보 변경
+
 	
 }

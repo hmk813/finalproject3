@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%-- 템플릿 페이지인 header.jsp를 동적으로 불러와라 --%>
 <jsp:include page="/WEB-INF/views/template/header.jsp">
 	<jsp:param value="메인페이지" name="title"/>
@@ -25,18 +26,64 @@
 
 </head>
 <body>
-
+<div class="row center">
+<tbody>
 	<div class="container fluid">
 		<div class="c-left">
-			<div class="myInfo box">
+			<div class="row left">
 				<span class="c-title">내 정보</span>
-				
+					<div>
+					<br>
+					<a href="staff/password">비밀번호 변경</a><br><br>
+					<a href="staff/information">개인정보 변경</a>
+					</div>
 					<span class="material-icons" style="font-size: 80px;display: block;text-align: center">					
 							내정보
 							<!--  <img src="/image/test.jpg"  class="w-50"> -->
-					</span>
-				<div style="font-size:18px;">${loginUser.memberName } ${loginUser.rank }</div>
-				<div style="color: rgba(90, 90, 90); font-size:16px">${loginUser.division }</div>
+	<table border="1" width="400">		
+			<!-- 프로필 이미지를 출력 -->
+			<tr>
+				<th colspan="2">
+				 <img src="./image/test.jpg" alt="테스트 사진" width="100" height="100">
+				</th>
+			</tr>
+			<tr>
+				<th width="25%">이름</th>
+				<td>${staffDto.staffName}</td>
+			</tr>
+			<tr>
+				<th>생년월일</th>
+				<td>${staffDto.staffBirth}</td>
+			</tr>
+			<tr>
+				<th>전화번호</th>
+				<td>${staffDto.staffPhone}</td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td>${staffDto.staffAddress}</td>
+			</tr>
+			<tr>
+				<th>등급</th>
+				<td>
+					${staffDto.staffGrade}
+				</td>
+			</tr>
+			<tr>
+				<th>등록일</th>
+				<td>
+					<fmt:formatDate value="${staffDto.staffEnrollDate}" pattern="y년 M월 d일 E a h시 m분 s초"/>
+				</td>
+			</tr>
+			<tr>
+				<th>퇴사일</th>
+				<td>
+					<fmt:formatDate value="${staffDto.staffLeaveDate}" pattern="y년 M월 d일 E a h시 m분 s초"/>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+				</span>
 				<div class="info-list">
 				</div>
 			</div>
@@ -69,8 +116,9 @@
 			<div class="notice box">
 				<span class="c-title">공지사항</span>
 			</div>
+</tbody>			
+			
 		
 		</div>
-	</main>
 </body>
 </html>

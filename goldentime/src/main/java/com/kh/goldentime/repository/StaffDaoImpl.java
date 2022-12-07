@@ -43,5 +43,18 @@ public class StaffDaoImpl implements StaffDao{
 		return sqlSession.selectOne("staff.login",staffId);
 		
 	}
+
+	@Override//비밀번호 변경
+	public boolean changePassword(String staffId, String staffPw) {
+		int count = sqlSession.update("staff.password", staffPw);
+		return count > 0;
+	}
+
+	@Override//개인정보 변경
+	public boolean changeInformation(StaffDto staffDto) {
+		int count = sqlSession.update("staff.information", staffDto);
+		return count > 0;
+	}
+	
 	
 }

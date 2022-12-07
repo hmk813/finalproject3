@@ -27,7 +27,6 @@ import com.kh.goldentime.repository.AttachmentDao;
 
 public class AttachmentController {
 
-	
 	private File dir = new File(System.getProperty("user.home"), "/upload");
 	
 	@Autowired
@@ -86,7 +85,7 @@ public class AttachmentController {
 	@GetMapping("/download/{attachmentNo}")
 	public ResponseEntity<ByteArrayResource> download(
 			@PathVariable int attachmentNo) throws IOException {
-		AttachmentDto attachmentDto = attachmentDao.find(attachmentNo);
+		AttachmentDto attachmentDto = attachmentDao.selectOne(attachmentNo);
 		if(attachmentDto == null) {
 			throw new IllegalArgumentException();
 		}

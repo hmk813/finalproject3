@@ -1,6 +1,8 @@
 package com.kh.goldentime.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +45,27 @@ public class StaffDaoImpl implements StaffDao{
 		return sqlSession.selectOne("staff.login",staffId);
 		
 	}
+
+	@Override//개인정보 변경
+	public boolean changeInformation(StaffDto staffDto) {
+		int count = sqlSession.update("staff.information", staffDto);
+		return count > 0;
+	}
+
+	@Override//비밀번호 확인
+	public boolean checkPassword(StaffDto staffDto) {
+		int count = sqlSession.update("staff.checkPw",staffDto);
+		return count > 0;
+	}
+
+	@Override//비밀번호 변경
+	public boolean changePassword(String staffId, String afterPw) {
+		Map<String, String> param = new HashMap<>();
+		param.put("staffId", staffId);
+		param.put("afterPw", afterPw);
+		int count = sqlSession.update("staff.password", param);
+		return count>0;
+	}
+	
 	
 }

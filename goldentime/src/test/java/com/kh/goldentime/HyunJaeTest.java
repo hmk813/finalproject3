@@ -21,7 +21,9 @@ public class HyunJaeTest {
 		String id = "aaa";
 		
 //		System.out.println(attendanceDao.goWorkFind(id));
-		System.out.println(attendanceDao.stardEnd(id));
+//		System.out.println(attendanceDao.comeLate(id));
+		System.out.println(attendanceDao.todayTimeWork(id).getWorkTime()==13
+				);
 		
 		
 		

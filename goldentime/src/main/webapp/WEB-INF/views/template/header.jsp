@@ -6,119 +6,87 @@
 
 <html>
 	<head>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
-		<title>
-			<c:choose>
-				<c:when test="${param.title != null}">
-					${param.title}
-				</c:when>
-				<c:otherwise>
-					홈페이지
-				</c:otherwise>
-			</c:choose>
-		</title>
-		
-		<style>
-        	* {
-			  margin: 0;
-			  padding: 0;
-			}
-			
-			a {
-			  text-decoration: none;
-			}
-			
-			li {
-			  list-style-type: none;
-			}
-			
-			.header {
-			  background-color: skyblue;
-			  width: 100%;
-			  height: 100px;
-			}
-			
-			.nav {
-			  display: flex;/* 한줄에 배치 */
-			  justify-content: space-between;/* 사이에 균일한 간격 생성 */
-			  align-items: center;
-			  padding: 20px 50px;
-			  color: white;
-			}
-			
-			/* 타이틀 클래스 폰트 사이즈 */
-			.title {
-			  font-size: 40px;
-			}
-			
-			/* 타이틀 클래스 a태그 글자 색 */
-			.title > a {
-			  color: white;
-			}
-			
-			/* 웹 브라우저 가로의 최대 너비가 625px 이상일 때 */
-			@media screen and (min-width: 625px) {
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-				#menu {
-					display: flex;
-				}
-				
-				#menu > li {
-				    padding: 20px 30px;
-				    font-size: 20px;
-				}
-				
-				li > a {
-				    color: white;
-				}
-				
-				.fas {
-				    display: none;
-				}
-			
-			}
-			
-			/* 웹 브라우저 가로의 최대 너비가 625px 이하일 때 */
-			@media screen and (max-width: 625px) {
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-			  	.nav {
-			    	padding: 30px 40px;
-			 	}
-			
-			  	#menu {
-			    	display: none;
-			  	}
-			
-			  	.fas {
-			    	font-size: 2em;
-			  	}
-			}
-		</style>
+    <!-- Bootswatch CDN -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.2/spacelab/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+
+    <style>
+        body {
+            height:10000px;
+        }
+    </style>
+
+	<title>
+		<c:choose>
+			<c:when test="${param.title != null}">
+				${param.title}
+			</c:when>
+			<c:otherwise>
+				홈페이지
+			</c:otherwise>
+		</c:choose>
+	</title>
 		
 </head>
 <body>
 
-	<!-- main 영역의 시작과 끝 -->
-	    <main>
-	
-	        <!-- 메뉴 -->
-	        <header>
-				<section class="header">
-				    <div class="nav">
-					    <div class="title"><a href="/"><i class="fa-sharp fa-solid fa-hospital"></i></a></div>
-					    <ul id="menu">
-					      	<li><a href="">예약</a></li>
-					     	<li><a href="">환자 현황</a></li>
-					     	<li><a href="">환자 기록</a></li>
-					     	<li><a href="">수술 환자</a></li>
-					     	<li><a href="">입원 환자</a></li>
-					    </ul>
-					    <i class="fas fa-sharp fa-solid fa-bars"></i>
-				    </div>
-			  	</section>
-			</header>
-			
-	        <!-- 사이드바 + 컨텐츠 -->
-            <section class="w-100">
-            
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+            <!-- Brand : 로고 이미지와 대표 상호를 적는 공간 -->
+            <a class="navbar-brand" href="#">
+                <i class="fa-sharp fa-solid fa-hospital"></i>골든타임
+            </a>
+
+            <!-- 토글 버튼 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- 메뉴 영역 -->
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav me-auto">
+
+                <!-- 
+                    메뉴 항목 
+                    - .active는 활성화된 메뉴(현재 메뉴), 상황에 따라 맞는 메뉴에 추가
+                -->
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">예약
+                    <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">환자 현황</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">환자 기록</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">수술 환자</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">입원 환자</a>
+                </li>
+                
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 		

@@ -20,5 +20,5 @@
 	join patient P on O.patient_no = P.patient_no
 	join diagnosis D on O.operation_diagnosis_no = d.diagnosis_no
 	</select>
-	
+
 </mapper>

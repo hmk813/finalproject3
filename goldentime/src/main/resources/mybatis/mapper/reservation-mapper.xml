@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reservation">
+	<insert id="insert" parameterType="ReservationDto">
+		insert into reservation(
+			reservation_no, reservation_staff_id, 
+			reservation_patient_number, reservation_date,
+			reservation_content, reservation_time
+		)
+		values(
+			reservation_seq.nextval, #{reservationStaffId}, 
+			#{reservationPatientNumber}, #{reservationDate},
+			#{reservationContent}, #{reservationTime}
+		)
+	</insert>
+</mapper>

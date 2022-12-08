@@ -17,7 +17,7 @@
 	</insert>
 	
 	<select id="list" resultType="PatientDto">
-		select * from patient
+		select * from patient order by patient_no desc
 	</select>
 	
 	<update id="edit" parameterType="PatientDto">

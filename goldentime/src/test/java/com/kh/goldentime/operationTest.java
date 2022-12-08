@@ -15,9 +15,12 @@ public class operationTest {
 	@Autowired
 	private SqlSession sqlSession;
 	
+// 목록 조회 SelectList()	
 	@Test
 	public void test() {
 		List<OperationInformationVO> list = sqlSession.selectList("operation.list");
 		System.out.println(list);
 	}
+	
 }
+

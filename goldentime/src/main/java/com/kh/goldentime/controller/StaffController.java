@@ -2,6 +2,7 @@ package com.kh.goldentime.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,18 +19,64 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.goldentime.constant.SessionConstant;
 import com.kh.goldentime.entity.StaffDto;
 import com.kh.goldentime.error.TargetNotFoundException;
 import com.kh.goldentime.repository.StaffDao;
+import com.kh.goldentime.vo.StaffSearchVO;
+
 
 @Controller
 @RequestMapping("/staff")
 public class StaffController {
 
+
+	@Autowired
+	private PasswordEncoder encoder;
+	
 	@Autowired
 	private StaffDao staffDao;
+	
+	@GetMapping("/join")
+	public String join() {
+		return "staff/join";
+	}
+	
+	@PostMapping("/join")
+	public String join(@ModelAttribute StaffDto staffDto,
+			@RequestParam MultipartFile staffProfile) throws IllegalStateException, IOException {
+		
+		staffDao.insert(staffDto);//DB등록
+		
+		if(!staffProfile.isEmpty()){//첨부파일이 있다면
+		File directory = new File("C:/upload");
+		directory.mkdirs();
+		File target = new File(directory, staffDto.getStaffId());
+		staffProfile.transferTo(target);
+	}
+		
+//		String password = "1234";
+//		String encrypt = encoder.encode(password);
+//		System.out.println("encrypt");
+//		System.out.println(encoder.matches(password, encrypt));
+		
+		return "redirect:staff/mypage";
+	}
+	
+	@GetMapping("/join_finish")
+	public String joinFinish() {
+		return "staff/joinFinish";
+	}
+
+	
+	@RequestMapping("/list")
+	public String list(@ModelAttribute StaffSearchVO vo, Model model) {
+	List<StaffDto> list = staffDao.search(vo);
+	model.addAttribute("list",list);
+	return "staff/list";
+	}
 	
 	@GetMapping("/login")
 	public String login() {
@@ -82,33 +130,6 @@ public class StaffController {
 	
 	}
 	
-	
-	//비밀번호 확인
-	@GetMapping("/checkPassword")
-	public String checkPassword(Model model, HttpSession session) {
-		String staffId = (String) session.getAttribute(SessionConstant.ID);
-		StaffDto staffDto = staffDao.selectOne(staffId);
-		model.addAttribute("staffDto",staffDto);
-	
-		return "staff/checkPassword";
-	}
-	
-	@PostMapping("/checkPassword")
-	public String checkPassword(
-			@ModelAttribute StaffDto staffDto,
-			HttpSession session) {
-		
-		boolean checkPassword = staffDao.checkPassword(staffDto);
-		if(checkPassword) {
-			session.setAttribute("staff", staffDto);
-			
-			return "redirect:changePassword";
-		} else {
-			return "redirect:checkPassword?error";
-		}
-		
-	}
-	
 	//비밀번호 변경
 	@GetMapping("/password")
 	public String password() {
@@ -121,11 +142,21 @@ public class StaffController {
 			@RequestParam String beforePw,//사용자가 입력한 기존비밀번호
 			@RequestParam String afterPw) {//사용자가 입력한 바꿀비밀번호
 		String staffId = (String) session.getAttribute(SessionConstant.ID);
-		try {
-			//비밀번호 검사
-			StaffDto staffDto = staffDao.selectOne(staffId);
-			boolean passwordMatch = beforePw.equals(staffDto.getStaffPw());
 		
+		try {
+			
+			//비밀번호 검사(복호화)
+			StaffDto staffDto = staffDao.selectOne(staffId);
+			boolean passwordMatch = encoder.matches(beforePw, staffDto.getStaffPw());
+			
+			//비밀번호 암호화 과정
+			String password = "12345";
+			String encrypt = encoder.encode(password);
+			
+			System.out.println("encrypt");
+			System.out.println(encoder.matches(password, encrypt));
+			
+
 //		System.out.println(beforePw);
 //		System.out.println(afterPw);
 		

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="operation">
+	<!-- 수술환자 목록 
+			정렬시 정렬 안에 넣어서 구문 작성하면 됨. 
+	-->
+	<select id="list" resultType="OperationInformationVO">
+	select 
+	O.*, 
+	P.patient_name, P.patient_birth, P.patient_gender, P.patient_blood,
+	D.diagnosis_staff_id, D.diagnosis_title, D.diagnosis_date,
+	R.operation_room_no, R.operation_state
+	from operation O 
+	join operation_room R on O.operation_no = R.operation_origin_no
+	join patient P on O.patient_no = P.patient_no
+	join diagnosis D on O.operation_diagnosis_no = d.diagnosis_no
+	</select>
+</mapper>

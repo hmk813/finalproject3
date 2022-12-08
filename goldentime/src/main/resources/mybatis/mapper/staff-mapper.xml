@@ -4,19 +4,19 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="staff">
 	
-	<!-- 직원등록-->
+	<!-- 직원생성-->
 	<insert id="insert" parameterType="StaffDto">
 		insert into staff (
-			staff_id, staff_department_no, staff_birth, 
-			staff_phone, staff_address, staff_enroll_date, 
-			staff_leave_date, staff_state, staff_pw, 
-			staff_grade, staff_name, staff_leave_cnt, staff_dayoff
+			staff_id, staff_pw,staff_department_no, 
+			staff_birth, staff_phone,staff_address,
+			staff_grade, staff_medical_department,
+			staff_name,staff_enroll_date
 		)
 		values(
-			#{staffId}, #{staffDepartmentNo}, #{staffBirth}, 
-			#{staffPhone}, #{staffAddress}, #{staffEnrollDate}, 
-			#{staffLeaveDate}, #{staffState}, #{staffPw}, 
-			#{staffGrade}, #{staffName}, #{staffLeaveCnt}, #{staffDayoff}
+			#{staffId}, #{staffPw}, #{staffDepartmentNo},
+			#{staffBirth}, #{staffPhone}, #{staffAddress},
+			#{staffGrade}, #{staffMedicalDepartment},
+			#{staffName},#{staffEnrollDate}		 
 		)
 	</insert>
 	
@@ -25,7 +25,7 @@
 		select * from staff
 	</select>
 	
-	<!-- 수정 -->
+	<!-- 직원수정 -->
 	<update id="edit" parameterType="StaffDto">
 		update staff
 		set
@@ -38,6 +38,7 @@
 			staff_grade=#{staffGrade}, 
 			staff_leave_cnt=#{staffLeaveCnt}, 
 			staff_day_off=#{staffDayOff}
+			staff_medical_department=#{staffMedicalDepartment}
 		where
 				staff_id=#{staffId}
 	</update>
@@ -59,23 +60,48 @@
  				where staff_id = #{staffId}
  	</update>
  	
- 	
- 	
  	<!-- 개인정보 변경 -->
  	<update id="information" parameterType="StaffDto">
  		update staff
  				set 
- 					staff_phone = #{staffPhone}
+ 					staff_phone = #{staffPhone},
  					staff_address = #{staffAddress}
  				where
  					staff_id = #{staffId}
  	</update>
  	
+	<!-- 직원 검색 구문 --> 
+ 	<select id="search" parameterType="StaffSearchVO" resultType="StaffDto">
+ 		select * from staff
+ 		<where>
+ 		
+ 		<!-- 아이디 검색  -->
+ 		<if test="staffId != null">
+ 			and staff_id = #{staffId}
+ 		</if>
+ 		
+ 		<!-- 이름 검색 -->
+ 		<if test="staffName != null">
+ 			and instr(staff_name, #{staffName}) > 0
+ 		</if>
+ 		
+ 		<!-- 부서번호 검색  -->
+ 		<if test="staffDepartmentNo != null">
+ 			and staff_department_no = #{staffDepartmentNo}
+ 		</if>
+ 		</where>
+ 		
+ 		</select>
+ 		
+ 		<!-- 암호화 (아직 대기)-->
+ 		<insert id="join" parameterType="StaffDto">
+ 			insert into staff(staff_id, staff_pw)
+ 			values(#{staffId}, #{staffPw})
+ 		</insert>
  	
- 	<!-- 검색 -->
-	<!-- <select id="list" resultType="StaffDto">
-		select * from staff 
-		where staff_id = #{staffId}, staff_department_no = #{staffDepartmentNo} 
-	</select> -->
- 	
+ 		<select id="get" parameterType="String" resultType="StaffDto">
+ 			select * from staff where staff_id = #{staffId}
+ 		</select>
+ 		
+ 		
 </mapper>

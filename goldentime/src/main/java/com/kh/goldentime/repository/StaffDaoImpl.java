@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.goldentime.entity.StaffDto;
+import com.kh.goldentime.vo.StaffSearchVO;
 
 @Repository
 public class StaffDaoImpl implements StaffDao{
@@ -52,12 +53,6 @@ public class StaffDaoImpl implements StaffDao{
 		return count > 0;
 	}
 
-	@Override//비밀번호 확인
-	public boolean checkPassword(StaffDto staffDto) {
-		int count = sqlSession.update("staff.checkPw",staffDto);
-		return count > 0;
-	}
-
 	@Override//비밀번호 변경
 	public boolean changePassword(String staffId, String afterPw) {
 		Map<String, String> param = new HashMap<>();
@@ -67,5 +62,9 @@ public class StaffDaoImpl implements StaffDao{
 		return count>0;
 	}
 	
-	
+	@Override// 직원 검색
+	public List<StaffDto> search(StaffSearchVO vo) {
+		return sqlSession.selectList("staff.search", vo);
+	}
+
 }

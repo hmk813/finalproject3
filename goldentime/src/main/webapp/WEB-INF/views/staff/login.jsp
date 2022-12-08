@@ -4,6 +4,11 @@
 <link rel="stylesheet" type="text/css" href="./css/reset.css">
 <link rel="stylesheet" type="text/css" href="./css/commons.css">
 
+
+<jsp:include page="/WEB-INF/views/template/header.jsp">
+	<jsp:param value="로그인" name="title"/>
+</jsp:include>
+
 <form action="login" method="post">
 <div class="container-700">
 

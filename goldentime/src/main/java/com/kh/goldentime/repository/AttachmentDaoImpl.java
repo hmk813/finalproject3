@@ -33,12 +33,6 @@ public class AttachmentDaoImpl implements AttachmentDao {
 	public AttachmentDto selectOne(int attachmentNo) {
 		return sqlSession.selectOne("attachment.one",attachmentNo);
 	}
-
-	@Override
-	public boolean edit(AttachmentDto attachmentDto) {
-		int count = sqlSession.update("attachment.edit", attachmentDto);
-		return count > 0;
-	}
 	
 	@Override
 	public boolean delete(int attachmentNo) {

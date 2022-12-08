@@ -21,6 +21,7 @@ public class StaffDto {
 		private String staffPw;
 		private String staffGrade;
 		private String staffName;
+		private String staffMedicalDepartment;
 		private int staffLeaveCnt;
 		private int staffDayoff;
 }

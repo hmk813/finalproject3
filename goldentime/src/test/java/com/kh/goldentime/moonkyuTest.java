@@ -1,28 +1,19 @@
 package com.kh.goldentime;
 
-import java.util.List;
-
-import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.kh.goldentime.entity.StaffDto;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @SpringBootTest
 public class moonkyuTest {
-
-	@Autowired
-	private SqlSession sqlSession;
 	
 	@Test
-	public void test() {
-//		//assertNotNull(sqlSession);
-//		List<StaffDto> list = sqlSession.selectList("staff.list");
-//		for(StaffDto staffDto : list) {
-//			System.out.println(staffDto);
-//		}
-//	}
+	public void test() { //우리가 사용하는 형태!!!
+		
+		
 	}
 }
 

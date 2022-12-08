@@ -7,6 +7,8 @@
 	<!-- 수술환자 목록 
 			정렬시 정렬 안에 넣어서 구문 작성하면 됨. 
 	-->
+	
+	<!--  목록 조회  -->
 	<select id="list" resultType="OperationInformationVO">
 	select 
 	O.*, 
@@ -18,4 +20,9 @@
 	join patient P on O.patient_no = P.patient_no
 	join diagnosis D on O.operation_diagnosis_no = d.diagnosis_no
 	</select>
+
+	<select id="one" parameterType="int"	resultType="OpertaionInformationVO">
+	select * from operation where opertaion_no = #{opertaion_no}
+	</select>
+	
 </mapper>

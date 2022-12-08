@@ -6,5 +6,5 @@ public class ReservationDto {
 	private int reservationPatientNumber;
 	private String reservationDate;
 	private String reservationContent;
-	private String reservation_time;
+	private String reservationTime;
 }

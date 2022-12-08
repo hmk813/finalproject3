@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.goldentime.entity.AttendanceDto;
 import com.kh.goldentime.vo.AttendanceWorkTimeVO;
+import com.kh.goldentime.vo.TimeFormatVO;
 import com.kh.goldentime.vo.TodayTotalWorkTimeVO;
 
 @Repository
@@ -48,5 +49,20 @@ public class AttendanceDaoImpl implements AttendanceDao {
 	@Override
 	public TodayTotalWorkTimeVO todayTimeWork(String attendanceStaffId) {
 		return sqlSession.selectOne("attendance.totalWorkTime",attendanceStaffId);
+	}
+
+	@Override
+	public TimeFormatVO todayLeaveTime(String attendanceStaffId) {
+		return sqlSession.selectOne("attendance.todayLeaveTime",attendanceStaffId);
+	}
+
+	@Override
+	public boolean leaveEarly(String attendanceStaffId) {
+		return sqlSession.update("attendance.leaveEarly",attendanceStaffId)>0;
+	}
+
+	@Override
+	public boolean normalWork(String attendanceStaffId) {
+		return sqlSession.update("attendance.normalWork",attendanceStaffId)>0;
 	}
 }

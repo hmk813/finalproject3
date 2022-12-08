@@ -7,14 +7,16 @@
 	<!-- 직원생성-->
 	<insert id="insert" parameterType="StaffDto">
 		insert into staff (
-			staff_id, staff_pw, staff_department_no,
-			staff_birth, staff_phone, staff_address, 
-			staff_enroll_date, staff_name
+			staff_id, staff_pw,staff_department_no, 
+			staff_birth, staff_phone,staff_address,
+			staff_grade, staff_medical_department,
+			staff_name,staff_enroll_date
 		)
 		values(
-			#{staffId}, #{staffPw}, #{staffDepartmentNo}, 
-			#{staffBirth}, #{staffPhone}, #{staffAddress}, 
-			#{staffEnrollDate}, #{staffName}
+			#{staffId}, #{staffPw}, #{staffDepartmentNo},
+			#{staffBirth}, #{staffPhone}, #{staffAddress},
+			#{staffGrade}, #{staffMedicalDepartment},
+			#{staffName},#{staffEnrollDate}		 
 		)
 	</insert>
 	
@@ -36,6 +38,7 @@
 			staff_grade=#{staffGrade}, 
 			staff_leave_cnt=#{staffLeaveCnt}, 
 			staff_day_off=#{staffDayOff}
+			staff_medical_department=#{staffMedicalDepartment}
 		where
 				staff_id=#{staffId}
 	</update>

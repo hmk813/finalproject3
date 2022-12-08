@@ -36,17 +36,35 @@
 					<br>
 					<a href="staff/password">비밀번호 변경</a><br><br>
 					<a href="staff/information">개인정보 변경</a>
-					</div>
+					
+					<br><br>
+					진료과
+					<br>
+					내과
+					<br>
+					외과
+					<br>
+					정형외과
+					<br>
+					영상의학과
+					<br>
+					원무과
+					<br>
+					물품신청
+					<br>
+					마이페이지
+					<br>
+					메세지
+					
+					
+					
+					
 					<span class="material-icons" style="font-size: 80px;display: block;text-align: center">					
 							내정보
-							<!--  <img src="/image/test.jpg"  class="w-50"> -->
-	<table border="1" width="400">		
+	<table border="1" width="400" align="center">		
 			<!-- 프로필 이미지를 출력 -->
-			<tr>
-				<th colspan="2">
-				 <img src="./image/test.jpg" alt="테스트 사진" width="100" height="100">
-				</th>
-			</tr>
+				<img class="img" src="./image/test.jpg" alt="테스트 사진" width="100" height="100">
+			</div>	
 			<tr>
 				<th width="25%">이름</th>
 				<td>${staffDto.staffName}</td>
@@ -83,9 +101,11 @@
 			</tr>
 		</tbody>
 	</table>
-				</span>
+			</span>
+		</div>
 				<div class="info-list">
 				</div>
+			
 			</div>
 			<div class="attendance box">
 				<span class="c-title">근태 관리</span>
@@ -117,8 +137,7 @@
 				<span class="c-title">공지사항</span>
 			</div>
 </tbody>			
-			
+</div>			
 		
-		</div>
 </body>
 </html>

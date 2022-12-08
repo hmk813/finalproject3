@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <jsp:include page="/WEB-INF/views/template/header.jsp">
 	<jsp:param value="비밀번호 찾기 페이지" name="title" />
 </jsp:include>
@@ -30,7 +31,7 @@
 		</div>
 
 		<div class="row">
-			<label>이전 비밀번호 입력
+			<label>나의 입사일은?
 				<input name="staffPwsearch" type="text" required class="input w-100">
 			</label>
 		</div>

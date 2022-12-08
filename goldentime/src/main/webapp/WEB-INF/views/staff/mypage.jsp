@@ -4,6 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<jsp:include page="/WEB-INF/views/template/header.jsp">
+	<jsp:param value="마이페이지" name="title"/>
+</jsp:include>
+
 <%-- 관리자 메뉴일 경우와 아닐 경우 다른 헤더를 설정 --%>
 <%--  <c:choose>
 	<c:when test="${mg == '관리자'}">
@@ -25,8 +29,11 @@
 			<!-- 프로필 이미지를 출력 -->
 			<tr>
 				<th colspan="2">
-				 <img src="./image/test.jpg" alt="테스트 사진" width="100" height="100">
+				<div style="text-align:center">
+				 <img class="img-thumbnail"  src="./image/test.jpg" alt="테스트 사진"  width="100" height="100">
+				</div>
 				</th>
+				
 			</tr>
 			<tr>
 				<th>이름</th>

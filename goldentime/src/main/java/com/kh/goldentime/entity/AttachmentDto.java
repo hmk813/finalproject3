@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class AttachmentDto { //첨부파일DTO
 
-	private int attachmentNo;
-	private String attachmentName;
-	private String attachmentType;
-	private Long attachmentSize;
-	private Date attachmentDate;
+	private int attachmentNo;//첨부파일 번호
+	private String attachmentName;//첨부파일 이름
+	private String attachmentType;//첨부파일 유형
+	private Long attachmentSize;//첨부파일 크기
+	private Date attachmentDate;//첨부파일 업로드 시간
 	
 }

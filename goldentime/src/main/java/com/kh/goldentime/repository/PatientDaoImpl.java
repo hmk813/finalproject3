@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.kh.goldentime.entity.PatientDto;
 
@@ -15,12 +16,19 @@ public class PatientDaoImpl implements PatientDao{
 	private SqlSession sqlSession;
 	
 	@Override
-	public void insert(PatientDto patientDto) {
-		sqlSession.insert("patient.add", patientDto);
+	public void insert(PatientDto dto) {
+		System.out.println(dto);
+		sqlSession.insert("patient.insert", dto);
 	}
 	
 	@Override
 	public List<PatientDto> list() {
-		return sqlSession.selectList("patient.listt");
+		return sqlSession.selectList("patient.list");
+	}
+	
+	@Override
+	public boolean edit(PatientDto dto) {
+		int count = sqlSession.update("patient.edit", dto);
+		return count > 0;
 	}
 }

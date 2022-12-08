@@ -121,17 +121,6 @@
 					<button id="attStr-btn">출근</button>
 					<button id="attFin-btn">퇴근</button>
 				</div>
-			</div>
-		</div>
-		<div class="c-center">
-			<div class="calendar" id="calendar">
-			</div>
-			<div class="calendar-detail box-t">
-				<header id="cal-header"></header>
-				<div class="cal-area">
-					<table id="cal-table"></table>
-				</div>
-			</div>
 		</div>
 			<div class="notice box">
 				<span class="c-title">공지사항</span>

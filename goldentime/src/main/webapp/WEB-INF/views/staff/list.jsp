@@ -8,11 +8,11 @@
 </jsp:include>     
 <h1>직원 검색</h1>
 
-<!-- 검색창 -->
+<!-- 복합검색창 -->
 <form method="get" autocomplete="off" class="search-form">
-	아이디 : <input type="text" name="staffId" value="${param.staffId}"><br><br>
 	이름 : <input type="text" name="staffName" value="${param.staffName}"><br><br>
 	부서번호 : <input type="number" name="staffDepartmentNo" value="${param.staffDepartmentNo}"><br><br>
+	진료과 : <input type="text" name="staffMedicalDepartment" value="${param.staffMedicalDepartment}"><br><br>
 	<br><br>
 	
 	<button type="submit">검색</button>
@@ -22,17 +22,17 @@
 <table width="500" align="center" border="1">
 	<thead>
 		<tr>
-			<th>아이디</th>
 			<th>이름</th>
 			<th>부서번호</th>
+			<th>진료과</th>
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach var="staffDto" items="${list}">		
 		<tr>
-			<td>${staffDto.staffId}</td>
 			<td>${staffDto.staffName}</td>
 			<td>${staffDto.staffDepartmentNo}</td>
+			<td>${staffDto.staffMedicalDepartment}</td>
 		</tr>
 		</c:forEach>
 	</tbody>

@@ -20,4 +20,6 @@ public interface StaffDao {
 	
 	List<StaffDto> search(StaffSearchVO vo);//직원 검색
 	
+	
+	
 }

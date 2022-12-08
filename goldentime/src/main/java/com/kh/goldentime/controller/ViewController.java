@@ -17,5 +17,10 @@ public class ViewController {
 		return "attendance";
 	}
 	
+	@RequestMapping("/patient")
+	public String patient() {
+		return "patient";
+	}
+	
 	
 }

@@ -1,8 +1,9 @@
 package com.kh.goldentime.repository;
 
 import com.kh.goldentime.entity.AttendanceDto;
-import com.kh.goldentime.vo.AttendanceTotalWorkTimeVO;
 import com.kh.goldentime.vo.AttendanceWorkTimeVO;
+import com.kh.goldentime.vo.TimeFormatVO;
+import com.kh.goldentime.vo.TodayTotalWorkTimeVO;
 
 public interface AttendanceDao {
 	
@@ -24,6 +25,17 @@ public interface AttendanceDao {
 	//추상메소드 - 출근시 지각 처리기능
 	boolean comeLateUpate(String attendanceStaffId);
 	
+	 
 	//추상메소드 - 금일 근무 시간 정보 조회기능
-	AttendanceTotalWorkTimeVO todayTimeWork(String attendanceStaffId);
+	TodayTotalWorkTimeVO todayTimeWork(String attendanceStaffId);
+	
+	
+	//추상 메소드- 오늘 퇴근시간 조회
+	TimeFormatVO todayLeaveTime(String attendanceStaffId);
+	
+	//추상 메소드 - 오늘 조퇴 업데이트
+	boolean leaveEarly(String attendanceStaffId);
+	
+	//추상 메소드 - 오늘 정상출근 업데이트
+	boolean normalWork(String attendanceStaffId);
 }

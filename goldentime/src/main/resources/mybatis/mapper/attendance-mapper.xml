@@ -74,4 +74,9 @@
 	where attendance_start_time>to_char(sysdate,'yyyymmdd') and attendance_staff_id=#{attendanceStaffId}
   </update>
   
+  <!-- 오늘 근무 조회 구문 -->
+  <select id="todaywork" parameterType="String" resultType="AttendanceDto">
+  	select * from attendance where attendance_start_time>to_char(sysdate,'yyyymmdd') and attendance_staff_id=#{attendanceStaffId}
+  </select>
+  
   </mapper>

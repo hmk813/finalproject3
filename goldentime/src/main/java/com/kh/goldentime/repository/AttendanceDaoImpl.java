@@ -65,4 +65,9 @@ public class AttendanceDaoImpl implements AttendanceDao {
 	public boolean normalWork(String attendanceStaffId) {
 		return sqlSession.update("attendance.normalWork",attendanceStaffId)>0;
 	}
+
+	@Override
+	public AttendanceDto todaywork(String attendanceStaffId) {
+		return sqlSession.selectOne("attendance.todaywork",attendanceStaffId);
+	}
 }

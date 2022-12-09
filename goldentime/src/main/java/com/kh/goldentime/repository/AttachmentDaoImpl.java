@@ -40,4 +40,8 @@ public class AttachmentDaoImpl implements AttachmentDao {
 		return count > 0;
 	}
 
+	@Override
+	public void connectAttachment(String staffId, int attachmentNo) {
+		Object[] param = {staffId, attachmentNo};
+	}
 }

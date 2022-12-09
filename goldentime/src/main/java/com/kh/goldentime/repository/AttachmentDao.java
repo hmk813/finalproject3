@@ -13,4 +13,6 @@ public interface AttachmentDao {
 	AttachmentDto selectOne(int attachmentNo);//단일조회
 	
 	boolean delete(int attachmentNo);//첨부파일 삭제
+	
+	void connectAttachment(String staffId, int attachmentNo);
 }

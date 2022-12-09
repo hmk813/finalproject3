@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="drug">
+	<insert id="insert" parameterType="DrugDto">
+		insert into drug(
+			diagnosis_no, drug_name
+		)
+		values(diagnosis_seq.nextval, #{drugName}
+	</insert>
+	
+	<select id="list" resultType="DrugDto">
+		select * from drug order by diagnosis_no asc
+	</select>
+	
+	<update id="edit" parameterType="DrugDto">
+		update drug
+			set drug_name = #{drugName}
+			where diagnosis_no = #{diagnosis_no}
+	</update>
+</mapper>

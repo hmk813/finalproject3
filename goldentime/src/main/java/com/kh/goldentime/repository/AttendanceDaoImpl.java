@@ -73,5 +73,8 @@ public class AttendanceDaoImpl implements AttendanceDao {
 	@Override
 	public List<AttendanceListVO> attendanceList(AttendanceListVO attendanceVO) {
 		return sqlSession.selectList("attendance.attendanceList", attendanceVO);
+	}	
+	public AttendanceDto todaywork(String attendanceStaffId) {
+		return sqlSession.selectOne("attendance.todaywork",attendanceStaffId);
 	}
 }

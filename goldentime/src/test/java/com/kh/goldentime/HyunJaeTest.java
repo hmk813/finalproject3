@@ -57,8 +57,7 @@ public class HyunJaeTest {
 			System.out.println(dto);
 		}
 		
-		
-		
+		System.out.println(attendanceDao.todaywork(id).getAttendanceWorkState().equals("지각"));
 		
 		
 	}

@@ -17,7 +17,7 @@ import com.kh.goldentime.repository.PatientDao;
 @CrossOrigin
 @RestController
 @RequestMapping("/rest")
-public class PatientController {
+public class PatientRestController {
 	
 	@Autowired
 	private PatientDao dao;

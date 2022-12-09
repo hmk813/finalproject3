@@ -1,6 +1,10 @@
 package com.kh.goldentime.repository;
 
+import java.util.List;
+import java.util.Map;
+
 import com.kh.goldentime.entity.AttendanceDto;
+import com.kh.goldentime.vo.AttendanceListVO;
 import com.kh.goldentime.vo.AttendanceWorkTimeVO;
 import com.kh.goldentime.vo.TimeFormatVO;
 import com.kh.goldentime.vo.TodayTotalWorkTimeVO;
@@ -38,4 +42,7 @@ public interface AttendanceDao {
 	
 	//추상 메소드 - 오늘 정상출근 업데이트
 	boolean normalWork(String attendanceStaffId);
+	
+	//추상 메소드 - 출퇴근 근무 리스트 조회
+	List<AttendanceListVO> attendanceList(AttendanceListVO attendanceVO);
 }

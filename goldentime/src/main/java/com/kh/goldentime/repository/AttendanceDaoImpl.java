@@ -1,10 +1,14 @@
 package com.kh.goldentime.repository;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.goldentime.entity.AttendanceDto;
+import com.kh.goldentime.vo.AttendanceListVO;
 import com.kh.goldentime.vo.AttendanceWorkTimeVO;
 import com.kh.goldentime.vo.TimeFormatVO;
 import com.kh.goldentime.vo.TodayTotalWorkTimeVO;
@@ -64,5 +68,10 @@ public class AttendanceDaoImpl implements AttendanceDao {
 	@Override
 	public boolean normalWork(String attendanceStaffId) {
 		return sqlSession.update("attendance.normalWork",attendanceStaffId)>0;
+	}
+
+	@Override
+	public List<AttendanceListVO> attendanceList(AttendanceListVO attendanceVO) {
+		return sqlSession.selectList("attendance.attendanceList", attendanceVO);
 	}
 }

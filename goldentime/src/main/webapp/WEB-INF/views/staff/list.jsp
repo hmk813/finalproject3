@@ -2,21 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <jsp:include page="/WEB-INF/views/template/header.jsp">
 	<jsp:param value="직원 검색" name="title"/>
 </jsp:include>     
 <h1>직원 검색</h1>
 
-<!-- 복합검색창 -->
-<form method="get" autocomplete="off" class="search-form">
-	이름 : <input type="text" name="staffName" value="${param.staffName}"><br><br>
-	부서번호 : <input type="number" name="staffDepartmentNo" value="${param.staffDepartmentNo}"><br><br>
-	진료과 : <input type="text" name="staffMedicalDepartment" value="${param.staffMedicalDepartment}"><br><br>
-	<br><br>
+<!-- 검색창 -->
+	<form action="list" method="get" autocomplete="off">
+		<select name="type" required>
+			<option>이름</option>
+			<option>부서번호</option>
+			<option>진료과</option>
+		</select>
+		<input name="keyword" required>
+	
 	
 	<button type="submit">검색</button>
-</form>
 
 <!-- 결과화면 -->
 <table width="500" align="center" border="1">
@@ -37,3 +38,4 @@
 		</c:forEach>
 	</tbody>
 </table>    
+</form>

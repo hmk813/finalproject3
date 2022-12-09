@@ -13,4 +13,5 @@ public class StaffSearchVO {
 	private String staffMedicalDepartment;
 	private int staffDepartmentNo;
 
+	
 }

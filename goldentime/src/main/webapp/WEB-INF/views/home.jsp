@@ -7,13 +7,15 @@
 	<jsp:param value="메인페이지" name="title"/>
 </jsp:include>
 
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>골든타임 병원</title>
 <script></script>
-
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <link href="/resources/css/home.css" rel="stylesheet">
 <link href="/resources/css/reset.css" rel="stylesheet">
@@ -32,10 +34,12 @@
 		<div class="c-left">
 			<div class="row left">
 				<span class="c-title">내 정보</span>
+				<a href="staff/login">로그인</a>
 					<div>
 					<br>
-					<a href="staff/password">비밀번호 변경</a><br><br>
-					<a href="staff/information">개인정보 변경</a>
+					<!-- <a href="staff/password">비밀번호 변경</a><br><br>
+					<a href="staff/information">개인정보 변경</a><br><br>
+					<a href="staff/logout">로그아웃</a> -->
 					
 					<br><br>
 					진료과

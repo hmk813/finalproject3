@@ -104,7 +104,7 @@
 				<h1>약 등록</h1>
 			</div>
 			<form class="detail-view">
-				<input name="diagnosisNo" type="hidden" placeholder="번호" required>
+				<input name="diagnosisNo" type="number" placeholder="번호" required>
 				<input name="drugName" type="text"  placeholder="이름" required><br><br>
 				<button type="submit">등록</button>
 				<button type="button" class="edit-btn">수정</button>

@@ -8,7 +8,7 @@
 		insert into drug(
 			diagnosis_no, drug_name
 		)
-		values(diagnosis_seq.nextval, #{drugName}
+		values(#{diagnosisNo}, #{drugName})
 	</insert>
 	
 	<select id="list" resultType="DrugDto">
@@ -18,6 +18,6 @@
 	<update id="edit" parameterType="DrugDto">
 		update drug
 			set drug_name = #{drugName}
-			where diagnosis_no = #{diagnosis_no}
+			where diagnosis_no = #{diagnosisNo}
 	</update>
 </mapper>

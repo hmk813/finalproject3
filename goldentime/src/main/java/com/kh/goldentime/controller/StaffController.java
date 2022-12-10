@@ -22,16 +22,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.goldentime.constant.SessionConstant;
+import com.kh.goldentime.entity.AttachmentDto;
 import com.kh.goldentime.entity.StaffDto;
 import com.kh.goldentime.error.TargetNotFoundException;
+import com.kh.goldentime.repository.AttachmentDao;
 import com.kh.goldentime.repository.StaffDao;
 import com.kh.goldentime.vo.StaffSearchVO;
-
 
 @Controller
 @RequestMapping("/staff")
 public class StaffController {
-
 
 	@Autowired
 	private PasswordEncoder encoder;
@@ -39,23 +39,45 @@ public class StaffController {
 	@Autowired
 	private StaffDao staffDao;
 	
+	//첨부파일 의존성
+	@Autowired
+	private AttachmentDao attachmentDao;
+	
+	//첨부파일 업로드 다운로드 경로
+	private final File directory = new File("D:\\upload\\final\\staff");
+	
 	@GetMapping("/join")
 	public String join() {
 		return "staff/join";
 	}
 	
 	@PostMapping("/join")
-	public String join(@ModelAttribute StaffDto staffDto,
+	public String join(@ModelAttribute StaffDto staffDto, List<MultipartFile> attachment, 
 			@RequestParam MultipartFile staffProfile) throws IllegalStateException, IOException {
 		
 		staffDao.insert(staffDto);//DB등록
 		
-		if(!staffProfile.isEmpty()){//첨부파일이 있다면
-		File directory = new File("C:/upload");
-		directory.mkdirs();
-		File target = new File(directory, staffDto.getStaffId());
-		staffProfile.transferTo(target);
-	}
+		//첨부파일 DB연결
+		for(MultipartFile file : attachment) {
+			if(!file.isEmpty()) {
+				//첨부파일 시퀀스
+				int attachmentNo = attachmentDao.sequence();
+				//DB등록
+				attachmentDao.insert(AttachmentDto.builder()
+							.attachmentNo(attachmentNo)
+							.attachmentName(file.getOriginalFilename())
+							.attachmentType(file.getContentType())
+							.attachmentSize(file.getSize())
+						.build());
+				//파일저장
+				File target = new File(directory, String.valueOf(attachmentNo));
+				System.out.println(target.getAbsolutePath());
+				file.transferTo(target);
+				
+				//직원 첨부파일 연결테이블 정보 저장
+				attachmentDao.connectAttachment(staffDto.getStaffId(), attachmentNo);
+			}
+		}
 		
 //		String password = "1234";
 //		String encrypt = encoder.encode(password);

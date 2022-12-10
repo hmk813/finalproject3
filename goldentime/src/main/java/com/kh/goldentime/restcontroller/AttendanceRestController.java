@@ -54,7 +54,7 @@ public class AttendanceRestController {//근태 관리를 위한 비동기통신
 	public boolean leaveWork(@RequestBody AttendanceDto attendanceDto){
 		attendanceDao.leaveWork(attendanceDto);
 		
-		String id = "admin";
+		String id = "aaa";
 		//날짜변환 포멧
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		//기준 퇴근시간 =18시 30분
@@ -85,7 +85,7 @@ public class AttendanceRestController {//근태 관리를 위한 비동기통신
 	
 	@GetMapping("/attendance/{attendanceStaffId}")
 	public AttendanceWorkTimeVO find(@PathVariable String attendanceStaffId){
-		attendanceStaffId = "admin";
+		attendanceStaffId = "aaa";
 		return attendanceDao.stardEnd(attendanceStaffId);
 	}
 	

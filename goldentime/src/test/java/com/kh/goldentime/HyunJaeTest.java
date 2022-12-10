@@ -45,19 +45,21 @@ public class HyunJaeTest {
 //			System.out.println("조퇴");
 //		}
 		
-		Map<String, Object> param = new HashMap<>();
-		param.put("beginMade", "2022-12-10");
-		param.put("endMade", "2022-12-15");
+		System.out.println("ddd"+attendanceDao.stardEnd(id));
 		
-		List<AttendanceListVO> list = attendanceDao.attendanceList(AttendanceListVO.builder().attendanceStaffId(id).
-				beginMade("2022-12-08").endMade("2022-12-09").
-				build());
-		System.out.println(list.size());
-		for(AttendanceListVO dto : list) {
-			System.out.println(dto);
-		}
-		
-		System.out.println(attendanceDao.todaywork(id).getAttendanceWorkState().equals("지각"));
+//		Map<String, Object> param = new HashMap<>();
+//		param.put("beginMade", "2022-12-10");
+//		param.put("endMade", "2022-12-15");
+//		
+//		List<AttendanceListVO> list = attendanceDao.attendanceList(AttendanceListVO.builder().attendanceStaffId(id).
+//				beginMade("2022-12-08").endMade("2022-12-09").
+//				build());
+//		System.out.println(list.size());
+//		for(AttendanceListVO dto : list) {
+//			System.out.println(dto);
+//		}
+//		
+//		System.out.println(attendanceDao.todaywork(id).getAttendanceWorkState().equals("지각"));
 		
 		
 	}

@@ -5,6 +5,8 @@
 
 <head>
 
+	
+
     <style>
         #calendar {
             max-width: 600px;
@@ -54,6 +56,7 @@
                     }
                 ]
 
+                
 
                 // events:function(info, successCallback, failureCallback){
                 //     $.ajax({
@@ -87,6 +90,7 @@
                     <!-- 모달 바디 : 사용자에게 알려줄 내용 영역 -->
                     <div class="modal-body">
                         <input class="input" type="text" />
+                        
                     </div>
                     <!-- 모달 푸터 : 버튼들이 위치한 영역 -->
                     <div class="modal-footer">

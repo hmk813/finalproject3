@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 public class StaffSearchVO { 
 	
 	//직원 검색을 위한 VO
-	private String staffId; 
 	private String staffName;
+	private String staffMedicalDepartment;
 	private int staffDepartmentNo;
 
+	
 }

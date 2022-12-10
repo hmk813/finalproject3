@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
 <jsp:include page="/WEB-INF/views/template/header.jsp">
 	<jsp:param value="내 정보 변경" name="title"/>
 </jsp:include>
@@ -27,6 +31,7 @@
 	<h2 style="color:red">비밀번호가 맞지 않습니다</h2>
 </c:if>
 
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </div>
 </form>

@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +40,12 @@ public class StaffController {
 	@Autowired
 	private StaffDao staffDao;
 	
+	
+	@GetMapping("test")
+	public String test() {
+		return "staff/test";
+	}
+
 	//첨부파일 의존성
 	@Autowired
 	private AttachmentDao attachmentDao;
@@ -57,35 +64,37 @@ public class StaffController {
 		
 		staffDao.insert(staffDto);//DB등록
 		
-		//첨부파일 DB연결
-		for(MultipartFile file : attachment) {
-			if(!file.isEmpty()) {
-				//첨부파일 시퀀스
-				int attachmentNo = attachmentDao.sequence();
-				//DB등록
-				attachmentDao.insert(AttachmentDto.builder()
-							.attachmentNo(attachmentNo)
-							.attachmentName(file.getOriginalFilename())
-							.attachmentType(file.getContentType())
-							.attachmentSize(file.getSize())
-						.build());
-				//파일저장
-				File target = new File(directory, String.valueOf(attachmentNo));
-				System.out.println(target.getAbsolutePath());
-				file.transferTo(target);
-				
-				//직원 첨부파일 연결테이블 정보 저장
-				attachmentDao.connectAttachment(staffDto.getStaffId(), attachmentNo);
-			}
-		}
-		
-//		String password = "1234";
-//		String encrypt = encoder.encode(password);
-//		System.out.println("encrypt");
-//		System.out.println(encoder.matches(password, encrypt));
-		
-		return "redirect:staff/mypage";
+		return "redirect:/";
 	}
+//		//첨부파일 DB연결 --> 일단 주석처리하고 올림
+//		for(MultipartFile file : attachment) {
+//			if(!file.isEmpty()) {
+//				//첨부파일 시퀀스
+//				int attachmentNo = attachmentDao.sequence();
+//				//DB등록
+//				attachmentDao.insert(AttachmentDto.builder()
+//							.attachmentNo(attachmentNo)
+//							.attachmentName(file.getOriginalFilename())
+//							.attachmentType(file.getContentType())
+//							.attachmentSize(file.getSize())
+//						.build());
+//				//파일저장
+//				File target = new File(directory, String.valueOf(attachmentNo));
+//				System.out.println(target.getAbsolutePath());
+//				file.transferTo(target);
+//				
+//				//직원 첨부파일 연결테이블 정보 저장
+//				attachmentDao.connectAttachment(staffDto.getStaffId(), attachmentNo);
+//			}
+//		}
+//		
+////		String password = "1234";
+////		String encrypt = encoder.encode(password);
+////		System.out.println("encrypt");
+////		System.out.println(encoder.matches(password, encrypt));
+//		
+//		return "redirect:staff/mypage";
+//	}
 	
 	@GetMapping("/join_finish")
 	public String joinFinish() {
@@ -113,20 +122,20 @@ public class StaffController {
 			return "redirect:login?error";
 		}
 		
-		//inputDto 사용자가 입력한 정보, findDto DB조회결과
-		boolean passwordMatch = 
-				inputDto.getStaffPw().equals(findDto.getStaffPw()); 
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		boolean passwordMatch = encoder.matches(inputDto.getStaffPw(), findDto.getStaffPw());
+	//			inputDto.getStaffPw().equals(findDto.getStaffPw()); 
 		if(passwordMatch) {
 			session.setAttribute(SessionConstant.ID, inputDto.getStaffId());
 			session.setAttribute(SessionConstant.GRADE, findDto.getStaffGrade());
-				
+			
 			return "redirect:/staff/mypage";
 		}
 		else {
 			return "redirect:login?error";
 		}
 	}
-	
+		
 	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
@@ -164,38 +173,19 @@ public class StaffController {
 			@RequestParam String beforePw,//사용자가 입력한 기존비밀번호
 			@RequestParam String afterPw) {//사용자가 입력한 바꿀비밀번호
 		String staffId = (String) session.getAttribute(SessionConstant.ID);
+		StaffDto staffDto = staffDao.selectOne(staffId);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		boolean passwordMatch = encoder.matches(beforePw,staffDto.getStaffPw());
 		
-		try {
-			
-			//비밀번호 검사(복호화)
-			StaffDto staffDto = staffDao.selectOne(staffId);
-			boolean passwordMatch = encoder.matches(beforePw, staffDto.getStaffPw());
-			
-			//비밀번호 암호화 과정
-			String password = "12345";
-			String encrypt = encoder.encode(password);
-			
-			System.out.println("encrypt");
-			System.out.println(encoder.matches(password, encrypt));
-			
-
-//		System.out.println(beforePw);
-//		System.out.println(afterPw);
-		
-		if(!passwordMatch) {
-				//return "redirect:password?error";
-				throw new Exception();
-			}
-			
-			//비밀번호 변경
-			staffDao.changePassword(staffId, afterPw);
-			return "redirect:password_result";
+		if(passwordMatch) {
+			String newPw = encoder.encode(afterPw);
+			staffDao.changePassword(staffId, newPw);
+			return "staff/mypage";
 		}
-		catch(Exception e) {
-			e.printStackTrace();
+		else {
 			return "redirect:password?error";
-		}
 	}
+}		
 	
 	@GetMapping("/password_result")
 	public String passwordResult() {

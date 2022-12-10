@@ -70,19 +70,19 @@
  					staff_id = #{staffId}
  	</update>
  	
-	<!-- 직원 검색 구문 --> 
+	<!-- 직원 검색 구문(복합검색)--> 
  	<select id="search" parameterType="StaffSearchVO" resultType="StaffDto">
  		select * from staff
  		<where>
  		
- 		<!-- 아이디 검색  -->
- 		<if test="staffId != null">
- 			and staff_id = #{staffId}
- 		</if>
- 		
  		<!-- 이름 검색 -->
  		<if test="staffName != null">
  			and instr(staff_name, #{staffName}) > 0
+ 		</if>
+ 		
+ 		<!-- 진료과 검색 -->
+ 		<if test="staffMedicalDepartment != null">
+ 			and staff_medical_department = #{staffMedicalDepartment}
  		</if>
  		
  		<!-- 부서번호 검색  -->
@@ -91,6 +91,12 @@
  		</if>
  		</where>
  		
+ 		</select>
+ 		
+ 		<!-- type, keyword검색 -->
+ 		<select id="detailSearch" parameterType="map" resultType="StaffDto">
+ 			select * from staff instr(${type}, #{keyword})
+ 			order by ${type} asc
  		</select>
  		
  		<!-- 암호화 (아직 대기)-->

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,16 +23,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.goldentime.constant.SessionConstant;
+import com.kh.goldentime.entity.AttachmentDto;
 import com.kh.goldentime.entity.StaffDto;
 import com.kh.goldentime.error.TargetNotFoundException;
+import com.kh.goldentime.repository.AttachmentDao;
 import com.kh.goldentime.repository.StaffDao;
 import com.kh.goldentime.vo.StaffSearchVO;
-
 
 @Controller
 @RequestMapping("/staff")
 public class StaffController {
 
+	@Autowired
+	private PasswordEncoder encoder;
+	
 	@Autowired
 	private StaffDao staffDao;
 	
@@ -40,6 +45,13 @@ public class StaffController {
 	public String test() {
 		return "staff/test";
 	}
+
+	//첨부파일 의존성
+	@Autowired
+	private AttachmentDao attachmentDao;
+	
+	//첨부파일 업로드 다운로드 경로
+	private final File directory = new File("D:\\upload\\final\\staff");
 	
 	@GetMapping("/join")
 	public String join() {
@@ -47,13 +59,42 @@ public class StaffController {
 	}
 	
 	@PostMapping("/join")
-	public String join(@ModelAttribute StaffDto staffDto,
+	public String join(@ModelAttribute StaffDto staffDto, List<MultipartFile> attachment, 
 			@RequestParam MultipartFile staffProfile) throws IllegalStateException, IOException {
 		
 		staffDao.insert(staffDto);//DB등록
 		
 		return "redirect:/";
 	}
+//		//첨부파일 DB연결 --> 일단 주석처리하고 올림
+//		for(MultipartFile file : attachment) {
+//			if(!file.isEmpty()) {
+//				//첨부파일 시퀀스
+//				int attachmentNo = attachmentDao.sequence();
+//				//DB등록
+//				attachmentDao.insert(AttachmentDto.builder()
+//							.attachmentNo(attachmentNo)
+//							.attachmentName(file.getOriginalFilename())
+//							.attachmentType(file.getContentType())
+//							.attachmentSize(file.getSize())
+//						.build());
+//				//파일저장
+//				File target = new File(directory, String.valueOf(attachmentNo));
+//				System.out.println(target.getAbsolutePath());
+//				file.transferTo(target);
+//				
+//				//직원 첨부파일 연결테이블 정보 저장
+//				attachmentDao.connectAttachment(staffDto.getStaffId(), attachmentNo);
+//			}
+//		}
+//		
+////		String password = "1234";
+////		String encrypt = encoder.encode(password);
+////		System.out.println("encrypt");
+////		System.out.println(encoder.matches(password, encrypt));
+//		
+//		return "redirect:staff/mypage";
+//	}
 	
 	@GetMapping("/join_finish")
 	public String joinFinish() {

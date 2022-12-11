@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<jsp:include page="/WEB-INF/views/template/header.jsp">
+<jsp:include page="/WEB-INF/views/template/menuBar.jsp">
 	<jsp:param value="마이페이지" name="title"/>
 </jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
@@ -48,6 +48,10 @@
 				<td>${staffDto.staffPhone}</td>
 			</tr>
 			<tr>
+				<th>진료과</th>
+				<td>${staffDto.staffMedicalDepartment}</td>
+			</tr>			
+			<tr>
 				<th>주소</th>
 				<td>${staffDto.staffAddress}</td>
 			</tr>
@@ -58,15 +62,9 @@
 				</td>
 			</tr>
 			<tr>
-				<th>등록일</th>
+				<th>입사일</th>
 				<td>
 					<fmt:formatDate value="${staffDto.staffEnrollDate}" pattern="y년 M월 d일 E a h시 m분 s초"/>
-				</td>
-			</tr>
-			<tr>
-				<th>퇴사일</th>
-				<td>
-					<fmt:formatDate value="${staffDto.staffLeaveDate}" pattern="y년 M월 d일 E a h시 m분 s초"/>
 				</td>
 			</tr>
 		</tbody>
@@ -76,6 +74,7 @@
 		<tbody> 
 			<tr>
 			<th>근태관리</th>
+			<br><br>
 			<td>출근</td>
 			<td>퇴근</td>
 			</tr>

@@ -66,6 +66,7 @@ public class StaffController {
 		
 		return "redirect:/";
 	}
+	
 //		//첨부파일 DB연결 --> 일단 주석처리하고 올림
 //		for(MultipartFile file : attachment) {
 //			if(!file.isEmpty()) {
@@ -141,7 +142,7 @@ public class StaffController {
 	public String logout(HttpSession session) {
 		session.removeAttribute(SessionConstant.ID);
 		session.removeAttribute(SessionConstant.GRADE);
-		return "redirect:/";
+		return "redirect:staff/login";
 	}
 	
 	//마이페이지 -현재 로그인한 회원의 정보를 화면에 출력한다

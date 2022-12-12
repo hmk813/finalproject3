@@ -24,4 +24,5 @@ public class StaffDto {
 		private String staffMedicalDepartment;
 		private int staffLeaveCnt;
 		private int staffDayoff;
+
 }

@@ -15,7 +15,7 @@ public interface StaffDao {
 	
 	boolean delete(String staffId);//삭제
 
-	StaffDto selectOne(String staffId);//단일조회
+	StaffDto selectOne(String staffId);//마이페이지
 	
 	boolean login(StaffDto staffDto);//로그인
 	
@@ -23,7 +23,8 @@ public interface StaffDao {
 		
 	boolean changePassword(String staffId, String afterPw);//비밀번호 변경
 	
-	List<StaffDto> search(StaffSearchVO vo);//직원 검색
+	//<사원검색>
+	List<StaffDto> search(StaffSearchVO vo);
 	
 	
 }

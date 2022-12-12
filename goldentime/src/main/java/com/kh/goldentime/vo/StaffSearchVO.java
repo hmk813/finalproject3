@@ -1,5 +1,8 @@
 package com.kh.goldentime.vo;
 
+import java.sql.Date;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +15,7 @@ public class StaffSearchVO {
 	private String staffName;
 	private String staffMedicalDepartment;
 	private int staffDepartmentNo;
-
-	
+	private String staffId;
+	private Date staffEnrollDate;
+	private String staffGrade;
 }

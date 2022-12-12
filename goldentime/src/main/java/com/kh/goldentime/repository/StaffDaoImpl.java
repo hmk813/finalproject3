@@ -48,7 +48,7 @@ public class StaffDaoImpl implements StaffDao{
 		return count > 0;
 	}
 
-	@Override//단일조회
+	@Override//마이페이지
 	public StaffDto selectOne(String staffId) {
 		return sqlSession.selectOne("staff.login",staffId);
 		
@@ -70,10 +70,11 @@ public class StaffDaoImpl implements StaffDao{
 		return count>0;
 	}
 	
-	@Override// 직원 검색
+	@Override// 사원 검색
 	public List<StaffDto> search(StaffSearchVO vo) {
-		return sqlSession.selectList("staff.search", vo);
+		return sqlSession.selectList("staff.staffList", vo);
 	}
+	
 	
 	@Override//로그인
 	public boolean login(StaffDto staffDto) {
@@ -82,6 +83,5 @@ public class StaffDaoImpl implements StaffDao{
 		boolean judge = encoder.matches(staffDto.getStaffPw(), findDto.getStaffPw());
 		return judge;
 	}
-
 
 }

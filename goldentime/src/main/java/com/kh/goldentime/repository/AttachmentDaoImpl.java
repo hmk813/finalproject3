@@ -45,8 +45,8 @@ public class AttachmentDaoImpl implements AttachmentDao {
 	@Override
 	public void insertAttachment(String staffId, int attachmentNo) {
 		Map<String, String> param = new HashMap<>();//변수로 사용할 Map
-		param.put(staffId, String.valueOf(staffId));
-//		param.put(attachmentNo, String.valueOf(attachmentNo));
+		param.put("staffId", String.valueOf(staffId));
+		param.put("attachmentNo", String.valueOf(attachmentNo));
 		
 		sqlSession.insert("attachment.insertAttachment", param);
 	}

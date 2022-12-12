@@ -4,9 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<jsp:include page="/WEB-INF/views/template/header.jsp">
+<jsp:include page="/WEB-INF/views/template/menuBar.jsp">
 	<jsp:param value="마이페이지" name="title"/>
 </jsp:include>
+
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <%-- 관리자 메뉴일 경우와 아닐 경우 다른 헤더를 설정 --%>
 <%--  <c:choose>
@@ -21,10 +22,14 @@
 		</jsp:include>
 	</c:otherwise>
 </c:choose> 헤더 ,푸터 만들면 주석 풀기--%>   
-   <div align="right">	<h2><a href="/"><i class="fa-solid fa-arrow-right-from-bracket"></i></a></h2></div>
+
+   <div align="right">	<h2><a href="/">
+   <i class="fa-solid fa-arrow-right-from-bracket">
+   </i></a></h2></div>
 <div align="left">
 	<h1>사원 정보</h1>
-	<table border="1" width="350" height="300">
+	<i class="fa-solid fa-address-card"></i>
+	<table  class="t-info" border="1" width="350" height="300">
 		<tbody>
 			<!-- 프로필 이미지를 출력 -->
 			<tr>
@@ -48,6 +53,10 @@
 				<td>${staffDto.staffPhone}</td>
 			</tr>
 			<tr>
+				<th>진료과</th>
+				<td>${staffDto.staffMedicalDepartment}</td>
+			</tr>			
+			<tr>
 				<th>주소</th>
 				<td>${staffDto.staffAddress}</td>
 			</tr>
@@ -58,15 +67,9 @@
 				</td>
 			</tr>
 			<tr>
-				<th>등록일</th>
+				<th>입사일</th>
 				<td>
 					<fmt:formatDate value="${staffDto.staffEnrollDate}" pattern="y년 M월 d일 E a h시 m분 s초"/>
-				</td>
-			</tr>
-			<tr>
-				<th>퇴사일</th>
-				<td>
-					<fmt:formatDate value="${staffDto.staffLeaveDate}" pattern="y년 M월 d일 E a h시 m분 s초"/>
 				</td>
 			</tr>
 		</tbody>
@@ -76,6 +79,7 @@
 		<tbody> 
 			<tr>
 			<th>근태관리</th>
+			<br><br>
 			<td>출근</td>
 			<td>퇴근</td>
 			</tr>

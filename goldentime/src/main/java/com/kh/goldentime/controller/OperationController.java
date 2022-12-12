@@ -20,9 +20,9 @@ public class OperationController {
 	@Autowired
 	private PatientDao patientDao;
 	
-	@GetMapping("/operationlist")
+	@GetMapping("/list")
 	public String list(Model model) {
 		model.addAttribute("operationInformationVO", operationDao.selectList());
-		return"operationlist";
+		return"operation";
 	}
 }

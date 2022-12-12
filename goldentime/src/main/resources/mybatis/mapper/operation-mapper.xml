@@ -20,5 +20,10 @@
 	join patient P on O.patient_no = P.patient_no
 	join diagnosis D on O.operation_diagnosis_no = d.diagnosis_no
 	</select>
+	
+	<!--  단일 조회 -->
+	<select id="one" resultType="OperationInformationVO" parameterType="int">
+	select * from operation where operation_no = #{operation_no}
+	</select>
 
 </mapper>

@@ -8,8 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor @Builder @Data @NoArgsConstructor
 public class SickRoomDto {
 	private int sickRoomNo;
-	private int hospitalizsSickRoomNo;
+	private int sickRoomHospitalizeNo;
+	private int sickRoomDiagnosisNo;
+	private String sickRoomStaffId; 
+	private int sickRoomPatientNo; 
+	private int sicrkRoomOperationNo;
 	private int sickRoomSize;
-	private String sickRoomState; 
-	private int sickRoomBed; 
+	private int sickRoomBed;
 }

@@ -21,6 +21,9 @@
 </head>
 
 <body>
+<div class="container-fluid">
+
+    
 
     <table style="border:1px solid black;">
         <thead>
@@ -39,24 +42,37 @@
         </tbody>
     </table>
 
-    <table style="border:1px solid black;">
-        <thead>
-            <tr>
-                <th>휴가 번호</th>
-                <th>아이디</th>
-                <th>휴가 유형</th>
-                <th>휴가 날짜</th>
-                <th>휴가 일수</th>
-                <th>휴가 내용</th>
-                <th>휴가 신청 상태</th>
-                <th>직원 등급</th>
-                <th>직원 부서</th>
-            </tr>
-        </thead>
-        <tbody id="list" style="border:1px solid black;">
-        </tbody>
-    </table>
+    <div class="row mt-4">
+        <div class="col-md-10 offset-md-1 p-4">
+            <h1 class="text-center">내 연차 조회</h1>
+        </div>
+    </div>
 
+    <div class="row mt-4">
+        <div class="col-md-10 offset-md-1">
+            <table class="table table-hover">
+                <thead class="text-center">
+                    <tr class="bg-dark text-light">
+                        <th>휴가 번호</th>
+                        <th>아이디</th>
+                        <th>휴가 유형</th>
+                        <th>휴가 날짜</th>
+                        <th>휴가 일수</th>
+                        <th>휴가 내용</th>
+                        <th>휴가 신청 상태</th>
+                        <th>직원 등급</th>
+                        <th>직원 부서</th>
+                    </tr>
+                </thead>
+                <tbody id="list" class="text-center">
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
 
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
@@ -128,7 +144,6 @@
                 });
             }
         });
-    </script>
     </script>
 </body>
 

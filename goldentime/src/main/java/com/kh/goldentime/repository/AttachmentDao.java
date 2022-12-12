@@ -11,7 +11,7 @@ public interface AttachmentDao {
 	
 	List<AttachmentDto> selectList();//첨부파일 리스트 조회
 	AttachmentDto selectOne(int attachmentNo);//단일조회
-	
+
 	boolean delete(int attachmentNo);//첨부파일 삭제
 	
 	void insertAttachment(String staffId, int attachmentNo);

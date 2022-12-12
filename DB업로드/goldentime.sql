@@ -50,7 +50,7 @@ vacation_type	varchar(6) CHECK (vacation_type in('월차','연차','병가')) no
 vacation_start_date	date not NULL,
 vacation_day	number(2) DEFAULT 1 not NULL,
 vacation_recode	varchar2(60) not NULL,
-vacation_state	varchar2(6)	CHECK (vacation_state in('승인','반려')) not null
+vacation_state	varchar2(12) DEFAULT '대기중' 	CHECK (vacation_state in('승인','반려','대기중')) not null
 );
 
 --휴가 시퀀스 번호 생성

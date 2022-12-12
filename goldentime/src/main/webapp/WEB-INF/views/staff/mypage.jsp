@@ -7,7 +7,7 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp">
 	<jsp:param value="마이페이지" name="title"/>
 </jsp:include>
-
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <%-- 관리자 메뉴일 경우와 아닐 경우 다른 헤더를 설정 --%>
 <%--  <c:choose>
 	<c:when test="${mg == '관리자'}">
@@ -21,20 +21,20 @@
 		</jsp:include>
 	</c:otherwise>
 </c:choose> 헤더 ,푸터 만들면 주석 풀기--%>   
-   
-<div align="center">
+   <div align="right">	<h2><a href="/"><i class="fa-solid fa-arrow-right-from-bracket"></i></a></h2></div>
+<div align="left">
 	<h1>사원 정보</h1>
-	<table border="1" width="400">
+	<table border="1" width="350" height="300">
 		<tbody>
 			<!-- 프로필 이미지를 출력 -->
 			<tr>
 				<th colspan="2">
-				<div style="text-align:center">
-				 <img class="img-thumbnail"  src="./image/test.jpg" alt="테스트 사진"  width="100" height="100">
+				<div style="text-align:left" class="image-box">
+				 <img class="img-thumbnail"  src="../image/test.jpg" alt="테스트 사진"  width="150" height="150">
 				</div>
 				</th>
-				
 			</tr>
+		
 			<tr>
 				<th>이름</th>
 				<td>${staffDto.staffName}</td>
@@ -71,19 +71,35 @@
 			</tr>
 		</tbody>
 	</table>
+
+	<table border="1" width="350" height="300">
+		<tbody> 
+			<tr>
+			<th>근태관리</th>
+			<td>출근</td>
+			<td>퇴근</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<form action="/upload" method="post" enctype="multipart/form-data">
+		<input type="file" name="attachment"><br><br>
+		<button type="submit">등록</button>
+	
+	</form>	
 	
 	<c:choose>
-		<c:when test="${GRADE == '관리자'}">
+		<c:when test="${staffGrade == '관리자'}">
 			<!-- 관리자용 메뉴 -->
 			<h2><a href="list">목록 보기</a></h2>
-			<h2><a href="change?memberId=${staffDto.staffId}">정보 변경</a></h2>
-			<h2><a href="exit?memberId=${staffDto.staffId}">회원 탈퇴</a></h2>
+			<h2><a href="change?staffId=${staffDto.staffId}">정보 변경</a></h2>
+			<h2><a href="/">로그아웃</a></h2>
 		</c:when>
-		<c:otherwise>
+	<c:otherwise>
 		
-			<!-- 사원용 메뉴 -->
 			<h2><a href="password">비밀번호 변경</a></h2>
 			<h2><a href="information">개인정보 변경</a></h2>
+
 		</c:otherwise>
 	</c:choose>
 	

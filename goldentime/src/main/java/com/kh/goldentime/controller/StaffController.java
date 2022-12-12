@@ -81,9 +81,13 @@ public class StaffController {
 				file.transferTo(target);
 				
 				//직원 첨부파일 연결테이블 정보 저장
-				attachmentDao.connectAttachment(staffDto.getStaffId(), attachmentNo);
+				attachmentDao.insertAttachment(staffDto.getStaffId(), attachmentNo);
 			}
 		}
+		
+		
+		return "redirect:staff/mypage";
+	}
 	
 	@GetMapping("/join_finish")
 	public String joinFinish() {

@@ -84,12 +84,6 @@ public class StaffController {
 				attachmentDao.connectAttachment(staffDto.getStaffId(), attachmentNo);
 			}
 		}
-
-		
-		return "redirect:staff/mypage";
-	}
-	
-
 	
 	@GetMapping("/join_finish")
 	public String joinFinish() {

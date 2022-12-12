@@ -1,6 +1,8 @@
 package com.kh.goldentime.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,11 @@ public class AttachmentDaoImpl implements AttachmentDao {
 	}
 
 	@Override
-	public void connectAttachment(String staffId, int attachmentNo) {
-		Object[] param = {staffId, attachmentNo};
+	public void insertAttachment(String staffId, int attachmentNo) {
+		Map<String, String> param = new HashMap<>();//변수로 사용할 Map
+		param.put(staffId, String.valueOf(staffId));
+//		param.put(attachmentNo, String.valueOf(attachmentNo));
+		
+		sqlSession.insert("attachment.insertAttachment", param);
 	}
 }

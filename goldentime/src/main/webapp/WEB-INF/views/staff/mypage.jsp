@@ -7,6 +7,7 @@
 <jsp:include page="/WEB-INF/views/template/menuBar.jsp">
 	<jsp:param value="마이페이지" name="title"/>
 </jsp:include>
+
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <%-- 관리자 메뉴일 경우와 아닐 경우 다른 헤더를 설정 --%>
 <%--  <c:choose>
@@ -21,10 +22,14 @@
 		</jsp:include>
 	</c:otherwise>
 </c:choose> 헤더 ,푸터 만들면 주석 풀기--%>   
-   <div align="right">	<h2><a href="/"><i class="fa-solid fa-arrow-right-from-bracket"></i></a></h2></div>
+
+   <div align="right">	<h2><a href="/">
+   <i class="fa-solid fa-arrow-right-from-bracket">
+   </i></a></h2></div>
 <div align="left">
 	<h1>사원 정보</h1>
-	<table border="1" width="350" height="300">
+	<i class="fa-solid fa-address-card"></i>
+	<table  class="t-info" border="1" width="350" height="300">
 		<tbody>
 			<!-- 프로필 이미지를 출력 -->
 			<tr>

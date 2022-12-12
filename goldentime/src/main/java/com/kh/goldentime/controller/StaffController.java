@@ -63,39 +63,33 @@ public class StaffController {
 			@RequestParam MultipartFile staffProfile) throws IllegalStateException, IOException {
 		
 		staffDao.insert(staffDto);//DB등록
+		//첨부파일 DB연결 --> 일단 주석처리하고 올림
+		for(MultipartFile file : attachment) {
+			if(!file.isEmpty()) {
+				//첨부파일 시퀀스
+				int attachmentNo = attachmentDao.sequence();
+				//DB등록
+				attachmentDao.insert(AttachmentDto.builder()
+							.attachmentNo(attachmentNo)
+							.attachmentName(file.getOriginalFilename())
+							.attachmentType(file.getContentType())
+							.attachmentSize(file.getSize())
+						.build());
+				//파일저장
+				File target = new File(directory, String.valueOf(attachmentNo));
+				System.out.println(target.getAbsolutePath());
+				file.transferTo(target);
+				
+				//직원 첨부파일 연결테이블 정보 저장
+				attachmentDao.connectAttachment(staffDto.getStaffId(), attachmentNo);
+			}
+		}
+
 		
-		return "redirect:/";
+		return "redirect:staff/mypage";
 	}
 	
-//		//첨부파일 DB연결 --> 일단 주석처리하고 올림
-//		for(MultipartFile file : attachment) {
-//			if(!file.isEmpty()) {
-//				//첨부파일 시퀀스
-//				int attachmentNo = attachmentDao.sequence();
-//				//DB등록
-//				attachmentDao.insert(AttachmentDto.builder()
-//							.attachmentNo(attachmentNo)
-//							.attachmentName(file.getOriginalFilename())
-//							.attachmentType(file.getContentType())
-//							.attachmentSize(file.getSize())
-//						.build());
-//				//파일저장
-//				File target = new File(directory, String.valueOf(attachmentNo));
-//				System.out.println(target.getAbsolutePath());
-//				file.transferTo(target);
-//				
-//				//직원 첨부파일 연결테이블 정보 저장
-//				attachmentDao.connectAttachment(staffDto.getStaffId(), attachmentNo);
-//			}
-//		}
-//		
-////		String password = "1234";
-////		String encrypt = encoder.encode(password);
-////		System.out.println("encrypt");
-////		System.out.println(encoder.matches(password, encrypt));
-//		
-//		return "redirect:staff/mypage";
-//	}
+
 	
 	@GetMapping("/join_finish")
 	public String joinFinish() {

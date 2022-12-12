@@ -24,12 +24,6 @@
         
     </div>
     <div class="header">
-			<button id="btn-alarm">
-		    	<span class="material-icons" style="font-size:45px;">
-					notifications_none
-				</span>
-				<div id="alarm-count"></div>
-			</button>
 			<button id="btn-info">
 				<c:if test="${loginUser.photo != null }">
 				<img class="img-thumbnail"  src="../image/test.jpg" alt="테스트 사진"  width="150" height="150">

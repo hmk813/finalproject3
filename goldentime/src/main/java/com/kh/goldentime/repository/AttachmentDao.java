@@ -14,5 +14,5 @@ public interface AttachmentDao {
 	
 	boolean delete(int attachmentNo);//첨부파일 삭제
 	
-	void connectAttachment(String staffId, int attachmentNo);
+	void insertAttachment(String staffId, int attachmentNo);
 }

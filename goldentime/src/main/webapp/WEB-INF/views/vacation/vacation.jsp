@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -21,6 +21,23 @@
 </head>
 
 <body>
+
+    <table style="border:1px solid black;">
+        <thead>
+            <tr>
+                <th>총 연차</th>
+                <th>사용 연차</th>
+                <th>남은 연차</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>13</td>
+                <td id="useCnt"></td>
+                <td id="leaveCnt"></td>
+            </tr>
+        </tbody>
+    </table>
 
     <table style="border:1px solid black;">
         <thead>
@@ -60,9 +77,14 @@
                     url: "http://localhost:8888/rest/vacation/" + id,
                     method: "get",
                     success: function (resp) {
-                        console.log(resp);
 
+                        console.log(resp.length);
+                        console.log(resp[resp.length-1].staffLeaveCnt);
 
+                        
+                       $("#leaveCnt").append(resp[resp.length-1].staffLeaveCnt);
+                      
+                        var useCnt = 0;
                         $("#list").empty();
                         for (var i = 0; i < resp.length; i++) {
                             var tr = $("<tr>").attr("data-vacationNo", resp[i].vacationNo)
@@ -80,6 +102,7 @@
                             var vacationType = $("<td>").text(resp[i].vacationType);
                             var vacationStartDate = $("<td>").text(resp[i].vacationStartDate);
                             var vacationDay = $("<td>").text(resp[i].vacationDay);
+                            var vacationRecode = $("<td>").text(resp[i].vacationRecode);
                             var vacationState = $("<td>").text(resp[i].vacationState);
                             var staffGrade = $("<td>").text(resp[i].staffGrade);
                             var departmentName = $("<td>").text(resp[i].departmentName);
@@ -89,15 +112,18 @@
                             tr.append(vacationType);
                             tr.append(vacationStartDate);
                             tr.append(vacationDay);
+                            tr.append(vacationRecode);
                             tr.append(vacationState);
                             tr.append(staffGrade);
                             tr.append(departmentName);
 
-                
+                               
+                                useCnt+=resp[i].vacationDay;
 
                             $("#list").append(tr);
 
                         }
+                        $("#useCnt").append(useCnt);
                     }
                 });
             }

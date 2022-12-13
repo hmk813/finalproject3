@@ -15,11 +15,6 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<DiagnosisDto> list() {
-		return sqlSession.selectList("patient.list");
-	}
-	
-	@Override
 	public boolean edit(DiagnosisDto dto) {
 		int count = sqlSession.update("diagnosis.edit", dto);
 		return count > 0;

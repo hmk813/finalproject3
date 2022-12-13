@@ -22,11 +22,6 @@ public class PatientRestController {
 	@Autowired
 	private PatientDao dao;
 	
-	@GetMapping("/patient")
-	public List<PatientDto> list() {
-		return dao.list();
-	}
-	
 	@PostMapping("/patient")
 	public void insert(@RequestBody PatientDto dto) {
 		dao.insert(dto);

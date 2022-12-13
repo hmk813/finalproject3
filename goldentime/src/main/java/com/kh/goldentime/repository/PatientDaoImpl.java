@@ -20,7 +20,12 @@ public class PatientDaoImpl implements PatientDao{
 	}
 	
 	@Override
-	public List<PatientDto> list() {
+	public List<PatientDto> todayList() {
+		return sqlSession.selectList("patient.list");
+	}
+	
+	@Override
+	public List<PatientDto> historyList() {
 		return sqlSession.selectList("patient.list");
 	}
 	

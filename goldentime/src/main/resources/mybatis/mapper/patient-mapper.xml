@@ -16,6 +16,19 @@
 		#{patientPhone}) 
 	</insert>
 	
+	<insert id="insert2" parameterType="receiveDto">
+		<selectKey keyProperty="ps" resultType="int" order="BEFORE">
+	    	select patient_seq.nextval from dual
+		</selectKey>
+		insert into receive(
+			receive_no, staff_id, patient_no, receive_date,
+			receive_time
+		)
+		values(receive_seq.nextval, #{staffId}, 
+		#{patientNo}, #{receiveDate}, 
+		#{receiveTime}
+	</insert>
+	
 	<select id="list" resultType="PatientDto">
 		select * from patient order by patient_no desc
 	</select>
@@ -27,4 +40,8 @@
 			patient_address=#{patientAddress}, patient_phone=#{patientPhone}
 			where patient_no = #{patientNo}
 	</update>
+	<insert id="" parameterType="">
+	</insert>
+	<insert id="">
+	</insert>
 </mapper>

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class DiagnosisDto {
-	private Date diagnosisDate;
+	private Date diagnosisDate, diagnosisTime;
 	private int diagnosisNo, diagnosisPatientNo;
 	private String diagnosisStaffId, diagnosisContent, diagnosisTitle, diagnosisMemo;
 }

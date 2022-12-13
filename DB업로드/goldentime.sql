@@ -225,3 +225,15 @@ create table drug(
 diagnosis_no REFERENCES diagnosis(diagnosis_no),
 drug_name varchar2(100) not null);
 
+-- 접수 테이블 생성
+CREATE TABLE receive (
+	receive_no	number		PRIMARY KEY,
+	staff_id	varchar2(30)	REFERENCES staff(staff_id)	ON DELETE SET NULL,
+	patient_no	number		REFERENCES patient(patient_NO) NOT NULL,
+	receive_date	char(10) NOT	NULL,
+	receive_time	char(5)	NOT	NULL
+);
+
+drop table receive;
+
+create SEQUENCE receive_seq;

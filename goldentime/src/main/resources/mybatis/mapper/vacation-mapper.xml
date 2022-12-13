@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vacation">
+
+<!-- 직원 휴가 조회 목록 -->
+<select id="list" resultType="VacationStaffVO" parameterType="String">
+	select * from vacation_staff_view where vacation_staff_id=#{vacationStaffId}
+</select>
+
+<!-- 매년 1월 1일에 연차가 13개 생기도록하는 구문 -->
+<update id="newYearUpdate">
+	UPDATE staff set staff_leave_cnt=13
+</update>
+
+</mapper>

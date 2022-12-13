@@ -24,7 +24,8 @@ public class HospitalizeInformationVO {
 	private String operationTitle; 
 	private String diagnosisTitle; 
 	private int patientNo; 
-	private String patietnname; 
+	private String patientName; 
 	private Date patientBirth; 
+	private String patientGender;
 	private String patientAddress;
 }

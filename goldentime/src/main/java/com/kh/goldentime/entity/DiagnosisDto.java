@@ -11,6 +11,5 @@ import lombok.NoArgsConstructor;
 public class DiagnosisDto {
 	private Date diagnosisDate;
 	private int diagnosisNo, diagnosisPatientNo;
-	private String diagnosisStaffId, diagnosisContent, diagnosisTitle;
-
+	private String diagnosisStaffId, diagnosisContent, diagnosisTitle, diagnosisMemo;
 }

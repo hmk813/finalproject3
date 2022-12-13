@@ -21,11 +21,6 @@ public class DiagnosisRestController {
 	@Autowired
 	private DiagnosisDao dao;
 	
-	@GetMapping("/diagnosis")
-	public List<DiagnosisDto> list() {
-		return dao.list();
-	}
-	
 	@PutMapping("/diagnosis")
 	public boolean edit(@RequestBody DiagnosisDto dto) {
 		return dao.edit(dto);

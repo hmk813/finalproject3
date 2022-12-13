@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hospitalize">
+	<!-- 수술환자 목록 
+			정렬시 정렬 안에 넣어서 구문 작성하면 됨. 
+	-->
+	
+	<!--  목록 조회  -->
+	<select id="list" resultType="HospitalizeInformationVO">
+		select 
+		H.*, 
+		S.sickroom_size, S.sickroom_bed,
+		P.patient_no, P.patient_name, P.patient_birth, P.patient_address, P.patient_gender, 
+		D.diagnosis_title,
+		O.operation_start_day, O.operation_content, O.operation_title
+		from hospitalize H 
+		join sickroom S 
+		on H.hospitalize_no = S.sickroom_hospitalize_no
+		join patient P 
+		on p.patient_no = h.hosptalize_patient_no
+		join diagnosis D
+		on d.diagnosis_no = h.hospitalize_diagnosis_no
+		join operation O 
+		on o.operation_no = h.hosptalize_operation_no
+	</select>
+</mapper>

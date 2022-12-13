@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 public class moonkyuTest {
 	
 	@Test
-	public void test() { //우리가 사용하는 형태!!!
+	public void test() {
 		
 		
 	}

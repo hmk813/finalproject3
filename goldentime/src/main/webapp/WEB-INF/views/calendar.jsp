@@ -4,15 +4,6 @@
 <html lang='ko'>
 
 <head>
-
-	
-
-    <style>
-        #calendar {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-    </style>
     <meta charset='utf-8' />
 
     <!-- Bootstrap CSS -->
@@ -26,14 +17,12 @@
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-   <!DOCTYPE html>
-<html lang='ko'>
 
 <head>
 
     <style>
         #calendar {
-            max-width: 800px;
+            max-width: 500px;
             margin: 0 auto;
         }
         .radio-time-color{
@@ -63,7 +52,9 @@
             var staff; // 직원 객체를 저장할 변수
             var patient; // 환자 객체를 저장할 변수
             var patientNo; // 환자 번호를 저장할 변수
-            var reservation; // 예약 객체를 저장할 변수
+            var reservation; // 전체 예약 객체를 저장할 변수
+            var reservationDate; // 하루 예약 객체를 저장할 변수
+            var reservationNo // 삭제를 위해 예약 번호 저장할 변수
 
             $.ajax({ // 의사 출력
                 url: "http://localhost:8888/rest/staff",
@@ -104,6 +95,15 @@
                     var date = info.dateStr;
                     $("#modal01").modal("show"); //모달 도출
                     $(".modal-date").val(date); // 날짜 삽입
+                    $.ajax({ // 해당 날짜의 예약 목록 불러오기
+                        url:"http://localhost:8888/rest/reservation/"+date,
+                        method:"get",
+                        success:function(resp){
+                            if(resp != null){
+                                reservationDate = resp;
+                            }
+                        }
+                    });
                     $(".symptom-modal-textarea").val(""); // 텍스트창 초기화
                     // console.log(staff);
                     $(".doctor-reservation-select").val($(".select-option").val()); // 의사 선택 초기화
@@ -116,11 +116,22 @@
                 },
 
                 eventClick: function (event) { //이벤트 클릭 시
-                    // console.log(event);
+                    console.log(event);
                     $("#modal02").modal("show"); //모달 도출
+                    // $(".btn-test").click(function(){
+                    //     $.ajax({
+                    //         url:"http://localhost:8888/rest/reservation",
+                    //         method: "delete",
+                    //         success:function(resp){
+                    //             console.log(resp);
+                    //         }
+                    //     });
+                    // });
                     console.log("제목 : " + event.event.title);
                     console.log("날짜 : " + event.event.startStr);
                     console.log("날짜(시간포함) : " + event.event.start);
+                    console.log("아이디 : "+event.event.id);
+                    reservationNo = event.event.id;
                 },
                 themeSystem: 'bootstrap5',
                 selectable: true, // 날짜 선택
@@ -140,7 +151,8 @@
                                 for(var i = 0; i < reservation.length; i++){
                                     calendar.addEvent({
                                         title: reservation[i]['reservationStaffId'],
-                                        start: reservation[i]['reservationDate']+'T'+reservation[i]['reservationTime']
+                                        start: reservation[i]['reservationDate']+'T'+reservation[i]['reservationTime'],
+                                        id : reservation[i]['reservationNo']
                                     })
                                 }
                             } else {
@@ -199,6 +211,19 @@
                 // if(reservation[0].reservationTime == $(this).val()){
                 //     console.log("확인");
                 // }
+            });
+
+            $(".btn-reservation-delete").click(function(){
+                console.log(reservationNo);
+                $.ajax({
+                    url:"http://localhost:8888/rest/reservation/"+reservationNo,
+                    method:"delete",
+                    success:function(){
+                        console.log("삭제완료");
+                        $('#modal01').modal('hide');
+                        location.reload();
+                    }
+                });
             });
 
             $(".btn-reservation").click(function () {
@@ -315,7 +340,7 @@
                     </div>
                     <!-- 모달 푸터 : 버튼들이 위치한 영역 -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">확인</button>
+                        <button type="button" class="btn btn-danger btn-reservation-delete">삭제</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                     </div>
                 </div>

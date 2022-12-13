@@ -97,4 +97,15 @@
 	</div>
 	
 </body>
+<script>
+//프로필 메뉴
+$("#btn-info").click(function() {
+	if($("#profile-menu").css("display") === "none" ) {
+		$("#profile-menu").show();
+	}else {
+		$("#profile-menu").hide();
+	}
+})
+
+</script>
 </html>

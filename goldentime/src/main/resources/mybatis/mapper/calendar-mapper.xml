@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="calendar">
+
+<!-- <select id="list" resultType="CalendarInfoVO">
+select 
+C.*
+V.vacation_no, V.vacation_staff_id, 
+A.attendance_no, A.attendance_staff_id,
+R.reservation_no, R.reservation_staff_id
+from calendar C
+join vacation V on C.calendar_no = V.vacation_no
+join attendance A on A.attendance_no = C.calendar_no
+join reservation R on R.reservation_no = C.calendar_no
+</select> -->
+
+
+	
+</mapper>

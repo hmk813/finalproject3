@@ -27,7 +27,10 @@ import com.kh.goldentime.entity.AttachmentDto;
 import com.kh.goldentime.entity.StaffDto;
 import com.kh.goldentime.error.TargetNotFoundException;
 import com.kh.goldentime.repository.AttachmentDao;
+import com.kh.goldentime.repository.AttendanceDao;
 import com.kh.goldentime.repository.StaffDao;
+import com.kh.goldentime.repository.VacationDao;
+import com.kh.goldentime.vo.AttendanceListVO;
 import com.kh.goldentime.vo.StaffSearchVO;
 
 @Controller
@@ -40,6 +43,11 @@ public class StaffController {
 	@Autowired
 	private StaffDao staffDao;
 	
+	@Autowired
+	private AttendanceDao attendanceDao;
+	
+	@Autowired
+	private VacationDao vacationDao;
 	
 	@GetMapping("test")
 	public String test() {
@@ -52,6 +60,7 @@ public class StaffController {
 	
 	//첨부파일 업로드 다운로드 경로
 	private final File directory = new File("D:\\upload\\final\\staff");
+
 	
 	@GetMapping("/join")
 	public String join() {
@@ -59,12 +68,12 @@ public class StaffController {
 	}
 	
 	@PostMapping("/join")
-	public String join(@ModelAttribute StaffDto staffDto, List<MultipartFile> attachment, 
-			@RequestParam MultipartFile staffProfile) throws IllegalStateException, IOException {
+	public String join(@ModelAttribute StaffDto staffDto, List<MultipartFile> staffProfile
+			) throws IllegalStateException, IOException {
 		
 		staffDao.insert(staffDto);//DB등록
 		//첨부파일 DB연결 --> 일단 주석처리하고 올림
-		for(MultipartFile file : attachment) {
+		for(MultipartFile file : staffProfile) {
 			if(!file.isEmpty()) {
 				//첨부파일 시퀀스
 				int attachmentNo = attachmentDao.sequence();
@@ -76,6 +85,7 @@ public class StaffController {
 							.attachmentSize(file.getSize())
 						.build());
 				//파일저장
+				directory.mkdirs();
 				File target = new File(directory, String.valueOf(attachmentNo));
 				System.out.println(target.getAbsolutePath());
 				file.transferTo(target);
@@ -93,7 +103,6 @@ public class StaffController {
 	public String joinFinish() {
 		return "staff/joinFinish";
 	}
-
 	
 	@RequestMapping("/list")
 	public String list(@ModelAttribute StaffSearchVO vo, Model model) {
@@ -148,11 +157,15 @@ public class StaffController {
 		StaffDto staffDto = staffDao.selectOne(loginId);
 		
 		//불러온 회원 정보를 모델에 첨부한다
+		
 		model.addAttribute("staffDto",staffDto);
+		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
+		model.addAttribute("vacationDto", vacationDao.list(staffDto.getStaffId()));
 		
 		return "/staff/mypage";
 	
 	}
+
 	
 	//비밀번호 변경
 	@GetMapping("/password")
@@ -217,6 +230,8 @@ public class StaffController {
 		}
 	}
 		
+	@RequestMapping("/")
+	
 
 @GetMapping("/download")
 @ResponseBody

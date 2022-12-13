@@ -18,6 +18,7 @@ public class VacationStaffVO {
 	private String vacationState;
 	private String staffGrade;
 	private int staffDepartmentNo;
+	private int staffLeaveCnt;
 	private String departmentName;
 	
 	

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.kh.goldentime.entity.StaffDto;
@@ -17,9 +18,15 @@ public class StaffDaoImpl implements StaffDao{
 	@Autowired
 	private SqlSession sqlSession;
 	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@Override//등록
 	public void insert(StaffDto staffDto) {
+		String staffPw = staffDto.getStaffPw();
+		String enc = encoder.encode(staffPw);
+		staffDto.setStaffPw(enc);
+		
 		sqlSession.insert("staff.insert",staffDto);	
 	}
 
@@ -41,7 +48,7 @@ public class StaffDaoImpl implements StaffDao{
 		return count > 0;
 	}
 
-	@Override//로그인 여부 확인
+	@Override//마이페이지
 	public StaffDto selectOne(String staffId) {
 		return sqlSession.selectOne("staff.login",staffId);
 		
@@ -55,6 +62,7 @@ public class StaffDaoImpl implements StaffDao{
 
 	@Override//비밀번호 변경
 	public boolean changePassword(String staffId, String afterPw) {
+		
 		Map<String, String> param = new HashMap<>();
 		param.put("staffId", staffId);
 		param.put("afterPw", afterPw);
@@ -62,9 +70,18 @@ public class StaffDaoImpl implements StaffDao{
 		return count>0;
 	}
 	
-	@Override// 직원 검색
+	@Override// 사원 검색
 	public List<StaffDto> search(StaffSearchVO vo) {
-		return sqlSession.selectList("staff.search", vo);
+		return sqlSession.selectList("staff.staffList", vo);
+	}
+	
+	
+	@Override//로그인
+	public boolean login(StaffDto staffDto) {
+		StaffDto findDto = sqlSession.selectOne("staff.get", staffDto.getStaffId());
+		if(findDto == null) return false;
+		boolean judge = encoder.matches(staffDto.getStaffPw(), findDto.getStaffPw());
+		return judge;
 	}
 
 }

@@ -24,6 +24,96 @@
 
 <div class="container">
 		<div class="c-left">
+
+			<div class="row left">
+				<span class="c-title">내 정보</span>
+					<div>
+					<br>
+					<a href="staff/password">비밀번호 변경</a><br><br>
+					<a href="staff/information">개인정보 변경</a>
+					
+	
+					
+					<span class="material-icons" style="font-size: 80px;display: block;text-align: center">					
+							내정보
+	<table border="1" width="400" align="center">		
+			<!-- 프로필 이미지를 출력 -->
+				<img class="img" src="./image/test.jpg" alt="테스트 사진" width="100" height="100">
+			</div>	
+			<tr>
+				<th width="25%">이름</th>
+				<td>${staffDto.staffName}</td>
+			</tr>
+			<tr>
+				<th>생년월일</th>
+				<td>${staffDto.staffBirth}</td>
+			</tr>
+			<tr>
+				<th>전화번호</th>
+				<td>${staffDto.staffPhone}</td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td>${staffDto.staffAddress}</td>
+			</tr>
+			<tr>
+				<th>등급</th>
+				<td>
+					${staffDto.staffGrade}
+				</td>
+			</tr>
+			<tr>
+				<th>등록일</th>
+				<td>
+					<fmt:formatDate value="${staffDto.staffEnrollDate}" pattern="y년 M월 d일 E a h시 m분 s초"/>
+				</td>
+			</tr>
+			<tr>
+				<th>퇴사일</th>
+				<td>
+					<fmt:formatDate value="${staffDto.staffLeaveDate}" pattern="y년 M월 d일 E a h시 m분 s초"/>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+			</span>
+		</div>
+				<div class="info-list">
+				</div>
+			
+			</div>
+			<div class="attendance box">
+				<span class="c-title">근태 관리</span>
+				<div class="att-time">
+					<div>
+						출근 시간<span id="att-str"></span>
+					</div>
+					<div>
+						퇴근 시간<span id="att-fin"></span>
+					</div>
+				</div>
+				<div class="att-btn">
+					<button id="attStr-btn">출근</button>
+					<button id="attFin-btn">퇴근</button>
+				</div>
+			</div>
+		</div>
+		<div class="c-center">
+			<div class="calendar" id="calendar">
+			</div>
+			<div class="calendar-detail box-t">
+				<header id="cal-header"></header>
+				<div class="cal-area">
+					<table id="cal-table"></table>
+				</div>
+			</div>
+		</div>
+			<div class="notice box">
+				<span class="c-title">공지사항</span>
+			</div>
+</tbody>			
+</div>			
+
 			<div class="myInfo box">
 				<span class="myInfo">내 정보</span>
 					 <img class="img-thumbnail"  src="../image/test.jpg" alt="테스트 사진"  width="150" height="150">
@@ -31,6 +121,7 @@
 				</c:if>
 				<div style="font-size:18px;">${loginUser.memberName } ${loginUser.rank }</div>
 				<div style="color: rgba(90, 90, 90); font-size:16px">${loginUser.division }</div>
+
 		
 </body>
 

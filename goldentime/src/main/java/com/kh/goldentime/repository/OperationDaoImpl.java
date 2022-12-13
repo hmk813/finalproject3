@@ -18,5 +18,11 @@ public class OperationDaoImpl implements OperationDao{
 	public List<OperationInformationVO> selectList() {
 		return sqlSession.selectList("operation.list");
 	}
+	
+	@Override
+	public OperationInformationVO selectOne(int operationNo) {
+		
+		return sqlSession.selectOne("operation.one");
+	}
 
 }

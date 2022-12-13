@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
   
 
-<jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
+<jsp:include page="/WEB-INF/views/template/header.jsp">
 	<jsp:param value="마이페이지" name="title"/>
 </jsp:include>
 

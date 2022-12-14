@@ -77,7 +77,7 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                   	<i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-table"></i>
                     <span>원무과</span></a>
             </li>
 
@@ -126,22 +126,11 @@
                             <ul class="navbar-nav me-auto">
 
                                 <li class="nav-item">
-                                    <a class="nav-link " href="#"><span class="#">예약</span>
-                                    <span class="visually-hidden">(current)</span>
-                                    </a>
+                                    <a class="nav-link" href="/attendance/list?${staffDto.staffId}"><span class="#">근태관리</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><span class="#">환자 현황</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><span class="#">환자 기록</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="operation/list"><span class="link-sp">수술 환자</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="hospitalize/list"><span class="link-sp">입원 환자</span></a>
-                                </li>
+                                    <a class="nav-link" href="/vacation/vacation?${staffDto.staffId}"><span class="#">연차관리</span></a>
+                                </li>	
                                 </ul>
                         </div>
 
@@ -175,7 +164,10 @@
                             </div>
                         </li>
 
+                    </ul>
+
                 </nav>
+                <!-- End of Topbar -->
 
 
    

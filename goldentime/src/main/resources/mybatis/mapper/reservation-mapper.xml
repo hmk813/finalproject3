@@ -18,15 +18,7 @@
 	</insert>
 	
 	<select id="list" resultType="ReservationDto" parameterType="ReservationDto">
-		select * 
-		from reservation
-		where 1=1
-		<if test="reservationDate !=null and reservationDate !=''">
-		and reservation_date=#{reservationDate}
-		</if>
-		<if test="reservationStaffId !=null and reservationStaffId !=''">
-		and reservationStaffId=#{reservationStaffId}
-		</if>
+		select * from reservation
 	</select>
 	
 	<select id="dateList" resultType="ReservationDto">

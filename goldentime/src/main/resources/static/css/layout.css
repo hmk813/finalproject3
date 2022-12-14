@@ -1,37 +1,28 @@
 @charset "UTF-8";
 
-/* 
+/*
     홈페이지 레이아웃을 설정하는 스타일시트
 */
-main{
-    margin: 0 auto;
-  	min-height: 500px;
+main {
+    width: 1000px;
+    margin:0 auto;
 }
-header{
-	
-}
-nav{
-}
-aside{
+header {
     padding: 20px;
-    float: left;
-    width: 20%;
-    min-height: 400px;
-    z-index: 0;
-}
-section{
-	position: relative;
-    margin: 0 auto;
-    padding: 20px;
-    float: left;
-    width: 80%;
-    min-height: 400px;
-    z-index: 0;
-}
-footer{
-	/* border-top: 1px solid gray; */
 }
 
-div.footer{
-	border-top: 1px solid gray;
+aside {
+    padding: 20px;
+    float:left;
+    width:25%;
+    min-height: 400px;
+}
+section {
+    padding: 20px;
+    float:left;
+    width:75%;
+    min-height: 400px;
+}
+footer {
+    padding: 20px;
 }

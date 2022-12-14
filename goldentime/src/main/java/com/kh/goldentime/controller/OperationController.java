@@ -17,12 +17,12 @@ public class OperationController {
 	@Autowired
 	private OperationDao operationDao;
 	
-	@Autowired
-	private PatientDao patientDao;
-	
-	@GetMapping("/operationlist")
+	// 수술 환자 목록 
+	@GetMapping("/list")
 	public String list(Model model) {
 		model.addAttribute("operationInformationVO", operationDao.selectList());
-		return"operationlist";
+//		model.addAttribute("", operationDao.selectOne(int operationNo));
+		return"operation";
 	}
+	
 }

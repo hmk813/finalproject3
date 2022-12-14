@@ -26,7 +26,7 @@ public class HyunJaeTest {
 //		attendanceDao.goWork(AttendanceDto.builder()
 //				.attendanceStaffId("aaa")
 //				.build());
-		String id = "aaa";
+		String id = "admin";
 		
 //		System.out.println(attendanceDao.goWorkFind(id));
 //		System.out.println(attendanceDao.comeLate(id));
@@ -45,7 +45,7 @@ public class HyunJaeTest {
 //			System.out.println("조퇴");
 //		}
 		
-		System.out.println("ddd"+attendanceDao.stardEnd(id));
+//		System.out.println("ddd"+attendanceDao.stardEnd(id
 		
 //		Map<String, Object> param = new HashMap<>();
 //		param.put("beginMade", "2022-12-10");
@@ -60,6 +60,8 @@ public class HyunJaeTest {
 //		}
 //		
 //		System.out.println(attendanceDao.todaywork(id).getAttendanceWorkState().equals("지각"));
+		System.out.println(attendanceDao.stardEnd(id));
+		
 		
 		
 	}

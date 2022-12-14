@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kh.goldentime.entity.VacationDto;
 import com.kh.goldentime.repository.VacationDao;
 import com.kh.goldentime.vo.VacationStaffVO;
 
@@ -23,8 +25,13 @@ public class VacationRestController {
 
 	@GetMapping("/vacation/{VacationStaffId}")
 	public List<VacationStaffVO> list(@PathVariable String VacationStaffId) {
-		
-
 		return vacationDao.list(VacationStaffId);
 	}
+	
+	
+	@PostMapping("/vacation")
+	public void enroll(VacationDto vacationDto) {
+		vacationDao.enroll(vacationDto);
+	}
+	
 }

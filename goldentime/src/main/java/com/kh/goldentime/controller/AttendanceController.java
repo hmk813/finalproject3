@@ -19,7 +19,7 @@ public class AttendanceController {
 	
 	@GetMapping("/list")
 	public String list(@ModelAttribute AttendanceListVO vo, Model model) {
-		String findId = "aaa";
+		String findId = "admin";
 		AttendanceListVO id1 = AttendanceListVO.builder().
 				attendanceStaffId(findId)
 				.beginMade(null)

@@ -11,30 +11,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kh.goldentime.entity.PatientDto;
-import com.kh.goldentime.repository.PatientDao;
+import com.kh.goldentime.entity.DrugDto;
+import com.kh.goldentime.repository.DrugDao;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/rest")
-public class PatientController {
+public class DrugRestController {
 	
 	@Autowired
-	private PatientDao dao;
+	private DrugDao dao;
 	
-	@GetMapping("/patient")
-	public List<PatientDto> list() {
+	@GetMapping("/drug")
+	public List<DrugDto> list() {
 		return dao.list();
 	}
 	
-	@PostMapping("/patient")
-	public void insert(@RequestBody PatientDto dto) {
+	@PostMapping("/drug")
+	public void insert(@RequestBody DrugDto dto) {
 		dao.insert(dto);
 	}
 	
-	@PutMapping("/patient")
-	public boolean edit(@RequestBody PatientDto dto) {
+	@PutMapping("/drug")
+	public boolean edit(@RequestBody DrugDto dto) {
 		return dao.edit(dto);
 	}
-
 }

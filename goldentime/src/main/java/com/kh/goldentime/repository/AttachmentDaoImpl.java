@@ -27,8 +27,13 @@ public class AttachmentDaoImpl implements AttachmentDao {
 	}
 	
 	@Override
-	public AttachmentDto selectAttachment(int attachmentNo) {
-		return sqlSession.selectOne("attachment.selectAttachment",attachmentNo);
+	public List<AttachmentDto> selectList() {
+		return sqlSession.selectList("attachment.list");
+	}
+	
+	@Override
+	public AttachmentDto selectOne(int attachmentNo) {
+		return sqlSession.selectOne("attachment.one",attachmentNo);
 	}
 	
 	@Override
@@ -38,21 +43,11 @@ public class AttachmentDaoImpl implements AttachmentDao {
 	}
 
 	@Override
-	public void insertStaffImg(String staffId, int attachmentNo) {
+	public void insertAttachment(String staffId, int attachmentNo) {
 		Map<String, String> param = new HashMap<>();//변수로 사용할 Map
-		param.put("imgStaffId", staffId);
-		param.put("imgAttachNo", String.valueOf(attachmentNo));
+		param.put("staffId", String.valueOf(staffId));
+		param.put("attachmentNo", String.valueOf(attachmentNo));
 		
-		sqlSession.insert("attachment.insertStaffImg", param);
-	}
-	
-	@Override
-	public int selectStaffAttachment(String staffId) {
-		return sqlSession.selectOne("attachment.selectStaffAttachment", staffId);
-	}
-	
-	@Override
-	public boolean deleteStaffAttachment(int attachmentNo) {
-		return sqlSession.delete("attachment.deleteStaffAttachment", attachmentNo) > 0;
+		sqlSession.insert("attachment.insertAttachment", param);
 	}
 }

@@ -21,4 +21,14 @@
 		VALUES(VACATION_SEQ.nextval,#{vacationStaffId},#{vacationType},to_date(#{vacationStartDate},'YYYY-MM-DD'),#{vacationDay},#{vacationRecode},'대기중')
 	</insert>
 
+	<update id="edit" parameterType="VacationDto">
+		UPDATE vacation
+		set
+		vacation_type = #{vacationType},
+		vacation_recode=#{vacationRecode},
+		vacation_day=#{vacationDay},
+		vacation_start_date=TO_DATE(#{vacationStartDate},'yyyy-mm-dd')
+		where
+		vacation_no=#{vacationNo}
+	</update>
 </mapper>

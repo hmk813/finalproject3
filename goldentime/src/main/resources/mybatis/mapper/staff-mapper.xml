@@ -48,7 +48,7 @@
  		delete staff where staff_id = #{staffId}
  	</delete>	
  
-	<!-- 로그인 여부 확인 -->
+	<!-- 로그인 여부 확인(단일조회) -->
  	<select id="login" parameterType="String" resultType="StaffDto">
  		select * from staff where staff_id = #{staffId}
  	</select>
@@ -92,6 +92,7 @@
  		</where>
  		
  		</select>
+ 		
  		
  		<!-- type, keyword검색 -->
  		<select id="detailSearch" parameterType="map" resultType="StaffDto">

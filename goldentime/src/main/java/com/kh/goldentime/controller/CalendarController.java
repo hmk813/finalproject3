@@ -1,11 +1,14 @@
 package com.kh.goldentime.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.kh.goldentime.repository.AttendanceDao;
+import com.kh.goldentime.repository.ReservationDao;
+import com.kh.goldentime.repository.VacationDao;
 
 @Controller
 public class CalendarController {
@@ -33,10 +36,29 @@ public class CalendarController {
 //		return result;
 //	}
 	
+	@Autowired
+	private ReservationDao reservationDao;
 	
-	@RequestMapping("/calendar")
+	@Autowired
+	private VacationDao vacationDao;
+	
+	@Autowired
+	private AttendanceDao attendanceDao;
+	
+	@RequestMapping("/calendar")//예약목록 불러오기
 	public String calendar(Model model) {
 		return "calendar";
 	}
+	
+	@RequestMapping("/attendance")//출퇴근목록 불러오기
+	public String attendance(Model model) {
+		return "attendance";
+	}
+	
+	@RequestMapping("/vacation")//연차목록 불러오기
+	public String vacation(Model model) {
+		return "vacation";
+	}
+	
 	
 }

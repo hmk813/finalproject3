@@ -1,6 +1,7 @@
 package com.kh.goldentime.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,4 +18,6 @@ public class AttendanceListVO {
 	private int workTime;
 	private String attendanceStaffId;
 	private String beginMade, endMade;
+	
+
 }

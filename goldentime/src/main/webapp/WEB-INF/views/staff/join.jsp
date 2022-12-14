@@ -11,7 +11,7 @@
 	비밀번호 : <input name="staffPw" type="password" required><br><br>
 	이름 : <input name="staffName" type="text" required><br><br>
 	부서번호 : <input name="staffDepartmentNo" type="number" required><br><br>
-	생년월일 : <input name="staffBirth" type="date" rqeuired> <br><br>
+	생년월일 : <input name="staffBirth" type="date" required> <br><br>
 	입사일 : <input name="staffEnrollDate" type="date" required><br><br>
 	등급 : <input name="staffGrade" type="text" required><br><br>
 	전화번호 : <input name="staffPhone" type="tel"> <br><br>

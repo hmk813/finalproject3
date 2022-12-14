@@ -30,7 +30,6 @@ import com.kh.goldentime.repository.AttachmentDao;
 import com.kh.goldentime.repository.AttendanceDao;
 import com.kh.goldentime.repository.StaffDao;
 import com.kh.goldentime.repository.VacationDao;
-import com.kh.goldentime.vo.AttendanceListVO;
 import com.kh.goldentime.vo.StaffSearchVO;
 
 @Controller
@@ -161,7 +160,7 @@ public class StaffController {
 		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
 		model.addAttribute("vacationDto", vacationDao.list(staffDto.getStaffId()));
 		
-		//반환한 회원 아이디로 직원 이미지 테이블에서 첨부파일 번호를 조회한 후 모델에 넣어놔
+		//반환한 회원 아이디로 직원 이미지 테이블에서 첨부파일 번호를 조회한 후 모델에 넣음
 		int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
 		model.addAttribute("attachmentNo", attachmentNo);
 		System.out.println(attachmentNo);

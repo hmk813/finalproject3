@@ -59,12 +59,7 @@ public class StaffController {
 	private AttachmentDao attachmentDao;
 	
 	//첨부파일 업로드 다운로드 경로
-
 	private final File directory = new File("D:/upload/final/staff");
-
-	private final File directory = new File("D:\\upload\\final\\staff");
-
-
 	
 	@GetMapping("/join")
 	public String join() {
@@ -72,7 +67,6 @@ public class StaffController {
 	}
 	
 	@PostMapping("/join")
-
 	public String join(@ModelAttribute StaffDto staffDto, @RequestParam List<MultipartFile> staffImg, 
 			HttpSession session) throws IllegalStateException, IOException {
 		
@@ -97,33 +91,6 @@ public class StaffController {
 			
 			//직원 첨부파일 연결테이블 정보 저장
 			attachmentDao.insertStaffImg(staffDto.getStaffId(), attachmentNo);
-
-	public String join(@ModelAttribute StaffDto staffDto, List<MultipartFile> staffProfile
-			) throws IllegalStateException, IOException {
-		
-		staffDao.insert(staffDto);//DB등록
-		//첨부파일 DB연결 --> 일단 주석처리하고 올림
-		for(MultipartFile file : staffProfile) {
-			if(!file.isEmpty()) {
-				//첨부파일 시퀀스
-				int attachmentNo = attachmentDao.sequence();
-				//DB등록
-				attachmentDao.insert(AttachmentDto.builder()
-							.attachmentNo(attachmentNo)
-							.attachmentName(file.getOriginalFilename())
-							.attachmentType(file.getContentType())
-							.attachmentSize(file.getSize())
-						.build());
-				//파일저장
-				directory.mkdirs();
-				File target = new File(directory, String.valueOf(attachmentNo));
-				System.out.println(target.getAbsolutePath());
-				file.transferTo(target);
-				
-				//직원 첨부파일 연결테이블 정보 저장
-				attachmentDao.insertAttachment(staffDto.getStaffId(), attachmentNo);
-			}
-
 		}
 		
 		session.setAttribute("loginId", staffDto.getStaffId());

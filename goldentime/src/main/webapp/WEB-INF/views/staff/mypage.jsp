@@ -38,7 +38,7 @@
   			<tr>
 				<th colspan="2">
 				<div style="text-align:center" class="image-box">
-				 <img class="img-thumbnail"  src="../image/test.jpg" alt="테스트 사진"  width="150" height="150">
+				 <img class="img-thumbnail"  src="/attachment/download/staff?attachmentNo=${attachmentNo}" alt="테스트 사진"  width="150" height="150">
 				</div>
 				</th>
 				

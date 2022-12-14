@@ -19,7 +19,7 @@
 	진료과 : <input name="staffMedicalDepartment" type="text"><br><br>
 	
 	직원이미지 : 
-	<input type="file" name="staffProfile" accept=".png, .jpg" multiple="multiple">
+	<input type="file" name="staffImg" accept=".png, .jpg" multiple="multiple">
 	<br><br>
 	
 	<button>생성하기</button>

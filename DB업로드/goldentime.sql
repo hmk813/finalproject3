@@ -73,7 +73,10 @@ CREATE TABLE Patient (
 patient_no number PRIMARY KEY,
 patient_name varchar2(15) not null,
 patient_birth date not null,
-patient_gender	char(2) CHECK (patient_gender in('M','F'))	not null
+patient_gender char(2) CHECK (patient_gender in('M','F')) not null,
+patient_blood varchar(10),
+patient_address varchar2(150),
+patient_phone char(11)
 );
 
 --환자 시퀀스 번호 생성
@@ -84,10 +87,10 @@ CREATE TABLE diagnosis (
 diagnosis_no number	PRIMARY KEY,
 diagnosis_staff_id	varchar2(30) references staff(staff_id) on delete set null,
 diagnosis_patient_no references patient(patient_no) on delete set null,
-diagnosis_content	varchar2(3000)	not null,
+diagnosis_content	varchar2(3000),
 diagnosis_date	date DEFAULT sysdate,
-diagnosis_title	varchar2(300) not NULL,
-patient_blood	char(1)	CHECK (patient_blood in('A','B','AB','O'))	not null
+diagnosis_title	 varchar2(300),
+diagnosis_memo varchar2(3000)
 );
 
 --진료 시퀀스 번호 생성
@@ -217,3 +220,20 @@ chat_msg_date date	DEFAULT sysdate
 
 create sequence chat_msg_seq;
 
+-- 약 테이블 생성
+create table drug(
+diagnosis_no REFERENCES diagnosis(diagnosis_no),
+drug_name varchar2(100) not null);
+
+-- 접수 테이블 생성
+CREATE TABLE receive (
+	receive_no	number		PRIMARY KEY,
+	staff_id	varchar2(30)	REFERENCES staff(staff_id)	ON DELETE SET NULL,
+	patient_no	number		REFERENCES patient(patient_NO) NOT NULL,
+	receive_date	char(10) NOT	NULL,
+	receive_time	char(5)	NOT	NULL
+);
+
+drop table receive;
+
+create SEQUENCE receive_seq;

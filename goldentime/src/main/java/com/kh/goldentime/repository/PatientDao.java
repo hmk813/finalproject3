@@ -6,6 +6,7 @@ import com.kh.goldentime.entity.PatientDto;
 
 public interface PatientDao {
 	void insert(PatientDto dto);
-	List<PatientDto> list();
+	List<PatientDto> todayList();
+	List<PatientDto> historyList();
 	boolean edit(PatientDto dto);
 }

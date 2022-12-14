@@ -111,7 +111,7 @@
 					//console.log(resp);
 					$(".list-view").empty();
 					for(var i = 0 ; i < resp.length; i++) {
-						var h3 = $("<h3>").text(resp[i].patientNo+"/"+resp[i].patientName+"/"+resp[i].patientBirth+"/"+resp[i].patientGender+
+						var h3 = $("<h3>").text(resp[i].patientName+"/"+resp[i].patientBirth+"/"+resp[i].patientGender+
 								"/"+resp[i].patientBlood+"/"+resp[i].patientAddress+"/"+resp[i].patientPhone)
 						.attr("data-patient-no", resp[i].patientNo)
 						.attr("data-patient-name", resp[i].patientName)
@@ -120,7 +120,6 @@
 						.attr("data-patient-blood", resp[i].patientBlood)
 						.attr("data-patient-address", resp[i].patientAddress)
 						.attr("data-patient-phone", resp[i].patientPhone);
-
 						
 						h3.click(function(){
 							console.log($(this));
@@ -139,7 +138,6 @@
 			});
 		}
 	
-
 </script>
 <meta charset="UTF-8">
 <title>환자 접수</title>
@@ -147,13 +145,13 @@
 <body>
 	<div class="container-1200">
 			<div class="row center">
-				<h1>회원 접수</h1>
+				<h1>환자 접수</h1>
 			</div>
 			<form class="detail-view">
-				<input name="patientNo" type="text" placeholder="번호" required><br><br>
+				<input name="patientNo" type="hidden" placeholder="번호" required>
 				<input name="patientName" type="text"  placeholder="이름" required><br><br>
 				<input name="patientBirth" type="date"  required><br><br>
-				<input name="patientGender" type="text"  required><br><br>
+				<input name="patientGender" type="text"  required placeholder="성별"><br><br>
 				<input name="patientBlood" type="text"  placeholder="혈액형"  required><br><br>
 				<input name="patientAddress" type="text"  placeholder="주소"  required><br><br>
 				<input name="patientPhone" type="tel"  placeholder="핸드폰번호"  required><br><br>

@@ -22,5 +22,9 @@ public class ViewController {
 		return "patient";
 	}
 	
+	@RequestMapping("/drug")
+	public String drug() {
+		return "drug";
+	}
 	
 }

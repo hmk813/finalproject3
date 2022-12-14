@@ -30,7 +30,7 @@ public class VacationRestController {
 	
 	
 	@PostMapping("/vacation")
-	public void enroll(VacationDto vacationDto) {
+	public void enroll(@RequestBody VacationDto vacationDto) {
 		vacationDao.enroll(vacationDto);
 	}
 	

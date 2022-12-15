@@ -7,7 +7,8 @@
 	<!-- 직원 휴가 조회 목록 -->
 	<select id="list" resultType="VacationStaffVO" 
 		parameterType="String">
-		select * from vacation_staff_view where vacation_staff_id=#{vacationStaffId} ORDER by vacation_no desc
+		select v.*, SUM(vacation_day) OVER() useleave, sum(staff_dayoff) over() usedayoff
+		 from vacation_staff_view v where vacation_staff_id=#{vacationStaffId} ORDER by vacation_no desc
 	</select>
 
 	<!-- 매년 1월 1일에 연차가 13개 생기도록하는 구문 -->
@@ -31,4 +32,8 @@
 		where
 		vacation_no=#{vacationNo}
 	</update>
+	
+	<delete id="del" parameterType="int">
+		delete vacation where vacation_no=#{vacationNo}
+	</delete>
 </mapper>

@@ -30,7 +30,6 @@ import com.kh.goldentime.repository.AttachmentDao;
 import com.kh.goldentime.repository.AttendanceDao;
 import com.kh.goldentime.repository.StaffDao;
 import com.kh.goldentime.repository.VacationDao;
-import com.kh.goldentime.vo.AttendanceListVO;
 import com.kh.goldentime.vo.StaffSearchVO;
 
 @Controller
@@ -60,6 +59,7 @@ public class StaffController {
 	
 	//첨부파일 업로드 다운로드 경로
 	private final File directory = new File("D:/upload/final/staff");
+
 	
 	@GetMapping("/join")
 	public String join() {
@@ -91,12 +91,13 @@ public class StaffController {
 			
 			//직원 첨부파일 연결테이블 정보 저장
 			attachmentDao.insertStaffImg(staffDto.getStaffId(), attachmentNo);
+
 		}
-		
 		session.setAttribute("loginId", staffDto.getStaffId());
 		
 		return "redirect:mypage";
-	}
+}
+	
 	
 	@GetMapping("/join_finish")
 	public String joinFinish() {
@@ -156,12 +157,11 @@ public class StaffController {
 		StaffDto staffDto = staffDao.selectOne(loginId);
 		
 		//불러온 회원 정보를 모델에 첨부한다
-		
 		model.addAttribute("staffDto",staffDto);
 		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
 		model.addAttribute("vacationDto", vacationDao.list(staffDto.getStaffId()));
 		
-		//반환한 회원 아이디로 직원 이미지 테이블에서 첨부파일 번호를 조회한 후 모델에 넣어놔
+
 		int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
 		model.addAttribute("attachmentNo", attachmentNo);
 		System.out.println(attachmentNo);
@@ -233,9 +233,7 @@ public class StaffController {
 			return "redirect:information?error";
 		}
 	}
-		
-	@RequestMapping("/")
-	
+			
 
 @GetMapping("/download")
 @ResponseBody

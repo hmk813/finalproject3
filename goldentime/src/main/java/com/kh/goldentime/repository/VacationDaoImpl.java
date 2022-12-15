@@ -30,5 +30,10 @@ public class VacationDaoImpl implements VacationDao {
 		sqlSession.insert("vacation.enroll", vacationDto);
 		
 	}
+
+	@Override
+	public boolean edit(VacationDto vacationDto) {
+		return sqlSession.update("vacation.edit",vacationDto)>0;
+	}
 	
 }

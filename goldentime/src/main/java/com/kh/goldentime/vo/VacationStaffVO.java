@@ -12,7 +12,7 @@ public class VacationStaffVO {
 	private int vacationNo;
 	private String vacationStaffId;
 	private String vacationType;
-	private Date vacationStartDate;
+	private String vacationStartDate;
 	private int vacationDay;
 	private String vacationRecode;
 	private String vacationState;
@@ -20,6 +20,8 @@ public class VacationStaffVO {
 	private int staffDepartmentNo;
 	private int staffLeaveCnt;
 	private String departmentName;
-	
+	private String staffName;
+	private String staffMedicalDepartment;
+	private int staffDayoff;
 	
 }

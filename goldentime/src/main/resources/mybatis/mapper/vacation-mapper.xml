@@ -7,7 +7,7 @@
 	<!-- 직원 휴가 조회 목록 -->
 	<select id="list" resultType="VacationStaffVO" 
 		parameterType="String">
-		select * from vacation_staff_view where vacation_staff_id=#{vacationStaffId}
+		select * from vacation_staff_view where vacation_staff_id=#{vacationStaffId} ORDER by vacation_no desc
 	</select>
 
 	<!-- 매년 1월 1일에 연차가 13개 생기도록하는 구문 -->
@@ -18,7 +18,17 @@
 	<insert id="enroll" parameterType="VacationDto">
 		insert into vacation
 		(vacation_no,vacation_staff_id,vacation_type,vacation_start_date,vacation_day,vacation_recode,vacation_state)
-		VALUES(VACATION_SEQ.nextval,#{vacationStaffId},#{vacationType},to_date(#{vacationStartDate},'yyyy-mm-dd'),#{vacationDay},#{vacationRecode},'대기중')
+		VALUES(VACATION_SEQ.nextval,#{vacationStaffId},#{vacationType},to_date(#{vacationStartDate},'YYYY-MM-DD'),#{vacationDay},#{vacationRecode},'대기중')
 	</insert>
 
+	<update id="edit" parameterType="VacationDto">
+		UPDATE vacation
+		set
+		vacation_type = #{vacationType},
+		vacation_recode=#{vacationRecode},
+		vacation_day=#{vacationDay},
+		vacation_start_date=TO_DATE(#{vacationStartDate},'yyyy-mm-dd')
+		where
+		vacation_no=#{vacationNo}
+	</update>
 </mapper>

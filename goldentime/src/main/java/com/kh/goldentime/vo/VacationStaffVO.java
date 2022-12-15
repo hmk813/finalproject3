@@ -23,5 +23,7 @@ public class VacationStaffVO {
 	private String staffName;
 	private String staffMedicalDepartment;
 	private int staffDayoff;
+	private int useleave;
+	private int usedayoff;
 	
 }

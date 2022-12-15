@@ -22,6 +22,48 @@
 
 
 
+    <style>
+        .box1 {
+            display: inline-block;
+            /* default값 inline */
+
+            border: 1px solid skyblue;
+            /* 테두리 */
+
+            color: #2E64FE
+                /* 글자색 : white */
+        }
+
+        .box2 {
+            display: inline-block;
+            /* default값 inline */
+
+            background-color: #2E64FE;
+
+            border: 1px solid #2E64FE;
+            /* 테두리 */
+
+            color: white;
+                /* 글자색 : white */
+        }
+
+        span:hover {
+            background: #E6E6E6;
+        }
+
+        .aa-flex{
+            display: flex;
+            flex-direction: row;
+            flex-wrap:wrap
+
+        }
+        .w-75{
+            width: 75%;
+        }
+        .w-25{
+            width: 25%;
+        }
+    </style>
 
 
 
@@ -54,24 +96,23 @@
 
 
 
-                <div class="row mt-4">
-                    <div class="col-6 col-md-4">
-                        <h4 class="text-center">내 휴가 현황</h4>
-                    </div>
-                </div>
+        
 
-                <div class="row mt-4">
-                    <div class="col-md-10 offset-md-1">
+                <div class="aa-flex bd-highlight mb-1  offset-md-1">
+                    <div class="w-75 bd-highlight">
+                        <h4 class="text-left">내 휴가 현황</h4>
+                    </div>
+                    <div class="ms-auto w-25 bd-highlight ">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#enroll"
                             data-bs-whatever="@mdo">
                             연차신청하기
                         </button>
                     </div>
-                </div>
+                  </div>
 
-                <div class="row mt-4">
+                <div class="row mt-1">
                     <div class="col-md-10 offset-md-1">
-                        <table class="table ">
+                        <table class="table tbl paginated" id="tbl">
                             <thead class="text-center">
                                 <tr class="bg-dark text-light">
                                     <th>번호</th>
@@ -91,6 +132,8 @@
                         </table>
                     </div>
                 </div>
+
+
 
             </div>
 
@@ -120,7 +163,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-8 col-sm-6">
-                                            <i>● 총 휴가 일수 13 일</i>
+                                            <i>● 총 연차 일수 13 일</i>
                                         </div>
                                         <div class="col-4 col-sm-6" id="leaveCnt1">
                                         </div>
@@ -213,7 +256,6 @@
             <script>
                 $(function () {
                     vacationList();
-
                     //휴가를 신청하는 버튼 이벤트 처리
                     $(".vacation").click(function (e) {
                         var vacationStartDate = $("[name=vacationStartDate]").val();
@@ -255,14 +297,13 @@
                     //휴가 목록함수
                     function vacationList() {
                         var id = "test2";
+
                         $.ajax({
                             url: "http://localhost:8888/rest/vacation/" + id,
+                            cache: false,
                             method: "get",
+                            headers: { "cache-control": "no-cache" },
                             success: function (resp) {
-
-                                //console.log(resp.length);
-                                //console.log(resp[resp.length - 1].vacationStartDate);
-
 
                                 var useCnt = 0;
                                 $("#list").empty();
@@ -287,17 +328,32 @@
                                     var vacationDay = $("<td>").text(resp[i].vacationDay + "일");
                                     var vacationState = $("<td>").text(resp[i].vacationState);
 
-                                    
-                                    var btn = '<td><button type="button" class="edit btn btn-outline-primary btn-sm btn-group">수정</button><button type="button" class="del btn btn-outline-danger btn-sm btn-group">삭제</button></td>'
 
-                                    // edit.data("target");
-                                    // edit.toggle("modal");
+                                    var btn = '<td><button type="button" class="edit btn btn-outline-primary btn-sm btn-group">수정</button> <button type="button" class="del btn btn-outline-danger btn-sm btn-group">삭제</button></td>'
+
+
+                                    $(".del").click(function (e) {
+                                        e.stopPropagation();
+                                        var vacationNo = $(this).parent().parent().data("vacationno");
+
+
+                                        console.log(vacationNo);
+                                        $.ajax({
+                                            url: "http://localhost:8888/rest/vacation/" + vacationNo,
+                                            method: "delete",
+                                            success: function (resp) {
+                                                vacationList();
+                                            }
+                                        });
+
+
+                                    });
+
                                     $(".edit").click(function (e) {
                                         e.stopPropagation();//전파 중지
                                         $("#edit").modal("show");
                                         var vacationNo = $(this).parent().parent().data("vacationno");
-                                        
-                                        //console.log("몇번이냐고!!" + vacationNo);
+
                                         $(".vacation1").click(function (e) {
                                             e.stopPropagation();//전파 중지
                                             var vacationStartDate = $("[name=vacationStartDate1]").val();
@@ -310,11 +366,11 @@
 
                                             var data = {
                                                 vacationStaffId: "test2",
-                                                vacationStartDate : $("[name=vacationStartDate1]").val(),
-                                                vacationRecode : $("[name=vacationRecode1]").val(),
-                                                vacationDay : $("[name=vacationDay1]").val(),
-                                                vacationType : $("#vacationType1  option:selected").val(),
-                                                vacationNo : vacationNo1
+                                                vacationStartDate: $("[name=vacationStartDate1]").val(),
+                                                vacationRecode: $("[name=vacationRecode1]").val(),
+                                                vacationDay: $("[name=vacationDay1]").val(),
+                                                vacationType: $("#vacationType1  option:selected").val(),
+                                                vacationNo: vacationNo1
                                             };
 
                                             $.ajax({
@@ -339,9 +395,6 @@
                                     });
 
 
-
-                                    
-
                                     tr.append(vacationNo);
                                     tr.append(staffMedicalDepartment);
                                     tr.append(staffGrade);
@@ -350,7 +403,7 @@
                                     tr.append(vacationStartDate);
                                     tr.append(vacationDay);
                                     tr.append(vacationState);
-                                    tr.append(btn);
+                                    
 
                                     useCnt += resp[i].vacationDay;
 
@@ -358,15 +411,117 @@
 
                                 }
                                 //console.log("useCnt" + useCnt);
-                                $("#useCnt").append(useCnt);
-                                $("#leaveCnt").append(resp[resp.length - 1].staffLeaveCnt - useCnt);
+                                $("#useCnt").text(useCnt);
+                                $("#leaveCnt").text(resp[resp.length - 1].staffLeaveCnt - useCnt);
 
-                                $("#leaveCnt1").html('<i>● 남은 휴가 일수 &nbsp&nbsp</i>')
+                                $("#leaveCnt1").html('<i>● 남은 연차 일수 &nbsp&nbsp</i>')
                                 $("#leaveCnt1").append(resp[resp.length - 1].staffLeaveCnt - useCnt);
                                 $("#leaveCnt1").append('<i> 일 </i>')
+                                page();
                             }
                         });
                     }
+
+                    function page() {
+
+                        var reSortColors = function ($table) {
+                            $('tbody tr:odd td', $table).removeClass('even').removeClass('listtd').addClass('odd');
+                            $('tbody tr:even td', $table).removeClass('odd').removeClass('listtd').addClass('even');
+                        };
+                        $('table.paginated').each(function () {
+                            var pagesu = 10;  //페이지 번호 갯수
+                            var currentPage = 0;
+                            var numPerPage = 5;  //목록의 수
+                            var $table = $(this);
+
+                            //length로 원래 리스트의 전체길이구함
+                            var numRows = $table.find('tbody tr').length;
+                            //Math.ceil를 이용하여 반올림
+                            var numPages = Math.ceil(numRows / numPerPage);
+                            //리스트가 없으면 종료
+                            if (numPages == 0) return;
+                            //pager 만들기 전에 remo 존재 여부 확인 있으면 삭제
+                            if ($("#remo")) {
+                                $("#remo").remove();
+                            }
+                            //pager라는 클래스의 div엘리먼트 작성
+                            var $pager = $('<td align="center" id="remo" colspan="10"><div class="pager"></div></td>');
+
+                            var nowp = currentPage;
+                            var endp = nowp + 10;
+
+                            //페이지를 클릭하면 다시 셋팅
+                            $table.bind('repaginate', function () {
+                                //기본적으로 모두 감춘다, 현재페이지+1 곱하기 현재페이지까지 보여준다
+
+                                $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+                                $("#remo").html("");
+
+                                if (numPages > 1) {     // 한페이지 이상이면
+                                    if (currentPage < 5 && numPages - currentPage >= 5) {   // 현재 5p 이하이면
+                                        nowp = 0;     // 1부터 
+                                        endp = pagesu;    // 10까지
+                                    } else {
+                                        nowp = currentPage - 5;  // 6넘어가면 2부터 찍고
+                                        endp = nowp + pagesu;   // 10까지
+                                        pi = 1;
+                                    }
+
+                                    if (numPages < endp) {   // 10페이지가 안되면
+                                        endp = numPages;   // 마지막페이지를 갯수 만큼
+                                        nowp = numPages - pagesu;  // 시작페이지를   갯수 -10
+                                    }
+                                    if (nowp < 1) {     // 시작이 음수 or 0 이면
+                                        nowp = 0;     // 1페이지부터 시작
+                                    }
+                                } else {       // 한페이지 이하이면
+                                    nowp = 0;      // 한번만 페이징 생성
+                                    endp = numPages;
+                                }
+                                // [처음]
+                                $('<br /><span class="page-number box1" cursor: "pointer"><i class="fa-solid fa-angles-left"></i></span>').bind('click', { newPage: page }, function (event) {
+                                    currentPage = 0;
+                                    $table.trigger('repaginate');
+                                    $($(".page-number")[2]).addClass('active').siblings().removeClass('active');
+                                }).appendTo($pager).addClass('clickable');
+                                // [이전]
+                                $('<span class="page-number box1 px-1" cursor: "pointer"><i class="fa-solid fa-angle-left"></i></span>').bind('click', { newPage: page }, function (event) {
+                                    if (currentPage == 0) return;
+                                    currentPage = currentPage - 1;
+                                    $table.trigger('repaginate');
+                                    $($(".page-number")[(currentPage - nowp) + 2]).addClass('active').siblings().removeClass('active');
+                                }).appendTo($pager).addClass('clickable');
+                                // [1,2,3,4,5,6,7,8]
+                                for (var page = nowp; page < endp; page++) {
+                                    $('<span class="page-number box1 px-3 py-1" cursor: "pointer" ></span>').text(page + 1).bind('click', { newPage: page }, function (event) {
+                                        currentPage = event.data['newPage'];
+                                        $table.trigger('repaginate');
+                                        $($(".page-number")[(currentPage - nowp) + 2]).addClass('active').siblings().removeClass('active');
+                                    }).appendTo($pager).addClass('clickable');
+                                }
+                                // [다음]
+                                $('<span class="page-number box1  px-1" cursor: "pointer"><i class="fa-solid fa-angle-right"></i></span>').bind('click', { newPage: page }, function (event) {
+                                    if (currentPage == numPages - 1) return;
+                                    currentPage = currentPage + 1;
+                                    $table.trigger('repaginate');
+                                    $($(".page-number")[(currentPage - nowp) + 2]).addClass('active').siblings().removeClass('active');
+                                }).appendTo($pager).addClass('clickable');
+                                // [끝]
+                                $('<span class="page-number box1  px-1" cursor: "pointer"><i class="fa-solid fa-angles-right"></i></span>').bind('click', { newPage: page }, function (event) {
+                                    currentPage = numPages - 1;
+                                    $table.trigger('repaginate');
+                                    $($(".page-number")[endp - nowp + 1]).addClass('active').siblings().removeClass('active');
+                                }).appendTo($pager).addClass('clickable');
+
+                                $($(".page-number")[2]).addClass('active');
+                                reSortColors($table);
+                            });
+                            $pager.insertAfter($table).find('span.page-number:first').next().next().addClass('active');
+                            $pager.appendTo($table);
+                            $table.trigger('repaginate');
+                        });
+                    }
+
                 });
             </script>
 </body>

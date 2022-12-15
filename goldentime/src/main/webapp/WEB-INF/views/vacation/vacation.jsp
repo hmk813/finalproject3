@@ -170,7 +170,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <select id="vacationType">
+                                    <select id="vacationType1">
                                         <option>선택해주세요.</option>
                                         <option value="연차">연차</option>
                                         <option value="월차">월차</option>
@@ -183,25 +183,25 @@
                                     *휴가일
                                 </div>
                                 <div class="mb-3">
-                                    <input type="date" name="vacationStartDate">
+                                    <input type="date" name="vacationStartDate1">
                                 </div>
 
                                 <div class="mt-3">
                                     *휴가 일수
                                 </div>
                                 <div class="mb-3">
-                                    <input type="number" name="vacationDay">
+                                    <input type="number" name="vacationDay1">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="message-text" class="col-form-label">사유</label>
-                                    <textarea class="form-control" id="message-text" name="vacationRecode"></textarea>
+                                    <textarea class="form-control" id="message-text" name="vacationRecode1"></textarea>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                            <button type="submit" class="btn btn-primary vacation">수정하기</button>
+                            <button type="submit" class="btn btn-primary vacation1">수정하기</button>
                         </div>
                     </div>
                 </div>
@@ -287,24 +287,60 @@
                                     var vacationDay = $("<td>").text(resp[i].vacationDay + "일");
                                     var vacationState = $("<td>").text(resp[i].vacationState);
 
+                                    
+                                    var btn = '<td><button type="button" class="edit btn btn-outline-primary btn-sm btn-group">수정</button><button type="button" class="del btn btn-outline-danger btn-sm btn-group">삭제</button></td>'
 
-                                    var edit = $("<button>").attr('class', 'edit btn btn-outline-primary btn-sm btn-group').text("수정");
                                     // edit.data("target");
                                     // edit.toggle("modal");
                                     $(".edit").click(function (e) {
-                                        //e.stopPropagation();//전파 중지
+                                        e.stopPropagation();//전파 중지
                                         $("#edit").modal("show");
-                                        var vacationNo = $(this).parent().data("vacationno");
+                                        var vacationNo = $(this).parent().parent().data("vacationno");
                                         
-                                        console.log("몇번이냐고!!" + vacationNo);
+                                        //console.log("몇번이냐고!!" + vacationNo);
+                                        $(".vacation1").click(function (e) {
+                                            e.stopPropagation();//전파 중지
+                                            var vacationStartDate = $("[name=vacationStartDate1]").val();
+                                            var vacationRecode = $("[name=vacationRecode1]").val();
+                                            var vacationDay = $("[name=vacationDay1]").val();
+                                            var vacationType = $("#vacationType1  option:selected").val();
+                                            var vacationNo1 = vacationNo;
 
+                                            console.log(vacationStartDate, vacationType, vacationDay, vacationRecode, vacationNo1);
+
+                                            var data = {
+                                                vacationStaffId: "test2",
+                                                vacationStartDate : $("[name=vacationStartDate1]").val(),
+                                                vacationRecode : $("[name=vacationRecode1]").val(),
+                                                vacationDay : $("[name=vacationDay1]").val(),
+                                                vacationType : $("#vacationType1  option:selected").val(),
+                                                vacationNo : vacationNo1
+                                            };
+
+                                            $.ajax({
+                                                url: "http://localhost:8888/rest/vacation",
+                                                method: "put",
+                                                contentType: "application/json",
+                                                data: JSON.stringify(data),
+                                                success: function () {
+
+                                                    console.log("성공");
+                                                    $("#edit").modal("hide");
+
+                                                    $("[name=vacationRecode]").val("");
+                                                    $("[name=vacationDay]").val("");
+                                                    $("[name=vacationStartDate]").val("");
+                                                    $("#vacationType").val("");
+                                                    vacationList();
+                                                }
+                                            });
+                                        });
 
                                     });
 
-                                    var del = $("<button>").attr('class', 'del btn btn-outline-danger btn-sm btn-group').text("삭제");
 
 
-
+                                    
 
                                     tr.append(vacationNo);
                                     tr.append(staffMedicalDepartment);
@@ -314,7 +350,7 @@
                                     tr.append(vacationStartDate);
                                     tr.append(vacationDay);
                                     tr.append(vacationState);
-                                    tr.append(edit).append(del);
+                                    tr.append(btn);
 
                                     useCnt += resp[i].vacationDay;
 

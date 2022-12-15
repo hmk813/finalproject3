@@ -79,7 +79,7 @@
 			});
 		};
 	
-		//등록 함수
+		//환자 등록 함수
 		function saveData(patientNo, patientName, patientBirth,patientGender,  patientBlood, patientAddress, patientPhone){
 			var data = {
 					patientNo:patientNo,
@@ -101,6 +101,7 @@
 					}
 				});
 		};
+		
 		
 		//목록을 불러오는 함수
 		function loadList() {

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.goldentime.entity.PatientDto;
+import com.kh.goldentime.vo.PatientReceiveListVO;
 
 @Repository
 public class PatientDaoImpl implements PatientDao{
@@ -15,23 +16,24 @@ public class PatientDaoImpl implements PatientDao{
 	private SqlSession sqlSession;
 	
 	@Override
-	public void insert(PatientDto dto) {
-		sqlSession.insert("patient.insert", dto);
+	public void insert(PatientDto pdto) {
+		sqlSession.insert("patient.insert", pdto);
 	}
 	
 	@Override
-	public List<PatientDto> todayList() {
-		return sqlSession.selectList("patient.list");
-	}
-	
-	@Override
-	public List<PatientDto> historyList() {
-		return sqlSession.selectList("patient.list");
-	}
-	
-	@Override
-	public boolean edit(PatientDto dto) {
-		int count = sqlSession.update("patient.edit", dto);
+	public boolean edit(PatientDto pdto) {
+		int count = sqlSession.update("patient.edit", pdto);
 		return count > 0;
 	}
+	
+	@Override
+	public List<PatientReceiveListVO> todayList() {
+		return sqlSession.selectList("patient.list");
+	}
+	
+	@Override
+	public List<PatientReceiveListVO> historyList() {
+		return sqlSession.selectList("patient.list");
+	}
+	
 }

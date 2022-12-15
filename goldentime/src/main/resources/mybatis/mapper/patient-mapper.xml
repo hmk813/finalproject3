@@ -16,21 +16,6 @@
 		#{patientPhone}) 
 	</insert>
 	
-	<insert id="insert2" parameterType="ReceiveVO">
-		<selectKey keyProperty="ps" resultType="int" order="BEFORE">
-	    	select patient_seq.nextval from dual
-		</selectKey>
-		insert into receive(
-			receive_no, staff_id, patient_no, receive_date, receive_time
-		)
-		values(receive_seq.nextval, #{staffId}, 
-		#{patientNo}, to_date(sysdate, 'YYYY-MM-DD'), to_date(sysdate, 'HH24:MI:SS'))
-	</insert>
-	
-	<select id="list" resultType="PatientDto">
-		select * from patient order by patient_no desc
-	</select>
-	
 	<update id="edit" parameterType="PatientDto">
 		update patient
 			set patient_name = #{patientName}, patient_birth = #{patientBirth},
@@ -38,4 +23,18 @@
 			patient_address=#{patientAddress}, patient_phone=#{patientPhone}
 			where patient_no = #{patientNo}
 	</update>
+	
+	<select id="list" resultType="PatientDto"> 
+		select * from patient order by patient_no desc
+	</select>
+
+	
+	<select id="list3" parameterType="int" resultType="ReceiveDto">
+		select * from receive where patient_no = #{patientNo}
+	</select>
+	
+	<select id="list4" parameterType="int" resultType="ReservationDto">
+		select * from reservation where reservation_patient_no = #{reservationPatientNo}
+	</select>
+
 </mapper>

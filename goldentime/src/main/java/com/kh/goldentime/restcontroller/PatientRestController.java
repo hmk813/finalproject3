@@ -1,10 +1,7 @@
 package com.kh.goldentime.restcontroller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,8 +25,8 @@ public class PatientRestController {
 	}
 	
 	@PutMapping("/patient")
-	public boolean edit(@RequestBody PatientDto dto) {
-		return dao.edit(dto);
+	public boolean edit(@RequestBody PatientDto pdto) {
+		return dao.edit(pdto);
 	}
 
 }

@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%-- 템플릿 페이지인 header.jsp를 동적으로 불러와라 --%>
 <jsp:include page="/WEB-INF/views/template/header.jsp">
@@ -14,7 +13,6 @@
 <head>
 <meta charset="UTF-8">
 <title>골든타임 병원</title>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <link href="/resources/css/reset.css" rel="stylesheet">
 <link href="/resources/css/commons.css" rel="stylesheet">
 <link href="/resources/css/layout.css" rel="stylesheet">

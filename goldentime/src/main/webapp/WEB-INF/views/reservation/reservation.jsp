@@ -113,6 +113,7 @@
                             }
                         }
                     });
+                    $("#time-reservation").text(" ");
                     $(".symptom-modal-textarea").val(""); // 텍스트창 초기화
                     // console.log(staff);
                     $(".doctor-reservation-select").val($(".select-option").val()); // 의사 선택 초기화

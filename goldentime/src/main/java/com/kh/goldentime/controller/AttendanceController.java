@@ -19,26 +19,30 @@ public class AttendanceController {
 	
 	@GetMapping("/list")
 	public String list(@ModelAttribute AttendanceListVO vo, Model model) {
-		String findId = "admin";
-		AttendanceListVO id1 = AttendanceListVO.builder().
+		String findId = "test5";
+		
+		//검색일때
+		AttendanceListVO list = AttendanceListVO.builder().
 				attendanceStaffId(findId)
 				.beginMade(null)
 				.endMade(null)
 				.build();
 		
-		AttendanceListVO id2 = AttendanceListVO.builder().
+		//목록일때
+		AttendanceListVO search = AttendanceListVO.builder().
 				attendanceStaffId(findId)
 				.beginMade(vo.getBeginMade())
 				.endMade(vo.getEndMade())
 				.build();
 		
+		//마이바티스에서 달력 검색할때 null값 체크
 		boolean isSearch = vo.getBeginMade() != null && vo.getEndMade() != null;
 		
 		if(isSearch) {//검색
-			model.addAttribute("attendaceList", attendanceDao.attendanceList(id2));
+			model.addAttribute("attendaceList", attendanceDao.attendanceList(search));
 		}
 		else {//목록
-			model.addAttribute("attendaceList",attendanceDao.attendanceList(id1));
+			model.addAttribute("attendaceList",attendanceDao.attendanceList(list));
 		}
 		return "attendance/list";
 	}

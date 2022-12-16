@@ -30,7 +30,7 @@ public class AttendanceRestController {//근태 관리를 위한 비동기통신
 	//출근 등록 구문(post)
 	@PostMapping("/attendance")
 	public String goWork(@RequestBody AttendanceDto attendanceDto) {
-		String id = "admin";
+		String id = "test5";
 		if(attendanceDao.goWorkFind(id)==null) {//만약 출근데이터가 null이면
 			//출근 구문 insert
 			attendanceDao.goWork(attendanceDto);
@@ -54,7 +54,7 @@ public class AttendanceRestController {//근태 관리를 위한 비동기통신
 	public boolean leaveWork(@RequestBody AttendanceDto attendanceDto){
 		attendanceDao.leaveWork(attendanceDto);
 		
-		String id = "admin";
+		String id = "test5";
 		//날짜변환 포멧
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		//기준 퇴근시간 =18시 30분
@@ -85,7 +85,7 @@ public class AttendanceRestController {//근태 관리를 위한 비동기통신
 	
 	@GetMapping("/attendance/{attendanceStaffId}")
 	public AttendanceWorkTimeVO find(@PathVariable String attendanceStaffId){
-		attendanceStaffId = "admin";
+		attendanceStaffId = "test5";
 		return attendanceDao.stardEnd(attendanceStaffId);
 	}
 	

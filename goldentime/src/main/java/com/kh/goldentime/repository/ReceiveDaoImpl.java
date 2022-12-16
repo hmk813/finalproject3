@@ -1,11 +1,10 @@
 package com.kh.goldentime.repository;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.kh.goldentime.entity.ReceiveDto;
 
 @Repository
 public class ReceiveDaoImpl implements ReceiveDao {
@@ -14,12 +13,7 @@ public class ReceiveDaoImpl implements ReceiveDao {
 	private SqlSession sqlSession;
 	
 	@Override
-	public void insert(String staffId, int patientNo) {
-		//
-		Map<String, String> param = new HashMap<>();
-		param.put("staffId", staffId);
-		param.put("patientNo", String.valueOf(patientNo));
-		//
-		sqlSession.insert("receive.insert", param);
+	public void insert(ReceiveDto dto) {
+		sqlSession.insert("receive.insert", dto);
 	}
 }

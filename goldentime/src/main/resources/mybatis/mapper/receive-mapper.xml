@@ -21,7 +21,7 @@
 	    R.staff_id, receive_date
 	    from patient P
 	    join receive R
-	    on P.patient_no = R.patient_no;
+	    on P.patient_no = R.patient_no
 	</select> 
 	
 	<!--  단일 조회 -->

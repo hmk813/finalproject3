@@ -36,4 +36,16 @@ public class PatientDaoImpl implements PatientDao{
 		return sqlSession.selectList("patient.list");
 	}
 	
+	@Override
+	public List<PatientReceiveListVO> selectList() {
+		return sqlSession.selectList("patient.list");
+	}
+
+	// 환자 시퀀스 
+	@Override
+	public int patientseq() {
+		return sqlSession.selectOne("patient.patientseq");
+	}
+	
+	
 }

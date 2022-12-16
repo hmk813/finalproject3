@@ -1,4 +1,4 @@
-package com.kh.goldentime.restcontroller;
+/*package com.kh.goldentime.restcontroller;
 
 import javax.servlet.http.HttpSession;
 
@@ -39,4 +39,4 @@ public class PatientRestController {
 		return dao.edit(dto);
 	}
 
-}
+} */

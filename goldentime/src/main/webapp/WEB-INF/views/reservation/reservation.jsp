@@ -19,7 +19,7 @@
 	color: blue;
 }
 
-.disabled-button {
+.disabled-button { 
 	display: none;
 }
 

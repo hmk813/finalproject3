@@ -73,18 +73,23 @@
     <div class="container-fluid">
 
 
-
-        <div class="row mt-4">
-            <div class="col-md-10 offset-md-1">
-                <table style="border:1px solid black;">
-                    <thead>
+        <div class="row mt-4 p-3">
+            <div class="col">
+                <h4>나의 휴가 현황</h4>
+            </div>
+        </div>
+        <div class="row p-3">
+            <div class="col p-2">
+                <div class="border rounded shadow p-2">
+                <table class="table table-striped">
+                    <thead class="text-center">
                         <tr>
                             <th>총 연차</th>
                             <th>사용 연차</th>
                             <th>남은 연차</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-center">
                         <tr>
                             <td>13</td>
                             <td id="useCnt"></td>
@@ -92,27 +97,47 @@
                         </tr>
                     </tbody>
                 </table>
-
-
-
+                </div>
+            </div>
+            <div class="col p-2">
+                <div class="border rounded shadow p-2">
+                <table class="table table-striped">
+                    <thead class="text-center">
+                        <tr>
+                            <th>총 월차</th>
+                            <th>사용 월차</th>
+                            <th>남은 월차</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr>
+                            <td id="dayoff"></td>
+                            <td id="useCnt1"></td>
+                            <td id="usedayoff"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>  
 
         
 
-                <div class="aa-flex bd-highlight mb-1  offset-md-1">
-                    <div class="w-75 bd-highlight">
-                        <h4 class="text-left">내 휴가 현황</h4>
+                <div class="d-flex bd-highlight p-3">
+                    <div class="p-3 bd-highlight">
+                        <h4 class="text-left">나의 휴가 신청/사용 내역</h4>
                     </div>
-                    <div class="ms-auto w-25 bd-highlight ">
+                    <div class="ms-auto p-2 bd-highlight">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#enroll"
                             data-bs-whatever="@mdo">
                             연차신청하기
                         </button>
                     </div>
-                  </div>
+                </div>
 
-                <div class="row mt-1">
-                    <div class="col-md-10 offset-md-1">
-                        <table class="table tbl paginated" id="tbl">
+                <div class="row p-3">
+                    <div class="col">
+                        <table class="table tbl paginated table-hover " id="tbl">
                             <thead class="text-center">
                                 <tr class="bg-dark text-light">
                                     <th>번호</th>
@@ -135,8 +160,7 @@
 
 
 
-            </div>
-
+           
             <!--휴가 신청하기-->
             <div class="modal fade" id="enroll" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -263,7 +287,7 @@
                         var vacationDay = $("[name=vacationDay]").val();
                         var vacationType = $("#vacationType  option:selected").val();
 
-                        console.log(vacationStartDate, vacationType, vacationDay, vacationRecode);
+                       // console.log(vacationStartDate, vacationType, vacationDay, vacationRecode);
 
                         var data = {
                             vacationStaffId: "test2",
@@ -280,7 +304,7 @@
                             data: JSON.stringify(data),
                             success: function () {
 
-                                console.log("성공");
+                                //console.log("성공");
                                 $("#enroll").modal("hide");
 
                                 $("[name=vacationRecode]").val("");
@@ -305,7 +329,8 @@
                             headers: { "cache-control": "no-cache" },
                             success: function (resp) {
 
-                                var useCnt = 0;
+                                var useCnt = 0;//연차
+                                var useCnt1 = 0;//월차
                                 $("#list").empty();
                                 for (var i = 0; i < resp.length; i++) {
                                     var tr = $("<tr>").attr("data-vacationNo", resp[i].vacationNo)
@@ -337,7 +362,7 @@
                                         var vacationNo = $(this).parent().parent().data("vacationno");
 
 
-                                        console.log(vacationNo);
+                                        //console.log(vacationNo);
                                         $.ajax({
                                             url: "http://localhost:8888/rest/vacation/" + vacationNo,
                                             method: "delete",
@@ -362,7 +387,7 @@
                                             var vacationType = $("#vacationType1  option:selected").val();
                                             var vacationNo1 = vacationNo;
 
-                                            console.log(vacationStartDate, vacationType, vacationDay, vacationRecode, vacationNo1);
+                                            //console.log(vacationStartDate, vacationType, vacationDay, vacationRecode, vacationNo1);
 
                                             var data = {
                                                 vacationStaffId: "test2",
@@ -380,7 +405,7 @@
                                                 data: JSON.stringify(data),
                                                 success: function () {
 
-                                                    console.log("성공");
+                                                   // console.log("성공");
                                                     $("#edit").modal("hide");
 
                                                     $("[name=vacationRecode]").val("");
@@ -403,9 +428,16 @@
                                     tr.append(vacationStartDate);
                                     tr.append(vacationDay);
                                     tr.append(vacationState);
+                                    tr.append(btn);
                                     
 
-                                    useCnt += resp[i].vacationDay;
+                                    if(resp[i].vacationType=="연차"){
+                                        useCnt += resp[i].vacationDay;
+                                    }else if(resp[i].vacationType=="월차"){
+                                        useCnt1 += resp[i].vacationDay;
+                                    }else{
+                                        return 0;
+                                    }
 
                                     $("#list").append(tr);
 
@@ -413,6 +445,11 @@
                                 //console.log("useCnt" + useCnt);
                                 $("#useCnt").text(useCnt);
                                 $("#leaveCnt").text(resp[resp.length - 1].staffLeaveCnt - useCnt);
+                                
+                                $("#useCnt1").text(useCnt1);
+                                $("#usedayoff").text(resp[resp.length - 1].staffDayoff - useCnt1);
+                                $("#dayoff").text(resp[resp.length - 1].staffDayoff);
+
 
                                 $("#leaveCnt1").html('<i>● 남은 연차 일수 &nbsp&nbsp</i>')
                                 $("#leaveCnt1").append(resp[resp.length - 1].staffLeaveCnt - useCnt);
@@ -431,7 +468,7 @@
                         $('table.paginated').each(function () {
                             var pagesu = 10;  //페이지 번호 갯수
                             var currentPage = 0;
-                            var numPerPage = 5;  //목록의 수
+                            var numPerPage = 10;  //목록의 수
                             var $table = $(this);
 
                             //length로 원래 리스트의 전체길이구함

@@ -21,7 +21,7 @@ public class OperationController {
 	@GetMapping("/list")
 	public String list(Model model) {
 		model.addAttribute("operationInformationVO", operationDao.selectList());
-//		model.addAttribute("", operationDao.selectOne(int operationNo));
+//		model.addAttribute("operationInformationVO", operationDao.selectOne(0));
 		return"operation";
 	}
 	

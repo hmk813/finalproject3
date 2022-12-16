@@ -19,7 +19,6 @@
 <head>
 <meta charset="UTF-8">
 <title>골든타임 병원</title>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <link href="/resources/css/reset.css" rel="stylesheet">
 <link href="/resources/css/commons.css" rel="stylesheet">
 <link href="/resources/css/layout.css" rel="stylesheet">

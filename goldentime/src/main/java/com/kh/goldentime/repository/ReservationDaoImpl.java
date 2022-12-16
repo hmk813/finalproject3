@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.goldentime.entity.ReservationDto;
+import com.kh.goldentime.vo.ReservationDateStaffIdVO;
 
 @Repository
 public class ReservationDaoImpl implements ReservationDao{
@@ -34,6 +35,11 @@ public class ReservationDaoImpl implements ReservationDao{
 	public boolean delete(int reservationNo) {
 		int count = sqlSession.delete("reservation.delete", reservationNo);
 		return count > 0;
+	}
+
+	@Override
+	public List<ReservationDto> reservationConfirm(ReservationDateStaffIdVO reservationDateStaffIdVO) {
+		return sqlSession.selectList("reservation.reservationConfirm",reservationDateStaffIdVO);
 	}
 
 }

@@ -5,11 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @Builder @NoArgsConstructor @AllArgsConstructor
-public class StaffImgDto {
-	
-		private int imgAttachNo;
-		private String imgStaffId;
-		
-		
+@Data @NoArgsConstructor @AllArgsConstructor @Builder
+public class DrugDto {
+	private int diagnosisNo;
+	private String drugName;
 }

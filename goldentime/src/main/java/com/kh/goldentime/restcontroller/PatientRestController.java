@@ -11,30 +11,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kh.goldentime.entity.StaffDto;
-import com.kh.goldentime.repository.StaffDao;
+import com.kh.goldentime.entity.PatientDto;
+import com.kh.goldentime.repository.PatientDao;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/rest")
-public class StaffRestController {
+public class PatientRestController {
 	
 	@Autowired
-	private StaffDao staffDao;
+	private PatientDao dao;
 	
-	@PostMapping("/staff")//등록
-	public void insert(@RequestBody StaffDto staffDto) {
-		staffDao.insert(staffDto);
+	@PostMapping("/patient")
+	public void insert(@RequestBody PatientDto dto) {
+		dao.insert(dto);
 	}
 	
-	@PutMapping("/staff")//수정
-	public boolean edit(@RequestBody StaffDto staffDto) {
-		return staffDao.edit(staffDto);
+	@PutMapping("/patient")
+	public boolean edit(@RequestBody PatientDto dto) {
+		return dao.edit(dto);
 	}
-	
-	@GetMapping("/staff")//목록
-	public List<StaffDto> list(){
-		return staffDao.list();
-	}	
-	
+
 }

@@ -17,9 +17,10 @@
 	전화번호 : <input name="staffPhone" type="tel"> <br><br>
 	주소 : <input name ="staffAddress" type="text"><br><br>
 	진료과 : <input name="staffMedicalDepartment" type="text"><br><br>
-	<!-- 직원이미지 : 
-	<input type="file" name="staffProfile" accept=".png, .jpg" multiple="multiple">
-	<br><br> -->
+	
+	직원이미지 : 
+	<input type="file" name="staffImg" accept=".png, .jpg" multiple="multiple">
+	<br><br>
 	
 	<button>생성하기</button>
 </form>

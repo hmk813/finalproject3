@@ -23,6 +23,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -37,7 +38,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -76,7 +77,7 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-table"></i>
                     <span>원무과</span></a>
             </li>
 
@@ -90,7 +91,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>마이페이지</span></a>
+                    <span>메세지</span></a>
             </li>
 
             <!-- Divider -->
@@ -125,24 +126,17 @@
                             <ul class="navbar-nav me-auto">
 
                                 <li class="nav-item">
-                                    <a class="nav-link " href="#"><span class="#">예약</span>
-                                    <span class="visually-hidden">(current)</span>
-                                    </a>
+                                    <a class="nav-link" href="/attendance/list?${staffDto.staffId}"><span class="#">근태관리</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><span class="#">환자 현황</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><span class="#">환자 기록</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/operation/list"><span class="link-sp">수술 환자</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/hospitalize/list"><span class="link-sp">입원 환자</span></a>
-                                </li>
+                                    <a class="nav-link" href="/vacation/vacation?${staffDto.staffId}"><span class="#">연차관리</span></a>
+                                </li>	
                                 </ul>
                         </div>
+
+
+                     
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -163,7 +157,7 @@
                                 </a>
                                
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="staff/login" >
+                                <a class="dropdown-item" href="staff/login">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -178,7 +172,7 @@
 
    
 
- <!-- Bootstrap core JavaScript-->
+    <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -189,12 +183,12 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/demo/datatables-demo.js"></script>
+
 </body>
 
 </html>

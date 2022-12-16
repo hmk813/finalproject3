@@ -9,6 +9,8 @@
 <hr>
 <div id="message-list"></div>
 
+<!-- moment cdn추가 => 시간을 원하는 형식으로 변환 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
 	$(function(){
@@ -19,7 +21,7 @@
 		$(".btn-connect").click(function(){//btn-connect 버튼을 클릭하게 되면
 			
 			//웹소켓 연결 생성
-			var uri = "ws://localhost:8888/ws/message";//웹소켓 연결주소 생성
+			var uri = "ws://localhost:8888/ws/json";//웹소켓 연결주소 생성
 			
 			//어디서든 접근하기 위해 윈도우에 생성
 			socket = new WebSocket(uri);
@@ -36,7 +38,15 @@
 				disconnectState();//에러로 연결이 안된 상태
 			};
 			socket.onmessage = function(e){//웹소켓에서 전송된 e이벤트 정보를(메세지) 받으면
-				$("<p>").text(e.data).appendTo("#message-list");//p태그 생성 후 text에 e.data를 넣고 message-list라는 id를 가진 영역에 첨부 
+				
+				//수신된 e.data는 JSON문자열이라 문자열을 객체로 변환
+				var data = JSON.aprse(e.data);
+			
+				var p = $("<p>").text(data.text);//data.text는 p태그에 넣고
+				var time = moment(data.time).format("YYYY-MM-DD hh:mm");//data.time은 moment로 변환
+				var span = $("<span>").text("("+time+")");//<span>으로 출력
+				p.append(span);
+				$("#message-list").append(p);//message-list라는 id를 가진 영역에 첨부 
 			};
 			
 		});
@@ -51,11 +61,13 @@
 		
 		//전송버튼을 누르면 웹소켓으로 입력된 메세지를 전송
 		$("#message-send").click(function(){//message-send 버튼을 클릭하게 되면
-			var text = $("#message-input").val();//input에 입력된 text값을 가져옴
+			var text = $("#message-input").val();//input에 입력된 text 내용값을 가져옴
 			if(text.length == 0) return;//입력된 text값이 없다면 하지 않음
 			
-			socket.send(text);//윈도우
-			
+			var data = {
+					text : text//이름 : 내용
+			};
+			socket.send(JSON.stringify(data))//통신은 문자열만 전송가능해서 객체를 문자열로 변환
 			$("#message-input").val("");//입력값을 비워줌(중복 재전송 방지)
 		});
 		

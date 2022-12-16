@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/chat")
 public class ChatController {
 	
-	@GetMapping("/json")//WebSocketServerConfiguration에서 서버 등록한 주소와 동일한 이름
-	public String basic() {
-		return "chat/json";
+	@GetMapping("/sockjs")//WebSocketServerConfiguration에서 서버 등록한 주소와 동일한 이름
+	public String sockjs() {
+		return "chat/sockjs";
 	}
 }

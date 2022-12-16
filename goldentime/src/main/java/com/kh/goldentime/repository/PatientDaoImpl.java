@@ -16,8 +16,8 @@ public class PatientDaoImpl implements PatientDao{
 	private SqlSession sqlSession;
 	
 	@Override
-	public void insert(PatientDto pdto) {
-		sqlSession.insert("patient.insert", pdto);
+	public void insert(PatientDto dto) {
+		sqlSession.insert("patient.insert", dto);
 	}
 	
 	@Override

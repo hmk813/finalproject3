@@ -16,7 +16,8 @@
 			#{reservationContent}, #{reservationTime}
 		)
 	</insert>
-	<select id="list" resultType="ReservationDto">
+	
+	<select id="list" resultType="ReservationDto" parameterType="ReservationDto">
 		select * from reservation
 	</select>
 	<select id="dateList" resultType="ReservationDto">

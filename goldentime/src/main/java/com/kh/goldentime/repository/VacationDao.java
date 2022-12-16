@@ -15,4 +15,10 @@ public interface VacationDao {
 	
 	//추상 메소드 - 직원 휴가 신청구문
 	void enroll(VacationDto vacationDto);
+	
+	//추상 메소드 - 직원 휴가 수정구문
+	boolean edit(VacationDto vacationDto);
+	
+	//추상 메소드 - 휴가 삭제 구문
+	boolean del(int vacationNo); 
 }

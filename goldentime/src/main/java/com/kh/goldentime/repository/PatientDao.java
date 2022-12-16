@@ -3,6 +3,7 @@ package com.kh.goldentime.repository;
 import java.util.List;
 
 import com.kh.goldentime.entity.PatientDto;
+import com.kh.goldentime.vo.PatientListSearchVO;
 import com.kh.goldentime.vo.PatientReceiveListVO;
 
 public interface PatientDao {
@@ -23,7 +24,10 @@ public interface PatientDao {
 	List<PatientReceiveListVO> historyList();
 
 	//접수 환자 목록 보여주기
-	List<PatientReceiveListVO> selectList();
+	List<PatientDto> selectList();
+	
+	//접수 환자 목록 검색
+	List<PatientDto> selectList(PatientListSearchVO vo);
 	
 	//(동기식) 환자 접수 등록 
 

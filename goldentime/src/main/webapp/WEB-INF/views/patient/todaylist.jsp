@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<jsp:include page="/WEB-INF/views/template/header.jsp">
+   <jsp:param value="환자 현황" name="title" />
+</jsp:include>
+
     <html>
 	<head>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,8 +16,7 @@
 	    
 	    <!-- Bootstrap CSS -->
   	  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-		</head>
+	</head>
 	<body>
 	<div class="container-1200">
 		<div class="container-fluid">
@@ -62,13 +66,13 @@
 					</tr>
 				</thead>
 				<tbody class="patient-list">
-				<c:forEach var="patientReservationListVO" items="${patientReservationListVO}" >
+				<c:forEach var="PatientReceiveListVO" items="${patientReceiveListVO}" >
 					<tr>
-						<td>${patientReservationListVO.patientNo}</td>
-						<td>${patientReservationListVO.patientName}</td>
-						<td>${patientReservationListVO.patientGender}</td>
-						<td>${patientReservationListVO.patientBirth}</td>
-						<td>${patientReservationListVO.reservationDate}</td>
+						<td>${patientReceiveListVO.patientNo}</td>
+						<td>${patientReceiveListVO.patientName}</td>
+						<td>${patientReceiveListVO.patientGender}</td>
+						<td>${patientReceiveListVO.patientBirth}</td>
+						<td>${patientReceiveListVO.reservationDate}</td>
 					</tr>
 					</c:forEach>
 				</tbody>

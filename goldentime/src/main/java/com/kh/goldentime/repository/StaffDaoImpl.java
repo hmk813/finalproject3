@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import com.kh.goldentime.entity.DepartmentDto;
 import com.kh.goldentime.entity.StaffDto;
 import com.kh.goldentime.vo.StaffSearchVO;
 
@@ -52,7 +53,7 @@ public class StaffDaoImpl implements StaffDao{
 		return sqlSession.selectList("staff.searchList", param);
 	}
 	
-	@Override
+	@Override//직원 전체조회
 	public List<StaffDto> selectAll(StaffSearchVO staffSearchVO) {
 		Map<String, String> param = new HashMap<>();
 		param.put("startRow", String.valueOf(staffSearchVO.startRow()));
@@ -114,5 +115,10 @@ public class StaffDaoImpl implements StaffDao{
 	@Override//전체 조회 시 직원 수
 	public int listCount(StaffSearchVO staffSearchVO) {
 		return sqlSession.selectOne("staff.allCount", staffSearchVO);
+	}
+	
+	@Override//부서 조회
+	public List<DepartmentDto> selectDepartment() {
+		return sqlSession.selectList("staff.selectDepartment");
 	}
 }

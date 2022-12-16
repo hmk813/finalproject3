@@ -2,6 +2,7 @@ package com.kh.goldentime.repository;
 
 import java.util.List;
 
+import com.kh.goldentime.entity.DepartmentDto;
 import com.kh.goldentime.entity.StaffDto;
 import com.kh.goldentime.vo.StaffSearchVO;
 
@@ -23,4 +24,6 @@ public interface StaffDao {
 	int count(StaffSearchVO staffSearchVO);//직원 수
 	int searchCount(StaffSearchVO staffSearchVO);//검색 조회 시 직원 수
 	int listCount(StaffSearchVO staffSearchVO);//전체 조회 시 직원 수
+	
+	List<DepartmentDto> selectDepartment();//부서 조회
 }

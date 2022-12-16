@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp">
 	<jsp:param value="직원 생성" name="title"/>
 </jsp:include>
 
-<h1>직원 생성 페이지</h1>
+<h1>직원 생성</h1>
 <form action="join" method="post" enctype="multipart/form-data">
 
 	ID : <input name="staffId" type="text" required> <br><br>
@@ -16,11 +17,14 @@
 	
 	부서번호 : 
 	<select name="staffDepartmentNo" required>
-		<option value = "1">의사</option>
-		<option value = "2">간호사</option>
-		<option value = "3">원무과</option>
-		<option value = "4">병원장</option>
-	</select><br><br>
+	<!-- 여길 반복문 -->
+		<option value = "">선택</option>
+		<c:forEach var = "selectDepartment" items = "${department}">
+			<option value="${selectDepartment.departmentNo}">${selectDepartment.departmentName}</option>
+		</c:forEach>
+	</select>
+	
+	<br><br>
 	<!-- 
 	<input name="staffDepartmentNo" type="number" required><br><br>
 	 -->

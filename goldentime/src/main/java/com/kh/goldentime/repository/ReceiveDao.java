@@ -1,12 +1,8 @@
 package com.kh.goldentime.repository;
 
-import java.util.List;
-
-import com.kh.goldentime.vo.ReceiveVO;
+import com.kh.goldentime.entity.ReceiveDto;
 
 public interface ReceiveDao {
-	void insert(ReceiveVO vo);
-	void insert2(ReceiveVO vo);
-	boolean edit(ReceiveVO vo);
-	List<ReceiveVO> list();
+	//환자 접수되면서 & 환자 정보도 입력
+	void insert(ReceiveDto dto);
 }

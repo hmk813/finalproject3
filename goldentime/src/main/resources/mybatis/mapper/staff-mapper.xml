@@ -53,7 +53,7 @@
 		where
 				staff_id=#{staffId}
 	</update>
-	
+
  	<!-- 개인정보 변경 -->
  	<update id="information" parameterType="StaffDto">
  		update staff
@@ -91,5 +91,5 @@
  	<select id="allCount" parameterType="String" resultType="int">
  		select count(*) from staff 
  	</select>
- 	
+
 </mapper>

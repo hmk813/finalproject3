@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
   
 
-<jsp:include page="/WEB-INF/views/template/header.jsp">
+<jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
 	<jsp:param value="마이페이지" name="title"/>
 </jsp:include>
 
@@ -29,10 +29,88 @@
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <style>
+ html, body{
+            margin:0;
+            padding:0;
+        }
+
+        main, header, aside, section, footer, nav, div {
+            border:1px;
+        }
+        main {
+            width: 800px;
+            margin:0 auto;
+        }
+        header {
+            padding: 20px;
+        }
+        nav {
+            
+        }
+        aside {
+            padding: 20px;
+            float:left;
+            width:25%;
+            min-height: 400px;
+        }
+        section {
+            padding: 20px;
+            float:left;
+            width:75%;
+            min-height: 400px;
+        }
+        footer {
+            padding: 20px;
+        }
+        
+        .container{
+        	position:relative;
+			bottom:400px;
+			left:0px;
+			right:50px;
+        }
+        
+        .myinfo{
+        	position:absolute;
+        	top:80%;
+        	right:70%;
+        	transform:translate(-10%,-80%);
+        	border:black 1px solid;
+        	      	
+        }
+        
+        .notice{
+        	position:absolute;
+        	bottom:10%;
+        	left:55%;
+        	transform:translate(-10%,40%);
+        	border:black 1px solid;
+        }
+        
+        .attendance{
+        	position:absolute;
+        	bottom:10%;
+        	left:20%;
+        	transform:translate(-10%,-40%)
+        	border:green1px solid;    	
+        }
+        
+        .btn-start{
+        	position: absolute;
+        	bottom:10%;
+        	left:20%;
+        	width:30%;
+
+        }
+        
+        .btn-finish{
+   			position: absolute;
+        	bottom:10%;
+        	left:20%;
+        	width:30%;
+        }
 </style>
-
-
-
+r
 <body>
    <section>
   	<table border="1" width="400" height="300">
@@ -69,8 +147,7 @@
 			<div>퇴근시간 ${attendanceDto.endTime}</div>
 			</div>
 				
-			<div>
-			
+
 						
 		<td><a href="password">비밀번호 변경</a></td>
 		<td><a href="information">개인정보 변경</a></td> 
@@ -79,7 +156,7 @@
 	</table>		
 	
    </section>
-	
+
 </body>
 <%-- <div align="left">
 	<h1>사원 정보</h1>
@@ -160,4 +237,3 @@
 	<c:otherwise> --%>
 
 </body>
-

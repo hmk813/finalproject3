@@ -10,19 +10,19 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class StaffDto {
 
-		private String staffId;
-		private int staffDepartmentNo;
-		private Date staffBirth;
-		private String staffPhone;
-		private String staffAddress;
-		private Date staffEnrollDate;
-		private Date staffLeaveDate;
-		private String staffState;
-		private String staffPw;
-		private String staffGrade;
-		private String staffName;
-		private String staffMedicalDepartment;
-		private int staffLeaveCnt;
-		private int staffDayoff;
+		private String staffId;//아이디
+		private int staffDepartmentNo;//부서번호
+		private Date staffBirth;//생년월일
+		private String staffPhone;//전화번호
+		private String staffAddress;//주소
+		private Date staffEnrollDate;//입사일
+		private Date staffLeaveDate;//퇴사일
+		private String staffState;//계정상태( Y / F )
+		private String staffPw;//비밀번호
+		private String staffGrade;//등급
+		private String staffMedicalDepartment;//진료과
+		private String staffName;//이름
+		private int staffLeaveCnt;//연차수
+		private int staffDayoff;//월차수
 
 }

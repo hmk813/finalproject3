@@ -18,71 +18,38 @@
   	  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	</head>
 	<body>
-	<div class="container-1200">
-		<div class="container-fluid">
-		
-		<div>
-			<h1>금일 예약 목록</h1>
-		</div>
-		
-		<div >
-			<table>
-				<thead>
-					<tr>
-						<th>차트 번호</th>
-						<th>환자명</th>
-						<th>성별</th>
-						<th>생년월일</th>
-						<th>최종진료일</th>
-					</tr>
-				</thead>
-				<tbody class="patient-list">
-				<c:forEach var="patientReservationListVO" items="${patientReservationListVO}" >
-					<tr>
-						<td>${patientReservationListVO.patientNo}</td>
-						<td>${patientReservationListVO.patientName}</td>
-						<td>${patientReservationListVO.patientGender}</td>
-						<td>${patientReservationListVO.patientBirth}</td>
-						<td>${patientReservationListVO.reservationDate}</td>
-					</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			</div>
-					
-			<div>
-			<h1>금일 접수 목록</h1>
-		</div>
-		
-		<div >
-			<table>
-				<thead>
-					<tr>
-						<th>차트 번호</th>
-						<th>환자명</th>
-						<th>성별</th>
-						<th>생년월일</th>
-						<th>최종진료일</th>
-					</tr>
-				</thead>
-				<tbody class="patient-list">
-				<c:forEach var="PatientReceiveListVO" items="${patientReceiveListVO}" >
-					<tr>
-						<td>${patientReceiveListVO.patientNo}</td>
-						<td>${patientReceiveListVO.patientName}</td>
-						<td>${patientReceiveListVO.patientGender}</td>
-						<td>${patientReceiveListVO.patientBirth}</td>
-						<td>${patientReceiveListVO.reservationDate}</td>
-					</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			</div>
-			
-			
-			
-		</div>
-	</div>
-	
+		<div class="container-1200">
+      <div class="container-fluid">  
+         <div>
+         	<h1>금일 접수 목록</h1>
+     	 </div>
+      <div>
+         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+               <tr>
+                  <th>차트 번호</th>
+                  <th>환자명</th>
+                  <th>성별</th>
+                  <th>혈액형</th>                  
+                  <th>생년월일</th>
+                  <th>최종진료일</th>
+               </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="PatientReceiveListVO"  items="${PatientReceiveListVO}" >
+               <tr>
+                  <td>${PatientReceiveListVO.patientNo}</td>
+                  <td>${PatientReceiveListVO.patientName}</td>
+                  <td>${PatientReceiveListVO.patientGender}</td>
+                  <td>${PatientReceiveListVO.patientBlood}</td>
+                  <td>${PatientReceiveListVO.patientBirth}</td>
+                  <td>${PatientReceiveListVO.receiveDate}</td>
+               </tr>
+               </c:forEach>
+            </tbody>
+         </table>
+         </div>
+      </div>
+   </div>
 </body>
 </html>

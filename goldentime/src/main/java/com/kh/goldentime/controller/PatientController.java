@@ -17,6 +17,7 @@ import com.kh.goldentime.entity.ReceiveDto;
 import com.kh.goldentime.repository.PatientDao;
 import com.kh.goldentime.repository.ReceiveDao;
 import com.kh.goldentime.vo.PatientListSearchVO;
+import com.kh.goldentime.vo.PatientReceiveListVO;
 
 @Controller
 @RequestMapping("/patient")
@@ -30,8 +31,8 @@ public class PatientController {
 	
 	@GetMapping("/todaylist")
 	public String list(Model model) {
-	       model.addAttribute("list", patientDao.selectList());
-	      return "patient/todaylist";
+		model.addAttribute("PatientReceiveListVO", patientDao.todayList());
+	    return "patient/todaylist";
 	}
 	
 	@GetMapping("/insert")
@@ -49,13 +50,7 @@ public class PatientController {
 
 		receiveDto.setPatientNo(seqNo);
 		receiveDao.insert(receiveDto);
-		return "redirect:list";
+		return "redirect:todaylist";
 	}
-	
-	@PostMapping("/search")
-	public String search(@RequestParam(value="type", required = false) String type,
-										@RequestParam(value="keyword", required=false) String keyword,
-										Model model) {
-		return "list";
-	}
+
 }

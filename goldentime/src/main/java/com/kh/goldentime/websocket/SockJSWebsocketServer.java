@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 //웹소켓 서버생성
 @Slf4j//로그 확인
 @Service//DB를 사용
-public class JsonWebsocketServer extends TextWebSocketHandler {
+public class SockJSWebsocketServer extends TextWebSocketHandler {
 	
 	//웹소켓 다중사용자 저장소
 	private Set<WebSocketSession> users = new CopyOnWriteArraySet<>();//동기화

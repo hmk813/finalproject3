@@ -42,7 +42,7 @@
 			var patientPhone = $("[name=patientPhone]").val();
 			
 			//검사
-			saveData(patientNo, patientName, patientBirth, patientGender,
+			savePatientData(patientNo, patientName, patientBirth, patientGender,
 					patientBlood, patientAddress, patientPhone);
 			
 			$("[name=patientNo]").val();
@@ -52,6 +52,13 @@
 			$("[name=patientBlood]").val();
 			$("[name=patientAddress]").val();
 			$("[name=patientPhone]").val();
+			
+			saveReceiveData(receiveNo, staffId, receiveDate, receiveTime);
+			
+			$("[name=receiveNo]").val();
+			$("[name=staffId]").val();
+			$("[name=receiveDate]").val();
+			$("[name=receiveTime]").val();
 		});
 	});
 	
@@ -79,8 +86,8 @@
 			});
 		};
 	
-		//등록 함수
-		function saveData(patientNo, patientName, patientBirth,patientGender,  patientBlood, patientAddress, patientPhone){
+		//환자 등록 함수
+		function savePatientData(patientNo, patientName, patientBirth,patientGender, patientBlood, patientAddress, patientPhone){
 			var data = {
 					patientNo:patientNo,
 					patientName:patientName,
@@ -101,6 +108,29 @@
 					}
 				});
 		};
+		
+		//접수 등록 함수
+		function saveReceiveData(receiveNo, staffId, receiveDate, receiveTime){
+			var data = {
+					receiveNo:receiveNo,
+					staffId:staffId,
+					receiveDate:receiveDate,
+					receiveTime
+				};
+				
+				$.ajax({
+					url:"http://localhost:8888/rest/receive",
+					method:"post",
+					contentType:"application/json",
+					data:JSON.stringify(data),
+					success:function(){
+						loadList();
+					}
+				});
+		};
+		
+		
+		
 		
 		//목록을 불러오는 함수
 		function loadList() {
@@ -148,6 +178,12 @@
 				<h1>환자 접수</h1>
 			</div>
 			<form class="detail-view">
+				<select name = "staffId"> <!-- 의사 전부다 출력 반복문으로 -->
+					<option>엄현용</option>
+					<option>우성준</option>
+					<option>김승희</option>
+					<option>이현재</option>
+				</select>
 				<input name="patientNo" type="hidden" placeholder="번호" required>
 				<input name="patientName" type="text"  placeholder="이름" required><br><br>
 				<input name="patientBirth" type="date"  required><br><br>

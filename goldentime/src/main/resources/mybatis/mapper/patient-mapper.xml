@@ -4,32 +4,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="patient">
+
+	<select id="patientseq" resultType="int">
+		select patient_seq.nextval from dual
+	</select>
+	
 	<insert id="insert" parameterType="PatientDto">
 		insert into patient(
 			patient_no, patient_name, patient_birth, patient_blood,
 			patient_gender, patient_address,
 			patient_phone
 		)
-		values(patient_seq.nextval, #{patientName}, 
+		values(#{patientNo}, #{patientName}, 
 		#{patientBirth}, #{patientBlood}, 
 		#{patientGender}, #{patientAddress}, 
 		#{patientPhone}) 
 	</insert>
-	
-	<insert id="insert2" parameterType="ReceiveVO">
-		<selectKey keyProperty="ps" resultType="int" order="BEFORE">
-	    	select patient_seq.nextval from dual
-		</selectKey>
-		insert into receive(
-			receive_no, staff_id, patient_no, receive_date, receive_time
-		)
-		values(receive_seq.nextval, #{staffId}, 
-		#{patientNo}, to_date(sysdate, 'YYYY-MM-DD'), to_date(sysdate, 'HH24:MI:SS'))
-	</insert>
-	
-	<select id="list" resultType="PatientDto">
-		select * from patient order by patient_no desc
-	</select>
 	
 	<update id="edit" parameterType="PatientDto">
 		update patient
@@ -38,4 +28,15 @@
 			patient_address=#{patientAddress}, patient_phone=#{patientPhone}
 			where patient_no = #{patientNo}
 	</update>
+
+	<select id="list" resultType="PatientReceiveListVO">
+		select 
+		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+		R.receive_date
+		from 
+		patient P inner join receive R on P.patient_no = R.patient_no 
+		where R.receive_date = to_char(sysdate, 'yyyy-MM-dd')
+	</select>
+
+
 </mapper>

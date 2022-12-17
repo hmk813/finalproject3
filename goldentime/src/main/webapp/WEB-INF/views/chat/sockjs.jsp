@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<h1>메세지 전송 예제</h1>
+<h1>메세지 전송</h1>
+
+<!-- 상태 판정 출력 -->
+<h2>아이디 : ${loginId}</h2>
+<h2>이름 : ${loginName}</h2><!-- session.setAttribute("loginName", findDto.getStaffName()); -->
+<h2>직위 : ${loginGrade}</h2>
+
 <button class="btn-connect">연결</button>
 <button class="btn-disconnect">종료</button>
 <hr>
@@ -10,6 +16,8 @@
 <div id="message-list"></div>
 
 <!-- moment cdn추가 => 시간을 원하는 형식으로 변환 -->
+<!-- sockjs cdn추가 => 주소를 HTTP로 설정 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
@@ -21,10 +29,10 @@
 		$(".btn-connect").click(function(){//btn-connect 버튼을 클릭하게 되면
 			
 			//웹소켓 연결 생성
-			var uri = "ws://localhost:8888/ws/json";//웹소켓 연결주소 생성
+			var uri = "${pageContext.request.contextPath}/ws/sockjs";//웹소켓 연결주소 생성(절대경로로 표시)
 			
-			//어디서든 접근하기 위해 윈도우에 생성
-			socket = new WebSocket(uri);
+			//어디서든 접근하기 위해 윈도우에 생성(접속시 생성하는 객체는 SockJS)
+			socket = new SockJS(uri);
 			
 			// 웹소켓 객체가 기본 제공하는 4가지 이벤트를 설정해서 처리
 			// 코드를 쓰기위한 함수생성
@@ -40,7 +48,7 @@
 			socket.onmessage = function(e){//웹소켓에서 전송된 e이벤트 정보를(메세지) 받으면
 				
 				//수신된 e.data는 JSON문자열이라 문자열을 객체로 변환
-				var data = JSON.aprse(e.data);
+				var data = JSON.parse(e.data);
 			
 				var p = $("<p>").text(data.text);//data.text는 p태그에 넣고
 				var time = moment(data.time).format("YYYY-MM-DD hh:mm");//data.time은 moment로 변환

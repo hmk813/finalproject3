@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="receive">
+
+	<insert id="insert" parameterType="ReceiveDto">
+		insert into receive(
+			receive_no, staff_id, patient_no, receive_date, receive_time  
+		)
+		values(receive_seq.nextval, #{staffId}, 
+		#{patientNo}, to_char(sysdate, 'YYYY-MM-DD'), to_char(sysdate, 'HH24:MI:SS'))
+	</insert>
+</mapper>

@@ -15,6 +15,8 @@ public interface ReservationDao {
 
 	List<ReservationDto> list();
 	
+	ReservationDto reservationDetail(int reservationNo);
+	
 	boolean delete(int reservationNo);
 
 }

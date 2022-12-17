@@ -18,14 +18,6 @@ public interface PatientDao {
 
 	//환자 현황 조회
 	List<PatientReceiveListVO> todayList();
-	
-	//환자 기록 조회
-	List<PatientReceiveListVO> historyList();
-
-	//접수 환자 목록 보여주기
-	List<PatientReceiveListVO> selectList();
-	
-	//(동기식) 환자 접수 등록 
 
 
 }

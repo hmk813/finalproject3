@@ -11,21 +11,6 @@
 			receive_no, staff_id, patient_no, receive_date, receive_time  
 		)
 		values(receive_seq.nextval, #{staffId}, 
-		#{patientNo}, to_date(sysdate, 'YYYY-MM-DD'), to_date(sysdate, 'HH24:MI:SS'))
+		#{patientNo}, to_char(sysdate, 'YYYY-MM-DD'), to_char(sysdate, 'HH24:MI:SS'))
 	</insert>
-
-	<!--  목록 조회 -->
-	<select id="list" resultType="PatientReceiveListVO">
-		select
-	    P.*, 
-	    R.staff_id, receive_date
-	    from patient P
-	    join receive R
-	    on P.patient_no = R.patient_no
-	</select> 
-	
-	<!--  단일 조회 -->
-	<select id="selectlist" resultType="PatientReceiveListVO" parameterType="int">
-		select * from patient where patient_no = #{patient_no}
-	</select>
 </mapper>

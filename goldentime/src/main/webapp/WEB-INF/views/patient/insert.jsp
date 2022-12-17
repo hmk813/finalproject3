@@ -16,19 +16,29 @@
 <meta charset="UTF-8">
 <title>골든타임 병원</title>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<link href="/resources/css/reset.css" rel="stylesheet">
-<link href="/resources/css/commons.css" rel="stylesheet">
-<link href="/resources/css/layout.css" rel="stylesheet">
-<link href='fullcalendar/lib/main.css' rel='stylesheet' />
- <link href="<c:url value="/css/sb-admin-2.min.css" />" rel="stylesheet">
- <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<!-- Bootstrap CSS -->
+  	  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src='fullcalendar/lib/main.js'></script>
 <script>
 	$(function(){
+		 
 		$.ajax({
-
-		});
+            url: "http://localhost:8888/rest/staff",
+            method: "get",
+            success: function (resp) {
+                if (resp != null) {
+                    var staff = resp;
+                    for (var i = 0; i < staff.length; i++) {
+                        if (staff[i].staffDepartmentNo == 1) {
+                            $(".doctor-reservation-select").append($("<option>").append(staff[i].staffMedicalDepartment + "-" + staff[i].staffName).addClass("reservation-option").val(staff[i].staffId));
+                        }
+                    }
+                } else {
+                    console.log("실패");
+                }
+            }
+        });
 	});
 </script>
 <style>
@@ -121,12 +131,10 @@
 		<tr>
 			<th>진료 의사</th>
 			<td>
-				<select name="staffId">
-				<option value="">선택</option>
-					<option>test2</option>
-					<option>test5</option>
-					<option>test1</option>
-				</select>
+				<label>주치의</label> 
+				<select name="staffId" class="form-control doctor-reservation-select">
+					<option class="select-option">선택</option>
+				</select> 
 			</td>
 		</tr>
 		<tr>

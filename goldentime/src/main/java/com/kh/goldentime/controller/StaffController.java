@@ -56,7 +56,9 @@ public class StaffController {
 
 	
 	@GetMapping("/join")
-	public String join() {
+	public String join(Model model) { // 부서 테이블 전체 조회 후 model에 넣기
+		//부서 테이블 전체 조회 결과를 모델에 첨부
+		model.addAttribute("department", staffDao.selectDepartment());
 		return "staff/join";
 	}
 	
@@ -66,49 +68,52 @@ public class StaffController {
 		
 		staffDao.insert(staffDto);//DB등록
 		
-		//첨부파일 DB연결
-		for(MultipartFile file : staffImg) {
-			//첨부파일 시퀀스
-			int attachmentNo = attachmentDao.sequence();
-			//DB등록
-			attachmentDao.insert(AttachmentDto.builder()
-						.attachmentNo(attachmentNo)
-						.attachmentName(file.getOriginalFilename())
-						.attachmentType(file.getContentType())
-						.attachmentSize(file.getSize())
-					.build());
-			//디렉토리 생성
-			directory.mkdirs();
-			//파일저장
-			File target = new File(directory, String.valueOf(attachmentNo));
-			file.transferTo(target);//파일 전송
-			
-			//직원 첨부파일 연결테이블 정보 저장
-			attachmentDao.insertStaffImg(staffDto.getStaffId(), attachmentNo);
-
-		}
-		session.setAttribute("loginId", staffDto.getStaffId());
+		System.out.println("bytes "+staffImg.get(0).getBytes());
+		System.out.println("contenttype"+staffImg.get(0).getContentType());
+		System.out.println("inputstream "+staffImg.get(0).getInputStream());
+		System.out.println("name "+staffImg.get(0).getName());
+		System.out.println("originalname "+staffImg.get(0).getOriginalFilename());
+		System.out.println("resource "+staffImg.get(0).getResource());
+		System.out.println("size "+staffImg.get(0).getSize());
+		System.out.println("isempty "+staffImg.get(0).isEmpty());
 		
+		if(!staffImg.get(0).isEmpty()) {//첨부파일 배열의 0번째에 값이 비어있지 않은가? = 첨부파일이 있는가?
+			//첨부파일 DB연결
+			for(MultipartFile file : staffImg) {
+				//첨부파일 시퀀스
+				int attachmentNo = attachmentDao.sequence();
+				//DB등록
+				attachmentDao.insert(AttachmentDto.builder()
+							.attachmentNo(attachmentNo)
+							.attachmentName(file.getOriginalFilename())
+							.attachmentType(file.getContentType())
+							.attachmentSize(file.getSize())
+						.build());
+				//디렉토리 생성
+				directory.mkdirs();
+				//파일저장
+				File target = new File(directory, String.valueOf(attachmentNo));
+				file.transferTo(target);//파일 전송
+				
+				//직원 첨부파일 연결테이블 정보 저장
+				attachmentDao.insertStaffImg(staffDto.getStaffId(), attachmentNo);
+			}		
+		}	
+		session.setAttribute("hasAttachment", !staffImg.get(0).isEmpty());//첨부파일이 있는가?
+		session.setAttribute("loginId", staffDto.getStaffId());
 		return "redirect:mypage";
-}
-	
+	}
 	
 	@GetMapping("/join_finish")
 	public String joinFinish() {
 		return "staff/joinFinish";
 	}
 	
-//	@RequestMapping("/list")
-//	public String list(@ModelAttribute StaffSearchVO vo, Model model) {
-//	List<StaffDto> selectList = staffDao.search(vo);
-//	model.addAttribute("list",selectList);
-//	return "staff/list";
-//	}
-	
 	@GetMapping("/list")
 	public String list(Model model, 
 			@ModelAttribute StaffSearchVO staffSearchVO) {
 		
+		//페이징네이션
 		int count = staffDao.count(staffSearchVO);
 		staffSearchVO.setCount(count);
 		
@@ -166,11 +171,15 @@ public class StaffController {
 		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
 		model.addAttribute("vacationDto", vacationDao.list(staffDto.getStaffId()));
 		
-
-		int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
-		model.addAttribute("attachmentNo", attachmentNo);
-		System.out.println(attachmentNo);
-		
+		//첨부파일 유무 판별
+		boolean hasAttachment = (boolean)session.getAttribute("hasAttachment");
+		if(hasAttachment) {//첨부파일을 갖고있으면
+			//반환한 로그인 아이디로 직원 이미지 테이블에서 첨부파일 번호를 조회한 후 모델에 넣음
+			int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
+			model.addAttribute("attachmentNo", attachmentNo);
+			session.removeAttribute("hasAttachment");//세션에 담긴 첨부파일 유무여부를 삭제
+		}
+				
 		return "/staff/mypage";
 	
 	}
@@ -206,7 +215,6 @@ public class StaffController {
 		return "staff/passwordResult";
 	}
 		
-	
 	//개인정보 변경 기능(자기자신)
 	@GetMapping("/information")
 	public String information(HttpSession session,Model model) {
@@ -214,7 +222,6 @@ public class StaffController {
 		StaffDto staffDto = staffDao.selectOne(staffId);
 		model.addAttribute("staffDto", staffDto);
 		return "staff/information";
-			
 	}
 	
 	@PostMapping("/information")

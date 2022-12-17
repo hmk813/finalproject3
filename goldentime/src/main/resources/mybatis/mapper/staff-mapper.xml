@@ -21,14 +21,21 @@
 	</insert>
 	
 	<!-- 직원목록 -->
-	<select id="list" resultType="StaffDto">
-		select * from (select tmp.*, rownum rn from (select * from staff order by staff_id desc)TMP) where rn between #{startRow} and #{endRow}
+	<select id="list" resultType="DepartmentVO">
+		select * from (
+    select tmp.*, rownum rn from (
+        select * from department inner join staff on department_no = staff_department_no
+    )
+TMP) where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<!-- type, keyword검색 -->
-	<select id="searchList" parameterType="map" resultType="StaffDto">
-		select * from (select tmp.*, rownum rn from (select * from staff where instr(${type}, #{keyword}) > 0 order by  staff_id desc)TMP) where rn between #{startRow} and #{endRow}
-		order by ${type} asc
+	<select id="searchList" parameterType="map" resultType="DepartmentVO">
+		select * from (
+    select tmp.*, rownum rn from (
+        select * from department inner join staff on department_no = staff_department_no where instr(${type}, #{keyword}) > 0
+    )
+TMP) where rn between #{startRow} and #{endRow} order by ${type} asc
 	</select>
 	
 	<!-- 직원상세를 위한 단일 조회 -->
@@ -84,12 +91,16 @@
 	
 	<!-- 검색 조회 시 직원 수 -->
 	<select id="searchCount" parameterType="map" resultType="int">
-		select count(*) from staff where instr(${type}, #{keyword}) > 0
+		select count(*) from (select * from department inner join staff on department_no = staff_department_no) where instr(${type}, #{keyword}) > 0
 	</select>
  	
  	<!-- 전체 조회 시 직원 수 -->
  	<select id="allCount" parameterType="String" resultType="int">
- 		select count(*) from staff 
+ 		select count(*) from (select * from department inner join staff on department_no = staff_department_no)
  	</select>
 
+	<!-- 부서조회 -->
+	<select id="selectDepartment" resultType="DepartmentDto">
+		select * from department order by department_no asc
+	</select>
 </mapper>

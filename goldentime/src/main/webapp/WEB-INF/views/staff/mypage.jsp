@@ -110,8 +110,7 @@
         	width:30%;
         }
 </style>
-
-
+r
 <body>
    <section>
   	<table border="1" width="400" height="300">
@@ -238,4 +237,3 @@
 	<c:otherwise> --%>
 
 </body>
-

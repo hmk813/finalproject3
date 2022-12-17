@@ -96,9 +96,12 @@
     <div class="container-fluid">
 
 
-        <div class="row mt-4 p-3">
+        <div class="row mt-4 p-1">
             <div class="col">
-                <h4>나의 휴가 현황</h4>
+                <h4>
+                    <i class="fa-solid fa-circle-info"></i>
+                    나의 휴가 현황
+                </h4>
             </div>
         </div>
         <div class="row p-3">
@@ -148,7 +151,10 @@
 
         <div class="d-flex bd-highlight p-3">
             <div class="p-3 bd-highlight">
-                <h4 class="text-left">나의 휴가 신청/사용 내역</h4>
+                <h4 class="text-left">
+                    <i class="fa-solid fa-circle-info"></i>
+                    나의 휴가 신청/사용 내역
+                </h4>
             </div>
             <div class="ms-auto p-2 bd-highlight">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#enroll"

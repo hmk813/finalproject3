@@ -20,30 +20,41 @@ public class AttendanceController {
 	@GetMapping("/list")
 	public String list(@ModelAttribute AttendanceListVO vo, Model model) {
 		String findId = "test5";
-		
-		//검색일때
-		AttendanceListVO list = AttendanceListVO.builder().
+		AttendanceListVO id1 = AttendanceListVO.builder().
 				attendanceStaffId(findId)
 				.beginMade(null)
 				.endMade(null)
 				.build();
 		
-		//목록일때
-		AttendanceListVO search = AttendanceListVO.builder().
+		AttendanceListVO id2 = AttendanceListVO.builder().
 				attendanceStaffId(findId)
 				.beginMade(vo.getBeginMade())
 				.endMade(vo.getEndMade())
 				.build();
 		
-		//마이바티스에서 달력 검색할때 null값 체크
 		boolean isSearch = vo.getBeginMade() != null && vo.getEndMade() != null;
 		
 		if(isSearch) {//검색
-			model.addAttribute("attendaceList", attendanceDao.attendanceList(search));
+			model.addAttribute("attendaceList", attendanceDao.attendanceList(id2));
 		}
 		else {//목록
-			model.addAttribute("attendaceList",attendanceDao.attendanceList(list));
+			model.addAttribute("attendaceList",attendanceDao.attendanceList(id1));
 		}
+		
+		//이번달 출근 현황 조회(출근 지각 조퇴)를 model로 넘김
+		model.addAttribute("thismonth",attendanceDao.thisMonth(findId));
+		
+		//오늘 출퇴근 시간
+		model.addAttribute("startEnd", attendanceDao.stardEnd(findId));
+		
+		//마이바티스에서 달력 검색할때 null값 체크
+//		boolean isSearch = vo.getBeginMade() != null && vo.getEndMade() != null;
+//		if(isSearch) {//검색
+//			model.addAttribute("attendaceList", attendanceDao.attendanceList(search));
+//		}
+//		else {//목록
+//			model.addAttribute("attendaceList",attendanceDao.attendanceList(list));
+//		}
 		return "attendance/list";
 	}
 }

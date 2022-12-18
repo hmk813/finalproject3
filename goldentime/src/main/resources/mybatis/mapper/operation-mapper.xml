@@ -20,9 +20,10 @@
 	
 	<!--  단일 조회 -->
 	<!-- <select id="one" resultType="OperationInformationVO" parameterType="int">
-	select * from operation where operation_no = #{operation_no}
+	select * from operation where operation_no = #{operationNo}
 	 </select> -->
+	 
 	<select id="one" resultType="OperationInformationVO" parameterType="int">
-		select * from operation where patient_no = #{patient_no}
+		select * from operation where patient_no=#{patientNo}
 	</select>
 </mapper>

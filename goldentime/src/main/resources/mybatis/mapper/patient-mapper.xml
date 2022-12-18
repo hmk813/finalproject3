@@ -38,5 +38,13 @@
 		where R.receive_date = to_char(sysdate, 'yyyy-MM-dd')
 	</select>
 
+	<select id="historylist" resultType="PatientDto">
+		select 
+		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+		R.receive_date
+		from 
+		patient P inner join receive R on P.patient_no = R.patient_no 
+		where R.receive_date = to_char(sysdate-1, 'yyyy-MM-dd')
+	</select>
 
 </mapper>

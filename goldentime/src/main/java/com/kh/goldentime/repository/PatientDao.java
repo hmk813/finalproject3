@@ -19,5 +19,5 @@ public interface PatientDao {
 	//환자 현황 조회
 	List<PatientReceiveListVO> todayList();
 
-
+	List<PatientDto> patientList();
 }

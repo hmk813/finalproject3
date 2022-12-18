@@ -77,7 +77,7 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-table"></i>
+                   	<i class="fas fa-fw fa-table"></i>
                     <span>원무과</span></a>
             </li>
 
@@ -124,13 +124,12 @@
                     <!-- Topbar Search -->
                         <div class="input-group">
                             <ul class="navbar-nav me-auto">
-
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/attendance/list?${staffDto.staffId}"><span class="#">근태관리</span></a>
+                                    <a class="nav-link" href="attendance/list?attendanceStaffId=${attendanceDto.attendanceStaffId}"><span class="link-sp">근태관리</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/vacation/vacation?${staffDto.staffId}"><span class="#">연차관리</span></a>
-                                </li>	
+                                    <a class="nav-link" href="vacation/vacation?vacationStaffId=${vacationDto.vacationStaffId}"><span class="link-sp">연차관리</span></a>
+                                </li>
                                 </ul>
                         </div>
 
@@ -164,10 +163,7 @@
                             </div>
                         </li>
 
-                    </ul>
-
                 </nav>
-                <!-- End of Topbar -->
 
 
    

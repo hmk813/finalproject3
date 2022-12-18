@@ -1,18 +1,34 @@
 package com.kh.goldentime.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.goldentime.repository.AttendanceDao;
-import com.kh.goldentime.repository.ReservationDao;
-import com.kh.goldentime.repository.VacationDao;
+import com.kh.goldentime.constant.SessionConstant;
+import com.kh.goldentime.entity.StaffDto;
+import com.kh.goldentime.repository.StaffDao;
 
 @Controller
 public class CalendarController {
+
+	@Autowired
+	private StaffDao staffDao;
 	
+	@RequestMapping("/calendar")
+	public String calendar(Model model,HttpSession session) {
+	
+		String loginId = (String) session.getAttribute(SessionConstant.ID);
+		
+		StaffDto staffDto = staffDao.selectOne(loginId);
+		
+		model.addAttribute("staffDto",staffDto);
+		return "calendar";
+	}
+}	
 //	@RequestMapping("/calendar")
 //	public String calendar(Model model) {
 //		
@@ -36,31 +52,12 @@ public class CalendarController {
 //		return result;
 //	}
 
-//캘린더 컨트롤러 지워도 될꺼같아요	
-	
-	@Autowired
-	private ReservationDao reservationDao;
-	
-	@Autowired
-	private VacationDao vacationDao;
-	
-	@Autowired
-	private AttendanceDao attendanceDao;
-	
-	@RequestMapping("/calendar")//예약목록 불러오기
-	public String calendar(Model model) {
-		return "calendar";
-	}
-	
-	@RequestMapping("/attendance")//출퇴근목록 불러오기
-	public String attendance(Model model) {
-		return "attendance";
-	}
-	
-	@RequestMapping("/vacation")//연차목록 불러오기
-	public String vacation(Model model) {
-		return "vacation";
-	}
+//	@RequestMapping("/practice")
+//	public String practice(Model model) {
+//		return "practice";
+//	}
+
 	
 	
-}
+	
+

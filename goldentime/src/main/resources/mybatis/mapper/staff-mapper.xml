@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="staff">
 	
-	<!-- 직원등록 -->
+	<!-- 직원생성-->
 	<insert id="insert" parameterType="StaffDto">
 		insert into staff (
 			staff_id, staff_pw,staff_department_no, 
@@ -22,18 +22,7 @@
 	
 	<!-- 직원목록 -->
 	<select id="list" resultType="StaffDto">
-		select * from (select tmp.*, rownum rn from (select * from staff order by staff_id desc)TMP) where rn between #{startRow} and #{endRow}
-	</select>
-	
-	<!-- type, keyword검색 -->
-	<select id="searchList" parameterType="map" resultType="StaffDto">
-		select * from (select tmp.*, rownum rn from (select * from staff where instr(${type}, #{keyword}) > 0 order by  staff_id desc)TMP) where rn between #{startRow} and #{endRow}
-		order by ${type} asc
-	</select>
-	
-	<!-- 직원상세를 위한 단일 조회 -->
-	<select id="one" parameterType="String" resultType="StaffDto">
-		select * from staff where staff_id = #{staffId}
+		select * from staff
 	</select>
 	
 	<!-- 직원수정 -->
@@ -48,12 +37,29 @@
 			staff_state=#{staffState}, 
 			staff_grade=#{staffGrade}, 
 			staff_leave_cnt=#{staffLeaveCnt}, 
-			staff_dayoff=#{staffDayoff}
+			staff_day_off=#{staffDayOff}
 			staff_medical_department=#{staffMedicalDepartment}
 		where
 				staff_id=#{staffId}
 	</update>
-
+	
+	<!-- 직원삭제 -->
+ 	<delete id="delete" parameterType="String">
+ 		delete staff where staff_id = #{staffId}
+ 	</delete>	
+ 
+	<!-- 로그인 여부 확인(단일조회) -->
+ 	<select id="login" parameterType="String" resultType="StaffDto">
+ 		select * from staff where staff_id = #{staffId}
+ 	</select>
+ 	
+ 	<!-- 비밀번호 변경-->
+ 	<update id="password" parameterType="map">
+ 		update staff 
+ 			set staff_pw = #{afterPw} 
+ 				where staff_id = #{staffId}
+ 	</update>
+ 	
  	<!-- 개인정보 변경 -->
  	<update id="information" parameterType="StaffDto">
  		update staff
@@ -64,32 +70,45 @@
  					staff_id = #{staffId}
  	</update>
  	
- 	<!-- 비밀번호 변경-->
- 	<update id="password" parameterType="map">
- 		update staff 
- 			set staff_pw = #{afterPw} 
- 				where staff_id = #{staffId}
- 	</update>
+	<!-- 직원 검색 구문(복합검색)--> 
+ 	<select id="search" parameterType="StaffSearchVO" resultType="StaffDto">
+ 		select * from staff
+ 		<where>
+ 		
+ 		<!-- 이름 검색 -->
+ 		<if test="staffName != null">
+ 			and instr(staff_name, #{staffName}) > 0
+ 		</if>
+ 		
+ 		<!-- 진료과 검색 -->
+ 		<if test="staffMedicalDepartment != null">
+ 			and staff_medical_department = #{staffMedicalDepartment}
+ 		</if>
+ 		
+ 		<!-- 부서번호 검색  -->
+ 		<if test="staffDepartmentNo != null">
+ 			and staff_department_no = #{staffDepartmentNo}
+ 		</if>
+ 		</where>
+ 		
+ 		</select>
+ 		
+ 		
+ 		<!-- type, keyword검색 -->
+ 		<select id="detailSearch" parameterType="map" resultType="StaffDto">
+ 			select * from staff instr(${type}, #{keyword})
+ 			order by ${type} asc
+ 		</select>
+ 		
+ 		<!-- 암호화 (아직 대기)-->
+ 		<insert id="join" parameterType="StaffDto">
+ 			insert into staff(staff_id, staff_pw)
+ 			values(#{staffId}, #{staffPw})
+ 		</insert>
  	
-	<!-- 직원삭제 -->
- 	<delete id="delete" parameterType="String">
- 		delete staff where staff_id = #{staffId}
- 	</delete>	
- 
-	<!-- 암호화 (아직 대기)-->
-	<insert id="join" parameterType="StaffDto">
-		insert into staff(staff_id, staff_pw)
-		values(#{staffId}, #{staffPw})
-	</insert>
-	
-	<!-- 검색 조회 시 직원 수 -->
-	<select id="searchCount" parameterType="map" resultType="int">
-		select count(*) from staff where instr(${type}, #{keyword}) > 0
-	</select>
- 	
- 	<!-- 전체 조회 시 직원 수 -->
- 	<select id="allCount" parameterType="String" resultType="int">
- 		select count(*) from staff 
- 	</select>
-
+ 		<select id="get" parameterType="String" resultType="StaffDto">
+ 			select * from staff where staff_id = #{staffId}
+ 		</select>
+ 		
+ 		
 </mapper>

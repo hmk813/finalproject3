@@ -6,21 +6,25 @@ import com.kh.goldentime.entity.StaffDto;
 import com.kh.goldentime.vo.StaffSearchVO;
 
 public interface StaffDao {
-	void insert(StaffDto staffDto);//직원 등록
+
+	void insert(StaffDto staffDto); //등록
 	
-	List<StaffDto> selectList(StaffSearchVO staffSearchVO);//직원 조회
-	List<StaffDto> selectSearch(StaffSearchVO staffSearchVO);//직원 검색조회
-	List<StaffDto> selectAll(StaffSearchVO staffSearchVO);//직원 전체조회
+	List<StaffDto> list(); //목록
 	
-	StaffDto selectOne(String staffId);//직원 아이디로 단일조회(직원 상세, 마이페이지)
-	
-	boolean update(StaffDto staffDto);//수정
-	boolean changeInformation(StaffDto staffDto);//개인정보 변경
-	boolean changePassword(String staffId, String afterPw);//비밀번호 변경
+	boolean edit(StaffDto staffDto);//수정
 	
 	boolean delete(String staffId);//삭제
+
+	StaffDto selectOne(String staffId);//마이페이지
 	
-	int count(StaffSearchVO staffSearchVO);//직원 수
-	int searchCount(StaffSearchVO staffSearchVO);//검색 조회 시 직원 수
-	int listCount(StaffSearchVO staffSearchVO);//전체 조회 시 직원 수
+	boolean login(StaffDto staffDto);//로그인
+	
+	boolean changeInformation(StaffDto staffDto);//개인정보 변경
+		
+	boolean changePassword(String staffId, String afterPw);//비밀번호 변경
+	
+	//<사원검색>
+	List<StaffDto> search(StaffSearchVO vo);
+	
+	
 }

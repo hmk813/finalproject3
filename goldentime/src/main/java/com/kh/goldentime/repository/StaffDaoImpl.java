@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import com.kh.goldentime.entity.DepartmentDto;
 import com.kh.goldentime.entity.StaffDto;
 import com.kh.goldentime.vo.StaffSearchVO;
 
@@ -32,44 +31,27 @@ public class StaffDaoImpl implements StaffDao{
 	}
 
 	@Override//목록
-	public List<StaffDto> selectList(StaffSearchVO staffSearchVO) {
-		//검색 조회인지 판정
-		boolean isSearch = staffSearchVO.isSearch();
-		if(isSearch) {//검색 조회일 경우
-			return selectSearch(staffSearchVO);
-		}
-		else {//검색 조회가 아닐 경우(전체 조회일 경우)
-			return selectAll(staffSearchVO);
-		}
-	}
-	
-	@Override//검색조회
-	public List<StaffDto> selectSearch(StaffSearchVO staffSearchVO) {
-		Map<String, String> param = new HashMap<>();
-		param.put("type", staffSearchVO.getType());
-		param.put("keyword", staffSearchVO.getKeyword());
-		param.put("startRow", String.valueOf(staffSearchVO.startRow()));
-		param.put("endRow", String.valueOf(staffSearchVO.endRow()));
-		return sqlSession.selectList("staff.searchList", param);
-	}
-	
-	@Override//직원 전체조회
-	public List<StaffDto> selectAll(StaffSearchVO staffSearchVO) {
-		Map<String, String> param = new HashMap<>();
-		param.put("startRow", String.valueOf(staffSearchVO.startRow()));
-		param.put("endRow", String.valueOf(staffSearchVO.endRow()));
-		return sqlSession.selectList("staff.list", param);
+	public List<StaffDto> list() {
+		return sqlSession.selectList("staff.list");
 	}
 
-	@Override//단일조회(직원 상세, 마이페이지)
-	public StaffDto selectOne(String staffId) {
-		return sqlSession.selectOne("staff.one",staffId);
-	}
 
 	@Override//수정
-	public boolean update(StaffDto staffDto) {
+	public boolean edit(StaffDto staffDto) {
 		int count = sqlSession.update("staff.edit", staffDto);
 		return count > 0;
+	}
+
+	@Override//삭제
+	public boolean delete(String staffId) {
+		int count = sqlSession.delete("staff.delete", staffId);
+		return count > 0;
+	}
+
+	@Override//마이페이지
+	public StaffDto selectOne(String staffId) {
+		return sqlSession.selectOne("staff.login",staffId);
+		
 	}
 
 	@Override//개인정보 변경
@@ -77,7 +59,7 @@ public class StaffDaoImpl implements StaffDao{
 		int count = sqlSession.update("staff.information", staffDto);
 		return count > 0;
 	}
-	
+
 	@Override//비밀번호 변경
 	public boolean changePassword(String staffId, String afterPw) {
 		
@@ -88,37 +70,18 @@ public class StaffDaoImpl implements StaffDao{
 		return count>0;
 	}
 	
-	@Override//삭제
-	public boolean delete(String staffId) {
-		int count = sqlSession.delete("staff.delete", staffId);
-		return count > 0;
-	}
-
-	@Override//직원 수
-	public int count(StaffSearchVO staffSearchVO) {
-		if(staffSearchVO.isSearch()) {//검색 조회라면
-			return searchCount(staffSearchVO);
-		}
-		else {//전체 조회라면
-			return listCount(staffSearchVO);
-		}
-	}
-
-	@Override//검색 조회 시 직원 수
-	public int searchCount(StaffSearchVO staffSearchVO) {
-		Map<String, String> param = new HashMap<>();
-		param.put("type", staffSearchVO.getType());
-		param.put("keyword", staffSearchVO.getKeyword());
-		return sqlSession.selectOne("staff.searchCount", param);
+	@Override// 사원 검색
+	public List<StaffDto> search(StaffSearchVO vo) {
+		return sqlSession.selectList("staff.staffList", vo);
 	}
 	
-	@Override//전체 조회 시 직원 수
-	public int listCount(StaffSearchVO staffSearchVO) {
-		return sqlSession.selectOne("staff.allCount", staffSearchVO);
-	}
 	
-	@Override//부서 조회
-	public List<DepartmentDto> selectDepartment() {
-		return sqlSession.selectList("staff.selectDepartment");
+	@Override//로그인
+	public boolean login(StaffDto staffDto) {
+		StaffDto findDto = sqlSession.selectOne("staff.get", staffDto.getStaffId());
+		if(findDto == null) return false;
+		boolean judge = encoder.matches(staffDto.getStaffPw(), findDto.getStaffPw());
+		return judge;
 	}
+
 }

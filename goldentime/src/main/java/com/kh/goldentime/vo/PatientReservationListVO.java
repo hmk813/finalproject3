@@ -10,10 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor @Builder @Data @NoArgsConstructor
 public class PatientReservationListVO {
 	private int patientNo;
-	private String patient_name, patientGender, patientBlood,
-	patientAddress, patientPhone;
-	private Date patientBirth;
-	private int reservationNo, reservationPatientNo;
-	private String reservationStaffId, reservationContent, reservationTime;
-	private Date reservationDate;
+	private String patientName, patientGender, patientBlood;
+	private String reservationStaffId, reservationTime;
+	private String reservationDate;
 }

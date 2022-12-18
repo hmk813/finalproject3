@@ -38,5 +38,10 @@ public class PatientRestController {
 	public boolean edit(@RequestBody PatientDto dto) {
 		return dao.edit(dto);
 	}
+	
+	@GetMapping("/patient")
+	public List<PatientDto> list(){
+		return dao.historyList();
+	}
 
 } */

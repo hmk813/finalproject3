@@ -29,5 +29,11 @@
 	<select id="reservationConfirm" resultType="ReservationDto" parameterType="ReservationDateStaffIdVO">
 		select * from reservation where reservation_staff_id = #{reservationStaffId} and reservation_date=#{reservationDate}
 	</select>
+	<select id="reservationDetail" resultType="ReservationDto" parameterType="int">
+		select * from reservation where reservation_no = #{reservationNo}
+	</select>
+	<select id="toDayList" resultType="ReservationDto">
+		select * from reservation where reservation_date = to_char(sysdate, 'YYYY-MM-DD')
+	</select>
 </mapper>
 

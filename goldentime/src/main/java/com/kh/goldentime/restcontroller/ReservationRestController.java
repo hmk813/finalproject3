@@ -35,6 +35,11 @@ public class ReservationRestController {
 		return reservationDao.list();
 	}
 	
+	@GetMapping("/reservation/detail/{reservationNo}")
+	public ReservationDto reservationDetail(@PathVariable int reservationNo) {
+		return reservationDao.reservationDetail(reservationNo);
+	}
+	
 	@GetMapping("/reservation/{reservationDate}")
 	public List<ReservationDto> dateList(@PathVariable String reservationDate){
 		return reservationDao.dateList(reservationDate);

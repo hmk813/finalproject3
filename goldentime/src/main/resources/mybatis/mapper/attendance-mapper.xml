@@ -121,7 +121,7 @@
 		Round(a.work_time) work_time,
 		a.attendance_staff_id
 		from att_record a
-		where
+		<where>
 		a.attendance_staff_id=#{attendanceStaffId}
 
 		<choose>
@@ -132,18 +132,19 @@
 				to_date(#{endMade} || ' ' || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
 			</when>
 			<when test="beginMade != null">
-	 				<![CDATA[
-	 				and made >= to_date(#{beginMade} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS')
-	 				]]>
+	 				
+	 				and a.attendance_start_time >= to_date(#{beginMade}, 'YYYY-MM-DD HH24:MI:SS')
+	 				
 			</when>
 			<when test="endMade != null">
-	 				<![CDATA[
-	 				and made <= to_date(#{endMade} || ' ' || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
-	 				]]>
+	 				
+	 				 and to_date(#{endMade}, 'YYYY-MM-DD HH24:MI:SS')  >= a.attendance_start_time
+	 				
 			</when>
 		</choose>
 
 		order by attandance_no desc
+		</where>
 	</select>
 
 	<!-- 오늘 근무 조회 구문 -->
@@ -152,6 +153,19 @@
 		select * from attendance where
 		attendance_start_time>to_char(sysdate,'yyyymmdd') and
 		attendance_staff_id=#{attendanceStaffId}
+	</select>
+
+	<!-- 이번달 출근 현황 -->
+	<select id="thisMonthState" parameterType="String" resultType="ThisMonthVO">
+		SELECT
+		a.attendance_work_state,
+		COUNT(*) day  
+		FROM attendance a
+		WHERE
+		a.attendance_staff_id = #{attendanceStaffId}
+		and
+		a.attendance_start_time BETWEEN (TO_CHAR(TRUNC(SYSDATE,'MM'),'YYYYMMDD') ) AND (LAST_DAY(SYSDATE))
+		GROUP by a.attendance_work_state
 	</select>
 
 </mapper>

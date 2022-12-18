@@ -6,7 +6,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,11 +19,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.goldentime.constant.SessionConstant;
 import com.kh.goldentime.entity.AttachmentDto;
 import com.kh.goldentime.entity.StaffDto;
+import com.kh.goldentime.error.TargetNotFoundException;
 import com.kh.goldentime.repository.AttachmentDao;
 import com.kh.goldentime.repository.AttendanceDao;
 import com.kh.goldentime.repository.StaffDao;
@@ -31,22 +36,23 @@ import com.kh.goldentime.vo.StaffSearchVO;
 @RequestMapping("/staff")
 public class StaffController {
 
-	//비밀번호 암호화
 	@Autowired
 	private PasswordEncoder encoder;
 	
-	//직원Dao
 	@Autowired
 	private StaffDao staffDao;
 	
-	//근태Dao
 	@Autowired
 	private AttendanceDao attendanceDao;
 	
-	//휴가Dao
 	@Autowired
 	private VacationDao vacationDao;
 	
+	@GetMapping("test")
+	public String test() {
+		return "staff/test";
+	}
+
 	//첨부파일 의존성
 	@Autowired
 	private AttachmentDao attachmentDao;
@@ -98,22 +104,11 @@ public class StaffController {
 		return "staff/joinFinish";
 	}
 	
-//	@RequestMapping("/list")
-//	public String list(@ModelAttribute StaffSearchVO vo, Model model) {
-//	List<StaffDto> selectList = staffDao.search(vo);
-//	model.addAttribute("list",selectList);
-//	return "staff/list";
-//	}
-	
-	@GetMapping("/list")
-	public String list(Model model, 
-			@ModelAttribute StaffSearchVO staffSearchVO) {
-		
-		int count = staffDao.count(staffSearchVO);
-		staffSearchVO.setCount(count);
-		
-		model.addAttribute("staffList", staffDao.selectList(staffSearchVO));
-		return "staff/list";
+	@RequestMapping("/list")
+	public String list(@ModelAttribute StaffSearchVO vo, Model model) {
+	List<StaffDto> list = staffDao.search(vo);
+	model.addAttribute("list",list);
+	return "staff/list";
 	}
 	
 	@GetMapping("/login")
@@ -174,6 +169,7 @@ public class StaffController {
 		return "/staff/mypage";
 	
 	}
+
 	
 	//비밀번호 변경
 	@GetMapping("/password")
@@ -237,5 +233,33 @@ public class StaffController {
 			return "redirect:information?error";
 		}
 	}
+			
 
+@GetMapping("/download")
+@ResponseBody
+public ResponseEntity<ByteArrayResource> download(
+									@RequestParam String staffId) throws IOException {
+	//[1] 파일 찾기
+	File directory = new File("C:/upload");
+	File target = new File(directory, staffId);
+	
+	if(target.exists()) {//파일 존재
+		//[2] 해당 파일의 내용을 불러온다(apache commons io 의존성 필요)
+		byte[] data = FileUtils.readFileToByteArray(target);
+		ByteArrayResource resource = new ByteArrayResource(data);
+		
+		//[3] 사용자에게 보낼 응답 생성
+		//- header에는 보낼 파일의 정보를, body에는 보낼 파일의 내용을 첨부
+		return ResponseEntity.ok()
+		.header("Content-Encoding", "UTF-8")
+		.header("Content-Length", String.valueOf(data.length))
+		.header("Content-Disposition", "attachment; filename="+staffId)
+		.header("Content-Type", "application/octet-stream")
+		.body(resource);
+	}
+	else {//파일 없음
+		//1) 우리가 정한 예외를 발생시키는 방법
+		throw new TargetNotFoundException("프로필 없음");
+		}
+	}
 }

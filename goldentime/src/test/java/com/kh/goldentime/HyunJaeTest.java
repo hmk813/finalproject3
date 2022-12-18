@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.kh.goldentime.entity.AttendanceDto;
 import com.kh.goldentime.repository.AttendanceDao;
 import com.kh.goldentime.vo.AttendanceListVO;
+import com.kh.goldentime.vo.ThisMonthVO;
 
 @SpringBootTest
 public class HyunJaeTest {
@@ -26,8 +27,8 @@ public class HyunJaeTest {
 //		attendanceDao.goWork(AttendanceDto.builder()
 //				.attendanceStaffId("aaa")
 //				.build());
-		String id = "admin";
-		
+		String id = "test5";
+		String day = "2022-12-01";
 //		System.out.println(attendanceDao.goWorkFind(id));
 //		System.out.println(attendanceDao.comeLate(id));
 //		System.out.println(attendanceDao.todayTimeWork(id).getWorkTime()==13);
@@ -51,17 +52,27 @@ public class HyunJaeTest {
 //		param.put("beginMade", "2022-12-10");
 //		param.put("endMade", "2022-12-15");
 //		
-//		List<AttendanceListVO> list = attendanceDao.attendanceList(AttendanceListVO.builder().attendanceStaffId(id).
-//				beginMade("2022-12-08").endMade("2022-12-09").
-//				build());
-//		System.out.println(list.size());
-//		for(AttendanceListVO dto : list) {
-//			System.out.println(dto);
-//		}
+		AttendanceListVO vo = new AttendanceListVO();
+		vo.setBeginMade(day);
+		vo.getBeginMade();
+		System.out.println(vo);
+		
+		List<AttendanceListVO> list = attendanceDao.attendanceList(AttendanceListVO.builder().attendanceStaffId(id).
+				beginMade(day).
+				endMade(day).
+				build());
+		System.out.println(list.size());
+		for(AttendanceListVO dto : list) {
+			System.out.println(dto);
+		}
 //		
 //		System.out.println(attendanceDao.todaywork(id).getAttendanceWorkState().equals("지각"));
-		System.out.println(attendanceDao.stardEnd(id));
-		
+//		System.out.println(attendanceDao.stardEnd(id));
+//		List<ThisMonthVO> list = attendanceDao.thisMonth(id);
+//		System.out.println(list.size());
+//		for(ThisMonthVO dto : list) {
+//			System.out.println(dto);
+//		}
 		
 		
 	}

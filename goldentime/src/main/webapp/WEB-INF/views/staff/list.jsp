@@ -59,7 +59,7 @@
 	 -->
 	 <select name="type" required>
 	 	<option value="staff_name">이름</option>
-	 	<option value="staff_department_no">부서</option>
+	 	<option value="department_name">부서</option>
 	 	<option value="staff_grade">직위</option>
 	 	<option value="staff_medical_department">진료과</option>
 	 </select>
@@ -83,7 +83,7 @@
 		<c:forEach var="staffDto" items="${staffList}">
 		<tr>
 			<td>${staffDto.staffName}</td>
-			<td>${staffDto.staffDepartmentNo}</td>
+			<td>${staffDto.departmentName}</td>
 			<td>${staffDto.staffGrade}</td>
 			<td>${staffDto.staffMedicalDepartment}</td>
 		</tr>

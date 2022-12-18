@@ -6,6 +6,7 @@ import java.util.Map;
 import com.kh.goldentime.entity.AttendanceDto;
 import com.kh.goldentime.vo.AttendanceListVO;
 import com.kh.goldentime.vo.AttendanceWorkTimeVO;
+import com.kh.goldentime.vo.ThisMonthVO;
 import com.kh.goldentime.vo.TimeFormatVO;
 import com.kh.goldentime.vo.TodayTotalWorkTimeVO;
 
@@ -46,4 +47,7 @@ public interface AttendanceDao {
 	
 	//추상 메소드 - 출퇴근 근무 리스트 조회
 	List<AttendanceListVO> attendanceList(AttendanceListVO attendanceVO);
+	
+	//추상 메소드 - 이번달 출근 현황 조회
+	List<ThisMonthVO> thisMonth(String attendanceStaffId);
 }

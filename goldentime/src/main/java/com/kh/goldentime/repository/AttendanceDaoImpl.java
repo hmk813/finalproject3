@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.goldentime.entity.AttendanceDto;
 import com.kh.goldentime.vo.AttendanceListVO;
 import com.kh.goldentime.vo.AttendanceWorkTimeVO;
+import com.kh.goldentime.vo.ThisMonthVO;
 import com.kh.goldentime.vo.TimeFormatVO;
 import com.kh.goldentime.vo.TodayTotalWorkTimeVO;
 
@@ -76,5 +77,10 @@ public class AttendanceDaoImpl implements AttendanceDao {
 	}	
 	public AttendanceDto todaywork(String attendanceStaffId) {
 		return sqlSession.selectOne("attendance.todaywork",attendanceStaffId);
+	}
+
+	@Override
+	public List<ThisMonthVO> thisMonth(String attendanceStaffId) {
+		return sqlSession.selectList("attendance.thisMonthState",attendanceStaffId);
 	}
 }

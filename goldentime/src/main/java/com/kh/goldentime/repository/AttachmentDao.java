@@ -1,7 +1,5 @@
 package com.kh.goldentime.repository;
 
-import java.util.List;
-
 import com.kh.goldentime.entity.AttachmentDto;
 
 public interface AttachmentDao {

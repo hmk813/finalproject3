@@ -42,4 +42,9 @@ public class ReservationDaoImpl implements ReservationDao{
 		return sqlSession.selectList("reservation.reservationConfirm",reservationDateStaffIdVO);
 	}
 
+	@Override
+	public ReservationDto reservationDetail(int reservationNo) {
+		return sqlSession.selectOne("reservation.reservationDetail", reservationNo);
+	}
+
 }

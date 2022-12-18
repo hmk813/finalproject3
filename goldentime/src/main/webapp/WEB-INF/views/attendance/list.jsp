@@ -18,26 +18,72 @@
 <!-- Bootswatch CDN -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.0.2/cosmo/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 
 </head>
 <body>
 	<div class="container-fluid">
 
 		<div class="row mt-4">
-			<div class="col-md-10 offset-md-1 p-4">
-				<h1 class="text-center">내 출퇴근 조회</h1>
+			<div class="col ms-4">
+				
+				<h4><i class="fa-solid fa-circle-info" style="font-size: 20px"></i> 내 출퇴근 조회</h4>
 			</div>
 		</div>
 
-
-		<form method="get" action="list" class="search-form">
-			<input type="date" name="beginMade"> ~ <input type="date"
-				name="endMade"> 
-			<button type="submit">검색</button>
-		</form>
+		
 
 		<div class="row mt-4">
-			<div class="col-md-10 offset-md-1">
+			<div class="col p-2 border rounded shadow ms-5">
+				<div class="text-center">
+					<p id="yoil"></p>
+					<h3 style="font-weight: bold;" id="realTime"></h3>
+				</div>
+				<div class="row text-center mb-3">
+					<div class="col">출근시간</div>
+					<div class="col">
+						${startEnd.startTime}
+					</div>
+				</div>
+				<div class="row text-center">
+					<div class="col">퇴근시간</div>
+					<div class="col">${startEnd.endTime}</div>
+				</div>
+			</div>
+			
+			<div class="col p-2 border rounded shadow ms-5 me-5">
+				<table class="table table-hover">
+					<thead class="text-center">
+						<tr>
+							<th colspan="2">이번달 출근 현황</th>
+						</tr>
+					</thead>
+					<tbody class="text-center">
+						<c:forEach var="thismonth" items="${thismonth}">
+							<tr>
+								<td>${thismonth.attendanceWorkState}</td>
+								<td>${thismonth.day}</td>
+							<tr>
+						</c:forEach>
+					</tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<div class="col">
+				<form method="get" action="list" class="search-form">
+					<input type="date" name="beginMade" style="height:50px"> ~ <input type="date"
+						name="endMade" style="height:50px">
+					<button type="submit" class="" style="height:50px; background-color : #81BEF7; border-color : #81BEF7;">검색</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<div class="col">
 				<table class="table table-hover">
 					<thead class="text-center">
 						<tr class="bg-dark text-light">
@@ -66,36 +112,42 @@
 	</div>
 
 
-
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 	<script>
-		//목표 : .search-form 전송을 차단하고 신규 form을 만들어서 입력한것만 전송
-		$(function() {
+        $(function () {
 
-			$(".search-form").submit(function(e) {
+            setInterval(function () {
+                date = new Date();
 
-				$(this).find("[name]").each(function() {
-					var value = $(this).val();
-					if (value.length == 0) {//입력이 안된 경우
-						//현재 입력창의 name을 제거
-						$(this).removeAttr("name");
-					}
-				});
+                year = date.getFullYear();
+                month = date.getMonth() + 1;
+                day = date.getDate();
+                hour = date.getHours();
+                minutes = date.getMinutes();
+                seconds = date.getSeconds();
+                week = new Array("일", "월", "화", "수", "목", "금", "토");
 
-				return true;//전송
-			});
-		});
+                weekday = week[date.getDay()];
 
-		$(function() {
-			var param = new URLSearchParams(location.search);
-		});
-	</script>
+                if (hour < 10) {
+                    hour = "0" + hour;
+                }
+                if (minutes < 10) {
+                    minutes = "0" + minutes;
+                }
+                if (seconds < 10) {
+                    seconds = "0" + seconds;
+                }
 
-
-
-
-
-
+                $("#realTime").html(
+                    hour + ":" + minutes + ":" + seconds
+                );
+                $("#yoil").html(
+                		year + "년" + month + "월" + day + "일" + "(" + weekday + ")"
+                );
+            });
+        });
+    </script>
 
 
 </body>

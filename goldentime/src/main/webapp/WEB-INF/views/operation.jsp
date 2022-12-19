@@ -25,11 +25,23 @@
 		}
 		</style>
 	  
+
+		<body id="page-top">
+		
+		<span class="sp1">수술 환자 목록</span>
+		<div class="operation-list">
+		</div>
+		
+		<span class="sp1">수술 환자 상세</span>
+		<div class="operation-detail">
+		
+		</div>
+
 		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 		
 		<script>
 
-		$(function(){
+$(function(){
 			
 			// 수술 환자 목록 & 수술 환자 상세 목록 불러와라 
 			loadList();
@@ -52,7 +64,7 @@
 			// 수술 환자 목록 출력 
 			function showList(){
 				$.each(operationList, function(index, value){
-					var list = $("<table>").text(value.patientNo + "/" + value.patientName+"/"+value.diagnosisTitle);
+					var list = $("<span>").text(value.patientNo + "/" + value.patientName+"/"+value.diagnosisTitle);
 					$(".operation-list").append(list);
 				});
 			};
@@ -61,7 +73,7 @@
  			let operationDetail=[];
 			function loadDetail(){
 				$.ajax({
-					url:"${pageContext.request.contextPath}/rest/operationlist", //patientNo 를 인식 못하는데 무슨 문제 ㅡㅡ;;
+					url:"${pageContext.request.contextPath}/rest/operationlist"+patientNo, //patientNo 를 인식 못하는데 무슨 문제 ㅡㅡ;; 이 번호가 들어갈 자리가 있어야 한다는데 무슨...?
 					method:"get",
 					dataType:"json",
 					success: function(resp){
@@ -70,7 +82,6 @@
 					}
 				});
 			};
-
 			
 			// 수술 환자 목록을 클릭했을 때 
 			$(document).on("click", ".operation-list", function(){
@@ -89,25 +100,13 @@
 			//수술 환자 상세 목록 출력
 			function showDetail(){
 				$.each(operationDetail, function(index, value){
-					var patientNo = $("<span>").text(value.diagnosisTitle)
+					var detail = $("<span>").text(value.diagnosisTitle)
 					.attr("data-patient", value.patientNo);
+				$(".operation-detail").append(detail);
 				});
-			}
+			};
 			
 			//마지막 
 		});
-   
-		
-		
 		</script>	
-		<body id="page-top">
-		
-		<span class="sp1">수술 환자 목록</span>
-		<div class="operation-list">
-		</div>
-		
-		<span class="sp1">수술 환자 상세</span>
-		<div class="operation-detail">
-		</div>
-
 		</body>

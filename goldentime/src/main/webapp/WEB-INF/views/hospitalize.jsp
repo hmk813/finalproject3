@@ -44,57 +44,48 @@
 			});
 		});
 		
-		
 		</script>	
-	<body id="page-top">
-	<section class="section">
-			<div class="row">
-				<div class="col-lg-6">
-				
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">입원 환자 목록</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
-                        
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>환자번호</th>
                                             <th>이름</th>
-                                            <th>수술명</th>
+                                            <th>진단명</th>
                                         </tr>
                                     </thead>
                                   
-                                    <tbody class="hospitalize-list">
-                                  <c:forEach var="hospitalizeVO" items="${hospitalizeInformationVO}" >
-									<tr>
-										<td>${hospitalizeVO.patientNo}</td>
-										<td>${hospitalizeVO.patientName}</td>
-										<td>${hospitalizeVO.operationContent}</td>
-									</tr>
-									</c:forEach>
+                                    <tbody>
+                                        <tr>
+                                            <td>${hospitalizeVO.patientNo}</td>
+                                            <td>${hospitalizeVO.patientName}</td>
+                                            <td>${hospitalizeVO.operationContent}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
-			</div>
-			</div>
-			</div>
-                                
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<span>입원 환자 목록</span>
-				</div>
 
-                                <table class="table table-bordered" id="dataTable" >
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                        	<th>입원번호</th>
+                                            <th>입원번호</th>
                                             <th>환자명</th>
                                             <th>성별</th>
                                             <th>나이</th>
                                             <th>환자 주소</th>
-                                            
                                             <th>병명</th>
                                             <th>수술일</th>
                                             <th>수술명</th>
@@ -102,28 +93,34 @@
                                             <th>퇴원일</th>
                                         </tr>
                                     </thead>
-			
-	
-                                    <tbody  class="show-hospitalize-list">
-                                      <c:forEach var="hospitalizeVO" items="${hospitalizeInformationVO}" >
-									<tr>
-										<td>${hospitalizeVO.hospitalizeNo}</td>
-										<td>${hospitalizeVO.patientName}</td>
-										<td>${hospitalizeVO.patientGender}</td>
-										<td>${hospitalizeVO.patientBirth}</td>
-										<td>${hospitalizeVO.patientAddress}</td>
-										<td>${hospitalizeVO.diagnosisTitle}</td>
-										<td>${hospitalizeVO.operationStartDay}</td>
-										<td>${hospitalizeVO.operationTitle}</td>
-										<td>${hospitalizeVO.hospitalizeStartDate}</td>
-										<td>${hospitalizeVO.hospitalizeEndDate}</td> 
-									</tr>
-									</c:forEach>
+                                  
+                                    <tbody>
+                                        <tr>
+                                            <td>${hospitalizeVO.hospitalizeNo}</td>
+                                            <td>${hospitalizeVO.patientName}</td>
+                                            <td>${hospitalizeVO.patientGender}</td>
+                                            <td>${hospitalizeVO.patientBirth}</td>
+                                            <td>${hospitalizeVO.patientAddress}</td>
+                                            <td>${hospitalizeVO.diagnosisTitle}</td>
+                                            <td>${hospitalizeVO.operationStartDay}</td>
+                                            <td>${hospitalizeVO.operationTitle}</td>
+                                            <td>${hospitalizeVO.hospitalizeStartDate}</td>
+                                            <td>${hospitalizeVO.hospitalizeEndDate}</td> 
+                                        </tr>
                                     </tbody>
                                 </table>
-				</div>
-				</div>
-		</section>
-		
-		</body>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+</body>
 	</head>

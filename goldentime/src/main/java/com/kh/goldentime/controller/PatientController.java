@@ -16,6 +16,7 @@ import com.kh.goldentime.entity.PatientDto;
 import com.kh.goldentime.entity.ReceiveDto;
 import com.kh.goldentime.repository.PatientDao;
 import com.kh.goldentime.repository.ReceiveDao;
+import com.kh.goldentime.repository.ReservationDao;
 import com.kh.goldentime.vo.PatientListSearchVO;
 import com.kh.goldentime.vo.PatientReceiveListVO;
 
@@ -29,9 +30,13 @@ public class PatientController {
 	@Autowired
 	private ReceiveDao receiveDao;
 	
+	@Autowired
+	private ReservationDao reservationDao;
+	
 	@GetMapping("/todaylist")
 	public String list(Model model) {
 		model.addAttribute("PatientReceiveListVO", patientDao.todayList());
+		model.addAttribute("PatientReservationListVO", reservationDao.todayList());
 	    return "patient/todaylist";
 	}
 	

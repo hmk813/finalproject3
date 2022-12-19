@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.goldentime.entity.ReservationDto;
+import com.kh.goldentime.vo.PatientReservationListVO;
 import com.kh.goldentime.vo.ReservationDateStaffIdVO;
 
 @Repository
@@ -45,6 +46,11 @@ public class ReservationDaoImpl implements ReservationDao{
 	@Override
 	public ReservationDto reservationDetail(int reservationNo) {
 		return sqlSession.selectOne("reservation.reservationDetail", reservationNo);
+	}
+
+	@Override
+	public List<PatientReservationListVO> todayList() {
+		return sqlSession.selectList("reservation.toDayList");
 	}
 
 }

@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class PatientReservationListVO {
 	private int patientNo;
 	private String patientName, patientGender, patientBlood;
-	private String reservationStaffId, reservationTime;
+	private String reservationTime;
+	private Date patientBirth;
 	private String reservationDate;
 }

@@ -20,6 +20,35 @@
 	<body>
 		<div class="container-1200">
       <div class="container-fluid">  
+      	<div>
+      		<h1>금일 예약 목록</h1>
+      	</div>
+      		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      			<thead>
+               <tr>
+                  <th>차트 번호</th>
+                  <th>환자명</th>
+                  <th>성별</th>
+                  <th>혈액형</th>                  
+                  <th>생년월일</th>
+                  <th>예약일</th>
+                  <th>예약시간</th>
+               </tr>
+            </thead>
+            <tbody>
+            	<c:forEach var="PatientReservationListVO"  items="${PatientReservationListVO}" >
+               <tr>
+                  <td>${PatientReservationListVO.patientNo}</td>
+                  <td>${PatientReservationListVO.patientName}</td>
+                  <td>${PatientReservationListVO.patientGender}</td>
+                  <td>${PatientReservationListVO.patientBlood}</td>
+                  <td>${PatientReservationListVO.patientBirth}</td>
+                  <td>${PatientReservationListVO.reservationDate}</td>
+                  <td>${PatientReservationListVO.reservationTime}</td>
+               </tr>
+               </c:forEach>
+            </tbody>
+      		</table>
          <div>
          	<h1>금일 접수 목록</h1>
      	 </div>

@@ -218,8 +218,9 @@ $(function(){
         <div class="att-box col text-center">
         	<div>근태관리</div>
         	<div>출근시간 : <fmt:formatDate value="${now}" pattern="a HH:mm:ss" var="now" />
-									<c:out value="${now}" /></div> 
-        	<div>퇴근시간 : </div>
+									<c:out value="${now}" />
+									${startEnd.startTime}</div> 
+        	<div>퇴근시간 :${startEnd.endTime}</div>
         	
         	<!-- 질문할것 현재씨한테 -->
         	

@@ -1,11 +1,8 @@
 package com.kh.goldentime.controller;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.kh.goldentime.constant.SessionConstant;
 import com.kh.goldentime.entity.AttachmentDto;
 import com.kh.goldentime.entity.StaffDto;
@@ -31,11 +27,9 @@ import com.kh.goldentime.repository.AttendanceDao;
 import com.kh.goldentime.repository.StaffDao;
 import com.kh.goldentime.repository.VacationDao;
 import com.kh.goldentime.vo.StaffSearchVO;
-
 @Controller
 @RequestMapping("/staff")
 public class StaffController {
-
 	@Autowired
 	private PasswordEncoder encoder;
 	
@@ -52,14 +46,12 @@ public class StaffController {
 	public String test() {
 		return "staff/test";
 	}
-
 	//첨부파일 의존성
 	@Autowired
 	private AttachmentDao attachmentDao;
 	
 	//첨부파일 업로드 다운로드 경로
 	private final File directory = new File("D:/upload/final/staff");
-
 	
 	@GetMapping("/join")
 	public String join() {
@@ -91,7 +83,6 @@ public class StaffController {
 			
 			//직원 첨부파일 연결테이블 정보 저장
 			attachmentDao.insertStaffImg(staffDto.getStaffId(), attachmentNo);
-
 		}
 		session.setAttribute("loginId", staffDto.getStaffId());
 		
@@ -110,7 +101,7 @@ public class StaffController {
 	model.addAttribute("list",list);
 	return "staff/list";
 	}
-
+	
 //	//로그인 로그아웃 제껄로 빼겠습니다 말씀드리고 바꾸겠습니다
 //	@GetMapping("/login")
 //	public String login() {
@@ -173,8 +164,7 @@ public class StaffController {
 //		return "staff/mypage";
 //	}
 
-	
-// 비밀번호 변경도 제꺼니까 이동하도록 하겠습니다	
+//비밀번호 변경도 제꺼니까 이동하도록 하겠습니다	
 //	//비밀번호 변경
 //	@GetMapping("/password")
 //	public String password() {
@@ -238,7 +228,6 @@ public class StaffController {
 		}
 	}
 			
-
 @GetMapping("/download")
 @ResponseBody
 public ResponseEntity<ByteArrayResource> download(

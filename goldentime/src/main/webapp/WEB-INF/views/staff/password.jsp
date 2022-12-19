@@ -6,9 +6,9 @@
 	<jsp:param value="비밀번호 변경" name="title"/>
 </jsp:include>
 
-	<h1>비밀번호 변경</h1>
+	<h2 align="center">비밀번호 변경</h2>
 
-	<form action="password" method="post">
+	<form action="password" method="post" align="center">
 		
 		<input type="password" name ="beforePw" placeholder="기존 비밀번호">
 		<br><br> 

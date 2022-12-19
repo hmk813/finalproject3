@@ -1,7 +1,5 @@
 package com.kh.goldentime.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +14,6 @@ import com.kh.goldentime.entity.PatientDto;
 import com.kh.goldentime.entity.ReceiveDto;
 import com.kh.goldentime.repository.PatientDao;
 import com.kh.goldentime.repository.ReceiveDao;
-import com.kh.goldentime.vo.PatientListSearchVO;
-import com.kh.goldentime.vo.PatientReceiveListVO;
 
 @Controller
 @RequestMapping("/patient")
@@ -81,5 +77,20 @@ public class PatientController {
 		receiveDao.insert(receiveDto);
 		return "redirect:todaylist";
 	}
+	
+	@PostMapping("/toss")
+	@ResponseBody
+	public String toss(@RequestParam int patientseq) {
+		int seqNo = patientDao.patientseq();
+		patientDto.setPa
+		return "redirect:historylist";
+	}
+	
+	//원무과에서 볼 수 있는 환자 기록 
+		@GetMapping("/historylist")
+		public String historylist(Model model) {
+			model.addAttribute("PatientReceiveListVO", patientDao.historyList());
+		    return "patient/historylist";
+		}
 
 }

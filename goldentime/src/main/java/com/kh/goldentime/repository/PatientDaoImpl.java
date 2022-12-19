@@ -55,21 +55,28 @@ public class PatientDaoImpl implements PatientDao{
 	}
 	
 	//외과 금일 환자 현황
-		@Override
-		public List<PatientDepartmentVO> surgeonList() {
-			return sqlSession.selectList("patient.list3");
-		}
+	@Override
+	public List<PatientDepartmentVO> surgeonList() {
+		return sqlSession.selectList("patient.list3");
+	}
 		
-		//정형외과 금일 환자 현황
-		@Override
-		public List<PatientDepartmentVO> orthopaedicList() {
-			return sqlSession.selectList("patient.list4");
-		}
+	//정형외과 금일 환자 현황
+	@Override
+	public List<PatientDepartmentVO> orthopaedicList() {
+		return sqlSession.selectList("patient.list4");
+	}
 	
-		//영상의학과 금일 환자 현황
-		@Override
-		public List<PatientDepartmentVO> radiologyList() {
-			return sqlSession.selectList("patient.list5");
-		}
+	//영상의학과 금일 환자 현황
+	@Override
+	public List<PatientDepartmentVO> radiologyList() {
+		return sqlSession.selectList("patient.list5");
+	}
+		
+	//원무과에서 볼 수 있는 환자 전체 기록
+	@Override
+	public List<PatientReceiveListVO> tossList() {
+		return sqlSession.selectList("patient.list");
+	}
+		
 	
 }

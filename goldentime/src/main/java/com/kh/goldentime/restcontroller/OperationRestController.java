@@ -27,14 +27,19 @@ public class OperationRestController {
 		return operationDao.selectList();
 	}
 	
-//	@GetMapping("/opertaionlist/{operationNo}")
-//	public OperationInformationVO selectOne(@PathVariable int operationNo) {
-//		return operationDao.selectOne(operationNo);
+//	@GetMapping("/operationlist/{patientNo}")
+//	public List<OperationInformationVO>  selectList(@PathVariable int patientNo){
+//		return operationDao.selectList();
 //	}
 	
-	@GetMapping("/operationlist/{patientNo}")
-	public  OperationInformationVO selectOne(@PathVariable int patientNo) {
+	@GetMapping("/opertaionlist/{patientNo}")
+	public OperationInformationVO selectOne(@PathVariable int patientNo) {
 		return operationDao.selectOne(patientNo);
 	}
+	
+//	@GetMapping("/operationlist/{patientNo}")
+//	public  OperationInformationVO selectOne(@PathVariable int patientNo) {
+//		return operationDao.selectOne(patientNo);
+//	}
 	
 }

@@ -18,110 +18,96 @@
   		  <link href="<c:url value="../css/sb-admin-2.min.css" />" rel="stylesheet">
   	  	  <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 		<style>
-		
+		.sp1{
+		color:#3f3f3f;
+		font-size:24px;
+		font-weigth:700;
+		}
 		</style>
-	  	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+	  
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+		
 		<script>
 
 		$(function(){
-			// 수술 환자 목록 상세 숨김 
-			$(".show-operation-list").hide();
 			
-			//수술 환자 클릭시 
-			$(".operation-list").click(function(){
+			// 수술 환자 목록 & 수술 환자 상세 목록 불러와라 
+			loadList();
+			loadDetail();
+			
+			let operationList = [];
+			// 수술 환자 목록 조회 
+			function loadList(){
 				$.ajax({
-					url:"http://localhost:8888/rest/operationlist",
+					url:"${pageContext.request.contextPath}/rest/operationlist",
 					method:"get",
-					success:function(resp){
-					/* 	$(".show-operation-list").toggle(resp); */
-						
-					// 수술 환자 클릭시 그 수술 환자의 상세 목록이 나오게 하기 
-					if(resp)
-						$.each(resp, function(index, item){
-							//수술환자 번호 = 수술환자 번호가 똑같은 경우에 그 환자만 보여준다. 
-							if(item.operation == item.operation){  // 하 이거 아닌거 같은데...
-							$(".show-operation-list").show();
-							}
-						});
+					dataType:"json",
+					success: function(resp){
+						operationList = resp;// resp 별칭으로 붙여준다. 
+						showList();// 수술 환자 목록을 보여줌 
+					}
+				});
+			};
+			
+			// 수술 환자 목록 출력 
+			function showList(){
+				$.each(operationList, function(index, value){
+					var list = $("<table>").text(value.patientNo + "/" + value.patientName+"/"+value.diagnosisTitle);
+					$(".operation-list").append(list);
+				});
+			};
+			
+			//수술 환자 상세 목록 조회 
+ 			let operationDetail=[];
+			function loadDetail(){
+				$.ajax({
+					url:"${pageContext.request.contextPath}/rest/operationlist", //patientNo 를 인식 못하는데 무슨 문제 ㅡㅡ;;
+					method:"get",
+					dataType:"json",
+					success: function(resp){
+						operationDetail = resp; //resp 별칭을 붙여준다. 
+						showDetail(); // 수술 환자 상세 목록을 보여준다.
+					}
+				});
+			};
+
+			
+			// 수술 환자 목록을 클릭했을 때 
+			$(document).on("click", ".operation-list", function(){
+				$(".operation-detail").empty();
+				$.ajax({
+					url:"${pageContext.request.contextPath}/rest/operationlist"+patientNo, //patientNo 를 인식 못하는데 무슨 문제 ㅡㅡ;;
+					method:"get",
+					dataType:"json",
+					success: function(resp){
+						operationDetail = resp;
+						showDetail();
 					}
 				});
 			});
+			
+			//수술 환자 상세 목록 출력
+			function showDetail(){
+				$.each(operationDetail, function(index, value){
+					var patientNo = $("<span>").text(value.diagnosisTitle)
+					.attr("data-patient", value.patientNo);
+				});
+			}
+			
+			//마지막 
 		});
+   
 		
 		
 		</script>	
-	<body id="page-top">
-		<section class="section">
-			<div class="row">
-				<div class="col-lg-6">
-	
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">수술 환자 목록</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>환자번호</th>
-                                            <th>이름</th>
-                                            <th>진단명</th>
-                                        </tr>
-                                    </thead>
-                                  
-                                    <tbody class="operation-list">
-                                  <c:forEach var="opertaionVO" items="${operationInformationVO}" >
-									<tr>
-										<td>${opertaionVO.patientNo}</td>
-										<td>${opertaionVO.patientName}</td>
-										<td>${opertaionVO.diagnosisTitle}</td>
-									</tr>
-									</c:forEach>
-                                    </tbody>
-                                </table>
-                                	</div>
-			</div>
-			</div>
-			</div>
-			</div>
-
-	<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<span>수술 환자 목록</span>
-				</div>
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>환자번호</th>
-                                            <th>환자명</th>
-                                            <th>나이</th>
-                                            <th>성별</th>
-                                            <th>혈액형</th>
-                                            <th>수술번호</th>
-                                            <th>수술방</th>
-                                            <th>수술시작시간</th>
-                                            <th>수술종료시간</th>
-                                        </tr>
-                                    </thead>
-                                  
-                                    <tbody  class="show-operation-list">
-                                      <c:forEach var="opertaionListVO" items="${operationInformationVO}" >
-									<tr>
-										<td>${opertaionListVO.patientNo}</td>
-										<td>${opertaionListVO.patientName}</td>
-										<td>${opertaionListVO.patientBirth}</td>
-										<td>${opertaionListVO.patientGender}</td>
-										<td>${opertaionListVO.patientBlood}</td>
-										<td>${opertaionListVO.operationNo}</td>
-										<td>${opertaionListVO.operationRoomNo}</td>
-										<td>${opertaionListVO.operationStartDay}</td>
-										<td>${opertaionListVO.operationEnd}</td>
-									</tr>
-									</c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-		</section>
+		<body id="page-top">
 		
+		<span class="sp1">수술 환자 목록</span>
+		<div class="operation-list">
+		</div>
+		
+		<span class="sp1">수술 환자 상세</span>
+		<div class="operation-detail">
+		</div>
+
 		</body>

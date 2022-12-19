@@ -1,7 +1,5 @@
 package com.kh.goldentime.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +31,7 @@ public class PatientController {
 	@Autowired
 	private ReservationDao reservationDao;
 	
+	//원무과에서 볼 수 있는 금일 접수 현황
 	@GetMapping("/todaylist")
 	public String list(Model model) {
 		model.addAttribute("PatientReceiveListVO", patientDao.todayList());
@@ -40,6 +39,34 @@ public class PatientController {
 	    return "patient/todaylist";
 	}
 	
+	//내과에서 볼 수 있는 금일 내과 접수 현황
+	@GetMapping("/internal")
+	public String internal(Model model) {
+		model.addAttribute("PatientDepartmentVO", patientDao.internalList());
+	    return "patient/internal";
+	}
+	
+	//외과에서 볼 수 있는 금일 외과 접수 현황
+		@GetMapping("/surgeon")
+		public String surgeon(Model model) {
+			model.addAttribute("PatientDepartmentVO", patientDao.surgeonList());
+		    return "patient/surgeon";
+		}
+	
+		//정형외과에서 볼 수 있는 금일 정형외과 접수 현황 
+		@GetMapping("/orthopaedic")
+		public String orthopaedic(Model model) {
+			model.addAttribute("PatientDepartmentVO", patientDao.orthopaedicList());
+			return "patient/orthopaedic";
+		}
+		
+		//영상의학과에서 볼 수 있는 금일 영상의학과 접수 현황 
+		@GetMapping("/radiology")
+		public String radiology(Model model) {
+			model.addAttribute("PatientDepartmentVO", patientDao.radiologyList());
+			return "patient/radiology";
+		}
+		
 	@GetMapping("/insert")
 	public String insert() {
 		return "patient/insert";
@@ -57,5 +84,12 @@ public class PatientController {
 		receiveDao.insert(receiveDto);
 		return "redirect:todaylist";
 	}
+	
+	//원무과에서 볼 수 있는 환자 기록 
+		@GetMapping("/historylist")
+		public String historylist(Model model) {
+			model.addAttribute("PatientReceiveListVO", patientDao.historyList());
+		    return "patient/historylist";
+		}
 
 }

@@ -11,12 +11,9 @@ import com.kh.goldentime.entity.VacationDto;
 @Repository
 public interface CalendarDao {
 	
-	//예약목록
-	List<ReservationDto> reservationList();
+	//List<ReservationDto> calendarList(String reservationStaffId);
 
-	//출퇴근목록
-	List<AttendanceDto> attendanceList();
+	List<ReservationDto> calendarList(String reservationDate);
 
-	//연차목록
-	List<VacationDto> vacationList();
+	List<ReservationDto> list();
 }

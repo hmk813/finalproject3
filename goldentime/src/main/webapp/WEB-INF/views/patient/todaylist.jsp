@@ -26,7 +26,6 @@
       		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
       			<thead>
                <tr>
-                  <th>차트 번호</th>
                   <th>환자명</th>
                   <th>성별</th>
                   <th>혈액형</th>                  
@@ -38,7 +37,6 @@
             <tbody>
             	<c:forEach var="PatientReservationListVO"  items="${PatientReservationListVO}" >
                <tr>
-                  <td>${PatientReservationListVO.patientNo}</td>
                   <td>${PatientReservationListVO.patientName}</td>
                   <td>${PatientReservationListVO.patientGender}</td>
                   <td>${PatientReservationListVO.patientBlood}</td>
@@ -56,7 +54,6 @@
          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                <tr>
-                  <th>차트 번호</th>
                   <th>환자명</th>
                   <th>성별</th>
                   <th>혈액형</th>                  
@@ -67,7 +64,6 @@
             <tbody>
             <c:forEach var="PatientReceiveListVO"  items="${PatientReceiveListVO}" >
                <tr>
-                  <td>${PatientReceiveListVO.patientNo}</td>
                   <td>${PatientReceiveListVO.patientName}</td>
                   <td>${PatientReceiveListVO.patientGender}</td>
                   <td>${PatientReceiveListVO.patientBlood}</td>

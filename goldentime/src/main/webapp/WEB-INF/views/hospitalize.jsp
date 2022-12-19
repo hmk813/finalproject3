@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    <html>
+<jsp:include page="/WEB-INF/views/template/header.jsp">
+   <jsp:param value="수술환자목록" name="title" />
+</jsp:include>
 	<head>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 	    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +13,8 @@
 	    
 	    <!-- Bootstrap CSS -->
   	  	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  	  	
+		<link href="<c:url value="../css/sb-admin-2.min.css" />" rel="stylesheet">
+  	  	 <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 		<style>
 		
 		</style>
@@ -44,20 +47,18 @@
 		
 		</script>	
 	<body id="page-top">
-		        <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
-
-                    <!-- DataTales Example -->
+	<section class="section">
+			<div class="row">
+				<div class="col-lg-6">
+				
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">입원 환자 목록</h6>
                         </div>
+                        
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable">
                                     <thead>
                                         <tr>
                                             <th>환자번호</th>
@@ -76,8 +77,16 @@
 									</c:forEach>
                                     </tbody>
                                 </table>
+			</div>
+			</div>
+			</div>
+                                
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<span>입원 환자 목록</span>
+				</div>
 
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable" >
                                     <thead>
                                         <tr>
                                         	<th>입원번호</th>
@@ -93,7 +102,8 @@
                                             <th>퇴원일</th>
                                         </tr>
                                     </thead>
-                                  
+			
+	
                                     <tbody  class="show-hospitalize-list">
                                       <c:forEach var="hospitalizeVO" items="${hospitalizeInformationVO}" >
 									<tr>
@@ -111,10 +121,9 @@
 									</c:forEach>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                    </div>
-
+				</div>
+				</div>
+		</section>
+		
 		</body>
 	</head>
-	</html>

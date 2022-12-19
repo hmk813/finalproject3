@@ -1,50 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="patient">
+	<select id="patientseq" resultType="int">
+		select patient_seq.nextval from dual
+	</select>
+	
+	<insert id="insert" parameterType="PatientDto">
+		insert into patient(
+			patient_no, patient_name, patient_birth, patient_blood,
+			patient_gender, patient_address,
+			patient_phone
+		)
+		values(#{patientNo}, #{patientName}, 
+		#{patientBirth}, #{patientBlood}, 
+		#{patientGender}, #{patientAddress}, 
+		#{patientPhone}) 
+	</insert>
+	
+	<update id="edit" parameterType="PatientDto">
+		update patient
+			set patient_name = #{patientName}, patient_birth = #{patientBirth},
+			patient_blood=#{patientBlood}, patient_gender = #{patientGender},
+			patient_address=#{patientAddress}, patient_phone=#{patientPhone}
+			where patient_no = #{patientNo}
+	</update>
 
-   <select id="patientseq" resultType="int">
-      select patient_seq.nextval from dual
-   </select>
-   
-   <insert id="insert" parameterType="PatientDto">
-      insert into patient(
-         patient_no, patient_name, patient_birth, patient_blood,
-         patient_gender, patient_address,
-         patient_phone
-      )
-      values(#{patientNo}, #{patientName}, 
-      #{patientBirth}, #{patientBlood}, 
-      #{patientGender}, #{patientAddress}, 
-      #{patientPhone}) 
-   </insert>
-   
-   <update id="edit" parameterType="PatientDto">
-      update patient
-         set patient_name = #{patientName}, patient_birth = #{patientBirth},
-         patient_blood=#{patientBlood}, patient_gender = #{patientGender},
-         patient_address=#{patientAddress}, patient_phone=#{patientPhone}
-         where patient_no = #{patientNo}
-   </update>
+	<select id="list" resultType="PatientReceiveListVO">
+		select 
+		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+		R.receive_date
+		from 
+		patient P inner join receive R on P.patient_no = R.patient_no 
+		where R.receive_date = to_char(sysdate, 'yyyy-MM-dd')
+	</select>
+	
+	<select id="patientList" resultType="PatientDto">
+		select * from patient
+	</select>
 
-   <select id="list" resultType="PatientReceiveListVO">
-      select 
-      P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
-      R.receive_date
-      from 
-      patient P inner join receive R on P.patient_no = R.patient_no 
-      where R.receive_date = to_char(sysdate, 'yyyy-MM-dd')
-   </select>
-
-   <select id="historylist" resultType="PatientDto">
-      select 
-      P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
-      R.receive_date
-      from 
-      patient P inner join receive R on P.patient_no = R.patient_no 
-      where R.receive_date = to_char(sysdate-1, 'yyyy-MM-dd')
-   </select>
 
 </mapper>

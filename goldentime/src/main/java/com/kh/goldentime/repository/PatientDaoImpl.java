@@ -40,6 +40,11 @@ public class PatientDaoImpl implements PatientDao{
 	public int patientseq() {
 		return sqlSession.selectOne("patient.patientseq");
 	}
+
+	@Override
+	public List<PatientDto> patientList() {
+		return sqlSession.selectList("patient.patientList");
+	}
 	
 	
 }

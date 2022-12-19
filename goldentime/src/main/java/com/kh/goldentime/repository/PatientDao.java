@@ -33,7 +33,9 @@ public interface PatientDao {
 	List<PatientDepartmentVO> radiologyList();
 	
 	//원무과 환자 기록 조회
-	List<PatientReceiveListVO> tossList();
+	List<PatientReceiveListVO> historyList();
+	
+	
 	
 	//환자 조회 (예약과 관련, 건들지 않기)
 	List<PatientDto> patientList();

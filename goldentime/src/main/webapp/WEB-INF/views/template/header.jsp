@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="login" value="${loginId != null}"></c:set>
-<c:set var="admin" value="${mg == '관리자'}"></c:set>
+<%-- <c:set var="admin" value="${mg == '관리자'}"></c:set>  관리자 헤더는 관리자용 따로 만들어서 쓰세요. --%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -10,7 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SB Admin 2 - Tables</title>
+    <title>드림 병원</title>
+    
+
     <!-- Custom fonts for this template -->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -29,7 +32,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">GOLDEN TIME<sup></sup></div>
+                <div class="sidebar-brand-text mx-3">드림 병원<sup></sup></div>
             </a>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -68,7 +71,7 @@
                     <span>물품신청</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="${pageContext.request.contextPath}/staff/mypage">
                     <i class="fas fa-fw fa-table"></i>
                     <span>마이페이지</span></a>
             </li>
@@ -133,8 +136,7 @@
                                 </a>
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="staff/login" >
-                                <a class="dropdown-item" href="/" >
+                                <a class="dropdown-item" href="/staff/login" >
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

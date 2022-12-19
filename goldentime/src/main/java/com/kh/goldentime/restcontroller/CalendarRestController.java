@@ -1,7 +1,5 @@
 package com.kh.goldentime.restcontroller;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,20 +14,14 @@ import com.kh.goldentime.repository.CalendarDao;
 @RequestMapping("/rest")
 @RestController
 public class CalendarRestController {
-
 	@Autowired
 	private CalendarDao calendarDao;
-	
-//	@GetMapping("/calendar/{reservationStaffId}")
-//	public List<ReservationDto> calendarList(@PathVariable String reservationStaffId){
-//		return calendarDao.calendarList(reservationStaffId);
-//	}
 	
 	@GetMapping("/calendar")
 	public List<ReservationDto> list(){
 		return calendarDao.list();
 	}
-	
+
 	@GetMapping("/calendar/{reservationDate}")
 	public List<ReservationDto> calendarList(@PathVariable String reservationDate){
 		return calendarDao.calendarList(reservationDate);

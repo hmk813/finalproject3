@@ -3,10 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
-
  <!--fullcalendar css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
-
     <!-- fullcalendar CDN -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
@@ -15,11 +13,9 @@
     <!-- moment CDN (format사용하기 위해)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script type="text/javascript"></script>
-
-<jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
+<jsp:include page="/WEB-INF/views/template/header.jsp">
    <jsp:param value="일정관리" name="title"/>
 </jsp:include>
-
 <style>
 	
    a{
@@ -60,7 +56,7 @@
       font-size:20px;
    }
    .schedule-table{
-      background-color:##f1c40f;
+      background-color:#f1c40f;
       color:#f39c12;
    }
    table>tbody>tr>td{
@@ -79,16 +75,13 @@
 	margin: 0 auto;
 	}
 	
-
 </style>
-
 <script>
    $(function(){      
       //회원모드로 전환 이벤트
       $(".mode-change").click(function(){
          location.href="${pageContext.request.contextPath}/";
       });
-
       //풀캘린더
       var calendarEl = $('#calendar')[0];
          // full-calendar 생성하기
@@ -159,7 +152,7 @@
                  method:"get",
                  data:reservationStaffId,
                  success:function(resp){
-                    console.log(resp);	
+                    //console.log(resp);	
                    if(resp.length!=0){
                        for(var i=0; i<resp.length; i++){
                     	   //console.log(resp[i]);		 	   
@@ -178,9 +171,7 @@
          calendar.render();
    });
 </script>
-
 <body>
-
    <!-- Modal -->
    <div class="modal fade" id="change-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog">
@@ -193,7 +184,6 @@
        </div>
      </div>
    </div>
-
    <div class="container-fluid">
    
         <div class="row mt-80">
@@ -250,7 +240,6 @@
         </div>
         
     </div>
-
   <!-- 비동기화 출력을 위해 필요한 데이터 -->
    <input type="hidden" name="reservationStaffId" value="${staffDto.staffId}">
    

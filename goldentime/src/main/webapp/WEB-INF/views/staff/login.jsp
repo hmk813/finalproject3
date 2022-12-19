@@ -8,7 +8,6 @@
 	  background:radial-gradient(ellipse at center, rgba(255,254,234,1) 0%, rgba(255,254,234,1) 35%, #B7E8EB 100%);
 	  overflow: hidden;
 	}
-
 	.ocean { 
 	  height: 5%;
 	  width:100%;
@@ -27,13 +26,11 @@
 	  animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
 	  transform: translate3d(0, 0, 0);
 	}
-
 	.wave:nth-of-type(2) {
 	  top: -175px;
 	  animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
 	  opacity: 1;
 	}
-
 	@keyframes wave {
 	  0% {
 	    margin-left: 0;
@@ -42,7 +39,6 @@
     margin-left: -1600px;
   }
 }
-
 	@keyframes swell {
 	  0%, 100% {
 	    transform: translate3d(0,-25px,0);
@@ -111,41 +107,44 @@
 	</style>
 
 	<body class="bg-primary">
-	
+
 		<div class="div1">
 			<img class="hospital-logo" src="/image/hospital.png"><p>드림 병원</p>
 		</div>
-		
+
+		<div class="card-body">
 		<div class="div2">
-		
+
 		<form class="login-form" action="login" method="post" autocomplete="off">
-			<div class="div3">
+			<div class="row center">
+		
 				<input class="id-input" type="text" name="staffId"  id="staffId" required placeholder="아이디" autocomplete="off"><br>
 			</div>
-			
+
 			<div class="div3">
 				<input class="pw-input" type="password" name="staffPw" required placeholder="비밀번호" autocomplete="off">
 			</div>
-			
+
 			<c:if test="${param.error != null}">
-			
+
 				<div class="row mt-4">
 					<span style="color:red;">아이디 / 비밀번호를 잘못 입력했습니다.</span>
 				</div>
 			</c:if>
-			
+
 			<div class="div4">
 				<button class="login-btn" type="submit">로그인</button>
 			</div>
 		</form>
 		</div>
-		
+
+
 		<!--웨이브 애니메이션  -->
 		<div class="ocean">
         <div class="wave"></div>
         <div class="wave"></div>
       </div>
-      
+
 
 	</body>
 

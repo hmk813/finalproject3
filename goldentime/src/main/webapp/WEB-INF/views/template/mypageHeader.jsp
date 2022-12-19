@@ -3,16 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="login" value="${loginId != null}"></c:set>
 <c:set var="admin" value="${mg == '관리자'}"></c:set>
-
 <html>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
@@ -21,16 +18,15 @@
 
     <!-- Custom styles for this template -->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+
     <!-- Custom styles for this page -->
     <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -41,14 +37,10 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">GOLDEN TIME<sup></sup></div>
             </a>
-
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -66,10 +58,8 @@
                     </div>
                 </div>
             </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
-
        
             <!-- Nav Item - Charts -->
             <li class="nav-item">
@@ -84,52 +74,46 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>물품신청</span></a>
             </li>
-
             <li class="nav-item active">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-table"></i>
+                    <span>메세지</span></a>
                     <span>마이페이지</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
         </ul>
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
-
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
                     <!-- Sidebar Toggle (Topbar) -->
                     <form class="form-inline">
                         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
                     </form>
-
                     <!-- Topbar Search -->
                         <div class="input-group">
                             <ul class="navbar-nav me-auto">
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/attendance/list?=${attendanceDto.attendanceStaffId}"><span class="link-sp">근태관리</span></a>
+                                    <a class="nav-link" href="/attendance/list?attendanceStaffId=${attendanceDto.attendanceStaffId}"><span class="link-sp">근태관리</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/vacation/vacation?=${vacationDto.vacationStaffId}"><span class="link-sp">연차관리</span></a>
-                                </li>
+                                    <a class="nav-link" href="/vacation/vacation?vacationStaffId=${staffDto.staffId}"><span class="#">연차관리</span></a>
+                                </li>	
                                 </ul>
                         </div>
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -148,7 +132,7 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                               
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/" >
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -156,14 +140,9 @@
                                 </a>
                             </div>
                         </li>
-
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
-
-
-   
 
  <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -176,9 +155,13 @@
     <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
+    <script src="../js/demo/datatables-demo.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
 </body>
 

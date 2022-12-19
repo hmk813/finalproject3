@@ -110,99 +110,103 @@ public class StaffController {
 	model.addAttribute("list",list);
 	return "staff/list";
 	}
-	
-	@GetMapping("/login")
-	public String login() {
-		return "staff/login";
-	}
-	
-	@PostMapping("/login")
-	public String login(@ModelAttribute StaffDto inputDto,
-			HttpSession session) {
-		StaffDto findDto = staffDao.selectOne(inputDto.getStaffId());
-		if(findDto == null) {
-			return "redirect:login?error";
-		}
-		
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		boolean passwordMatch = encoder.matches(inputDto.getStaffPw(), findDto.getStaffPw());
-	//			inputDto.getStaffPw().equals(findDto.getStaffPw()); 
-		if(passwordMatch) {
-			session.setAttribute(SessionConstant.ID, inputDto.getStaffId());
-			session.setAttribute(SessionConstant.GRADE, findDto.getStaffGrade());
-			
-			return "redirect:/staff/mypage";
-		}
-		else {
-			return "redirect:login?error";
-		}
-	}
-		
-	//로그아웃
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute(SessionConstant.ID);
-		session.removeAttribute(SessionConstant.GRADE);
-		return "redirect:staff/login";
-	}
-	
-	//마이페이지 -현재 로그인한 회원의 정보를 화면에 출력한다
-	@GetMapping("/mypage")
-	public String mypage(HttpSession session, Model model) {
-		
-		//세션에 들어있는 아이디를 꺼낸다
-		String loginId = (String) session.getAttribute(SessionConstant.ID);
-		
-		//아이디를 이용하여 직원 정보를 불러온다
-		StaffDto staffDto = staffDao.selectOne(loginId);
-		
-		//불러온 회원 정보를 모델에 첨부한다
-		model.addAttribute("staffDto",staffDto);
-		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
-		model.addAttribute("vacationDto", vacationDao.list(staffDto.getStaffId()));
-		
 
-		int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
-		model.addAttribute("attachmentNo", attachmentNo);
-		System.out.println(attachmentNo);
-		
-		return "/staff/mypage";
-	
-	}
+//	//로그인 로그아웃 제껄로 빼겠습니다 말씀드리고 바꾸겠습니다
+//	@GetMapping("/login")
+//	public String login() {
+//		return "staff/login";
+//	}
+//	
+//	@PostMapping("/login")
+//	public String login(@ModelAttribute StaffDto inputDto,
+//			HttpSession session) {
+//		StaffDto findDto = staffDao.selectOne(inputDto.getStaffId());
+//		if(findDto == null) {
+//			return "redirect:login?error";
+//		}
+//		
+//		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//		boolean passwordMatch = encoder.matches(inputDto.getStaffPw(), findDto.getStaffPw());
+//	//			inputDto.getStaffPw().equals(findDto.getStaffPw()); 
+//		if(passwordMatch) {
+//			session.setAttribute(SessionConstant.ID, inputDto.getStaffId());
+//			session.setAttribute(SessionConstant.GRADE, findDto.getStaffGrade());
+//			
+//			return "redirect:staff/mypage";
+//		}
+//		else {
+//			return "redirect:login?error";
+//		}
+//	}
+//	
+//	//로그아웃도 제가 가져가겠습니다 문규
+//	//로그아웃
+//	@GetMapping("/logout")
+//	public String logout(HttpSession session) {
+//		session.removeAttribute(SessionConstant.ID);
+//		session.removeAttribute(SessionConstant.GRADE);
+//		return "redirect:staff/login";
+//	}
+//	
+//	
+//	//마이페이지 따로 밖으로 빼겠습니다. 잠시 주석처리합니다
+//	//마이페이지 -현재 로그인한 회원의 정보를 화면에 출력한다 
+//	@GetMapping("/mypage")
+//	public String mypage(HttpSession session, Model model) {
+//		
+//		//세션에 들어있는 아이디를 꺼낸다
+//		String loginId = (String) session.getAttribute(SessionConstant.ID);
+//		
+//		//아이디를 이용하여 직원 정보를 불러온다
+//		StaffDto staffDto = staffDao.selectOne(loginId);
+//		
+//		//불러온 회원 정보를 모델에 첨부한다
+//		model.addAttribute("staffDto",staffDto);
+//		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
+//		model.addAttribute("vacationStaffVO", vacationDao.list(staffDto.getStaffId()));
+//		//-->여기 vacationStaffVO로 바꿨음 현재씨가 바꿔서 바꿔야되용
+//
+//		int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
+//		model.addAttribute("attachmentNo", attachmentNo);
+//		System.out.println(attachmentNo);
+//		
+//		return "staff/mypage";
+//	}
 
 	
-	//비밀번호 변경
-	@GetMapping("/password")
-	public String password() {
-		return "staff/password";
-	}
-	
-	@PostMapping("/password")
-	public String password(
-			HttpSession session, 
-			@RequestParam String beforePw,//사용자가 입력한 기존비밀번호
-			@RequestParam String afterPw) {//사용자가 입력한 바꿀비밀번호
-		String staffId = (String) session.getAttribute(SessionConstant.ID);
-		StaffDto staffDto = staffDao.selectOne(staffId);
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		boolean passwordMatch = encoder.matches(beforePw,staffDto.getStaffPw());
-		
-		if(passwordMatch) {
-			String newPw = encoder.encode(afterPw);
-			staffDao.changePassword(staffId, newPw);
-			return "staff/mypage";
-		}
-		else {
-			return "redirect:password?error";
-	}
-}		
-	
-	@GetMapping("/password_result")
-	public String passwordResult() {
-		return "staff/passwordResult";
-	}
-		
-	
+// 비밀번호 변경도 제꺼니까 이동하도록 하겠습니다	
+//	//비밀번호 변경
+//	@GetMapping("/password")
+//	public String password() {
+//		return "staff/password";
+//	}
+//	
+//	@PostMapping("/password")
+//	public String password(
+//			HttpSession session, 
+//			@RequestParam String beforePw,//사용자가 입력한 기존비밀번호
+//			@RequestParam String afterPw) {//사용자가 입력한 바꿀비밀번호
+//		String staffId = (String) session.getAttribute(SessionConstant.ID);
+//		StaffDto staffDto = staffDao.selectOne(staffId);
+//		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//		boolean passwordMatch = encoder.matches(beforePw,staffDto.getStaffPw());
+//		
+//		if(passwordMatch) {
+//			String newPw = encoder.encode(afterPw);
+//			staffDao.changePassword(staffId, newPw);
+//			return "staff/mypage";
+//		}
+//		else {
+//			return "redirect:password?error";
+//	}
+//}		
+//	
+//	@GetMapping("/password_result")
+//	public String passwordResult() {
+//		return "staff/passwordResult";
+//	}
+//		
+//	
 	//개인정보 변경 기능(자기자신)
 	@GetMapping("/information")
 	public String information(HttpSession session,Model model) {

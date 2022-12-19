@@ -60,8 +60,8 @@
       font-size:20px;
    }
    .schedule-table{
-      background-color:#e67e22;
-      color:#16a085;
+      background-color:##f1c40f;
+      color:#f39c12;
    }
    table>tbody>tr>td{
       height:50px;

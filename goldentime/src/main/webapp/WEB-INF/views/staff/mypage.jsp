@@ -5,8 +5,9 @@
 <jsp:useBean id="now" class="java.util.Date" />
 
 <jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
-   <jsp:param value="일정관리" name="title"/>
+   <jsp:param value="마이페이지" name="title" />
 </jsp:include>
+
 
 <!DOCTYPE html>
 <html>
@@ -14,32 +15,18 @@
 <meta charset="UTF-8">
 <title>골든타임 병원</title>
 
+<!--fullcalendar css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 
-<!-- Bootstrap CSS -->
-<link
-	href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'
-	rel='stylesheet'>
-<link
-	href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css'
-	rel='stylesheet'>
-
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-	crossorigin="anonymous"></script>
-
-<!-- moment CDN (format사용하기 위해)-->
+    <!-- fullcalendar CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <!-- fullcalendar 언어 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
+    <!-- moment CDN (format사용하기 위해)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script type="text/javascript"></script>
-
-<link
-	href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css'
-	rel='stylesheet' />
-<script
-	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
-<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-
-
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <style>
  html, body{
             margin:0;
@@ -110,17 +97,15 @@
 	
 	
 	}
-
-
 </style>
 </head>
-
 <script>
-$(function(){
-	    $(".mode-change").click(function(){
-        location.href="${pageContext.request.contextPath}/";
-});
-	    
+$(function(){      
+      $(".mode-change").click(function(){
+         location.href="${pageContext.request.contextPath}/";
+      });
+     
+      
       //풀캘린더
       var calendarEl = $('#calendar')[0];
          // full-calendar 생성하기
@@ -225,7 +210,7 @@ $(function(){
                 
           	<div>이름 : ${staffDto.staffName}</div>
             <div>진료과 : ${staffDto.staffMedicalDepartment}</div>
-             <div><a href="staff/password">비밀번호 변경</a></div>
+             <div><a href="/staff/password">비밀번호 변경</a></div>
             </div>
         </div>
         
@@ -235,9 +220,11 @@ $(function(){
         	<div>출근시간 : <fmt:formatDate value="${now}" pattern="a HH:mm:ss" var="now" />
 									<c:out value="${now}" /></div> 
         	<div>퇴근시간 : </div>
+        	
         	<!-- 질문할것 현재씨한테 -->
+        	
         	<button type="button" class="btn btn-primary" onclick="location.href='${AttendanceWorkTimeVO.startTime}' ">출근</button>
-        	<button type="button" class="btn btn-secondary" onclick="location.href='${AttedanceWorkTimeVO.endTime}' ">퇴근</button>
+        	<button type="button" class="btn btn-secondary" onclick="location.href='${AttedanceWorkTimeVO.endTime}' ">퇴근</button> 
         </div>
     </div>
     
@@ -259,7 +246,7 @@ $(function(){
         <div class="row mt-80">
             <div class="col-md-6 offset-md-3 col-sm-4 offset-sm-4 mt-4">
                  <div class="text-center">
-                    <h3>일정관리</h3>
+                    <h3>마이페이지</h3>
                  </div>
             </div>
         </div>
@@ -321,3 +308,5 @@ $(function(){
 </body>
 
 </html>
+
+

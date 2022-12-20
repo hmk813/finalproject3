@@ -13,9 +13,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>골든타임 병원</title>
+<title>드림 병원</title>
 
-<!--fullcalendar css-->
+	<!--fullcalendar css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 	
     <!-- fullcalendar CDN -->
@@ -26,74 +26,124 @@
     <!-- moment CDN (format사용하기 위해)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script type="text/javascript"></script>
-      <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     
 <style>
- html, body{
-            margin:0;
-            padding:0;
-        }
-        main, header, aside, section, footer, nav, div {
-            border:1px;
-        }
-        main {
-            width: 800px;
-            margin:0 auto;
-        }
-        header {
-            padding: 20px;
-        }
-        nav {
-            
-        }
-        aside {
-            padding: 20px;
-            float:left;
-            width:25%;
-            min-height: 400px;
-        }
-        section {
-            padding: 20px;
-            float:left;
-            width:75%;
-            min-height: 400px;
-        }
-        footer {
-            padding: 20px;
-        }
-        
-		.calendar {
-		position:relative;
-		top:5%;
-		bottom:10%;
-		left:10%;
-		max-width:600px;
-		margin: 0 auto;
-	}	
-	
-	.profile-box {
-    width: 20%;
-    height: 200px;
-    background: white;
-    border-radius: 10px;
-    position: absolute;
-    left: 300px;
-    top: 150px;
-}
-	.profile-picture {
-    margin-top: 20px;
-    text-align: center;
+	/* 디자인 시작 */
+	a{
+	color:#3f3f3f;
+	}
+	.myinfo{
+	border: 1px solid transparent;
+	margin-left: 30px;
+	}
+	.p1{
+	font-size:24px;
+	font-weight: 700;
+	color: #3f3f3f;
+	margin-left: 15px;
+	}
+	.p2{
+	font-size: 16px;
+	font-weight: 700;
+	color: #3f3f3f;
+	margin-left: 30px;
+	}
+	.p3{
+	font-size: 16px;
+	font-weight: 700;
+	color: #3f3f3f;
+	margin-left: 35px;
+	}
+	.myinfo-img{
+	width:100px;
+	height:100px;
+	border-radius:50%;
+	margin-bottom: 10px;
+	}
+	.pw-btn{
+	border: 2px solid #4e73df;
+	border-radius: 0.7em;
+	background-color: #4e73df;
+	color: #FFF;
+	padding: 4px 5px 4px 5px;
+	margin-left: 4px;
+	}
+	.pw-btn:hover{
+	color:#FFF;
+	text-decoration: none;
 	}
 	
-	.att-box{ /* 근태박스 */
-	position:absolute;
-	bottom:30%;
-	left:20%;
-	border-radius:10px;
-	width:20%;
-	height:200px;
-	transform:translate(-10%,30%);
+	.attendance{
+	margin-top: 50px;
+	margin-left: 30px;
+	}
+	.p4{
+	font-size:24px;
+	font-weight: 700;
+	color: #3f3f3f;
+	}
+	.p5{
+	font-size: 16px;
+	color: #3f3f3f;
+	}
+	.p6{
+	font-size: 16px;
+	color: #3f3f3f;
+	}
+	.in-btn{
+	border: 2px solid #4e73df;
+	border-radius: 0.7em;
+	background-color: #4e73df;
+	color: #FFF;
+	padding: 4px 5px 4px 5px;
+	}
+	.out-btn{
+	border: 2px solid #CFD2CF;
+	border-radius: 0.7em;
+	background-color: #CFD2CF;
+	color: #FFF;
+	padding: 4px 5px 4px 5px;
+	}
 	
+	/* 캘린더 */
+	.cal{
+	position: relative;
+	bottom: 500;
+	left: 230;
+	margin-top:30px;
+	}
+	.calendar{
+	font-size: 14px;
+	color: #3f3f3f;
+	width: 660px;
+	}
+	.date{
+	position: relative;
+	bottom: 1000;
+	left: 910;
+	
+	border: 2px solid #4e73df;
+	border-radius: 0.7em;
+	background-color: #4e73df;
+	color: #FFF;
+	width: 280px;
+	font-size: 14px;
+	font-weight:700;
+	}
+	.information{
+	position: relative;
+	bottom: 1000;
+	left: 910;
+	}
+	.infor-table{
+	margin-top: 20px;
+	margin-right:50px;
+	border-radius: 0.7em;
+	background-color: #4e73df;
+	font-size: 14px;
+	color: #FFF;
+	width: 280px;
 	}
 </style>
 </head>
@@ -197,81 +247,37 @@ $(function(){
 </script>
 <body>
 	
-	
-	 <div class="main-box">
-        <div class="profile-box">
-            <div class="title-name">
-                <h4>내정보</h4>
- 
-            </div>
-            <div class="profile-picture">
-                <img src="/attachment/download/staff?attachmentNo=${attachmentNo}" style="width:200px;" class="img">
-
-          	<div>이름 : ${staffDto.staffName}</div>
-            <div>진료과 : ${staffDto.staffMedicalDepartment}</div>
-             <div><a href="/staff/password">비밀번호 변경</a></div>
-            </div>
+        <div class="myinfo">
+			<p class="p1">내 정보</p>
+			<img src="../img/undraw_profile.svg"  class="myinfo-img">
+          	<p class="p2">${staffDto.staffName}</p>
+            <p class="p3">${staffDto.staffMedicalDepartment}</p>
+             <a class="pw-btn" href="/staff/password">비밀번호 변경</a>
         </div>
 
-     
-        <div class="att-box col text-center">
-        	<div>근태관리</div>
-        	<div>출근시간 : <fmt:formatDate value="${now}" pattern="a HH:mm:ss" var="now" />
-									<c:out value="${now}" /></div> 
-        	<div>퇴근시간 : </div>
-
-        	<!-- 질문할것 현재씨한테 -->
-
-        	<button type="button" class="btn btn-primary" onclick="location.href='${AttendanceWorkTimeVO.startTime}' ">출근</button>
-        	<button type="button" class="btn btn-secondary" onclick="location.href='${AttedanceWorkTimeVO.endTime}' ">퇴근</button> 
-        </div>
-    </div>
-
-    <!-- Modal -->
-   <div class="modal fade" id="change-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog">
-       <div class="modal-content">
-         <div class="modal-body">
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-yellow mode-change" data-bs-dismiss="modal">확인</button>
-         </div>
-       </div>
-     </div>
-   </div>
-   <div class="container-fluid">
-   
-        <div class="row mt-80">
-            <div class="col-md-6 offset-md-3 col-sm-4 offset-sm-4 mt-4">
-                 <div class="text-center">
-                    <h3>마이페이지</h3>
-                 </div>
-            </div>
-        </div>
- 
-       <div class="row mt-5">
-            <div class="col-md-6 offset-md-3 col-sm-4 offset-sm-4">
-                 <div class="text-center" id="calendar"></div>
-                 <div class="text-center mt-2">
-                 </div>
-            </div>
+        <div class="attendance">
+        	<p class="p4">근태관리</p>
+        	<!-- 퇴근 시간은 따로 ftm 있어야 함   -->
+        	<p class="p5">출근시간 : <fmt:formatDate value="${now}" pattern="a HH:mm:ss" var="now" />
+									<c:out value="${now}" /></p>
+        	<p class="p6">퇴근시간 : </p>
+        	<button type="button" class="in-btn" onclick="location.href='${AttendanceWorkTimeVO.startTime}' ">출근</button>
+        	<button type="button" class="out-btn" onclick="location.href='${AttedanceWorkTimeVO.endTime}' ">퇴근</button> 
         </div>
         
-      <div class="row mt-5">
-            <div class="col-md-6 offset-md-3 col-sm-4 offset-sm-4">
-                 <div class="text-center">
-                    <span class="select-font">날짜 : </span>
-                    <span class="reservationDate select-font green"></span>
-                 </div>
-            </div>
-        </div>
-        
-        <div class="row mt-5">
-            <div class="col-md-6 offset-md-3 col-sm-4 offset-sm-4">
-                 <div class="text-center">
-                    <table class="table text-center">
+	    <div class="cal">
+		<div class="calendar" id="calendar"></div>
+	     </div>
+	        
+	<div class="date">
+			<span class="select-font">날짜 : </span>
+			<span class="reservationDate select-font green"></span>
+		</div>
+                 
+        <div class="information">
+                    <table class="infor-table">
                        <thead>
-                          <tr class="align-middle calendar-table">
+                          <tr>
                              <th>예약환자</th>
                              <th>증상</th>
                              <th>예약날짜</th>
@@ -284,23 +290,10 @@ $(function(){
                        </tbody>
                     </table>
                  </div>
-            </div>
-        </div>
         
-        <div class="row mt-3 mb-5">
-            <div class="col-md-6 offset-md-3 col-sm-4 offset-sm-4">
-                 <div class="text-center">
-                 </div>
-            </div>
-        </div>
         
-    </div>
-  <!-- 비동기화 출력을 위해 필요한 데이터 -->
+  	<!-- 비동기화 출력을 위해 필요한 데이터 -->
    <input type="hidden" name="reservationStaffId" value="${staffDto.staffId}">
-   
-			
-			<div class="calendar" id="calendar">
-		</div>   
    
 </body>
 

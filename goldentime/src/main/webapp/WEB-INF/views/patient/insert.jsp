@@ -39,6 +39,22 @@
                 }
             }
         });
+		$("#test").click(function(){
+			$.ajax({
+				url:"http://localhost:8888/rest/patient/vo?patientName="+$("#patientName").val()+"&patientPhone="+$("#patientPhone").val(),
+				method:"get",
+				success:function(resp){
+					if(resp != 0){ // 접수만
+						$(".form-insert-con").attr("action","insert1");
+						console.log(resp);
+						$("#patientNo").val(resp[0].patientNo);
+						console.log(resp[0].patientNo);
+					}else{	// 환자, 접수 같이
+						$(".form-insert-con").attr("action","insert");
+					}
+				}
+			});
+		});
 	});
 </script>
 <style>
@@ -125,7 +141,7 @@
 
 </style>
 </head>
-<form action="insert" method="post">
+<form class="form-insert-con" action="" method="post">
 <table border="1" width="500">
 	<tbody>
 		<tr>
@@ -140,13 +156,14 @@
 		<tr>
 			<th>이름</th>
 			<td>
-				<input name="patientName" type="text"  placeholder="이름" required><br><br>
+				<input id="patientNo" name="patientNo" type="hidden">
+				<input id="patientName" name="patientName" type="text"  placeholder="이름" required><br><br>
 				<input name="patientBirth" type="date"  required><br><br>
 				<input name="patientGender" type="text"  required placeholder="성별"><br><br>
 				<input name="patientBlood" type="text"  placeholder="혈액형"  required><br><br>
 				<input name="patientAddress" type="text"  placeholder="주소"  required><br><br>
-				<input name="patientPhone" type="tel"  placeholder="핸드폰번호"  required><br><br>
-				<button type="submit">등록</button>
+				<input id="patientPhone" name="patientPhone" type="tel"  placeholder="핸드폰번호"  required><br><br>
+				<button type="submit" id="test">등록</button>
 			</td>
 		</tr>
 	</tbody>

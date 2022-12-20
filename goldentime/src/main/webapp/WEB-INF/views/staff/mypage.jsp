@@ -13,21 +13,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>골든타임 병원</title>
+<title>드림병원</title>
 
-<!--fullcalendar css-->
+	<!--fullcalendar css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 	
     <!-- fullcalendar CDN -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <!-- fullcalendar 언어 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
     <!-- moment CDN (format사용하기 위해)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+   	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script type="text/javascript"></script>
-      <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    
 <style>
  html, body{
             margin:0;
@@ -193,6 +191,22 @@ $(function(){
          });
          // 캘린더 랜더링
          calendar.render();
+         
+      /*    $("#a").click(function(){
+        	 var attandanceNo = 70;
+        	$.ajax({
+        		url: "http://localhost:8888/rest/attendance"+attandanceNo,
+        		method: "put",
+        		dataType: "json",
+        		success: function(resp) {
+					console.log("123");
+				}
+        	});//ajax end
+        	 
+        	 
+         });//#att-fin() end */
+         
+         
    });
 </script>
 <body>
@@ -215,15 +229,13 @@ $(function(){
 
      
         <div class="att-box col text-center">
-        	<div>근태관리</div>
-        	<div>출근시간 : <fmt:formatDate value="${now}" pattern="a HH:mm:ss" var="now" />
+        	<span>근태관리</span>
+        	<div>출근 시간<fmt:formatDate value="${now}" pattern="a HH:mm:ss" var="now" />
 									<c:out value="${now}" /></div> 
-        	<div>퇴근시간 : </div>
+        	<div id="a">퇴근 시간<span id="att-fin"></span></div>
 
-        	<!-- 질문할것 현재씨한테 -->
-
-        	<button type="button" class="btn btn-primary" onclick="location.href='${AttendanceWorkTimeVO.startTime}' ">출근</button>
-        	<button type="button" class="btn btn-secondary" onclick="location.href='${AttedanceWorkTimeVO.endTime}' ">퇴근</button> 
+        	<button id="attStr-btn" type="button" class="btn btn-primary">출근</button>
+        	<button id="attFin-btn" type="button" class="btn btn-secondary">퇴근</button> 
         </div>
     </div>
 

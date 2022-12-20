@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="login" value="${loginId != null}"></c:set>
-<c:set var="admin" value="${mg == '관리자'}"></c:set>
+<%-- <c:set var="admin" value="${mg == '관리자'}"></c:set> --%>
+
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -10,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SB Admin 2 - Tables</title>
+    <title>드림 병원</title>
 
     <!-- Custom fonts for this template -->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -35,7 +37,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">GOLDEN TIME<sup></sup></div>
+                <div class="sidebar-brand-text mx-3">드림 병원<sup></sup></div>
             </a>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -51,10 +53,10 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="utilities-color.html">내과</a>
-                        <a class="collapse-item" href="utilities-border.html">외과</a>
-                        <a class="collapse-item" href="utilities-animation.html">정형외과</a>
-                        <a class="collapse-item" href="utilities-other.html">방사선과</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/internal">내과</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/surgeon">외과</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/orthopaedic">정형외과</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/radiology">방사선과</a>
                     </div>
                 </div>
             </li>
@@ -70,17 +72,17 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="${pageContext.request.contextPath}/goods/item">
                     <i class="fas fa-fw fa-table"></i>
                     <span>물품신청</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">
+
+			 <li class="nav-item active">
+                <a class="nav-link" href="${pageContext.request.contextPath}/staff/mypage">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>메세지</span></a>
                     <span>마이페이지</span></a>
             </li>
-
+            
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Sidebar Toggler (Sidebar) -->
@@ -128,7 +130,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/staff/mypage">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>

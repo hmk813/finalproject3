@@ -205,7 +205,7 @@ $(function(){
  
             </div>
             <div class="profile-picture">
-                <img src="../image/test.jpg" style="width:200px;" class="img">
+                <img src="/attachment/download/staff?attachmentNo=${attachmentNo}" style="width:200px;" class="img">
 
           	<div>이름 : ${staffDto.staffName}</div>
             <div>진료과 : ${staffDto.staffMedicalDepartment}</div>

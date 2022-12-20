@@ -74,7 +74,7 @@
 	<thead>
 		<tr>
 			<th>이름</th>
-			<th>부서번호</th>
+			<th>부서</th>
 			<th>직위</th>
 			<th>진료과</th>
 		</tr>
@@ -86,6 +86,10 @@
 			<td>${staffDto.departmentName}</td>
 			<td>${staffDto.staffGrade}</td>
 			<td>${staffDto.staffMedicalDepartment}</td>
+			<td>
+				<a class="btn" style="padding:4px;" href="detail?staffId=${staffDto.staffId}">상세</a>
+				<a class="btn" style="padding:4px;" href="delete?staffId=${staffDto.staffId}">삭제</a>
+			</td>
 		</tr>
 		</c:forEach>
 	</tbody>

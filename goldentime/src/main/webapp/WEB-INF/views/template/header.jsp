@@ -103,7 +103,7 @@
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
                                     <a class="nav-link " href="#"><span class="#">예약</span>
-                                    <span class="visually-hidden">(current)</span>
+                                    <!-- <span class="visually-hidden">(current)</span> -->
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -140,7 +140,6 @@
 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/" >
-
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -149,6 +148,8 @@
                     </ul>
                 </nav>
                 <!-- End of Topbar -->
+                
+                
    
  <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>

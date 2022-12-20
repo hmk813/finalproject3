@@ -14,7 +14,7 @@
           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
           
           <link href="<c:url value="../css/sb-admin-2.min.css" />" rel="stylesheet">
-            <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+          <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
       <style>
       .sp1{
       color:#3f3f3f;
@@ -71,7 +71,7 @@
             });
          };
          
-         function showDetail(patientNo) {
+         function showDetail(patientNo) { 
             $.ajax({
                url:"${pageContext.request.contextPath}/rest/operationlist/"+patientNo,
                method:"get",

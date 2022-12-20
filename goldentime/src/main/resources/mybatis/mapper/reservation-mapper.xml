@@ -40,5 +40,45 @@
 		patient P inner join reservation R on P.patient_no = R.reservation_patient_no 
 		where R.reservation_date = to_char(sysdate, 'yyyy-MM-dd')
 	</select>
+	<select id="toDayListSurgery" resultType="PatientReservationDepartmentVO">
+		select 
+        S.staff_name, S.staff_medical_department,
+      P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+      R.reservation_date, R.reservation_time
+      from 
+      patient P inner join reservation R on P.patient_no = R.reservation_patient_no
+        inner join staff S on S.staff_id = R.reservation_staff_id 
+      where R.reservation_date = to_char(sysdate, 'yyyy-MM-dd') and S.staff_medical_department = '외과'
+	</select>
+	<select id="toDayListMedicine" resultType="PatientReservationDepartmentVO">
+		select 
+        S.staff_name, S.staff_medical_department,
+      P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+      R.reservation_date, R.reservation_time
+      from 
+      patient P inner join reservation R on P.patient_no = R.reservation_patient_no
+        inner join staff S on S.staff_id = R.reservation_staff_id 
+      where R.reservation_date = to_char(sysdate, 'yyyy-MM-dd') and S.staff_medical_department = '내과'
+	</select>
+	<select id="toDayListOrthopedic" resultType="PatientReservationDepartmentVO">
+		select 
+        S.staff_name, S.staff_medical_department,
+      P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+      R.reservation_date, R.reservation_time
+      from 
+      patient P inner join reservation R on P.patient_no = R.reservation_patient_no
+        inner join staff S on S.staff_id = R.reservation_staff_id 
+      where R.reservation_date = to_char(sysdate, 'yyyy-MM-dd') and S.staff_medical_department = '정형외과'
+	</select>
+	<select id="toDayListRadiology" resultType="PatientReservationDepartmentVO">
+		select 
+        S.staff_name, S.staff_medical_department,
+      P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+      R.reservation_date, R.reservation_time
+      from 
+      patient P inner join reservation R on P.patient_no = R.reservation_patient_no
+        inner join staff S on S.staff_id = R.reservation_staff_id 
+      where R.reservation_date = to_char(sysdate, 'yyyy-MM-dd') and S.staff_medical_department = '영상의학과'
+	</select>
 </mapper>
 

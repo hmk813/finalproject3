@@ -43,6 +43,7 @@ public class PatientController {
 	@GetMapping("/internal")
 	public String internal(Model model) {
 		model.addAttribute("PatientDepartmentVO", patientDao.internalList());
+		model.addAttribute("PatientReservationDepartmentVO");
 	    return "patient/internal";
 	}
 	
@@ -50,6 +51,7 @@ public class PatientController {
 		@GetMapping("/surgeon")
 		public String surgeon(Model model) {
 			model.addAttribute("PatientDepartmentVO", patientDao.surgeonList());
+			model.addAttribute("PatientReservationDepartmentVO", reservationDao.toDayListSurgery());
 		    return "patient/surgeon";
 		}
 	
@@ -57,6 +59,7 @@ public class PatientController {
 		@GetMapping("/orthopaedic")
 		public String orthopaedic(Model model) {
 			model.addAttribute("PatientDepartmentVO", patientDao.orthopaedicList());
+			model.addAttribute("PatientReservationDepartmentVO", reservationDao.toDayListOrthopedic());
 			return "patient/orthopaedic";
 		}
 		
@@ -64,6 +67,7 @@ public class PatientController {
 		@GetMapping("/radiology")
 		public String radiology(Model model) {
 			model.addAttribute("PatientDepartmentVO", patientDao.radiologyList());
+			model.addAttribute("PatientReservationDepartmentVO", reservationDao.toDayListRadiology());
 			return "patient/radiology";
 		}
 		

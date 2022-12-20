@@ -86,7 +86,6 @@ public class StaffController {
 		return "redirect:mypage";
 	}
 	
-	
 	@GetMapping("/join_finish")
 	public String joinFinish() {
 		return "staff/joinFinish";
@@ -141,30 +140,31 @@ public class StaffController {
 //		return "redirect:staff/login";
 //	}
 //	
-//	
-//	//마이페이지 따로 밖으로 빼겠습니다. 잠시 주석처리합니다
 //	//마이페이지 -현재 로그인한 회원의 정보를 화면에 출력한다 
-//	@GetMapping("/mypage")
-//	public String mypage(HttpSession session, Model model) {
-//		
-//		//세션에 들어있는 아이디를 꺼낸다
-//		String loginId = (String) session.getAttribute(SessionConstant.ID);
-//		
-//		//아이디를 이용하여 직원 정보를 불러온다
-//		StaffDto staffDto = staffDao.selectOne(loginId);
-//		
-//		//불러온 회원 정보를 모델에 첨부한다
-//		model.addAttribute("staffDto",staffDto);
-//		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
-//		model.addAttribute("vacationStaffVO", vacationDao.list(staffDto.getStaffId()));
-//		//-->여기 vacationStaffVO로 바꿨음 현재씨가 바꿔서 바꿔야되용
-//
-//		int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
-//		model.addAttribute("attachmentNo", attachmentNo);
-//		System.out.println(attachmentNo);
-//		
-//		return "staff/mypage";
-//	}
+	@RequestMapping("/mypage")
+	public String mypage(HttpSession session, Model model) {
+		//세션에 들어있는 아이디를 꺼낸다
+		String loginId = (String) session.getAttribute(SessionConstant.ID);
+
+		//아이디를 이용하여 직원 정보를 불러온다
+		StaffDto staffDto = staffDao.selectOne(loginId);
+
+		//불러온 회원 정보를 모델에 첨부한다
+		model.addAttribute("staffDto",staffDto);
+		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
+		model.addAttribute("vacationStaffVO", vacationDao.list(staffDto.getStaffId()));
+		
+		//첨부파일 유무 판별
+		boolean hasAttachment = (boolean)session.getAttribute("hasAttachment");
+		if(hasAttachment) {//첨부파일을 갖고있으면
+			//반환한 로그인 아이디로 직원 이미지 테이블에서 첨부파일 번호를 조회한 후 모델에 넣음
+			int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
+			model.addAttribute("attachmentNo", attachmentNo);
+			session.removeAttribute("hasAttachment");//세션에 담긴 첨부파일 유무여부를 삭제
+		}
+		
+		return "/staff/mypage";
+	}
 
 //비밀번호 변경도 제꺼니까 이동하도록 하겠습니다	
 //	//비밀번호 변경
@@ -198,7 +198,6 @@ public class StaffController {
 //		return "staff/passwordResult";
 //	}
 //		
-//	
 	//개인정보 변경 기능(자기자신)
 	@GetMapping("/information")
 	public String information(HttpSession session,Model model) {

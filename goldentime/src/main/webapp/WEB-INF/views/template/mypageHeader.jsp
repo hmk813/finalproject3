@@ -81,7 +81,6 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/staff/mypage">
                     <i class="fas fa-fw fa-table"></i>
                     <span>마이페이지</span></a>
-                    <span>메세지</span></a>
             </li>
             
             <!-- Divider -->

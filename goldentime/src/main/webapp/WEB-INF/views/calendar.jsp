@@ -13,6 +13,7 @@
     <!-- moment CDN (format사용하기 위해)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script type="text/javascript"></script>
+   	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <jsp:include page="/WEB-INF/views/template/header.jsp">
    <jsp:param value="일정관리" name="title"/>
 </jsp:include>
@@ -77,6 +78,7 @@
 	
 </style>
 <script>
+
    $(function(){      
       //회원모드로 전환 이벤트
       $(".mode-change").click(function(){

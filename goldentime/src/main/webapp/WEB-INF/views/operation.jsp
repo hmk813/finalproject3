@@ -23,16 +23,15 @@
       }
       </style>
 
-
       <body id="page-top">
 
       <span class="sp1">수술 환자 목록</span>
       <div class="operation-list">
       </div>
-
+      
       <span class="sp1">수술 환자 상세</span>
       <div class="operation-detail">
-
+      
       </div>
 
       <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>

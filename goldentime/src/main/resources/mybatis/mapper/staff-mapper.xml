@@ -47,6 +47,10 @@
 TMP) where rn between #{startRow} and #{endRow}
 	</select>
 	
+	<select id="staffList" resultType="staffDto">
+		select * from staff
+	</select>
+	
 	<!-- type, keyword검색 -->
 	<select id="searchList" parameterType="map" resultType="DepartmentVO">
 		select * from (

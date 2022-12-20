@@ -81,11 +81,11 @@ public class MypageController {
 		model.addAttribute("staffDto",staffDto);
 		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
 		model.addAttribute("vacationStaffVO", vacationDao.list(staffDto.getStaffId()));
-
+		
+		//반환한 로그인 아이디로 직원 이미지 테이블에서 첨부파일 번호를 조회한 후 모델에 넣음
 		int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
 		model.addAttribute("attachmentNo", attachmentNo);
-		//System.out.println(attachmentNo);
-
+		
 		return "/staff/mypage";
 	}
 

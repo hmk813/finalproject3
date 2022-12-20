@@ -20,6 +20,34 @@
 	<body>
 		<div class="container-1200">
       <div class="container-fluid">  
+      <div>
+      		<h1>영상의학과 금일 예약 목록</h1>
+      	</div>
+      	<div>
+      		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+               <tr>
+                  <th>환자명</th>
+                  <th>성별</th>
+                  <th>혈액형</th>                  
+                  <th>생년월일</th>
+                  <th>최종진료일</th>
+               </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="PatientReservationDepartmentVO"  items="${PatientReservationDepartmentVO}" >
+               <tr>
+                  <td>${PatientReservationDepartmentVO.patientName}</td>
+                  <td>${PatientReservationDepartmentVO.patientGender}</td>
+                  <td>${PatientReservationDepartmentVO.patientBlood}</td>
+                  <td>${PatientReservationDepartmentVO.patientBirth}</td>
+                  <td>${PatientReservationDepartmentVO.reservationDate}</td>
+                  <td>${PatientReservationDepartmentVO.reservationTime}</td>
+               </tr>
+               </c:forEach>
+            </tbody>
+         </table>
+      	</div>
          <div>
          	<h1>영상의학과 금일 접수 목록</h1>
      	 </div>
@@ -27,7 +55,6 @@
          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                <tr>
-                  <th>차트 번호</th>
                   <th>환자명</th>
                   <th>성별</th>
                   <th>혈액형</th>                  
@@ -38,7 +65,6 @@
             <tbody>
             <c:forEach var="PatientDepartmentVO"  items="${PatientDepartmentVO}" >
                <tr>
-                  <td>${PatientDepartmentVO.patientNo}</td>
                   <td>${PatientDepartmentVO.patientName}</td>
                   <td>${PatientDepartmentVO.patientGender}</td>
                   <td>${PatientDepartmentVO.patientBlood}</td>

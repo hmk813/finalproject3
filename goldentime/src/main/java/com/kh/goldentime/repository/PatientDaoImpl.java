@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.goldentime.entity.PatientDto;
 import com.kh.goldentime.vo.PatientDepartmentVO;
+import com.kh.goldentime.vo.PatientPhoneNameVO;
 import com.kh.goldentime.vo.PatientReceiveListVO;
 
 @Repository
@@ -76,6 +77,12 @@ public class PatientDaoImpl implements PatientDao{
 	@Override
 	public List<PatientReceiveListVO> historyList() {
 		return sqlSession.selectList("patient.list");
+	}
+	
+	//비동기
+	@Override
+	public List<PatientDto> patientConfirm(PatientPhoneNameVO patientPhoneNameVO) {
+		return sqlSession.selectList("patient.patientConfirm", patientPhoneNameVO);
 	}
 		
 	

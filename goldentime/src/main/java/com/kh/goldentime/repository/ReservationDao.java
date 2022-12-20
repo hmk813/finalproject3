@@ -3,6 +3,8 @@ package com.kh.goldentime.repository;
 import java.util.List;
 
 import com.kh.goldentime.entity.ReservationDto;
+import com.kh.goldentime.vo.PatientReservationDepartmentVO;
+import com.kh.goldentime.vo.PatientReservationListVO;
 import com.kh.goldentime.vo.ReservationDateStaffIdVO;
 
 public interface ReservationDao {
@@ -16,6 +18,16 @@ public interface ReservationDao {
 	List<ReservationDto> list();
 	
 	ReservationDto reservationDetail(int reservationNo);
+	
+	List<PatientReservationListVO> todayList();
+	
+	List<PatientReservationDepartmentVO> toDayListSurgery();
+	
+	List<PatientReservationDepartmentVO> toDayListMedicine();
+	
+	List<PatientReservationDepartmentVO> toDayListOrthopedic();
+	
+	List<PatientReservationDepartmentVO> toDayListRadiology();
 	
 	boolean delete(int reservationNo);
 

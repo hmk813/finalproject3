@@ -13,27 +13,27 @@ import com.kh.goldentime.vo.OperationInformationVO;
 @Repository
 public class OperationDaoImpl implements OperationDao{
 
-	@Autowired
-	private SqlSession sqlSession;
-	
-	@Override
-	public List<OperationInformationVO> selectList() {
-		return sqlSession.selectList("operation.list");
-	}
-	
-//	@Override
-//	public OperationInformationVO selectOne(int operationNo) {
-//		return sqlSession.selectOne("operation.one",operationNo);
-//	}
-	
-	@Override
-	public OperationInformationVO selectOne(int patientNo) {
-		return sqlSession.selectOne("operation.one",patientNo);
-	}
+   @Autowired
+   private SqlSession sqlSession;
+   
+   @Override
+   public List<OperationInformationVO> selectList() {
+      return sqlSession.selectList("operation.list");
+   }
+   
+//   @Override
+//   public OperationInformationVO selectOne(int operationNo) {
+//      return sqlSession.selectOne("operation.one",operationNo);
+//   }
+   
+   @Override
+   public OperationInformationVO selectOne(int patientNo) {
+      return sqlSession.selectOne("operation.one",patientNo);
+   }
 
-	@Override
-	public List<PatientDto> selectPatientList() {
-		return sqlSession.selectList("patient.patientList");
-	}
-	
+   @Override
+   public List<PatientDto> selectPatientList() {
+      return sqlSession.selectList("patient.patientList");
+   }
+   
 }

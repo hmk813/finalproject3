@@ -85,9 +85,16 @@
 		where R.receive_date = to_char(sysdate, 'yyyy-MM-dd') and S.staff_medical_department = '영상의학과'
 	</select>
 	
+	<!-- 환자 전체 조회 건들지 마셈 -->
 	<select id="patientList" resultType="PatientDto">
 		select * from patient
 	</select>
+	
+	<!-- 비동기 환자 핸드폰 번호 조회 -->
+	<select id="patientConfirm" resultType="PatientDto" parameterType="PatientPhoneNameVO">
+		select * from patient where patient_phone = #{patientPhone} and patient_name=#{patientName}
+	</select>
+	
 
 
 </mapper>

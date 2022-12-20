@@ -89,6 +89,12 @@ public class PatientController {
 		return "redirect:todaylist";
 	}
 	
+	@PostMapping("/insert1")
+	public String insert1(@ModelAttribute ReceiveDto receiveDto) {
+		receiveDao.insert(receiveDto);
+		return "redirect:todaylist";
+	}
+	
 	//원무과에서 볼 수 있는 환자 기록 
 		@GetMapping("/historylist")
 		public String historylist(Model model) {

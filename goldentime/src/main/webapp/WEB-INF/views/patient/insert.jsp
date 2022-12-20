@@ -39,6 +39,25 @@
                 }
             }
         });
+		$(".form-insert-con").submit(function(e){
+			e.preventDefault();
+			var form = this;
+			
+			$.ajax({
+				url:"http://localhost:8888/rest/patient/vo?patientName="+$("#patientName").val()+"&patientPhone="+$("#patientPhone").val(),
+				method:"get",
+				success:function(resp){
+					if(resp != 0){ // 접수만
+						$("#patientNo").val(resp[0].patientNo);
+						$(form).attr("action","insert1");
+						
+					}else{	// 환자, 접수 같이
+						$(form).attr("action","insert");
+					}
+					form.submit();
+				}
+			});
+		});
 	});
 </script>
 <style>
@@ -125,14 +144,13 @@
 
 </style>
 </head>
-<form action="insert" method="post">
+<form class="form-insert-con" method="post">
 <table border="1" width="500">
 	<tbody>
 		<tr>
 			<th>진료 의사</th>
 			<td>
-				<label>주치의</label> 
-				<select name="staffId" class="form-control doctor-reservation-select">
+				<select name="staffId" class="form-control doctor-reservation-select mb-3">
 					<option class="select-option">선택</option>
 				</select> 
 			</td>
@@ -140,13 +158,14 @@
 		<tr>
 			<th>이름</th>
 			<td>
-				<input name="patientName" type="text"  placeholder="이름" required><br><br>
-				<input name="patientBirth" type="date"  required><br><br>
-				<input name="patientGender" type="text"  required placeholder="성별"><br><br>
-				<input name="patientBlood" type="text"  placeholder="혈액형"  required><br><br>
-				<input name="patientAddress" type="text"  placeholder="주소"  required><br><br>
-				<input name="patientPhone" type="tel"  placeholder="핸드폰번호"  required><br><br>
-				<button type="submit">등록</button>
+				<input class="form-control" id="patientNo" name="patientNo" type="hidden">
+				<input class="form-control" id="patientName" name="patientName" type="text"  placeholder="이름" required><br><br>
+				<input class="form-control" name="patientBirth" type="date"  required><br><br>
+				<input class="form-control" name="patientGender" type="text"  required placeholder="성별"><br><br>
+				<input class="form-control" name="patientBlood" type="text"  placeholder="혈액형"  required><br><br>
+				<input class="form-control" name="patientAddress" type="text"  placeholder="주소"  required><br><br>
+				<input class="form-control" id="patientPhone" name="patientPhone" type="tel"  placeholder="핸드폰번호"  required><br><br>
+				<button type="submit" id="test">등록</button>
 			</td>
 		</tr>
 	</tbody>

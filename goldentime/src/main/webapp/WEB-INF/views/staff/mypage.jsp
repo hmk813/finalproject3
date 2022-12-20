@@ -17,7 +17,7 @@
 
 <!--fullcalendar css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
-
+	
     <!-- fullcalendar CDN -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
@@ -26,13 +26,13 @@
     <!-- moment CDN (format사용하기 위해)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script type="text/javascript"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    
 <style>
  html, body{
             margin:0;
             padding:0;
         }
-
         main, header, aside, section, footer, nav, div {
             border:1px;
         }
@@ -80,7 +80,6 @@
     left: 300px;
     top: 150px;
 }
-
 	.profile-picture {
     margin-top: 20px;
     text-align: center;
@@ -95,11 +94,12 @@
 	height:200px;
 	transform:translate(-10%,30%);
 	
-	
 	}
 </style>
 </head>
+  
 <script>
+	    
 $(function(){      
       $(".mode-change").click(function(){
          location.href="${pageContext.request.contextPath}/";
@@ -176,7 +176,7 @@ $(function(){
                  method:"get",
                  data:reservationStaffId,
                  success:function(resp){
-                    console.log(resp);	
+                    //console.log(resp);	
                    if(resp.length!=0){
                        for(var i=0; i<resp.length; i++){
                     	   //console.log(resp[i]);		 	   
@@ -195,7 +195,6 @@ $(function(){
          calendar.render();
    });
 </script>
-
 <body>
 	
 	
@@ -207,28 +206,27 @@ $(function(){
             </div>
             <div class="profile-picture">
                 <img src="../image/test.jpg" style="width:200px;" class="img">
-                
+
           	<div>이름 : ${staffDto.staffName}</div>
             <div>진료과 : ${staffDto.staffMedicalDepartment}</div>
              <div><a href="/staff/password">비밀번호 변경</a></div>
             </div>
         </div>
-        
+
      
         <div class="att-box col text-center">
         	<div>근태관리</div>
         	<div>출근시간 : <fmt:formatDate value="${now}" pattern="a HH:mm:ss" var="now" />
-									<c:out value="${now}" />
-									${startEnd.startTime}</div> 
-        	<div>퇴근시간 :${startEnd.endTime}</div>
-        	
+									<c:out value="${now}" /></div> 
+        	<div>퇴근시간 : </div>
+
         	<!-- 질문할것 현재씨한테 -->
-        	
+
         	<button type="button" class="btn btn-primary" onclick="location.href='${AttendanceWorkTimeVO.startTime}' ">출근</button>
         	<button type="button" class="btn btn-secondary" onclick="location.href='${AttedanceWorkTimeVO.endTime}' ">퇴근</button> 
         </div>
     </div>
-    
+
     <!-- Modal -->
    <div class="modal fade" id="change-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog">
@@ -241,7 +239,6 @@ $(function(){
        </div>
      </div>
    </div>
-
    <div class="container-fluid">
    
         <div class="row mt-80">
@@ -298,7 +295,6 @@ $(function(){
         </div>
         
     </div>
-
   <!-- 비동기화 출력을 위해 필요한 데이터 -->
    <input type="hidden" name="reservationStaffId" value="${staffDto.staffId}">
    
@@ -309,5 +305,3 @@ $(function(){
 </body>
 
 </html>
-
-

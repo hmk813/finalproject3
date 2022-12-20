@@ -1,5 +1,5 @@
 package com.kh.goldentime.controller;
-
+import javax.servlet.http.HttpSession;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +15,7 @@ import com.kh.goldentime.repository.StaffDao;
 @Controller
 public class CalendarController {
 
-	@Autowired
+  @Autowired
 	private StaffDao staffDao;
 	
 	@RequestMapping("/calendar")
@@ -28,10 +28,5 @@ public class CalendarController {
 		model.addAttribute("staffDto",staffDto);
 		return "calendar";
 	}
-}	
 
-
-	
-	
-	
-
+}

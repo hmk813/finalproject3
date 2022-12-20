@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -14,9 +12,9 @@
 <select id="list" resultType="ReservationDto"  parameterType="ReservationDto">
  	select * from reservation
 </select>
-	
+
 <select id="calendarList"  resultType="ReservationDto" parameterType="String">
 	select * from reservation where reservation_date = #{reservationDate}
 </select> 	
-	
+
 </mapper>

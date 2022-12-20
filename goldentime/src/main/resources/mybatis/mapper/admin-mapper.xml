@@ -114,4 +114,29 @@
 		sd.staff_id = a.attendance_staff_id
 	</select>
 
+
+	<select id="vacationList" resultType="VacationStaffVO" parameterType="VacationStaffVO">
+		select * from vacation_staff_view
+		where 1=1
+			<choose>
+				<when test="type != null and type.equals('staffName')">
+					and staff_name like '%' || #keyword#|| '%'
+				</when>
+				<when test="type != null and type.equals('staffMedicalDepartment')">
+					and staff_medical_department like '%' || #keyword#|| '%'
+				</when>
+			</choose>
+	</select>
+	
+	<!-- 직원의 휴가신청 승인처리 -->
+	<update id="vacationApprove" parameterType="int">
+		update vacation set vacation_state='승인'
+		where vacation_no=#{vacationNo}
+	</update>
+	
+	<!-- 직원의 휴가신청 반려처리 -->
+	<update id="vacationRefuse" parameterType="int">
+		update vacation set vacation_state='반려'
+		where vacation_no=#{vacationNo}
+	</update>
 </mapper>

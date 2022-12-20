@@ -26,4 +26,7 @@ public class VacationStaffVO {
 	private int useleave;
 	private int usedayoff;
 	
+	private String keyword;
+	private String type;
+	
 }

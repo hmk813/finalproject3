@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="admin">
+	<!-- 출퇴근 복합 검색 -->
+	<select id="attendanceSearchList"
+		parameterType="AdminAttendanceVO" resultType="AdminAttendanceVO">
+		SELECT sd.*, to_char(a.attendance_start_time, 'HH24:MI') startTime,
+		to_char(a.attendance_end_time, 'HH24:MI') endTime,
+		a.attendance_work_state, a.work_time, a.attendance_start_time
+		from
+		staff_department sd INNER JOIN att_record a
+		on sd.staff_id =
+		a.attendance_staff_id
+
+		<include refid="search" />
+
+		<if test="sort != null">
+			order by
+			<foreach collection="sort" item="s" separator=",">
+				${s}
+			</foreach>
+		</if>
+
+	</select>
+
+	<select id="attendanceAllList" parameterType="map"
+		resultType="AdminAttendanceAllVO">
+		select * from (select tmp.*, rownum rn from (
+		SELECT sd.*, to_char(a.attendance_start_time, 'HH24:MI') startTime,
+		to_char(a.attendance_end_time, 'HH24:MI') endTime,
+		a.attendance_work_state, a.work_time, a.attendance_start_time
+		from staff_department sd INNER JOIN att_record a
+		on sd.staff_id = a.attendance_staff_id
+		)TMP)
+		where rn between #{rownumStart} and #{rownumEnd}
+
+	</select>
+
+
+	<sql id="search">
+		<where>
+			<if test="staffName != null">
+				and instr(staff_name, #{staffName})>0
+			</if>
+
+			<choose>
+				<when test="beginMade != null and endMade != null">
+					and attendance_start_time between
+					to_date(#{beginMade} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+					and
+					to_date(#{endMade} || ' ' || '23:59:59', 'YYYY-MM-DD
+					HH24:MI:SS')
+				</when>
+				<when test="beginMade != null">
+	 				<![CDATA[
+	 				and attendance_start_time >= to_date(#{beginMade} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+	 				]]>
+				</when>
+				<when test="endMade != null">
+	 				<![CDATA[
+	 				and attendance_start_time <= to_date(#{endMade} || ' ' || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+	 				]]>
+				</when>
+			</choose>
+
+			<if test="type != null">
+				and attendance_work_state in
+				<foreach collection="type" separator="," item="t" open="("
+					close=")">
+					#{t}
+				</foreach>
+			</if>
+		</where>
+	</sql>
+
+	<select id="searchList" parameterType="map"
+		resultType="AdminAttendSearchVO">
+		select * from
+		(select tmp.*, rownum rn
+		from (
+		SELECT sd.*, to_char(a.attendance_start_time, 'HH24:MI') startTime,
+		to_char(a.attendance_end_time, 'HH24:MI') endTime,
+		a.attendance_work_state, a.work_time, a.attendance_start_time
+		from
+		staff_department sd INNER JOIN att_record a
+		on sd.staff_id =
+		a.attendance_staff_id
+
+		<include refid="search" />
+
+		<if test="sort != null">
+			order by
+			<foreach collection="sort" item="s" separator=",">
+				${s}
+			</foreach>
+		</if>
+		)tmp)
+		where rn between #{rownumStart} and #{rownumEnd}
+	</select>
+
+	<select id="searchCount" parameterType="map" resultType="int">
+		select count(*) from  staff_department sd INNER JOIN att_record a
+		on sd.staff_id = a.attendance_staff_id
+		<include refid="search" />
+	</select>
+
+	<select id="allCount" resultType="int">
+		select count(*) from staff_department sd INNER JOIN att_record a
+		on
+		sd.staff_id = a.attendance_staff_id
+	</select>
+
+</mapper>

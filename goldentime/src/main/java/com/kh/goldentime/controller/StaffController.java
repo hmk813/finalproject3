@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.goldentime.constant.SessionConstant;
 import com.kh.goldentime.entity.AttachmentDto;
@@ -55,7 +56,7 @@ public class StaffController {
 	
 	@PostMapping("/join")
 	public String join(@ModelAttribute StaffDto staffDto, @RequestParam List<MultipartFile> staffImg, 
-			HttpSession session) throws IllegalStateException, IOException {
+			HttpSession session, RedirectAttributes attr) throws IllegalStateException, IOException {
 		
 		staffDao.insert(staffDto);//DB등록
 		
@@ -81,9 +82,9 @@ public class StaffController {
 				attachmentDao.insertStaffImg(staffDto.getStaffId(), attachmentNo);
 			}	
 		}	
-		session.setAttribute("hasAttachment", !staffImg.get(0).isEmpty());//첨부파일이 있는가?
-		session.setAttribute("loginId", staffDto.getStaffId());
-		return "redirect:mypage";
+		
+		attr.addAttribute("staffId", staffDto.getStaffId());
+		return "redirect:detail";
 	}
 	
 	@GetMapping("/join_finish")
@@ -131,16 +132,16 @@ public class StaffController {
 //		}
 //	}
 //	
-//	//로그아웃도 제가 가져가겠습니다 문규
-//	//로그아웃
-//	@GetMapping("/logout")
-//	public String logout(HttpSession session) {
-//		session.removeAttribute(SessionConstant.ID);
-//		session.removeAttribute(SessionConstant.GRADE);
-//		return "redirect:staff/login";
-//	}
-//	
-//	//마이페이지 -현재 로그인한 회원의 정보를 화면에 출력한다 
+	//로그아웃도로 가져왔습니다 가져가지마세요!!!!!!!
+	//로그아웃
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute(SessionConstant.ID);
+		session.removeAttribute(SessionConstant.GRADE);
+		return "redirect:/";
+	}
+	
+	//마이페이지 -현재 로그인한 회원의 정보를 화면에 출력한다 
 	@RequestMapping("/mypage")
 	public String mypage(HttpSession session, Model model) {
 		//세션에 들어있는 아이디를 꺼낸다
@@ -153,15 +154,6 @@ public class StaffController {
 		model.addAttribute("staffDto",staffDto);
 		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
 		model.addAttribute("vacationStaffVO", vacationDao.list(staffDto.getStaffId()));
-		
-		//첨부파일 유무 판별
-		boolean hasAttachment = (boolean)session.getAttribute("hasAttachment");
-		if(hasAttachment) {//첨부파일을 갖고있으면
-			//반환한 로그인 아이디로 직원 이미지 테이블에서 첨부파일 번호를 조회한 후 모델에 넣음
-			int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
-			model.addAttribute("attachmentNo", attachmentNo);
-			session.removeAttribute("hasAttachment");//세션에 담긴 첨부파일 유무여부를 삭제
-		}
 		
 		return "/staff/mypage";
 	}
@@ -247,7 +239,8 @@ public class StaffController {
 		//세션에 들어있는 아이디 꺼내기
 		String loginId = (String) session.getAttribute("loginId");
 		
-		StaffDto staffDto = staffDao.selectOne(loginId);
+		//로그인 아이디를 이용하여 직원 정보를 불러온다
+		StaffDto staffDto = staffDao.selectOne(staffId);
 		model.addAttribute("staffDto", staffDto);
 		return "staff/detail";
 	}

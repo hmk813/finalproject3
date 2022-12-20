@@ -22,7 +22,27 @@
 		font-weigth:700;
 		}
 		</style>
+<<<<<<< HEAD
+=======
+	  
 
+		<body id="page-top">
+		
+		<span class="sp1">수술 환자 목록</span>
+		<div class="operation-list">
+		</div>
+		
+		<span class="sp1">수술 환자 상세</span>
+		<div class="operation-detail">
+		
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+		
+		<script>
+>>>>>>> refs/remotes/origin/master
+
+<<<<<<< HEAD
 
 		<body id="page-top">
 
@@ -39,6 +59,9 @@
 
 		<script>
 		$(function(){
+=======
+$(function(){
+>>>>>>> refs/remotes/origin/master
 			
 			// 수술 환자 목록 불러와라 
 			loadList();
@@ -59,6 +82,7 @@
 			
 			// 수술 환자 목록 출력 
 			function showList(){
+<<<<<<< HEAD
 				$(".operation-list").empty();
 				$.each(operationList, function(index, patient){
 					var tag = $("<div>").text(patient.patientNo + " / " + patient.patientName);
@@ -69,12 +93,21 @@
 					});
 					tag.append(button);
 					$(".operation-list").append(tag);
+=======
+				$.each(operationList, function(index, value){
+					var list = $("<span>").text(value.patientNo + "/" + value.patientName+"/"+value.diagnosisTitle);
+					$(".operation-list").append(list);
+>>>>>>> refs/remotes/origin/master
 				});
 			};
 			
 			function showDetail(patientNo) {
 				$.ajax({
+<<<<<<< HEAD
 					url:"${pageContext.request.contextPath}/rest/operationlist/"+patientNo,
+=======
+					url:"${pageContext.request.contextPath}/rest/operationlist", //patientNo 를 인식 못하는데 무슨 문제 ㅡㅡ;; 이 번호가 들어갈 자리가 있어야 한다는데 무슨...?
+>>>>>>> refs/remotes/origin/master
 					method:"get",
 					success:function(resp) {
 						if(!resp) {//증상 정보가 없는 경우 - 없다는 표시를 추가하면 된다
@@ -84,11 +117,42 @@
 							$(".operation-detail").html("증상정보발견");
 						}
 					}
+<<<<<<< HEAD
 				})
 			}
+=======
+				});
+			};
+			
+			// 수술 환자 목록을 클릭했을 때 
+			$(document).on("click", ".operation-list", function(){
+				$(".operation-detail").empty();
+				$.ajax({
+					url:"${pageContext.request.contextPath}/rest/operationlist", //patientNo 를 인식 못하는데 무슨 문제 ㅡㅡ;;
+					method:"get",
+					dataType:"json",
+					success: function(resp){
+						operationDetail = resp;
+						showDetail();
+					}
+				});
+			});
+			
+			//수술 환자 상세 목록 출력
+			function showDetail(){
+				$.each(operationDetail, function(index, value){
+					var detail = $("<span>").text(value.diagnosisTitle)
+					.attr("data-patient", value.patientNo);
+				$(".operation-detail").append(detail);
+				});
+			};
+>>>>>>> refs/remotes/origin/master
 			
 			//마지막 
 		});
 		</script>	
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
 		</body>

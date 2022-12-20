@@ -14,6 +14,9 @@ import com.kh.goldentime.entity.PatientDto;
 import com.kh.goldentime.entity.ReceiveDto;
 import com.kh.goldentime.repository.PatientDao;
 import com.kh.goldentime.repository.ReceiveDao;
+import com.kh.goldentime.repository.ReservationDao;
+import com.kh.goldentime.vo.PatientListSearchVO;
+import com.kh.goldentime.vo.PatientReceiveListVO;
 
 @Controller
 @RequestMapping("/patient")
@@ -25,10 +28,14 @@ public class PatientController {
 	@Autowired
 	private ReceiveDao receiveDao;
 	
+	@Autowired
+	private ReservationDao reservationDao;
+	
 	//원무과에서 볼 수 있는 금일 접수 현황
 	@GetMapping("/todaylist")
 	public String list(Model model) {
 		model.addAttribute("PatientReceiveListVO", patientDao.todayList());
+		model.addAttribute("PatientReservationListVO", reservationDao.todayList());
 	    return "patient/todaylist";
 	}
 	
@@ -36,6 +43,7 @@ public class PatientController {
 	@GetMapping("/internal")
 	public String internal(Model model) {
 		model.addAttribute("PatientDepartmentVO", patientDao.internalList());
+		model.addAttribute("PatientReservationDepartmentVO");
 	    return "patient/internal";
 	}
 	
@@ -43,6 +51,7 @@ public class PatientController {
 		@GetMapping("/surgeon")
 		public String surgeon(Model model) {
 			model.addAttribute("PatientDepartmentVO", patientDao.surgeonList());
+			model.addAttribute("PatientReservationDepartmentVO", reservationDao.toDayListSurgery());
 		    return "patient/surgeon";
 		}
 	
@@ -50,6 +59,7 @@ public class PatientController {
 		@GetMapping("/orthopaedic")
 		public String orthopaedic(Model model) {
 			model.addAttribute("PatientDepartmentVO", patientDao.orthopaedicList());
+			model.addAttribute("PatientReservationDepartmentVO", reservationDao.toDayListOrthopedic());
 			return "patient/orthopaedic";
 		}
 		
@@ -57,6 +67,7 @@ public class PatientController {
 		@GetMapping("/radiology")
 		public String radiology(Model model) {
 			model.addAttribute("PatientDepartmentVO", patientDao.radiologyList());
+			model.addAttribute("PatientReservationDepartmentVO", reservationDao.toDayListRadiology());
 			return "patient/radiology";
 		}
 		
@@ -74,6 +85,12 @@ public class PatientController {
 		patientDao.insert(patientDto);
 
 		receiveDto.setPatientNo(seqNo);
+		receiveDao.insert(receiveDto);
+		return "redirect:todaylist";
+	}
+	
+	@PostMapping("/insert1")
+	public String insert1(@ModelAttribute ReceiveDto receiveDto) {
 		receiveDao.insert(receiveDto);
 		return "redirect:todaylist";
 	}

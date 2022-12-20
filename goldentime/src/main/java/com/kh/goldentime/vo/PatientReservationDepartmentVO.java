@@ -7,11 +7,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor @Builder @Data @NoArgsConstructor
-public class PatientReservationListVO {
+@Data @AllArgsConstructor @NoArgsConstructor @Builder
+public class PatientReservationDepartmentVO {
 	private int patientNo;
 	private String patientName, patientGender, patientBlood;
-	private String reservationTime;
 	private Date patientBirth;
 	private String reservationDate;
+	private String reservationTime;
+	private String reservationStaffId;
+	private String staffMedicalDepartment;
 }

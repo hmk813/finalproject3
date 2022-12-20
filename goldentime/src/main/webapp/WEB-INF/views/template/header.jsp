@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    
     <title>드림 병원</title>
     
 
@@ -34,6 +35,7 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">드림 병원<sup></sup></div>
             </a>
+
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
             <!-- Divider -->
@@ -70,8 +72,9 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>물품신청</span></a>
             </li>
+
             <li class="nav-item active">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="${pageContext.request.contextPath}/staff/mypage">
                     <i class="fas fa-fw fa-table"></i>
                     <span>마이페이지</span></a>
             </li>
@@ -130,13 +133,14 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
-                                <a class="dropdown-item" href="/staff/mypage">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/staff/login" >
+
+                                <a class="dropdown-item" href="/staff/logout" >
+
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

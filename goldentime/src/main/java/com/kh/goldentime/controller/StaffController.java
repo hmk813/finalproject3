@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.goldentime.constant.SessionConstant;
 import com.kh.goldentime.entity.AttachmentDto;
@@ -55,7 +56,7 @@ public class StaffController {
 	
 	@PostMapping("/join")
 	public String join(@ModelAttribute StaffDto staffDto, @RequestParam List<MultipartFile> staffImg, 
-			HttpSession session) throws IllegalStateException, IOException {
+			HttpSession session, RedirectAttributes attr) throws IllegalStateException, IOException {
 		
 		staffDao.insert(staffDto);//DB등록
 		
@@ -81,11 +82,10 @@ public class StaffController {
 				attachmentDao.insertStaffImg(staffDto.getStaffId(), attachmentNo);
 			}	
 		}	
-		session.setAttribute("hasAttachment", !staffImg.get(0).isEmpty());//첨부파일이 있는가?
-		session.setAttribute("loginId", staffDto.getStaffId());
-		return "redirect:mypage";
+		
+		attr.addAttribute("staffId", staffDto.getStaffId());
+		return "redirect:detail";
 	}
-	
 	
 	@GetMapping("/join_finish")
 	public String joinFinish() {
@@ -132,39 +132,31 @@ public class StaffController {
 //		}
 //	}
 //	
-//	//로그아웃도 제가 가져가겠습니다 문규
-//	//로그아웃
-//	@GetMapping("/logout")
-//	public String logout(HttpSession session) {
-//		session.removeAttribute(SessionConstant.ID);
-//		session.removeAttribute(SessionConstant.GRADE);
-//		return "redirect:staff/login";
-//	}
-//	
-//	
-//	//마이페이지 따로 밖으로 빼겠습니다. 잠시 주석처리합니다
-//	//마이페이지 -현재 로그인한 회원의 정보를 화면에 출력한다 
-//	@GetMapping("/mypage")
-//	public String mypage(HttpSession session, Model model) {
-//		
-//		//세션에 들어있는 아이디를 꺼낸다
-//		String loginId = (String) session.getAttribute(SessionConstant.ID);
-//		
-//		//아이디를 이용하여 직원 정보를 불러온다
-//		StaffDto staffDto = staffDao.selectOne(loginId);
-//		
-//		//불러온 회원 정보를 모델에 첨부한다
-//		model.addAttribute("staffDto",staffDto);
-//		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
-//		model.addAttribute("vacationStaffVO", vacationDao.list(staffDto.getStaffId()));
-//		//-->여기 vacationStaffVO로 바꿨음 현재씨가 바꿔서 바꿔야되용
-//
-//		int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
-//		model.addAttribute("attachmentNo", attachmentNo);
-//		System.out.println(attachmentNo);
-//		
-//		return "staff/mypage";
-//	}
+	//로그아웃도로 가져왔습니다 가져가지마세요!!!!!!!
+	//로그아웃
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute(SessionConstant.ID);
+		session.removeAttribute(SessionConstant.GRADE);
+		return "redirect:/";
+	}
+	
+	//마이페이지 -현재 로그인한 회원의 정보를 화면에 출력한다 
+	@RequestMapping("/mypage")
+	public String mypage(HttpSession session, Model model) {
+		//세션에 들어있는 아이디를 꺼낸다
+		String loginId = (String) session.getAttribute(SessionConstant.ID);
+
+		//아이디를 이용하여 직원 정보를 불러온다
+		StaffDto staffDto = staffDao.selectOne(loginId);
+
+		//불러온 회원 정보를 모델에 첨부한다
+		model.addAttribute("staffDto",staffDto);
+		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
+		model.addAttribute("vacationStaffVO", vacationDao.list(staffDto.getStaffId()));
+		
+		return "/staff/mypage";
+	}
 
 //비밀번호 변경도 제꺼니까 이동하도록 하겠습니다	
 //	//비밀번호 변경
@@ -198,7 +190,6 @@ public class StaffController {
 //		return "staff/passwordResult";
 //	}
 //		
-//	
 	//개인정보 변경 기능(자기자신)
 	@GetMapping("/information")
 	public String information(HttpSession session,Model model) {
@@ -248,7 +239,8 @@ public class StaffController {
 		//세션에 들어있는 아이디 꺼내기
 		String loginId = (String) session.getAttribute("loginId");
 		
-		StaffDto staffDto = staffDao.selectOne(loginId);
+		//로그인 아이디를 이용하여 직원 정보를 불러온다
+		StaffDto staffDto = staffDao.selectOne(staffId);
 		model.addAttribute("staffDto", staffDto);
 		return "staff/detail";
 	}

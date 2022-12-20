@@ -13,11 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
-<title>드림병원</title>
-=======
 <title>드림 병원</title>
->>>>>>> refs/remotes/origin/master
 
 	<!--fullcalendar css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
@@ -30,11 +26,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
    	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script type="text/javascript"></script>
-<<<<<<< HEAD
-=======
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     
->>>>>>> refs/remotes/origin/master
 <style>
 	/* 디자인 시작 */
 	a{
@@ -278,8 +270,6 @@ $(function(){
              <a class="pw-btn" href="/staff/password">비밀번호 변경</a>
         </div>
 
-<<<<<<< HEAD
-     
         <div class="att-box col text-center">
         	<span>근태관리</span>
         	<div>출근 시간<fmt:formatDate value="${now}" pattern="a HH:mm:ss" var="now" />
@@ -319,7 +309,6 @@ $(function(){
                  <div class="text-center mt-2">
                  </div>
             </div>
-=======
         <div class="attendance">
         	<p class="p4">근태관리</p>
         	<!-- 퇴근 시간은 따로 ftm 있어야 함   -->
@@ -328,7 +317,6 @@ $(function(){
         	<p class="p6">퇴근시간 : </p>
         	<button type="button" class="in-btn" onclick="location.href='${AttendanceWorkTimeVO.startTime}' ">출근</button>
         	<button type="button" class="out-btn" onclick="location.href='${AttedanceWorkTimeVO.endTime}' ">퇴근</button> 
->>>>>>> refs/remotes/origin/master
         </div>
         
 	    <div class="cal">

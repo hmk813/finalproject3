@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.kh.goldentime.entity.PatientDto;
 import com.kh.goldentime.vo.OperationInformationVO;
 
 public interface OperationDao {
@@ -14,5 +15,6 @@ public interface OperationDao {
 //	OperationInformationVO selectOne(int operationNo);
 	//단일 조회2
 	OperationInformationVO selectOne(int patientNo);
+	List<PatientDto> selectPatientList();
 	
 }

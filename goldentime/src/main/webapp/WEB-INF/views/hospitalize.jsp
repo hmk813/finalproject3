@@ -44,7 +44,12 @@
 			});
 		});
 		
+<<<<<<< HEAD
+</script>	
+
+=======
 		</script>	
+>>>>>>> refs/remotes/origin/master
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -58,6 +63,10 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -68,7 +77,11 @@
                                             <th>진단명</th>
                                         </tr>
                                     </thead>
+<<<<<<< HEAD
+
+=======
                                   
+>>>>>>> refs/remotes/origin/master
                                     <tbody>
                                         <tr>
                                             <td>${hospitalizeVO.patientNo}</td>
@@ -77,7 +90,11 @@
                                         </tr>
                                     </tbody>
                                 </table>
+<<<<<<< HEAD
+                                
+=======
 
+>>>>>>> refs/remotes/origin/master
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -93,7 +110,11 @@
                                             <th>퇴원일</th>
                                         </tr>
                                     </thead>
+<<<<<<< HEAD
+
+=======
                                   
+>>>>>>> refs/remotes/origin/master
                                     <tbody>
                                         <tr>
                                             <td>${hospitalizeVO.hospitalizeNo}</td>
@@ -123,4 +144,8 @@
 
 
 </body>
+<<<<<<< HEAD
 	</head>
+=======
+	</head>
+>>>>>>> refs/remotes/origin/master

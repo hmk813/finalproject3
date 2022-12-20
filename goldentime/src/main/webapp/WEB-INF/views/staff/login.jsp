@@ -112,7 +112,6 @@
 			<img class="hospital-logo" src="/image/hospital.png"><p>드림 병원</p>
 		</div>
 
-		<div class="card-body">
 		<div class="div2">
 
 		<form class="login-form" action="login" method="post" autocomplete="off">
@@ -137,7 +136,6 @@
 			</div>
 		</form>
 		</div>
-
 
 		<!--웨이브 애니메이션  -->
 		<div class="ocean">

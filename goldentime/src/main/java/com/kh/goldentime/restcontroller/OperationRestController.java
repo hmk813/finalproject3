@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kh.goldentime.entity.PatientDto;
 import com.kh.goldentime.repository.OperationDao;
 import com.kh.goldentime.vo.OperationInformationVO;
 
@@ -22,9 +23,14 @@ public class OperationRestController {
 	@Autowired
 	OperationDao operationDao;
 	
+//	@GetMapping("/operationlist")
+//	public List<OperationInformationVO>  selectList(){
+//		return operationDao.selectList();
+//	}
+	
 	@GetMapping("/operationlist")
-	public List<OperationInformationVO>  selectList(){
-		return operationDao.selectList();
+	public List<PatientDto>  selectList(){
+		return operationDao.selectPatientList();
 	}
 	
 //	@GetMapping("/operationlist/{patientNo}")
@@ -32,7 +38,7 @@ public class OperationRestController {
 //		return operationDao.selectList();
 //	}
 	
-	@GetMapping("/opertaionlist/{patientNo}")
+	@GetMapping("/operationlist/{patientNo}")
 	public OperationInformationVO selectOne(@PathVariable int patientNo) {
 		return operationDao.selectOne(patientNo);
 	}

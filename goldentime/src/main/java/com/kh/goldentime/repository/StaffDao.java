@@ -16,6 +16,8 @@ public interface StaffDao {
 	List<StaffDto> selectSearch(StaffSearchVO staffSearchVO);//직원 검색조회
 	List<StaffDto> selectAll(StaffSearchVO staffSearchVO);//직원 전체조회
 	
+	List<StaffDto> staffList();
+	
 	StaffDto selectOne(String staffId);//직원 아이디로 단일조회(직원 상세, 마이페이지)
 	
 	boolean update(StaffDto staffDto);//수정

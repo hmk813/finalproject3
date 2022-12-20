@@ -56,7 +56,7 @@
             var date;
 
             $.ajax({ // 의사 출력
-                url: "http://localhost:8888/rest/staff",
+                url: "http://localhost:8888/rest/staff/list",
                 method: "get",
                 success: function (resp) {
                     if (resp != null) {

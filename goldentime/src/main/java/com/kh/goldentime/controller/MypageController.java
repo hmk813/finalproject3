@@ -1,14 +1,14 @@
 package com.kh.goldentime.controller;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.kh.goldentime.constant.SessionConstant;
 import com.kh.goldentime.entity.StaffDto;
 import com.kh.goldentime.repository.AttachmentDao;
@@ -48,33 +48,15 @@ public class MypageController {
 			return "redirect:/staff/login?error";
 		}
 	}
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute(SessionConstant.ID);
-		session.removeAttribute(SessionConstant.GRADE);
-		return "redirect:/staff/login";
-	}
 
-
-//	@RequestMapping("/staff/mypage")
-//	public String mypage(HttpSession session, Model model) {
-//		//세션에 들어있는 아이디를 꺼낸다
-//		String loginId = (String) session.getAttribute(SessionConstant.ID);
-//
-//		//아이디를 이용하여 직원 정보를 불러온다
-//		StaffDto staffDto = staffDao.selectOne(loginId);
-//
-//		//불러온 회원 정보를 모델에 첨부한다
-//		model.addAttribute("staffDto",staffDto);
-//		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
-//		model.addAttribute("vacationStaffVO", vacationDao.list(staffDto.getStaffId()));
-//
-//		//반환한 로그인 아이디로 직원 이미지 테이블에서 첨부파일 번호를 조회한 후 모델에 넣음
-//		int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
-//		model.addAttribute("attachmentNo", attachmentNo);
-//
-//		return "/staff/mypage";
+//	@GetMapping("/logout")
+//	public String logout(HttpSession session) {
+//		session.removeAttribute(SessionConstant.ID);
+//		session.removeAttribute(SessionConstant.GRADE);
+//		return "redirect:/";
 //	}
+
+
 //	@RequestMapping("/staff/mypage")
 //	public String mypage(HttpSession session, Model model) {
 //		//세션에 들어있는 아이디를 꺼낸다
@@ -94,7 +76,6 @@ public class MypageController {
 //		
 //		return "/staff/mypage";
 //	}
-
 	@GetMapping("/staff/password")
 	public String password() {
 		return "/staff/password";

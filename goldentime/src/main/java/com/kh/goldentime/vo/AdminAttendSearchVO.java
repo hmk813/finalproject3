@@ -16,7 +16,7 @@ public class AdminAttendSearchVO {
 	   // 검색 조회인지 여부 반환
 	   public boolean isSearch() {
 	      // 유형(type), 검색어(keyword) 둘다 null이 아니면 true를 반환
-	      return type != null || beginMade != null || endMade != null || staffName != null;
+	      return type.get(0) != null || beginMade != null || endMade != null || staffName != null;
 	   }
 	   
 	   // 페이징 관련

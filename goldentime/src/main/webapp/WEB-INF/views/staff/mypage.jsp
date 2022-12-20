@@ -245,7 +245,7 @@ $(function(){
 
         <div class="myinfo">
 			<p class="p1">내 정보</p>
-			<img src="../img/undraw_profile.svg"  class="myinfo-img">
+
 			<img src="/attachment/download/staff?attachmentNo=${attachmentNo}"  class="myinfo-img">
           	<p class="p2">${staffDto.staffName}</p>
             <p class="p3">${staffDto.staffMedicalDepartment}</p>

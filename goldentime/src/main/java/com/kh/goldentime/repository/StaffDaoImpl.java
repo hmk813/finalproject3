@@ -132,4 +132,9 @@ public class StaffDaoImpl implements StaffDao{
 	public List<DepartmentDto> selectDepartment() {
 		return sqlSession.selectList("staff.selectDepartment");
 	}
+
+	@Override
+	public List<StaffDto> staffList() {
+		return sqlSession.selectList("staff.staffList");
+	}
 }

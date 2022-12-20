@@ -12,10 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-<<<<<<< HEAD
     <title>드림 병원</title>
-=======
->>>>>>> refs/remotes/origin/master
 
     <!-- Custom fonts for this template -->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -83,11 +80,8 @@
 			 <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/staff/mypage">
                     <i class="fas fa-fw fa-table"></i>
-<<<<<<< HEAD
                     <span>마이페이지</span></a>
-=======
                     <span>메세지</span></a>
->>>>>>> refs/remotes/origin/master
             </li>
             
             <!-- Divider -->

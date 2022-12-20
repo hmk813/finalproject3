@@ -11,19 +11,19 @@
 <head>
 <meta charset="UTF-8">
 <title>드림 병원</title>
+
 	<!--fullcalendar css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 	
     <!-- fullcalendar CDN -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <!-- fullcalendar 언어 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
     <!-- moment CDN (format사용하기 위해)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script type="text/javascript"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    
+
 <style>
 	/* 디자인 시작 */
 	a{
@@ -239,18 +239,20 @@ $(function(){
          });
          // 캘린더 랜더링
          calendar.render();
+         
    });
 </script>
-<body>
 
+<body>
+	
         <div class="myinfo">
 			<p class="p1">내 정보</p>
-
 			<img src="/attachment/download/staff?attachmentNo=${attachmentNo}"  class="myinfo-img">
           	<p class="p2">${staffDto.staffName}</p>
             <p class="p3">${staffDto.staffMedicalDepartment}</p>
              <a class="pw-btn" href="/staff/password">비밀번호 변경</a>
         </div>
+        
         <div class="attendance">
         	<p class="p4">근태관리</p>
         	<!-- 퇴근 시간은 따로 ftm 있어야 함   -->
@@ -260,7 +262,7 @@ $(function(){
         	<button type="button" class="in-btn" onclick="location.href='${AttendanceWorkTimeVO.startTime}' ">출근</button>
         	<button type="button" class="out-btn" onclick="location.href='${AttedanceWorkTimeVO.endTime}' ">퇴근</button> 
         </div>
-        
+
 	    <div class="cal">
 		<div class="calendar" id="calendar"></div>
 	     </div>

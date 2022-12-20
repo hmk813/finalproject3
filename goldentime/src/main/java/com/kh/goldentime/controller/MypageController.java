@@ -61,12 +61,12 @@ public class MypageController {
 		}
 	}
 
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute(SessionConstant.ID);
-		session.removeAttribute(SessionConstant.GRADE);
-		return "redirect:/staff/login";
-	}
+//	@GetMapping("/logout")
+//	public String logout(HttpSession session) {
+//		session.removeAttribute(SessionConstant.ID);
+//		session.removeAttribute(SessionConstant.GRADE);
+//		return "redirect:/";
+//	}
 
 
 //	@RequestMapping("/staff/mypage")

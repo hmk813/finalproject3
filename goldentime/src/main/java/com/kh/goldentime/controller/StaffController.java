@@ -2,9 +2,7 @@ package com.kh.goldentime.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.kh.goldentime.constant.SessionConstant;
 import com.kh.goldentime.entity.AttachmentDto;
 import com.kh.goldentime.entity.StaffDto;
@@ -85,8 +82,8 @@ public class StaffController {
 		session.setAttribute("loginId", staffDto.getStaffId());
 		return "redirect:mypage";
 	}
-	
-	
+
+
 	@GetMapping("/join_finish")
 	public String joinFinish() {
 		return "staff/joinFinish";
@@ -165,6 +162,30 @@ public class StaffController {
 //		
 //		return "staff/mypage";
 //	}
+	@RequestMapping("/mypage")
+	public String mypage(HttpSession session, Model model) {
+		//세션에 들어있는 아이디를 꺼낸다
+		String loginId = (String) session.getAttribute(SessionConstant.ID);
+
+		//아이디를 이용하여 직원 정보를 불러온다
+		StaffDto staffDto = staffDao.selectOne(loginId);
+
+		//불러온 회원 정보를 모델에 첨부한다
+		model.addAttribute("staffDto",staffDto);
+		model.addAttribute("attendanceDto",attendanceDao.todaywork(staffDto.getStaffId()));
+		model.addAttribute("vacationStaffVO", vacationDao.list(staffDto.getStaffId()));
+
+		//첨부파일 유무 판별
+		boolean hasAttachment = (boolean)session.getAttribute("hasAttachment");
+		if(hasAttachment) {//첨부파일을 갖고있으면
+			//반환한 로그인 아이디로 직원 이미지 테이블에서 첨부파일 번호를 조회한 후 모델에 넣음
+			int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
+			model.addAttribute("attachmentNo", attachmentNo);
+			session.removeAttribute("hasAttachment");//세션에 담긴 첨부파일 유무여부를 삭제
+		}
+
+		return "/staff/mypage";
+	}
 
 //비밀번호 변경도 제꺼니까 이동하도록 하겠습니다	
 //	//비밀번호 변경

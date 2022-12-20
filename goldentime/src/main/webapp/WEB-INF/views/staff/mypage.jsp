@@ -3,18 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="now" class="java.util.Date" />
-
 <jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
    <jsp:param value="마이페이지" name="title" />
 </jsp:include>
-
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>드림 병원</title>
-
 	<!--fullcalendar css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 	
@@ -246,15 +242,15 @@ $(function(){
    });
 </script>
 <body>
-	
+
         <div class="myinfo">
 			<p class="p1">내 정보</p>
 			<img src="../img/undraw_profile.svg"  class="myinfo-img">
+			<img src="/attachment/download/staff?attachmentNo=${attachmentNo}"  class="myinfo-img">
           	<p class="p2">${staffDto.staffName}</p>
             <p class="p3">${staffDto.staffMedicalDepartment}</p>
              <a class="pw-btn" href="/staff/password">비밀번호 변경</a>
         </div>
-
         <div class="attendance">
         	<p class="p4">근태관리</p>
         	<!-- 퇴근 시간은 따로 ftm 있어야 함   -->
@@ -296,5 +292,4 @@ $(function(){
    <input type="hidden" name="reservationStaffId" value="${staffDto.staffId}">
    
 </body>
-
 </html>

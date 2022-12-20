@@ -31,7 +31,7 @@
 	<select id="list" resultType="PatientReceiveListVO"> 
 		select 
 		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
-		R.receive_date
+		R.receive_date, R.receive_no
 		from 
 		patient P inner join receive R on P.patient_no = R.patient_no 
 		where R.receive_date = to_char(sysdate, 'yyyy-MM-dd')
@@ -42,7 +42,7 @@
 		select 
         S.staff_id, S.staff_medical_department,
 		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
-		R.receive_date
+		R.receive_date, R.receive_no
 		from 
 		patient P inner join receive R on P.patient_no = R.patient_no
         inner join staff S on S.staff_id = R.staff_id 
@@ -54,7 +54,7 @@
 		select 
         S.staff_id, S.staff_medical_department,
 		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
-		R.receive_date
+		R.receive_date, R.receive_no
 		from 
 		patient P inner join receive R on P.patient_no = R.patient_no
         inner join staff S on S.staff_id = R.staff_id 
@@ -66,7 +66,7 @@
 		select 
         S.staff_id, S.staff_medical_department,
 		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
-		R.receive_date
+		R.receive_date, R.receive_no
 		from 
 		patient P inner join receive R on P.patient_no = R.patient_no
         inner join staff S on S.staff_id = R.staff_id 
@@ -78,7 +78,7 @@
 		select 
         S.staff_id, S.staff_medical_department,
 		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
-		R.receive_date
+		R.receive_date, R.receive_no
 		from 
 		patient P inner join receive R on P.patient_no = R.patient_no
         inner join staff S on S.staff_id = R.staff_id 

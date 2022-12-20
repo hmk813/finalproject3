@@ -22,12 +22,19 @@
         #time-reservation{
             color: red;
         }
+        
+        /* 디자인 */
+        .calendar{
+        width: 700px;
+        height: 600px;
+        }
     </style>
     <meta charset='utf-8' />
 
     <!-- Bootstrap CSS -->
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -275,7 +282,7 @@
 
 <body>
     <div>
-        <div id='calendar'></div>
+        <div id='calendar' class="calendar"></div>
         <div class="modal fade" id="modal01" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">

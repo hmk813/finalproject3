@@ -71,7 +71,7 @@
                     <span>물품신청</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/staff/mypage">
+                <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-table"></i>
                     <span>마이페이지</span></a>
             </li>

@@ -73,7 +73,7 @@ $(function(){
  			let operationDetail=[];
 			function loadDetail(){
 				$.ajax({
-					url:"${pageContext.request.contextPath}/rest/operationlist"+patientNo, //patientNo 를 인식 못하는데 무슨 문제 ㅡㅡ;; 이 번호가 들어갈 자리가 있어야 한다는데 무슨...?
+					url:"${pageContext.request.contextPath}/rest/operationlist", //patientNo 를 인식 못하는데 무슨 문제 ㅡㅡ;; 이 번호가 들어갈 자리가 있어야 한다는데 무슨...?
 					method:"get",
 					dataType:"json",
 					success: function(resp){
@@ -87,7 +87,7 @@ $(function(){
 			$(document).on("click", ".operation-list", function(){
 				$(".operation-detail").empty();
 				$.ajax({
-					url:"${pageContext.request.contextPath}/rest/operationlist"+patientNo, //patientNo 를 인식 못하는데 무슨 문제 ㅡㅡ;;
+					url:"${pageContext.request.contextPath}/rest/operationlist", //patientNo 를 인식 못하는데 무슨 문제 ㅡㅡ;;
 					method:"get",
 					dataType:"json",
 					success: function(resp){

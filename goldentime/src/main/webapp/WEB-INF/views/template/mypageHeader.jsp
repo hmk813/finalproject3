@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -78,7 +77,6 @@
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-table"></i>
                     <span>메세지</span></a>
-                    <span>마이페이지</span></a>
             </li>
 
             <!-- Divider -->

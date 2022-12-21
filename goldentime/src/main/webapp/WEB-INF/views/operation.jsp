@@ -90,7 +90,7 @@
       });
       
       </script>   
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+     <%--  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>입원번호</th>
@@ -120,5 +120,5 @@
                                             <td>${hospitalizeVO.hospitalizeEndDate}</td> 
                                         </tr>
                                     </tbody>
-
+						</table> --%>
       </body>

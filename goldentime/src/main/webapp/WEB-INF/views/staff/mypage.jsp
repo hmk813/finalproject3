@@ -17,6 +17,7 @@
 	
     <!-- fullcalendar CDN -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <!-- fullcalendar 언어 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
     <!-- moment CDN (format사용하기 위해)-->
@@ -239,7 +240,7 @@ $(function(){
          });
          // 캘린더 랜더링
          calendar.render();
-         
+
    });
 </script>
 
@@ -252,7 +253,7 @@ $(function(){
             <p class="p3">${staffDto.staffMedicalDepartment}</p>
              <a class="pw-btn" href="/staff/password">비밀번호 변경</a>
         </div>
-        
+
         <div class="attendance">
         	<p class="p4">근태관리</p>
         	<!-- 퇴근 시간은 따로 ftm 있어야 함   -->

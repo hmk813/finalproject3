@@ -5,16 +5,17 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp">
    <jsp:param value="수술환자목록" name="title" />
 </jsp:include>
+
       <link rel="preconnect" href="https://fonts.googleapis.com">
        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
-       
+
        <!-- Bootstrap CSS -->
           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-          
+
           <link href="<c:url value="../css/sb-admin-2.min.css" />" rel="stylesheet">
-            <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+          <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
       <style>
       .sp1{
       color:#3f3f3f;
@@ -23,9 +24,11 @@
       }
       </style>
 
-
       <body id="page-top">
 
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+		<script>
       <span class="sp1">수술 환자 목록</span>
       <div class="operation-list">
       </div>
@@ -37,6 +40,7 @@
 
       <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
+		<body id="page-top">
       <script>
       $(function(){
          
@@ -72,7 +76,7 @@
             });
          };
          
-         function showDetail(patientNo) {
+         function showDetail(patientNo) { 
             $.ajax({
                url:"${pageContext.request.contextPath}/rest/operationlist/"+patientNo,
                method:"get",
@@ -89,9 +93,4 @@
          
          //마지막 
       });
-      </script>   
-	<div>
-	
-	
-	</div>
-      </body>
+      </script>  

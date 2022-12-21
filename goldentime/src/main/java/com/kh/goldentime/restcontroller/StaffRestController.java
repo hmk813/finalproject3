@@ -37,4 +37,9 @@ public class StaffRestController {
 		return staffDao.list();
 	}	
 	
+	@GetMapping("/staff/list")
+	public List<StaffDto> staffList(){
+		return staffDao.staffList();
+	}
+	
 }

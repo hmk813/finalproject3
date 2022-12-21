@@ -7,6 +7,16 @@
 </jsp:include>
 
 <style>
+	.container-500 { 
+		width:500px; margin:0 auto; 
+	}
+	div{
+/*   		border: 1px solid gray; */
+	}
+	.table > thead,
+	.table > tfoot {
+		background-color: #ececec;
+	}
 	.pagination {
 		justify-content : center;
 		display: flex;
@@ -17,91 +27,74 @@
 	}
 </style>
 
-<h1>직원 검색</h1>
+		<div class="row mt-4">
+		
+	    	<div class="col-md-10 offset-md-1">
+				<h1 class="text-center font-weight-bold">직원 목록</h1>
+			</div>
+			
+		</div>
 
-<!-- 검색창 -->
-<form action="list" method="get" align="center">
-<!--
-	<c:choose>
-		<c:when test="${param.type == 'staff_name'}">
-			<select name="type" required>
-				<option value="staff_name">이름</option>
-				<option value="staff_department_no" selected>부서</option>
-				<option value="staff_grade">직위</option>
-				<option value="staff_medical_department">진료과</option>
-			</select>
-		</c:when>
-		<c:when test="${param.type == 'member_tel'}">
-			<select name="type" required>
-				<option value="staff_name">이름</option>
-				<option value="staff_department_no">부서</option>
-				<option value="staff_grade" selected>직위</option>
-				<option value="staff_medical_department">진료과</option>
-			</select>
-		</c:when>
-		<c:when test="${param.type == 'member_grade'}">
-			<select name="type" required>
-				<option value="staff_name">이름</option>
-				<option value="staff_department_no">부서</option>
-				<option value="staff_grade">직위</option>
-				<option value="staff_medical_department" selected>진료과</option>
-			</select>
-		</c:when>
-		<c:otherwise>
-			<select name="type" required>
-				<option value="staff_name" selected>이름</option>
-				<option value="staff_department_no">부서</option>
-				<option value="staff_grade">직위</option>
-				<option value="staff_medical_department">진료과</option>
-			</select>
-		</c:otherwise>
-	</c:choose>
-	 -->
-	 <select name="type" required>
-	 	<option value="staff_name">이름</option>
-	 	<option value="department_name">부서</option>
-	 	<option value="staff_grade">직위</option>
-	 	<option value="staff_medical_department">진료과</option>
-	 </select>
-	
-	<input type="search" name="keyword" required value="${param.keyword}">
-	
-	<button type="submit">검색</button>
-</form>
+	<!-- 검색창 -->
+	<form action="list" method="get" align="center" style="margin-top: 10px">
+		 <select name="type" required>
+		 	<option value="staff_name">이름</option>
+		 	<option value="department_name">부서</option>
+		 	<option value="staff_grade">직위</option>
+		 	<option value="staff_medical_department">진료과</option>
+		 </select>
+		
+		<input type="search" name="keyword" required value="${param.keyword}">
+		
+		<button type="submit">검색</button>
+	</form>
 
-<!-- 결과화면 -->
-<table width="500" align="center" border="1">
-	<thead>
-		<tr>
-			<th>이름</th>
-			<th>부서</th>
-			<th>직위</th>
-			<th>진료과</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach var="staffDto" items="${staffList}">
-		<tr>
-			<td>${staffDto.staffName}</td>
-			<td>${staffDto.departmentName}</td>
-			<td>${staffDto.staffGrade}</td>
-			<td>${staffDto.staffMedicalDepartment}</td>
-			<td>
-				<a class="btn" style="padding:4px;" href="detail?staffId=${staffDto.staffId}">상세</a>
-				<a class="btn" style="padding:4px;" href="delete?staffId=${staffDto.staffId}">삭제</a>
-			</td>
-		</tr>
-		</c:forEach>
-	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="4" align="right">
-				총 ${staffList.size()}개의 결과
-			</td>
-		</tr>
-	</tfoot>
-</table>
 
+	<!-- 결과화면 -->
+	<div class="row mt-2">
+	    <div class="col-md-10 offset-md-1">
+	    
+	        <table class="table table-hover">
+	        
+	            <thead class="text-center">
+	                <tr class="head">
+	                    <th>이름</th>
+	                    <th>부서</th>
+	                    <th>직위</th>
+	                    <th>진료과</th>
+	                    <th>메뉴</th>
+	                </tr>
+	            </thead>
+	            
+	            <tbody class="text-center">
+	                <c:forEach var="staffDto" items="${staffList}">
+						<tr>
+							<td class="align-middle">${staffDto.staffName}</td>
+							<td class="align-middle">${staffDto.departmentName}</td>
+							<td class="align-middle">${staffDto.staffGrade}</td>
+							<td class="align-middle">${staffDto.staffMedicalDepartment}</td>
+							<td class="align-middle">
+								<a class="btn" style="padding:4px;" href="detail?staffId=${staffDto.staffId}">상세</a>
+								<a class="btn" style="padding:4px;" href="delete?staffId=${staffDto.staffId}">삭제</a>
+							</td>
+						</tr>
+					</c:forEach>
+	            </tbody>
+	            
+	            <tfoot>
+					<tr>
+						<td colspan="5" align="right">
+							<a href="join">직원 등록</a>
+						</td>
+					</tr>
+				</tfoot>
+				
+	        </table>
+	        
+	    </div>
+	</div>
+        
+        
 <%-- 페이지 네비게이터 --%>
 <div class="mt-10 mb-10" align="center">
 	<ul class="pagination">

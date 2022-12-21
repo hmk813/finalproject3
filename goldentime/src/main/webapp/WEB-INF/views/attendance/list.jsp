@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="now" class="java.util.Date" />
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
+	<jsp:param value="마이페이지" name="title" />
+</jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,8 +76,8 @@
 			</div>
 		</div>
 
-		<div class="row mt-4">
-			<div class="col">
+		<div class="row mt-4 ms-5 me-5">
+			<div class="col mt-4">
 				<form method="get" action="list" class="search-form">
 					<input type="date" name="beginMade" style="height:50px"> ~ <input type="date"
 						name="endMade" style="height:50px">
@@ -81,7 +86,7 @@
 			</div>
 		</div>
 
-		<div class="row mt-4">
+		<div class="row mt-4 ms-5 me-5">
 			<div class="col">
 				<table class="table table-hover">
 					<thead class="text-center">
@@ -146,6 +151,37 @@
                 );
             });
         });
+        
+        $(function() {
+    		
+    		$(".search-form").submit(function(e) {
+
+    			$(this).find("[name]").each(function() {
+    				var value = $(this).val();
+    				if (value.length == 0) {
+    					
+    					$(this).removeAttr("name");
+    				}
+    			});
+
+    			return true;
+    		});
+    	});
+
+    	
+    	$(function() {
+    		var param = new URLSearchParams(location.search);
+
+    		var type = param.getAll("type");
+    		for (var i = 0; i < type.length; i++) {
+    			$("[name=type][value=" + type[i] + "]").prop("checked", true);
+    		}
+
+    		var sort = param.getAll("sort");
+    		for (var i = 0; i < sort.length; i++) {
+    			$("[name=sort]").eq(i).val(sort[i]);
+    		}	
+    	});
     </script>
 
 

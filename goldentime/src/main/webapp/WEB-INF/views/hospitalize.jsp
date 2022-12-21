@@ -68,6 +68,7 @@
                                             <th>진단명</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
                                         <tr>
                                             <td>${hospitalizeVO.patientNo}</td>
@@ -76,6 +77,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -91,6 +93,7 @@
                                             <th>퇴원일</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
                                         <tr>
                                             <td>${hospitalizeVO.hospitalizeNo}</td>

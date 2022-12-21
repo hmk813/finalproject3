@@ -51,7 +51,7 @@
 					<td>${staffDto.staffGrade}</td>
 				</tr>
 				<tr>
-					<th>가입일시</th>
+					<th>입사일</th>
 					<td>
 						<fmt:formatDate value="${staffDto.staffEnrollDate}" pattern="y년 M월 d일 E a h시 m분 s초"/>
 					</td>

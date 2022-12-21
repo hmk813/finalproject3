@@ -101,7 +101,7 @@
                                     <a class="nav-link" href="/attendance/list?attendanceStaffId=${attendanceDto.attendanceStaffId}"><span class="link-sp">근태관리</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/vacation/vacation?vacationStaffId=${staffDto.staffId}"><span class="#">연차관리</span></a>
+                                    <a class="nav-link" href="/vacation/list"><span class="#">연차관리</span></a>
                                 </li>	
                                 <li class="nav-item">
                                     <a class="nav-link" href="/calendar/?calendarStaffId=${staffDto.staffId}"><span class="#">일정관리</span></a>

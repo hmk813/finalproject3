@@ -1,362 +1,362 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="now" class="java.util.Date" />
+
+<jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
+	<jsp:param value="마이페이지" name="title" />
+</jsp:include>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>휴가 관리</title>
 
 
-    <script src="https://kit.fontawesome.com/188e96ed37.js" crossorigin="anonymous"></script>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <!-- Bootstrap CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-
-    
-    
-    
+<script src="https://kit.fontawesome.com/188e96ed37.js"
+	crossorigin="anonymous"></script>
 
 
-    <style>
-        .box1 {
-            display: inline-block;
-            /* default값 inline */
 
-            border: 1px solid skyblue;
-            /* 테두리 */
 
-            color: #2E64FE
-                /* 글자색 : white */
-        }
 
-        .box2 {
-            display: inline-block;
-            /* default값 inline */
+<style>
+.box1 {
+	display: inline-block;
+	/* default값 inline */
+	border: 1px solid skyblue;
+	/* 테두리 */
+	color: #2E64FE /* 글자색 : white */
+}
 
-            background-color: #2E64FE;
+.box2 {
+	display: inline-block;
+	/* default값 inline */
+	background-color: #2E64FE;
+	border: 1px solid #2E64FE;
+	/* 테두리 */
+	color: white;
+	/* 글자색 : white */
+}
 
-            border: 1px solid #2E64FE;
-            /* 테두리 */
+span:hover {
+	background: #E6E6E6;
+}
 
-            color: white;
-            /* 글자색 : white */
-        }
+.aa-flex {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap
+}
 
-        span:hover {
-            background: #E6E6E6;
-        }
+.w-75 {
+	width: 75%;
+}
 
-        .aa-flex {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap
-        }
+.w-25 {
+	width: 25%;
+}
 
-        .w-75 {
-            width: 75%;
-        }
+select {
+	width: 300px;
+	padding: 5px;
+	border: 1px solid #999;
+	border-radius: 3px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
 
-        .w-25 {
-            width: 25%;
-        }
+select::-ms-expand {
+	display: none;
+}
 
-        select {
-            width: 300px;
-            padding: 5px;
-            border: 1px solid #999;
-            border-radius: 3px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-
-        select::-ms-expand {
-            display: none;
-        }
-
-        .circleSize{
-            font-size: 3px;
-        }
-
-    </style>
+.circleSize {
+	font-size: 3px;
+}
+</style>
 
 
 
 </head>
 
 <body>
-    <div class="container-fluid">
+	<div class="container-fluid">
 
 
-        <div class="row mt-4 p-1">
-            <div class="col">
-                <h4>
-                    <i class="fa-solid fa-circle-info"></i>
-                    나의 휴가 현황
-                </h4>
-            </div>
-        </div>
-        <div class="row p-3">
-            <div class="col p-2">
-                <div class="border rounded shadow p-2">
-                    <table class="table table-striped">
-                        <thead class="text-center">
-                            <tr>
-                                <th>총 연차</th>
-                                <th>사용 연차</th>
-                                <th>남은 연차</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                            <tr>
-                                <td>13</td>
-                                <td id="useCnt"></td>
-                                <td id="leaveCnt"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col p-2">
-                <div class="border rounded shadow p-2">
-                    <table class="table table-striped">
-                        <thead class="text-center">
-                            <tr>
-                                <th>총 월차</th>
-                                <th>사용 월차</th>
-                                <th>남은 월차</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                            <tr>
-                                <td id="dayoff"></td>
-                                <td id="useCnt1"></td>
-                                <td id="usedayoff"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+		<div class="row mt-4 p-1">
+			<div class="col">
+				<h4>
+					<i class="fa-solid fa-circle-info"></i> 나의 휴가 현황
+				</h4>
+			</div>
+		</div>
+		<div class="row p-3">
+			<div class="col p-2">
+				<div class="border rounded shadow p-2">
+					<table class="table table-striped">
+						<thead class="text-center">
+							<tr>
+								<th>총 연차</th>
+								<th>사용 연차</th>
+								<th>남은 연차</th>
+							</tr>
+						</thead>
+						<tbody class="text-center">
+							<tr>
+								<td>13</td>
+								<td id="useCnt"></td>
+								<td id="leaveCnt"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col p-2">
+				<div class="border rounded shadow p-2">
+					<table class="table table-striped">
+						<thead class="text-center">
+							<tr>
+								<th>총 월차</th>
+								<th>사용 월차</th>
+								<th>남은 월차</th>
+							</tr>
+						</thead>
+						<tbody class="text-center">
+							<tr>
+								<td id="dayoff"></td>
+								<td id="useCnt1"></td>
+								<td id="usedayoff"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 
+		<div class="row p-3">
+			<div class="col-lg-6 col-sm-12 text-lg-start text-center">
+				<h4 class="text-left">
+					<i class="fa-solid fa-circle-info"></i> 나의 휴가 신청/사용 내역
+				</h4>
+			</div>
+			<div class="col-lg-6 col-sm-12 text-lg-end text-right">
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+					data-bs-target="#enroll" data-bs-whatever="@mdo">연차신청하기</button>
+			</div>
+		</div>
 
+		<div class="row p-3">
+			<div class="col">
+				<table class="table tbl paginated table-hover " id="tbl">
+					<thead class="text-center">
+						<tr class="bg-dark text-light">
+							<th>번호</th>
+							<th>부서</th>
+							<th>직책</th>
+							<th>이름</th>
+							<th>유형</th>
+							<th>날짜</th>
+							<th>휴가 기간</th>
+							<th>휴가 신청 상태</th>
+							<th>수정/삭제</th>
+						</tr>
+					</thead>
+					<tbody id="list" class="text-center">
 
-        <div class="d-flex bd-highlight p-3">
-            <div class="p-3 bd-highlight">
-                <h4 class="text-left">
-                    <i class="fa-solid fa-circle-info"></i>
-                    나의 휴가 신청/사용 내역
-                </h4>
-            </div>
-            <div class="ms-auto p-2 bd-highlight">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#enroll"
-                    data-bs-whatever="@mdo">
-                    연차신청하기
-                </button>
-            </div>
-        </div>
-
-        <div class="row p-3">
-            <div class="col">
-                <table class="table tbl paginated table-hover " id="tbl">
-                    <thead class="text-center">
-                        <tr class="bg-dark text-light">
-                            <th>번호</th>
-                            <th>부서</th>
-                            <th>직책</th>
-                            <th>이름</th>
-                            <th>유형</th>
-                            <th>날짜</th>
-                            <th>휴가 기간</th>
-                            <th>휴가 신청 상태</th>
-                            <th>수정/삭제</th>
-                        </tr>
-                    </thead>
-                    <tbody id="list" class="text-center">
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 
 
 
-        <!--휴가 신청하기-->
-        <div class="modal fade" id="enroll" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">휴가 신청하기</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="enroll">
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <i class="fa-solid fa-star-of-life fa-xs" style="color:red"></i>
-                                    <i class="fa-xs">필수 입력사항 입니다.</i>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="mb-3">
-                                <i class="fa-solid fa-star-of-life fa-xs" style="color:red"></i> 휴가종류
-                            </div>
+		<!--휴가 신청하기-->
+		<div class="modal fade" id="enroll" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">휴가 신청하기</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form class="enroll">
+							<div class="row mb-3">
+								<div class="col">
+									<i class="fa-solid fa-star-of-life fa-xs" style="color: red"></i>
+									<i class="fa-xs">필수 입력사항 입니다.</i>
+								</div>
+							</div>
+							<br>
+							<div class="mb-3">
+								<i class="fa-solid fa-star-of-life fa-xs" style="color: red"></i>
+								휴가종류
+							</div>
 
-                            <div class="mb-3">
-                                <i class="fa-solid fa-star-of-life fa-xs" style="color:red"></i>
-                                <select id="vacationType">
-                                    <option>선택해주세요.</option>
-                                    <option value="연차">연차</option>
-                                    <option value="월차">월차</option>
-                                    <option value="반차">반차</option>
-                                    <option value="출산">출산</option>
-                                </select>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-8 col-sm-6">
-                                        <i class="fa-solid fa-circle fa-xs circleSize"></i> 총 연차 수 13 일
-                                    </div>
-                                    <div class="col-4 col-sm-6" id="leaveCnt1">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-8 col-sm-6" id="dayoff1">
+							<div class="mb-3">
+								<i class="fa-solid fa-star-of-life fa-xs" style="color: red"></i>
+								<select id="vacationType">
+									<option>선택해주세요.</option>
+									<option value="연차">연차</option>
+									<option value="월차">월차</option>
+									<option value="반차">반차</option>
+									<option value="출산">출산</option>
+								</select>
+							</div>
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-8 col-sm-6">
+										<i class="fa-solid fa-circle fa-xs circleSize"></i> 총 연차 수 13
+										일
+									</div>
+									<div class="col-4 col-sm-6" id="leaveCnt1"></div>
+								</div>
+							</div>
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-8 col-sm-6" id="dayoff1"></div>
+									<div class="col-4 col-sm-6" id="dayoff2"></div>
+								</div>
+							</div>
+							<div class="mt-3">
+								<i class="fa-solid fa-star-of-life fa-xs" style="color: red"></i>
+								휴가일
+							</div>
+							<div class="mb-3 input-group date">
+								<input type="date" class="form-control" name="vacationStartDate"><span
+									class="input-group-addon"><i
+									class="glyphicon glyphicon-calendar"></i></span>
+							</div>
 
-                                    </div>
-                                    <div class="col-4 col-sm-6" id="dayoff2">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-3">
-                                <i class="fa-solid fa-star-of-life fa-xs" style="color:red"></i> 휴가일
-                            </div>
-                            <div class="mb-3 input-group date">
-                                <input type="date" class="form-control" name="vacationStartDate"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            </div>
+							<div class="mt-3">
+								<i class="fa-solid fa-star-of-life fa-xs" style="color: red"></i>
+								휴가 일수
+							</div>
+							<div class="mb-3">
+								<input type="number" name="vacationDay"
+									placeholder="숫자를 입력해 주세요.">
+							</div>
 
-                            <div class="mt-3">
-                                <i class="fa-solid fa-star-of-life fa-xs" style="color:red"></i> 휴가 일수
-                            </div>
-                            <div class="mb-3">
-                                <input type="number" name="vacationDay" placeholder="숫자를 입력해 주세요.">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="message-text" class="col-form-label">
-                                    <i class="fa-solid fa-star-of-life fa-xs" style="color:red"></i>
-                                    사유
-                                </label>
-                                <textarea class="form-control" id="message-text" name="vacationRecode"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                        <button type="submit" class="btn btn-primary vacation">신청하기</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+							<div class="mb-3">
+								<label for="message-text" class="col-form-label"> <i
+									class="fa-solid fa-star-of-life fa-xs" style="color: red"></i>
+									사유
+								</label>
+								<textarea class="form-control" id="message-text"
+									name="vacationRecode"></textarea>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">닫기</button>
+						<button type="submit" class="btn btn-primary vacation">신청하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
-        <!--휴가 수정하기-->
+		<!--휴가 수정하기-->
 
-        <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">휴가 수정하기</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="enroll">
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <i class="fa-solid fa-star-of-life fa-xs" style="color:red"></i>
-                                    <i class="fa-xs">필수 입력사항 입니다.</i>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="mb-3">
-                                <i class="fa-solid fa-star-of-life fa-xs" style="color:red"></i> 휴가종류
-                            </div>
+		<div class="modal fade" id="edit" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">휴가 수정하기</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form class="enroll">
+							<div class="row mb-3">
+								<div class="col">
+									<i class="fa-solid fa-star-of-life fa-xs" style="color: red"></i>
+									<i class="fa-xs">필수 입력사항 입니다.</i>
+								</div>
+							</div>
+							<br>
+							<div class="mb-3">
+								<i class="fa-solid fa-star-of-life fa-xs" style="color: red"></i>
+								휴가종류
+							</div>
 
-                            <div class="mb-3">
-                                <i class="fa-solid fa-star-of-life fa-xs" style="color:red"></i>
-                                <select id="vacationType1">
-                                    <option>선택해주세요.</option>
-                                    <option value="연차">연차</option>
-                                    <option value="월차">월차</option>
-                                    <option value="반차">반차</option>
-                                    <option value="출산">출산</option>
-                                </select>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-8 col-sm-6">
-                                        <i class="fa-solid fa-circle fa-xs circleSize"></i> 총 연차 수 13 일
-                                    </div>
-                                    <div class="col-4 col-sm-6" id="leaveCnt1">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-8 col-sm-6" id="dayoff1">
+							<div class="mb-3">
+								<i class="fa-solid fa-star-of-life fa-xs" style="color: red"></i>
+								<select id="vacationType1">
+									<option>선택해주세요.</option>
+									<option value="연차">연차</option>
+									<option value="월차">월차</option>
+									<option value="반차">반차</option>
+									<option value="출산">출산</option>
+								</select>
+							</div>
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-8 col-sm-6">
+										<i class="fa-solid fa-circle fa-xs circleSize"></i> 총 연차 수 13
+										일
+									</div>
+									<div class="col-4 col-sm-6" id="leaveCnt1"></div>
+								</div>
+							</div>
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-8 col-sm-6" id="dayoff1"></div>
+									<div class="col-4 col-sm-6" id="dayoff2"></div>
+								</div>
+							</div>
+							<div class="mt-3">
+								<i class="fa-solid fa-star-of-life fa-xs" style="color: red"></i>
+								휴가일
+							</div>
+							<div class="mb-3 input-group date">
+								<input type="date" class="form-control"
+									name="vacationStartDate1"><span
+									class="input-group-addon"><i
+									class="glyphicon glyphicon-calendar"></i></span>
+							</div>
 
-                                    </div>
-                                    <div class="col-4 col-sm-6" id="dayoff2">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-3">
-                                <i class="fa-solid fa-star-of-life fa-xs" style="color:red"></i> 휴가일
-                            </div>
-                            <div class="mb-3 input-group date">
-                                <input type="date" class="form-control" name="vacationStartDate1"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            </div>
+							<div class="mt-3">
+								<i class="fa-solid fa-star-of-life fa-xs" style="color: red"></i>
+								휴가 일수
+							</div>
+							<div class="mb-3">
+								<input type="number" name="vacationDay1"
+									placeholder="숫자를 입력해 주세요.">
+							</div>
 
-                            <div class="mt-3">
-                                <i class="fa-solid fa-star-of-life fa-xs" style="color:red"></i> 휴가 일수
-                            </div>
-                            <div class="mb-3">
-                                <input type="number" name="vacationDay1" placeholder="숫자를 입력해 주세요.">
-                            </div>
+							<div class="mb-3">
+								<label for="message-text" class="col-form-label"> <i
+									class="fa-solid fa-star-of-life fa-xs" style="color: red"></i>
+									사유
+								</label>
+								<textarea class="form-control" id="message-text"
+									name="vacationRecode1"></textarea>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">닫기</button>
+						<button type="submit" class="btn btn-primary vacation">수정하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-                            <div class="mb-3">
-                                <label for="message-text" class="col-form-label">
-                                    <i class="fa-solid fa-star-of-life fa-xs" style="color:red"></i>
-                                    사유
-                                </label>
-                                <textarea class="form-control" id="message-text" name="vacationRecode1"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                        <button type="submit" class="btn btn-primary vacation">수정하기</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-       
-        <!-- jquery cdn -->
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+		<!-- jquery cdn -->
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
-        <script>
+		<script>
             $(function () {
                 vacationList();
 
@@ -370,7 +370,7 @@
                     // console.log(vacationStartDate, vacationType, vacationDay, vacationRecode);
 
                     var data = {
-                        vacationStaffId: "test2",
+                        vacationStaffId: "${loginId}",
                         vacationStartDate: $("[name=vacationStartDate]").val(),
                         vacationRecode: $("[name=vacationRecode]").val(),
                         vacationDay: $("[name=vacationDay]").val(),
@@ -401,7 +401,7 @@
 
                 //휴가 목록함수
                 function vacationList() {
-                    var id = "test2";
+                    var id = "${loginId}";
 
                     $.ajax({
                         url: "http://localhost:8888/rest/vacation/" + id,
@@ -470,7 +470,7 @@
                                         //console.log(vacationStartDate, vacationType, vacationDay, vacationRecode, vacationNo1);
 
                                         var data = {
-                                            vacationStaffId: "test2",
+                                            vacationStaffId: "${loginId}",
                                             vacationStartDate: $("[name=vacationStartDate1]").val(),
                                             vacationRecode: $("[name=vacationRecode1]").val(),
                                             vacationDay: $("[name=vacationDay1]").val(),
@@ -604,13 +604,13 @@
                                 endp = numPages;
                             }
                             // [처음]
-                            $('<br /><span class="page-number box1" cursor: "pointer"><i class="fa-solid fa-angles-left"></i></span>').bind('click', { newPage: page }, function (event) {
+                            $('<br /><span class="page-number box1" cursor: "pointer"><i class="fa-solid fa-angles-left fa-2x"></i></span>').bind('click', { newPage: page }, function (event) {
                                 currentPage = 0;
                                 $table.trigger('repaginate');
                                 $($(".page-number")[2]).addClass('active').siblings().removeClass('active');
                             }).appendTo($pager).addClass('clickable');
                             // [이전]
-                            $('<span class="page-number box1 px-1" cursor: "pointer"><i class="fa-solid fa-angle-left"></i></span>').bind('click', { newPage: page }, function (event) {
+                            $('<span class="page-number box1 px-1" cursor: "pointer"><i class="fa-solid fa-angle-left fa-2x"></i></span>').bind('click', { newPage: page }, function (event) {
                                 if (currentPage == 0) return;
                                 currentPage = currentPage - 1;
                                 $table.trigger('repaginate');
@@ -618,21 +618,21 @@
                             }).appendTo($pager).addClass('clickable');
                             // [1,2,3,4,5,6,7,8]
                             for (var page = nowp; page < endp; page++) {
-                                $('<span class="page-number box1 px-3 py-1" cursor: "pointer" ></span>').text(page + 1).bind('click', { newPage: page }, function (event) {
+                                $('<span class="page-number box1 px-2 mt-3 mb-n3" style="font-size : 25px" cursor: "pointer" ></span>').text(page + 1).bind('click', { newPage: page }, function (event) {
                                     currentPage = event.data['newPage'];
                                     $table.trigger('repaginate');
                                     $($(".page-number")[(currentPage - nowp) + 2]).addClass('active').siblings().removeClass('active');
                                 }).appendTo($pager).addClass('clickable');
                             }
                             // [다음]
-                            $('<span class="page-number box1  px-1" cursor: "pointer"><i class="fa-solid fa-angle-right"></i></span>').bind('click', { newPage: page }, function (event) {
+                            $('<span class="page-number box1  px-1" cursor: "pointer"><i class="fa-solid fa-angle-right fa-2x"></i></span>').bind('click', { newPage: page }, function (event) {
                                 if (currentPage == numPages - 1) return;
                                 currentPage = currentPage + 1;
                                 $table.trigger('repaginate');
                                 $($(".page-number")[(currentPage - nowp) + 2]).addClass('active').siblings().removeClass('active');
                             }).appendTo($pager).addClass('clickable');
                             // [끝]
-                            $('<span class="page-number box1  px-1" cursor: "pointer"><i class="fa-solid fa-angles-right"></i></span>').bind('click', { newPage: page }, function (event) {
+                            $('<span class="page-number box1  px-1" cursor: "pointer"><i class="fa-solid fa-angles-right fa-2x"></i></span>').bind('click', { newPage: page }, function (event) {
                                 currentPage = numPages - 1;
                                 $table.trigger('repaginate');
                                 $($(".page-number")[endp - nowp + 1]).addClass('active').siblings().removeClass('active');

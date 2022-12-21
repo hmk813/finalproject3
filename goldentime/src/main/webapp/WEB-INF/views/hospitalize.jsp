@@ -21,131 +21,49 @@
 	  	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 		<script>
 		$(function(){
-			// 수술 환자 목록 상세 숨김 
-			$(".show-hospitalize-list").hide();
 			
-			//수술 환자 클릭시 
-			$(".hospitalize-list").click(function(){
+			loadList();
+			
+			let hospitalizeList = [];
+			function loadList(){
 				$.ajax({
-					url:"http://localhost:8888/rest/hospitalizelist",
-					method:"get",
-					success:function(resp){
-					// 수술 환자 클릭시 그 수술 환자의 상세 목록이 나오게 하기 
-					if(resp)
-						$.each(resp, function(index, item){
-							//수술환자 번호 = 수술환자 번호가 똑같은 경우에 그 환자만 보여준다. 
-							if(item.hospitalize == item.hospitalize){  // 하 이거 아닌거 같은데...
-							$(".show-hospitalize-list").show();
-							}
-						});
-					}
-				 
+						url:"${pageContext.request.contextPath}/rest/hospitalizelist",
+						method:"get",
+						dataType:"json",
+						success:function(resp){
+							hospitalizeList = resp; 
+							showList();
+						}
 				});
-			});
+			};
+			
+			function showList(){
+				$(".hospitalize-list").empty();
+				$.each(hospitalizeList, function(index, value){
+					var tag = $("<div>").text(value.patientNo + "/" + value.patientName);
+					var button = $("<button>").text("상세").attr("data-patient-no", value.patientNo);
+					button.click(function(){
+						var patientNo = $(this).data("patient-no");
+						showDetail(patientNo);
+					});
+					tag.append(button)
+					$("hospitalize-list").append(tag);
+				});
+			};
+			
+			//마지막 
 		});
 		
-<<<<<<< HEAD
 </script>	
-
-=======
-		</script>	
->>>>>>> refs/remotes/origin/master
 <body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/master
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>환자번호</th>
-                                            <th>이름</th>
-                                            <th>진단명</th>
-                                        </tr>
-                                    </thead>
-<<<<<<< HEAD
-
-=======
-                                  
->>>>>>> refs/remotes/origin/master
-                                    <tbody>
-                                        <tr>
-                                            <td>${hospitalizeVO.patientNo}</td>
-                                            <td>${hospitalizeVO.patientName}</td>
-                                            <td>${hospitalizeVO.operationContent}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-<<<<<<< HEAD
-                                
-=======
-
->>>>>>> refs/remotes/origin/master
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>입원번호</th>
-                                            <th>환자명</th>
-                                            <th>성별</th>
-                                            <th>나이</th>
-                                            <th>환자 주소</th>
-                                            <th>병명</th>
-                                            <th>수술일</th>
-                                            <th>수술명</th>
-                                            <th>입원일</th>
-                                            <th>퇴원일</th>
-                                        </tr>
-                                    </thead>
-<<<<<<< HEAD
-
-=======
-                                  
->>>>>>> refs/remotes/origin/master
-                                    <tbody>
-                                        <tr>
-                                            <td>${hospitalizeVO.hospitalizeNo}</td>
-                                            <td>${hospitalizeVO.patientName}</td>
-                                            <td>${hospitalizeVO.patientGender}</td>
-                                            <td>${hospitalizeVO.patientBirth}</td>
-                                            <td>${hospitalizeVO.patientAddress}</td>
-                                            <td>${hospitalizeVO.diagnosisTitle}</td>
-                                            <td>${hospitalizeVO.operationStartDay}</td>
-                                            <td>${hospitalizeVO.operationTitle}</td>
-                                            <td>${hospitalizeVO.hospitalizeStartDate}</td>
-                                            <td>${hospitalizeVO.hospitalizeEndDate}</td> 
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
+   <span class="sp1">입퇴원 환자 목록</span>
+      <div class="hospitalize-list">
+      </div>
+      
+      <span class="sp1">입퇴원 환자 상세</span>
+      <div class="hospitalize-detail">
+      
+      </div>
 
 </body>
-<<<<<<< HEAD
 	</head>
-=======
-	</head>
->>>>>>> refs/remotes/origin/master

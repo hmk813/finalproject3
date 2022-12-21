@@ -23,6 +23,13 @@
     <!-- Custom styles for this page -->
     <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
+<style>
+	.logo{
+	width: 50px;
+	height: 50px;
+	transform: rorate(130deg);
+	}
+</style>
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -32,6 +39,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
+                    <!-- <img class="logo" src="../image/logo.png"> -->
                 </div>
                 <div class="sidebar-brand-text mx-3">드림 병원<sup></sup></div>
             </a>
@@ -53,7 +61,7 @@
                         <a class="collapse-item" href="utilities-color.html">내과</a>
                         <a class="collapse-item" href="utilities-border.html">외과</a>
                         <a class="collapse-item" href="utilities-animation.html">정형외과</a>
-                        <a class="collapse-item" href="utilities-other.html">방사선과</a>
+                        <a class="collapse-item" href="utilities-other.html">영상의학과</a>
                     </div>
                 </div>
             </li>
@@ -103,7 +111,7 @@
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
                                     <a class="nav-link " href="#"><span class="#">예약</span>
-                                    <span class="visually-hidden">(current)</span>
+                                    <!-- <span class="visually-hidden">(current)</span> -->
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -132,15 +140,14 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="#"></a>
+                                <a class="dropdown-item" href="/staff/mypage">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
 
                                 <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="/staff/logout" >
-
+                                <a class="dropdown-item" href="/" >
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -149,6 +156,8 @@
                     </ul>
                 </nav>
                 <!-- End of Topbar -->
+                
+                
    
  <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>

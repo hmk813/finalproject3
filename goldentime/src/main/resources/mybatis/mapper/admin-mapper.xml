@@ -27,18 +27,7 @@
 
 	</select>
 
-	<select id="attendanceAllList" parameterType="map"
-		resultType="AdminAttendanceAllVO">
-		select * from (select tmp.*, rownum rn from (
-		SELECT sd.*, to_char(a.attendance_start_time, 'HH24:MI') startTime,
-		to_char(a.attendance_end_time, 'HH24:MI') endTime,
-		a.attendance_work_state, a.work_time, a.attendance_start_time
-		from staff_department sd INNER JOIN att_record a
-		on sd.staff_id = a.attendance_staff_id
-		)TMP)
-		where rn between #{rownumStart} and #{rownumEnd}
-
-	</select>
+	
 
 
 	<sql id="search">
@@ -77,20 +66,13 @@
 		</where>
 	</sql>
 
-	<select id="searchList" parameterType="map"
-		resultType="AdminAttendSearchVO">
-		select * from
-		(select tmp.*, rownum rn
-		from (
-		SELECT sd.*, to_char(a.attendance_start_time, 'HH24:MI') startTime,
-		to_char(a.attendance_end_time, 'HH24:MI') endTime,
-		a.attendance_work_state, a.work_time, a.attendance_start_time
-		from
-		staff_department sd INNER JOIN att_record a
-		on sd.staff_id =
-		a.attendance_staff_id
+	
 
-		<include refid="search" />
+
+	<select id="vacationList" resultType="VacationStaffVO" parameterType="VacationStaffVO">
+		select * from vacation_staff_view
+		
+		<include refid="search1" />
 
 		<if test="sort != null">
 			order by
@@ -98,34 +80,7 @@
 				${s}
 			</foreach>
 		</if>
-		)tmp)
-		where rn between #{rownumStart} and #{rownumEnd}
-	</select>
-
-	<select id="searchCount" parameterType="map" resultType="int">
-		select count(*) from  staff_department sd INNER JOIN att_record a
-		on sd.staff_id = a.attendance_staff_id
-		<include refid="search" />
-	</select>
-
-	<select id="allCount" resultType="int">
-		select count(*) from staff_department sd INNER JOIN att_record a
-		on
-		sd.staff_id = a.attendance_staff_id
-	</select>
-
-
-	<select id="vacationList" resultType="VacationStaffVO" parameterType="VacationStaffVO">
-		select * from vacation_staff_view
-		where 1=1
-			<choose>
-				<when test="type != null and type.equals('staffName')">
-					and staff_name like '%' || #keyword#|| '%'
-				</when>
-				<when test="type != null and type.equals('staffMedicalDepartment')">
-					and staff_medical_department like '%' || #keyword#|| '%'
-				</when>
-			</choose>
+		
 	</select>
 	
 	<!-- 직원의 휴가신청 승인처리 -->
@@ -139,4 +94,40 @@
 		update vacation set vacation_state='반려'
 		where vacation_no=#{vacationNo}
 	</update>
+	
+	<sql id="search1">
+		<where>
+			<if test="staffName != null">
+				and instr(staff_name, #{staffName})>0
+			</if>
+
+			<choose>
+				<when test="beginMade != null and endMade != null">
+					and vacation_start_date between
+					to_date(#{beginMade} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+					and
+					to_date(#{endMade} || ' ' || '23:59:59', 'YYYY-MM-DD
+					HH24:MI:SS')
+				</when>
+				<when test="beginMade != null">
+	 				<![CDATA[
+	 				and vacation_start_date >= to_date(#{beginMade} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+	 				]]>
+				</when>
+				<when test="endMade != null">
+	 				<![CDATA[
+	 				and vacation_start_date <= to_date(#{endMade} || ' ' || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+	 				]]>
+				</when>
+			</choose>
+
+			<if test="type != null">
+				and vacation_state in
+				<foreach collection="type" separator="," item="t" open="("
+					close=")">
+					#{t}
+				</foreach>
+			</if>
+		</where>
+	</sql>
 </mapper>

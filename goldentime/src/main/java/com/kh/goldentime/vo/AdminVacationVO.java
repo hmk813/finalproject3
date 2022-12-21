@@ -1,14 +1,14 @@
 package com.kh.goldentime.vo;
 
-import java.sql.Date;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @Builder @NoArgsConstructor @AllArgsConstructor
-//vacation_staff_view VO 클래스
-public class VacationStaffVO {
+public class AdminVacationVO {
 	private int vacationNo;
 	private String vacationStaffId;
 	private String vacationType;
@@ -26,4 +26,8 @@ public class VacationStaffVO {
 	private int useleave;
 	private int usedayoff;
 	
+	//검색을 위한 변수 설정
+	private List<String> type;
+	private List<String> sort;
+	private String beginMade, endMade;
 }

@@ -23,6 +23,13 @@
     <!-- Custom styles for this page -->
     <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
+<style>
+	.logo{
+	width: 50px;
+	height: 50px;
+	transform: rorate(130deg);
+	}
+</style>
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -32,7 +39,8 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
-                </div> 
+                    <!-- <img class="logo" src="../image/logo.png"> -->
+                </div>
                 <div class="sidebar-brand-text mx-3">드림 병원<sup></sup></div>
             </a>
 

@@ -34,18 +34,4 @@ public class AdminController {
 		return "admin/attendance";
 	}
 	
-	// 게시글 목록 Mapping (회원)
-	   @GetMapping("/list")
-	   public String selectFreeboard(Model model, @ModelAttribute AdminAttendSearchVO adminAttendSearchVO) {
-	      // 게시글 총 갯수 반환
-	      int total = adminDao.countFreeboard(adminAttendSearchVO);
-	      // 반환한 총 갯수를 freeboardListVO의 total로 설정
-	      adminAttendSearchVO.setTotal(total);
-	      // 유형에 따른 게시글 조회 결과 반환
-	      List<AdminAttendanceVO> list = adminDao.searchFreeboard(adminAttendSearchVO);
-	      // 조회 결과를 model에 추가
-	      model.addAttribute("list", list);
-	      // 게시글 목록 페이지(list.jsp)로 연결
-	      return "admin/test";
-	   }
 }

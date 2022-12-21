@@ -21,21 +21,34 @@
       font-size:24px;
       font-weigth:700;
       }
+      
+      .sp2{
+      color:#3f3f3f;
+      position:absolute;
+      right:150px;
+      top:110px;
+      font-size:24px;
+      font-weigth:700;
+      }
+      
+      .pat{ /* 환자 */
+      	position:absolute;
+      	right:300px;
+      	top:200px;
+      	
+      }
+      
       </style>
-
       <body id="page-top">
-
       <span class="sp1">수술 환자 목록</span>
       <div class="operation-list">
       </div>
       
-      <span class="sp1">수술 환자 상세</span>
+      <span class="sp2">수술 환자 상세</span>
       <div class="operation-detail">
       
       </div>
-
       <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-
       <script>
       $(function(){
          
@@ -43,6 +56,8 @@
          loadList();
          
          let operationList = [];
+         
+         hospitalizeLi
          // 수술 환자 목록 조회 
          function loadList(){
             $.ajax({
@@ -85,8 +100,49 @@
                }
             })
          }
+         
+         
          //마지막 
       });
+      
       </script>   
+      
+      <div class="pat justify-content text-center">
+      	<div>
+      		<div>환자번호 이름 나이 성별 혈액형</div>
+      	</div>
+      
+      </div>
+      
+     <%--  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>입원번호</th>
+                                            <th>환자명</th>
+                                            <th>성별</th>
+                                            <th>나이</th>
+                                            <th>환자 주소</th>
+                                            <th>병명</th>
+                                            <th>수술일</th>
+                                            <th>수술명</th>
+                                            <th>입원일</th>
+                                            <th>퇴원일</th>
+                                        </tr>
+                                    </thead>
 
+                                    <tbody>
+                                        <tr>
+                                            <td>${hospitalizeVO	.hospitalizeNo}</td>
+                                            <td>${hospitalizeVO.patientName}</td>
+                                            <td>${hospitalizeVO.patientGender}</td>
+                                            <td>${hospitalizeVO.patientBirth}</td>
+                                            <td>${hospitalizeVO.patientAddress}</td>
+                                            <td>${hospitalizeVO.diagnosisTitle}</td>
+                                            <td>${hospitalizeVO.operationStartDay}</td>
+                                            <td>${hospitalizeVO.operationTitle}</td>
+                                            <td>${hospitalizeVO.hospitalizeStartDate}</td>
+                                            <td>${hospitalizeVO.hospitalizeEndDate}</td> 
+                                        </tr>
+                                    </tbody>
+						</table> --%>
       </body>

@@ -10,6 +10,6 @@
 <head>
 </head>
 <body>
-	
+	${diagnosisDto.diagnosisNo}
 </body>
 </html>

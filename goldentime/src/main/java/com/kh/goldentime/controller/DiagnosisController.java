@@ -37,6 +37,8 @@ public class DiagnosisController {
 			diagnosisDto.setDiagnosisNo(diagnosisDao.sequence());
 			diagnosisNo = diagnosisDto.getDiagnosisNo();
 			diagnosisDao.insert(diagnosisDto);
+			//안되는 이유 insert 내용이 현재 시퀀스 번호 밖에 없음
+			//필요한 데이터 직원아이디, 환자번호, 예약&접수 번호, 나머지는 null 처리
 			model.addAttribute("diagnosisDto", diagnosisDao.selectOne(diagnosisNo));
 		}
 		return "diagnosis/detail";

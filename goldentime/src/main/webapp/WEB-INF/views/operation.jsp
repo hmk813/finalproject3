@@ -21,6 +21,7 @@
       font-size:24px;
       font-weigth:700;
       }
+      
       </style>
       <body id="page-top">
       <span class="sp1">수술 환자 목록</span>
@@ -39,6 +40,8 @@
          loadList();
          
          let operationList = [];
+         
+         hospitalizeLi
          // 수술 환자 목록 조회 
          function loadList(){
             $.ajax({
@@ -85,5 +88,37 @@
          
          //마지막 
       });
+      
       </script>   
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>입원번호</th>
+                                            <th>환자명</th>
+                                            <th>성별</th>
+                                            <th>나이</th>
+                                            <th>환자 주소</th>
+                                            <th>병명</th>
+                                            <th>수술일</th>
+                                            <th>수술명</th>
+                                            <th>입원일</th>
+                                            <th>퇴원일</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>${hospitalizeVO	.hospitalizeNo}</td>
+                                            <td>${hospitalizeVO.patientName}</td>
+                                            <td>${hospitalizeVO.patientGender}</td>
+                                            <td>${hospitalizeVO.patientBirth}</td>
+                                            <td>${hospitalizeVO.patientAddress}</td>
+                                            <td>${hospitalizeVO.diagnosisTitle}</td>
+                                            <td>${hospitalizeVO.operationStartDay}</td>
+                                            <td>${hospitalizeVO.operationTitle}</td>
+                                            <td>${hospitalizeVO.hospitalizeStartDate}</td>
+                                            <td>${hospitalizeVO.hospitalizeEndDate}</td> 
+                                        </tr>
+                                    </tbody>
+
       </body>

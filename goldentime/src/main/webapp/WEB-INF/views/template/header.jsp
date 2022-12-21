@@ -53,7 +53,7 @@
                         <a class="collapse-item" href="utilities-color.html">내과</a>
                         <a class="collapse-item" href="utilities-border.html">외과</a>
                         <a class="collapse-item" href="utilities-animation.html">정형외과</a>
-                        <a class="collapse-item" href="utilities-other.html">방사선과</a>
+                        <a class="collapse-item" href="utilities-other.html">영상의학과</a>
                     </div>
                 </div>
             </li>

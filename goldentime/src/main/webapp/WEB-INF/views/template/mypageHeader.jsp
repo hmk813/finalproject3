@@ -103,6 +103,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/vacation/vacation?vacationStaffId=${staffDto.staffId}"><span class="#">연차관리</span></a>
                                 </li>	
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/calendar/?calendarStaffId=${staffDto.staffId}"><span class="#">일정관리</span></a>
+                                </li>	
                                 </ul>
                         </div>
                         <div class="topbar-divider d-none d-sm-block"></div>

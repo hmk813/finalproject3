@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="now" class="java.util.Date" />
@@ -33,86 +33,82 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 <style>
+
 /* 디자인 시작 */
 a {
 	color: #3f3f3f;
 }
-
 .myinfo {
 	border: 1px solid transparent;
 	margin-left: 30px;
-}
-
+	}
 .p1 {
 	font-size: 24px;
 	font-weight: 700;
 	color: #3f3f3f;
 	margin-left: 15px;
-}
-
+	}
 .p2 {
 	font-size: 16px;
 	font-weight: 700;
 	color: #3f3f3f;
 	margin-left: 30px;
-}
-
+	}
 .p3 {
 	font-size: 16px;
 	font-weight: 700;
 	color: #3f3f3f;
 	margin-left: 35px;
-}
-
-.myinfo-img {
+	}
+	.myinfo-img {
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
 	margin-bottom: 10px;
-}
-
-.pw-btn {
+	}
+	
+	.pw-btn {
 	border: 2px solid #4e73df;
 	border-radius: 0.7em;
 	background-color: #4e73df;
 	color: #FFF;
 	padding: 4px 5px 4px 5px;
 	margin-left: 4px;
-}
-
-.pw-btn:hover {
+	}
+	
+	.pw-btn:hover {
 	color: #FFF;
 	text-decoration: none;
-}
-
-.attendance {
+	}
+	
+	.attendance {
 	margin-top: 50px;
 	margin-left: 30px;
-}
+	}
 
 .p4 {
 	font-size: 24px;
 	font-weight: 700;
 	color: #3f3f3f;
-}
-
+	}
+	
 .p5 {
 	font-size: 16px;
 	color: #3f3f3f;
-}
+	}
 
 .p6 {
 	font-size: 16px;
 	color: #3f3f3f;
-}
-
+	}
+	
 .in-btn {
 	border: 2px solid #4e73df;
 	border-radius: 0.7em;
 	background-color: #4e73df;
 	color: #FFF;
 	padding: 4px 5px 4px 5px;
-}
+	}
 
 .out-btn {
 	border: 2px solid #CFD2CF;
@@ -120,26 +116,27 @@ a {
 	background-color: #CFD2CF;
 	color: #FFF;
 	padding: 4px 5px 4px 5px;
-}
-
+	}
+	
 /* 캘린더 */
 .cal {
 	position: relative;
 	bottom: 500;
 	left: 230;
-	margin-top: 30px;
-}
+	margin-top:30px;
+	}
 
 .calendar {
 	font-size: 14px;
 	color: #3f3f3f;
 	width: 660px;
-}
-
+	}
+	
 .date {
 	position: relative;
 	bottom: 1000;
 	left: 910;
+	
 	border: 2px solid #4e73df;
 	border-radius: 0.7em;
 	background-color: #4e73df;
@@ -147,15 +144,15 @@ a {
 	width: 280px;
 	font-size: 14px;
 	font-weight: 700;
-}
+	}
 
-.information {
+	.information {
 	position: relative;
 	bottom: 1000;
 	left: 910;
-}
-
-.infor-table {
+	}
+	
+	.infor-table {
 	margin-top: 20px;
 	margin-right: 50px;
 	border-radius: 0.7em;
@@ -163,16 +160,18 @@ a {
 	font-size: 14px;
 	color: #FFF;
 	width: 280px;
+	}
 }
+
 </style>
 </head>
+  
 
-<script>
+<script> 
 	$(function() {
 		$(".mode-change").click(function() {
 			location.href = "${pageContext.request.contextPath}/";
 		});
-
 		//풀캘린더
 		var calendarEl = $('#calendar')[0];
 		// full-calendar 생성하기
@@ -192,14 +191,11 @@ a {
 				var reservationDate = moment(date).format('YYYY-MM-DD');
 				//console.log(reservationDate); //2022-12-03 형식으로 변경
 				$(".reservationDate").text(reservationDate);
-
 				var calendarDate = $(".reservationDate").text();
-
 				data = {
 					reservationDate : reservationDate,
 					reservationStaffId : reservationStaffId,
 				}
-
 				$
 						.ajax({
 							url : "http://localhost:8888/rest/calendar/"
@@ -274,8 +270,8 @@ a {
 	});
 </script>
 <body>
-
-	<div class="myinfo">
+        
+        <div class="myinfo">
 		<p class="p1">내 정보</p>
 		<img src="/attachment/download/staff?attachmentNo=${attachmentNo}"
 			class="myinfo-img">
@@ -303,6 +299,7 @@ a {
 
 	<div class="cal">
 		<div class="calendar" id="calendar"></div>
+	        
 	</div>
 
 	<div class="date">
@@ -378,20 +375,17 @@ a {
 				</div>
 			</div>
 		</div>
+
 	</div>
-	
-	
 	
 	<script>
 		$(function() {
 			timeList();
-
 			//출근함수
 			$("#goWork").click(function() {
 				var data = {
 					attendanceStaffId : "${loginId}"
 				}
-
 				$.ajax({
 					type : "post",
 					url : "http://localhost:8888/rest/attendance",
@@ -401,16 +395,13 @@ a {
 						$("#modal01").modal("show");
 						timeList();
 					}
-
 				});
 			});
-
 			//퇴근함수
 			$("#leaveWork").click(function() {
 				var data = {
 					attendanceStaffId : "${loginId}"
 				}
-
 				$.ajax({
 					type : "put",
 					url : "http://localhost:8888/rest/attendance",
@@ -420,10 +411,8 @@ a {
 						$("#modal02").modal("show");
 						timeList();
 					}
-
 				});
 			});
-
 			function timeList() {
 				var id = "${loginId}";
 				$.ajax({
@@ -431,28 +420,22 @@ a {
 					method : "get",
 					success : function(resp) {
 						//console.log(resp);
-
 						if (resp.startTime != null) {
 							$("#startList").text("출근시간 : " + resp.startTime)
 						} else {
 							$("#startList").text("아직 출근전입니다.")
 						}
-
 						if (resp.endTime != null) {
 							$("#endList").text("퇴근시간 : " + resp.endTime)
 						} else {
 							$("#endList").text("아직 퇴근전입니다.")
 						}
-
 						// for(var i=0;i<resp.length;i++){
 						//     $("#timeList").text(JSON.stringify(resp[i]))
-
 						// }
-
 					}
 				})
 			}
-
 		});
 	</script>
 

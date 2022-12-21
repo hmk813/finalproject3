@@ -12,4 +12,5 @@ public class DiagnosisDto {
 	private Date diagnosisDate, diagnosisTime;
 	private int diagnosisNo, diagnosisPatientNo;
 	private String diagnosisStaffId, diagnosisContent, diagnosisTitle, diagnosisMemo;
+	private int reservationNo, receiveNo;
 }

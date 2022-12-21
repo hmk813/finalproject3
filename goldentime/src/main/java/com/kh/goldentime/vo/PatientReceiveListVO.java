@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor @Builder @Data @NoArgsConstructor
 public class PatientReceiveListVO {//접수 페이지에서 환자 기본 정보 목록에 보이게
 	private int patientNo, receiveNo;
+	private int diagnosisNo;
 	private String patientName, patientGender, patientBlood;
 	private Date patientBirth;
 	private String receiveDate;

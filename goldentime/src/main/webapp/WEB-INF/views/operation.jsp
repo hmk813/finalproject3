@@ -22,13 +22,29 @@
       font-weigth:700;
       }
       
+      .sp2{
+      color:#3f3f3f;
+      position:absolute;
+      right:150px;
+      top:110px;
+      font-size:24px;
+      font-weigth:700;
+      }
+      
+      .pat{ /* 환자 */
+      	position:absolute;
+      	right:300px;
+      	top:200px;
+      	
+      }
+      
       </style>
       <body id="page-top">
       <span class="sp1">수술 환자 목록</span>
       <div class="operation-list">
       </div>
       
-      <span class="sp1">수술 환자 상세</span>
+      <span class="sp2">수술 환자 상세</span>
       <div class="operation-detail">
       
       </div>
@@ -90,6 +106,14 @@
       });
       
       </script>   
+      
+      <div class="pat justify-content text-center">
+      	<div>
+      		<div>환자번호 이름 나이 성별 혈액형</div>
+      	</div>
+      
+      </div>
+      
      <%--  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>

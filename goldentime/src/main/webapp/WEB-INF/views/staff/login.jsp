@@ -59,8 +59,8 @@
 	margin-top: 10px;
 	}
 	.hospital-logo{
-	width: 100px;
-	heigth:100px;
+	width: 300px;
+	heigth:300px;
 	}
 	.sp1{
 	font-size: 24px;
@@ -109,7 +109,7 @@
 	<body class="bg-primary">
 
 		<div class="div1">
-			<img class="hospital-logo" src="/image/hospital.png"><p>드림 병원</p>
+			<img class="hospital-logo" src="/image/logo.png">
 		</div>
 
 		<div class="div2">

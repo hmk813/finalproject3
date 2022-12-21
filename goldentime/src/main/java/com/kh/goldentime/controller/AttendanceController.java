@@ -1,5 +1,6 @@
 package com.kh.goldentime.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class AttendanceController {
 	private AttendanceDao attendanceDao;
 	
 	@GetMapping("/list")
-	public String list(@ModelAttribute AttendanceListVO vo, Model model,Session session) {
-		String findId = "test5";
+	public String list(@ModelAttribute AttendanceListVO vo, Model model,HttpSession session) {
+		String findId = (String) session.getAttribute("loginId");
 		AttendanceListVO id1 = AttendanceListVO.builder().
 				attendanceStaffId(findId)
 				.beginMade(null)
@@ -49,14 +50,7 @@ public class AttendanceController {
 		//오늘 출퇴근 시간
 		model.addAttribute("startEnd", attendanceDao.stardEnd(findId));
 		
-		//마이바티스에서 달력 검색할때 null값 체크
-//		boolean isSearch = vo.getBeginMade() != null && vo.getEndMade() != null;
-//		if(isSearch) {//검색
-//			model.addAttribute("attendaceList", attendanceDao.attendanceList(search));
-//		}
-//		else {//목록
-//			model.addAttribute("attendaceList",attendanceDao.attendanceList(list));
-//		}
+		
 		return "attendance/list";
 	}
 }

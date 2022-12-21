@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <jsp:include page="/WEB-INF/views/template/header.jsp">
 	<jsp:param value="직원 생성" name="title"/>
 </jsp:include>
@@ -40,11 +39,11 @@
 
 <form action="join" method="post" enctype="multipart/form-data">
 	<div class="container-450" style="margin: 50px">
-	
+
 		<div class="row">
 			<h1 class="text-center font-weight-bold">직원 생성</h1>
 		</div>
-	
+
 		<div class="row mt-3">
         	<div class="col-md-10 offset-md-1">
             	<div class="form-floating">
@@ -54,9 +53,9 @@
                     	<i class="fa-solid fa-asterisk text-danger" style="font-size: 13px"></i>
                     </label>
 			</div>
-                
+
                 <br>
-                
+
             <div class="form-floating">
                 <input class="form-control rounded" name="staffPw" type="password" placeholder="비밀번호" required>
                 <label>
@@ -64,9 +63,9 @@
                 	<i class="fa-solid fa-asterisk text-danger" style="font-size: 13px"></i>
                 </label>
             </div>
-               
+
                <br>
-               
+
             <div class="form-floating">
                 <input class="form-control rounded" name="staffName" type="text" placeholder="이름" autocomplete="off" required>
                 <label>
@@ -74,7 +73,7 @@
                 	<i class="fa-solid fa-asterisk text-danger" style="font-size: 13px"></i>
                 </label>
             </div>
-            
+
             	<br>
             
 			<div class="form-floating">
@@ -125,7 +124,7 @@
 				</select>
 				<i class="fa-solid fa-asterisk text-danger" style="font-size: 13px"></i>
 			</div>
-			
+
 				<br>
 			
 			<div class="form-floating mb-1">
@@ -139,7 +138,7 @@
 				<input type="radio" name="staffGrade" value="팀장"> 팀장 &nbsp;&nbsp;&nbsp;
 				<input type="radio" name="staffGrade" value="사원"> 사원 
 			</div>
-				
+
 				<br>
 				
 			<div class="form-floating mb-1">
@@ -154,30 +153,49 @@
 				<input type="radio" name="staffMedicalDepartment" value="정형외과"> 정형외과 &nbsp;&nbsp;&nbsp;
 				<input type="radio" name="staffMedicalDepartment" value="영상의학과"> 영상의학과 
 			</div>
-				
+
 				<br>
 				
 			<div class="form-floating mb-1">사진 선택</div>
 			<div>
+				<input type="radio" name="staffMedicalDepartment" value=null> 선택하지 않음
+				<input type="radio" name="staffMedicalDepartment" value="내과"> 내과
+				<input type="radio" name="staffMedicalDepartment" value="외과"> 외과
+				<input type="radio" name="staffMedicalDepartment" value="정형외과"> 정형외과
+				<input type="radio" name="staffMedicalDepartment" value="영상의학과"> 영상의학과
 				<input type="file" name="staffImg" accept=".png, .jpg" multiple="multiple">
 			</div>
-				
+			<br>
+
+			직원이미지 : 
+			<input type="file" name="staffImg" accept=".png, .jpg" multiple="multiple">
+			<br><br>
+
+			<button type="submit">생성하기</button>
+
+
 				<br>
-				
+
 			<div class="form-floating" >
 				<button class="btn" type="submit" style="float: right;">생성하기</button>
 			</div>
-				
+
         </div>
 	</div>
-			 
+
 	</div>
 </form>
 
+<!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script>
 	<!-- jquery를 사용하기 위하여 라이브러리 js 파일을 불러온다-->
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
     <script type="text/javascript">
     	$(function(){
+    		
+    	}
+    </script>
     		$(".btn").click(function(e){
                 var choice = confirm("입력한 정보로 생성하시겠습니까?");
                 if(choice){

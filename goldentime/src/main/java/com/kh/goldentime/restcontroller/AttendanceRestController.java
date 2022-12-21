@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +32,8 @@ public class AttendanceRestController {//근태 관리를 위한 비동기통신
 	
 	//출근 등록 구문(post)
 	@PostMapping("/attendance")
-	public String goWork(@RequestBody AttendanceDto attendanceDto) {
-		String id = "test5";
+	public String goWork(@RequestBody AttendanceDto attendanceDto,HttpSession session) {
+		String id = (String) session.getAttribute("loginId");
 		if(attendanceDao.goWorkFind(id)==null) {//만약 출근데이터가 null이면
 			//출근 구문 insert
 			attendanceDao.goWork(attendanceDto);
@@ -51,10 +54,10 @@ public class AttendanceRestController {//근태 관리를 위한 비동기통신
 	
 	//퇴근 등록 구문(put)
 	@PutMapping("/attendance")
-	public boolean leaveWork(@RequestBody AttendanceDto attendanceDto){
+	public boolean leaveWork(@RequestBody AttendanceDto attendanceDto, HttpSession session){
 		attendanceDao.leaveWork(attendanceDto);
 		
-		String id = "test5";
+		String id = (String) session.getAttribute("loginId");
 		//날짜변환 포멧
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		//기준 퇴근시간 =18시 30분
@@ -84,8 +87,8 @@ public class AttendanceRestController {//근태 관리를 위한 비동기통신
 	
 	
 	@GetMapping("/attendance/{attendanceStaffId}")
-	public AttendanceWorkTimeVO find(@PathVariable String attendanceStaffId){
-		attendanceStaffId = "test5";
+	public AttendanceWorkTimeVO find(@PathVariable String attendanceStaffId, HttpSession session){
+		attendanceStaffId = (String) session.getAttribute("loginId");
 		return attendanceDao.stardEnd(attendanceStaffId);
 	}
 	

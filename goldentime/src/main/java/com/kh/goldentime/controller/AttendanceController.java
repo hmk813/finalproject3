@@ -1,5 +1,7 @@
 package com.kh.goldentime.controller;
 
+import javax.websocket.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,7 @@ public class AttendanceController {
 	private AttendanceDao attendanceDao;
 	
 	@GetMapping("/list")
-	public String list(@ModelAttribute AttendanceListVO vo, Model model) {
+	public String list(@ModelAttribute AttendanceListVO vo, Model model,Session session) {
 		String findId = "test5";
 		AttendanceListVO id1 = AttendanceListVO.builder().
 				attendanceStaffId(findId)

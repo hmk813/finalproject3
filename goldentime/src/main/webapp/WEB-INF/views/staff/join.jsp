@@ -110,7 +110,7 @@
 			<div class="form-floating">
                 <input class="form-control rounded" name="staffAddress" type="text" placeholder="주소" autocomplete="off">
                 <label>주소</label>
-                <button class="btn-find-address" style="float: right;">검색</button>
+                <button class="btn-find-address" style="float: right;" type = "button">검색</button>
             </div>
 			
 				<br>

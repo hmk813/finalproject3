@@ -91,7 +91,7 @@
 				<c:otherwise>
 				<!-- 회원 -->
 					<div class="col-md-10 offset-md-1">
-						<a href="information">회원정보 변경</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+						<a href="information?staffId=${staffDto.staffId}">회원정보 변경</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 						<a href="password">비밀번호 변경</a> &nbsp;&nbsp;&nbsp;
 					</div>
 				</c:otherwise>

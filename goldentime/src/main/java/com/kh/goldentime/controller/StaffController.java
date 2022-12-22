@@ -206,6 +206,7 @@ public class StaffController {
 	@PostMapping("/information")
 	public String information(HttpSession session,
 			@ModelAttribute StaffDto inputDto) {
+		//staffDto에 staffId가 없으니 세션에서 구해서 추가 설정
 		String staffId = (String)session.getAttribute(SessionConstant.ID);
 		inputDto.setStaffId(staffId);
 		

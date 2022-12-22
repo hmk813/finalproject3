@@ -17,6 +17,8 @@ public interface PatientDao {
 	
 	//환자 접수 수정
 	boolean edit(PatientDto pdto);
+	
+	PatientDto selectOne(int patientNo);
 
 	//환자 현황 조회
 	List<PatientReceiveListVO> todayList();

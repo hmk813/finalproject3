@@ -24,7 +24,7 @@
 	$(function(){
 		 
 		$.ajax({
-            url: "http://localhost:8888/rest/staff",
+            url: "http://localhost:8888/rest/staff/list",
             method: "get",
             success: function (resp) {
                 if (resp != null) {
@@ -48,7 +48,7 @@
 				method:"get",
 				success:function(resp){
 					if(resp != 0){ // 접수만
-						$("#patientNo").val(resp[0].patientNo);
+						$("[name=patientName]").append($("<input type=text name=patientNo>").val(resp[0].patientNo));
 						$(form).attr("action","insert1");
 						
 					}else{	// 환자, 접수 같이
@@ -158,7 +158,6 @@
 		<tr>
 			<th>이름</th>
 			<td>
-				<input class="form-control" id="patientNo" name="patientNo" type="hidden">
 				<input class="form-control" id="patientName" name="patientName" type="text"  placeholder="이름" required><br><br>
 				<input class="form-control" name="patientBirth" type="date"  required><br><br>
 				<input class="form-control" name="patientGender" type="text"  required placeholder="성별"><br><br>

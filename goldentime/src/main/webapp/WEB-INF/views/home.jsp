@@ -21,10 +21,11 @@
 	<link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+ 
 
-<img src="../image/home.png" class="img-thumbnail" alt="홈">
 </head>
 <style>
+  
 	div.fixed {
      border: 2px solid #B8860B;
      width: 250px;
@@ -54,32 +55,78 @@
 		top:300px;
 		left:350px;
 	}
+	
+	.main-sp{
+	margin-top: 140px;
+	text-align: center;
+	font-size: 34px;
+	font-weight: 700;
+	}
+	.main-sp2{
+	text-align: center;
+	font-size: 34px;
+	font-weight: 700;
+	}
+	
+	.time{
+	margin-left: 370px;
+	margin-top: 250px;
+	font-size: 26px;
+	font-weight: 700;
+	color: #3f3f3f;
+	}
+	
+	.time1{
+	margin-left: 270px;
+	margin-top: 300px;
+	font-size: 50px;
+	border: 2px solid  #f4e081;
+	border-radius: 0.7em;
+	padding: 5px 5px 5px 5px;
+	}
+	
+	/*  */
+	
+	
+	
 
 </style>
 
 
-<body>
-		
-		<div class="row mt-4">
-				<div class="text-center">
-					<h1 id="yoil" class="time"></h1>
-					<h2 style="font-weight: bold;" id="realTime" class="time1"></h2>
-				</div>
+	<body>
+		<div class="main-sp">
+			<span style="color: #049ad7;">D</span>
+			<span style="color:#e0c024;">R</span>
+			<span style="color:#e22413;">E</span>
+			<span style="color:#44ab34;">A</span>
+			<span style="color:#e0c024;">M</span>
+			<br>
+			<span style="color:#44ab34;">H</span>
+			<span style="color:#e0c024;">O</span>
+			<span style="color: #049ad7;">S</span>
+			<span style="color:#44ab34;">P</span>
+			<span style="color: #049ad7;">I</span>
+			<span style="color:#e0c024;">T</span>
+			<span style="color:#e22413;">A</span>
+			<span style="color:#44ab34;">L</span>
 		</div>
-	
-		<div class="row mt-4">
-			<div class="text-center">
-				<h1 class="title" style="font-weight:bold; font-size:50px;">드림병원에 오신걸 환영합니다.</h1>
-			</div>
 		
+		<div class="main-sp2">
+			<span style="color: #049ad7;">드</span>
+			<span style="color:#e0c024;">림</span>
+			<span style="color:#e22413;">병</span>
+			<span style="color:#44ab34;">원</span>
+		</div>
+		
+		<div>
+				<p id="yoil" class="time"></p>
+		</div>
+			
+		<div>
+				<p style="font-weight: bold;" id="realTime" class="time1"></p>
 		</div>
 
 
-	<div class="row mt-4">
-		<div class="text-center">
-			<h2 class="paragraph" style="font-weight:bold; font-size:25px;">선생님!<br> 오늘 하루도 파이팅 하세요!</h2>
-		</div>
-	</div>
 
 	<script>
         $(function () {

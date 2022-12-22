@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor @Builder @Data @NoArgsConstructor
 public class PatientReservationListVO {
-	private int patientNo;
+	private int patientNo, diagnosisNo, reservationNo;
 	private String patientName, patientGender, patientBlood;
 	private String reservationTime;
 	private Date patientBirth;

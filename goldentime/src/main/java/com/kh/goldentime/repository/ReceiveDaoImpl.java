@@ -16,4 +16,9 @@ public class ReceiveDaoImpl implements ReceiveDao {
 	public void insert(ReceiveDto dto) {
 		sqlSession.insert("receive.insert", dto);
 	}
+
+	@Override
+	public ReceiveDto selectOne(int receiveNo) {
+		return sqlSession.selectOne("receive.selectOne", receiveNo);
+	}
 }

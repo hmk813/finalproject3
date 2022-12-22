@@ -63,7 +63,7 @@ public class PatientController {
 	//원무과에서 볼 수 있는 환자 기록 
 		@GetMapping("/historylist")
 		public String historylist(Model model) {
-			model.addAttribute("PatientReceiveListVO", patientDao.historyList());
+//			model.addAttribute("PatientReceiveListVO", patientDao.historyList());
 		    return "patient/historylist";
 		}
 

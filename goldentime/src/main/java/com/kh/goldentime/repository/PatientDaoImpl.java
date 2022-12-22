@@ -73,11 +73,11 @@ public class PatientDaoImpl implements PatientDao{
 		return sqlSession.selectList("patient.list5");
 	}
 		
-	//원무과에서 볼 수 있는 환자 기록
-	@Override
-	public List<PatientReceiveListVO> historyList() {
-		return sqlSession.selectList("patient.list");
-	}
+//	//원무과에서 볼 수 있는 환자 기록
+//	@Override
+//	public List<PatientReceiveListVO> historyList() {
+//		return sqlSession.selectList("patient.list");
+//	}
 	
 	//비동기
 	@Override

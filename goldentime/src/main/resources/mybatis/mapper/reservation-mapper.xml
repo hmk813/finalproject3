@@ -34,11 +34,14 @@
 	</select>
 	<select id="toDayList" resultType="PatientReservationListVO">
 		select 
-		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
-		R.reservation_date, R.reservation_time
-		from 
-		patient P inner join reservation R on P.patient_no = R.reservation_patient_no 
-		where R.reservation_date = to_char(sysdate, 'yyyy-MM-dd')
+    S.staff_name, S.staff_medical_department,
+      P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+      R.reservation_date, R.reservation_time, R.reservation_no, diagnosis_no
+      from 
+      patient P inner join reservation R on P.patient_no = R.reservation_patient_no
+        inner join staff S on S.staff_id = R.reservation_staff_id
+        LEFT outer join diagnosis D on R.reservation_no = D.reservation_no
+      where R.reservation_date = to_char(sysdate, 'yyyy-MM-dd')
 	</select>
 	<select id="toDayListSurgery" resultType="PatientReservationDepartmentVO">
 		select 

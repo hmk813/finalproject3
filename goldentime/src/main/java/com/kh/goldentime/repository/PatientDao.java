@@ -32,11 +32,23 @@ public interface PatientDao {
 	//정형외과 금일 환자 현황 조회
 	List<PatientDepartmentVO> orthopaedicList();
 	
-	//정형외과 금일 환자 현황 조회
+	//영상의학과 금일 환자 현황 조회
 	List<PatientDepartmentVO> radiologyList();
 	
 	//원무과 환자 기록 조회
-	List<PatientReceiveListVO> historyList();
+//	List<PatientReceiveListVO> historyList();
+//	
+//	//내과 환자 기록 현황 조회
+//	List<PatientDepartmentVO> internalHistoryList();
+//
+//	//외과 금일 환자 현황 조회
+//	List<PatientDepartmentVO> surgeonHistoryList();
+//		
+//	//정형외과 금일 환자 현황 조회
+//	List<PatientDepartmentVO> orthopaedicHistoryList();
+//		
+//	//정형외과 금일 환자 현황 조회
+//	List<PatientDepartmentVO> radiologyHistoryList();
 	
 	//접수 비동기 구현
 	List<PatientDto> patientConfirm(PatientPhoneNameVO patientPhoneNameVO);

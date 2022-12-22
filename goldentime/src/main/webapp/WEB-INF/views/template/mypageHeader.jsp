@@ -72,7 +72,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/goods/goods">
+                <a class="nav-link" href="${pageContext.request.contextPath}/goods/item">
                     <i class="fas fa-fw fa-table"></i>
                     <span>물품신청</span></a>
             </li>

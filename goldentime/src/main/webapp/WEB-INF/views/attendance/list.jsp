@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>근무 조회</title>
+<title>근태 조회</title>
 
 
 

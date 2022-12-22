@@ -14,41 +14,62 @@
           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
           
           <link href="<c:url value="../css/sb-admin-2.min.css" />" rel="stylesheet">
-          <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+            <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
       <style>
       .sp1{
       color:#3f3f3f;
       font-size:24px;
       font-weigth:700;
+      margin-left: 200px;
+      }
+      .div1{
+      margin-top: 10px;
+      margin-left: 200px;
+      color: #3f3f3f;
+      border: 1px solid #4e73df;
+      border-radius: 0.7em;
+      background-color: #4e73df;
+      color: #FFF;
+      width: 160px;
+      height: 30px;
+      }
+      .detail-btn{
+      margin-left: 10px;
+       border: 1px solid #4e73df;
+       border-radius: 0.7em;
+       background-color: #4e73df;
+       color: #FFF;
+      }
+      .div2{
+      position: relative;
+      left:450;
+      bottom: 3115;
+      border: 1px solid #4e73df;
       }
       
-      .sp2{
-      color:#3f3f3f;
-      position:absolute;
-      right:150px;
-      top:110px;
-      font-size:24px;
-      font-weigth:700;
+      .oper-list{
+      color: #3f3f3f;
       }
-      
-      .pat{ /* 환자 */
-      	position:absolute;
-      	right:300px;
-      	top:200px;
-      	
-      }
-      
       </style>
-      <body id="page-top">
-      <span class="sp1">수술 환자 목록</span>
-      <div class="operation-list">
-      </div>
-      
-      <span class="sp2">수술 환자 상세</span>
-      <div class="operation-detail">
-      
-      </div>
+
+
+      <body>
+<div>
+	      <span class="sp1">수술 환자 목록</span>
+	      <div class="operation-list"></div>
+
+	<div class="div2">
+    	  <span class="sp1">수술 환자 상세</span>
+      	<div class="operation-detail"></div>
+      	<div class="h3">
+      		<!-- 정보붙임 -->
+      	</div>
+      	
+     </div>
+     
+</div>
       <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
       <script>
       $(function(){
          
@@ -56,8 +77,7 @@
          loadList();
          
          let operationList = [];
-         
-         hospitalizeLi
+
          // 수술 환자 목록 조회 
          function loadList(){
             $.ajax({
@@ -75,74 +95,55 @@
          function showList(){
             $(".operation-list").empty();
             $.each(operationList, function(index, patient){
-               var tag = $("<div>").text(patient.patientNo + " / " + patient.patientName);
-               var button = $("<button>").text("상세").attr("data-patient-no", patient.patientNo);
-               button.click(function(){
-                  var patientNo = $(this).data("patient-no");
-                  showDetail(patientNo);
+               var tag = $("<div>").text(patient.patientNo + " - " + patient.patientName);
+               tag.addClass("div1"); // 클래스 이름 추가 
+               var button = $("<button>").text("click!").attr("data-patient-no", patient.patientNo);
+               button.addClass("detail-btn");
+               button.click(function(){  	   
+               var patientNo = $(this).data("patient-no");
+				showDetail(patientNo);
                });
                tag.append(button);
                $(".operation-list").append(tag);
             });
          };
          
-         function showDetail(patientNo) { 
+         function showDetail(patientNo) {
             $.ajax({
                url:"${pageContext.request.contextPath}/rest/operationlist/"+patientNo,
                method:"get",
                success:function(resp) {
+            	   var test = $(".h3");
+					console.log("resp"+resp);
+					
                   if(!resp) {//증상 정보가 없는 경우 - 없다는 표시를 추가하면 된다
-                     $(".operation-detail").html("증상정보없음");
+                     $("[name=patientName]").val("");
+                     $("[name=patientGender]").val("");
+                     $("[name=patientBlood]").val("");
+                     $("[name=patientBirth]").val("");
                   }
                   else {//증상 정보가 있는 경우 - resp를 이용해서 태그를 만들어서 추가하면 된다
-                     $(".operation-detail").html("증상정보발견");
+                	  $("[name=patientName]").val(resp.patientName);
+                      $("[name=patientGender]").val(resp.patientGender);
+                      $("[name=patientBlood]").val(resp.patientBlood);
+                      $("[name=patientBirth]").val(resp.patientBirth);
                   }
                }
             })
          }
          
-         
          //마지막 
       });
-      
       </script>   
+		
+	<form class="detail-view">
+		<input type="text" name="patientName" placeholder="이름">
+		<input type="text" name="patientGender" placeholder="성별">
+		<input type="text" name="patientBlood" placeholder="혈액형">
+		<input type="text" name="patientBirth" placeholder="생년월일">
+	</form>	
+		
+	<div class="list-view">	
+    </div>
       
-      <div class="pat justify-content text-center">
-      	<div>
-      		<div>환자번호 이름 나이 성별 혈액형</div>
-      	</div>
-      
-      </div>
-      
-     <%--  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>입원번호</th>
-                                            <th>환자명</th>
-                                            <th>성별</th>
-                                            <th>나이</th>
-                                            <th>환자 주소</th>
-                                            <th>병명</th>
-                                            <th>수술일</th>
-                                            <th>수술명</th>
-                                            <th>입원일</th>
-                                            <th>퇴원일</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <tr>
-                                            <td>${hospitalizeVO	.hospitalizeNo}</td>
-                                            <td>${hospitalizeVO.patientName}</td>
-                                            <td>${hospitalizeVO.patientGender}</td>
-                                            <td>${hospitalizeVO.patientBirth}</td>
-                                            <td>${hospitalizeVO.patientAddress}</td>
-                                            <td>${hospitalizeVO.diagnosisTitle}</td>
-                                            <td>${hospitalizeVO.operationStartDay}</td>
-                                            <td>${hospitalizeVO.operationTitle}</td>
-                                            <td>${hospitalizeVO.hospitalizeStartDate}</td>
-                                            <td>${hospitalizeVO.hospitalizeEndDate}</td> 
-                                        </tr>
-                                    </tbody>
-						</table> --%>
       </body>

@@ -34,4 +34,9 @@ public class AdminController {
 		return "admin/attendance";
 	}
 	
+	@GetMapping("/vacationView")
+	public String vacation() {
+		return "admin/vacation";
+	}
+	
 }

@@ -42,7 +42,7 @@ public class MypageController {
 		if(passwordMatch) {
 			session.setAttribute(SessionConstant.ID, inputDto.getStaffId());
 			session.setAttribute(SessionConstant.GRADE, findDto.getStaffGrade());
-			return "redirect:/staff/mypage";
+			return "redirect:/home";
 		}
 		else {
 			return "redirect:/?error";

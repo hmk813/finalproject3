@@ -2,18 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jsp:include page="/WEB-INF/views/template/header.jsp">
+<jsp:include page="/WEB-INF/views/template/adminHeader.jsp">
 	<jsp:param value="직원 생성" name="title"/>
 </jsp:include>
 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
 <!-- Bootswatch CDN -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.0.2/cosmo/bootstrap.min.css">
-
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
-
 <style>
 	@import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
 	h1 {
@@ -37,7 +34,6 @@
 		background-color: #f3f3f3;
 	}
 </style>
-
 <form action="join" method="post" enctype="multipart/form-data">
 	<div class="container-450" style="margin: 50px">
 	
@@ -112,7 +108,7 @@
                 <label>주소</label>
                 <button class="btn-find-address" style="float: right;" type = "button">검색</button>
             </div>
-			
+
 				<br>
 				
 			<div class="select">
@@ -157,7 +153,10 @@
 				
 				<br>
 				
-			<div class="form-floating mb-1">사진 선택</div>
+			<div class="form-floating mb-1">
+				사진 선택
+				<i class="fa-solid fa-asterisk text-danger" style="font-size: 13px"></i>
+			</div>
 			<div>
 				<input type="file" name="staffImg" accept=".png, .jpg" multiple="multiple">
 			</div>
@@ -173,7 +172,6 @@
 			 
 	</div>
 </form>
-
 	<!-- jquery를 사용하기 위하여 라이브러리 js 파일을 불러온다-->
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
     <script type="text/javascript">

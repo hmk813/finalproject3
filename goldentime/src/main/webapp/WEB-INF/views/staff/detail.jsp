@@ -3,15 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <%-- 관리자 메뉴일 경우와 아닐 경우 다른 헤더를 설정 --%>
 <c:choose>
 	<c:when test="${mg == '관리자'}">
-		<jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
+		<jsp:include page="/WEB-INF/views/template/adminHeader.jsp">
 			<jsp:param value="${staffDto.staffId} 직원 상세 정보" name="title"/>
 		</jsp:include>
 	</c:when>
 	<c:otherwise>
-		<jsp:include page="/WEB-INF/views/template/header.jsp">
+		<jsp:include page="/WEB-INF/views/template/adminHeader.jsp">
 			<jsp:param value="${staffDto.staffId} 직원 상세 정보" name="title"/>
 		</jsp:include>
 	</c:otherwise>
@@ -26,19 +29,26 @@
 		text-align: center;
 	}
 	a {
-		color: black
+		color: #FFF;
+	}
+	a:hover {
+		text-decoration: none;
+	}
+	.change {
+		border: 2px solid #4e73df;
+		border-radius: 0.7em;
+		background-color: #4e73df;
+		color: #FFF;
+		width: 250px;
+		height:30px;
 	}
 </style>
 
 	<div class="row mt-4">
+	
     	<div class="col-md-10 offset-md-1">
+    	
 			<h1 class="text-center font-weight-bold">${staffDto.staffName} 직원 상세정보</h1>
-		</div>
-	</div>
-
-	<div class="row mt-2">
-	    <div class="col-md-10 offset-md-1">
-				
 	        <table class="table table-hover">
 	            <tbody>
 		            <!-- 직원사진 출력 -->
@@ -89,18 +99,23 @@
 				<!-- 관리자 -->
 					<div class="col-md-10 offset-md-1">
 						<a href="list">목록 보기</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-						<a href="information?staffId=${staffDto.staffId}">회원정보 변경</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-						<a href="delete?staffId=${staffDto.staffId}">회원삭제 처리</a>
+<%-- 						<a href="delete?staffId=${staffDto.staffId}">비밀번호 변경</a> --%>
 					</div>
 				</c:when>
 				<c:otherwise>
 				<!-- 회원 -->
-					<div class="col-md-10 offset-md-1">
-						<a href="information">개인정보 변경</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-						<a href="password">비밀번호 변경</a> &nbsp;&nbsp;&nbsp;
+					<div class="div4">
+						<button type="submit" class="change">
+							<a href="information?staffId=${staffDto.staffId}">직원정보 변경</a>
+						</button>
 					</div>
+<!-- 					<div class="col-md-10 offset-md-1"> -->
+<%-- 						<a href="information?staffId=${staffDto.staffId}">직원정보 변경</a> &nbsp;&nbsp;&nbsp; --%>
+<!-- 						<a href="password">비밀번호 변경</a> &nbsp;&nbsp;&nbsp; -->
+<!-- 					</div> -->
 				</c:otherwise>
 			</c:choose>
 		
 	    </div>
+	    
 	</div>

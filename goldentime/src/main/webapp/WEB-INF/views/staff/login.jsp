@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 	<style>
 	html, body { height: 100%; }
 	body {
@@ -61,6 +60,7 @@
 	.hospital-logo{
 	width: 300px;
 	heigth:300px;
+	margin-top: 50px;
 	}
 	.sp1{
 	font-size: 24px;
@@ -105,9 +105,7 @@
 	outline: none;
 	}
 	</style>
-
 	<body class="bg-primary">
-
 		<div class="div1">
 			<img class="hospital-logo" src="/image/logo.png">
 		</div>
@@ -117,15 +115,16 @@
 				<div class="row center">
 					<input class="id-input" type="text" name="staffId"  id="staffId" required placeholder="아이디" autocomplete="off"><br>
 				</div>
-	
+
 				<div class="div3">
 					<input class="pw-input" type="password" name="staffPw" required placeholder="비밀번호" autocomplete="off">
 				</div>
 
-				<div class="div4">
-					<button class="login-btn" type="submit">로그인</button>
-				</div>
-				
+			<div class="div4">
+				<button class="login-btn" type="submit">로그인</button>
+			</div>
+		</form>
+
 				<!-- 이상인 경우 나오는 화면 -->
 				<c:if test="${param.error != null}">
 					<div class="row mt-4">
@@ -134,7 +133,6 @@
 						<span style="color:red;">입력하신 내용을 다시 확인해주세요.</span>
 					</div>
 				</c:if>
-			</form>
 		</div>
 
 		<!--웨이브 애니메이션  -->
@@ -142,8 +140,5 @@
         <div class="wave"></div>
         <div class="wave"></div>
       </div>
-
-
 	</body>
-
 </html>

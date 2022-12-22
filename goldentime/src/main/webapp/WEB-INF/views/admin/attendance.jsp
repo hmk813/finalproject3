@@ -1,17 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<jsp:useBean id="now" class="java.util.Date" />
+
+<jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
+	<jsp:param value="마이페이지" name="title" />
+</jsp:include>
+
+<script src="https://kit.fontawesome.com/188e96ed37.js"
+	crossorigin="anonymous"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
 	$(function() {
-		
+
 		$(".search-form").submit(function(e) {
 
 			$(this).find("[name]").each(function() {
 				var value = $(this).val();
 				if (value.length == 0) {
-					
+
 					$(this).removeAttr("name");
 				}
 			});
@@ -20,7 +31,6 @@
 		});
 	});
 
-	
 	$(function() {
 		var param = new URLSearchParams(location.search);
 
@@ -32,32 +42,73 @@
 		var sort = param.getAll("sort");
 		for (var i = 0; i < sort.length; i++) {
 			$("[name=sort]").eq(i).val(sort[i]);
-		}	
+		}
 	});
 </script>
-<h1>출퇴근 현황</h1>
+<div class="row mt-4 px-3">
+	<div class="col">
+		<h4>
+			<i class="fa-solid fa-circle-info"></i> 직원 출퇴근 목록
+		</h4>
+	</div>
+</div>
+
 
 <form method="get" autocomplete="off" class="search-form">
-	이름 : <input type="text" name="staffName" value="${param.staffName}"><br>
-	<br> 분류 : <label><input type="checkbox" name="type"
-		value="출근">출근</label> <label><input type="checkbox"
-		name="type" value="지각">지각</label> <label><input
-		type="checkbox" name="type" value="조퇴">조퇴</label> <label><input
-		type="checkbox" name="type" value="업무중">업무중</label> <br>
-	<br> 날짜검색 : <input type="date" name="beginMade"
-		value="${param.beginMade}"> ~ <input type="date"
-		name="endMade" value="${param.endMade}"> <br>
-	<br> 정렬 : <select name="sort">
-		<option value="">선택하세요</option>
-		<option value="staff_name asc">이름 순</option>
-		<option value="department_name desc">의료진 분류 순</option>
-		<option value="staff_grade asc">직급 순</option>
-		<option value="attendance_start_time desc">최신 순</option>
-	</select> <br>
-	<br>
-	<button type="submit">검색</button>
-</form>
+	<div class="row ">
+		<div class="col text-center border">이름 검색</div>
+		<div class="col border">
+			<input class="w-100" type="text" name="staffName"
+				value="${param.staffName}">
+		</div>
+		<div class="col"></div>
+		<div class="col"></div>
+	</div>
+	<div class="row ">
+		<div class="col text-center border">분류</div>
+		<div class="col border">
+			<label><input type="checkbox" name="type" value="출근">출근</label>
+			<label><input type="checkbox" name="type" value="지각">지각</label>
+			<label><input type="checkbox" name="type" value="조퇴">조퇴</label>
+			<label><input type="checkbox" name="type" value="업무중">업무중</label>
+		</div>
+		<div class="col"></div>
+		<div class="col"></div>
+	</div>
+	<div class="row ">
+		<div class="col text-center border">날짜검색 검색</div>
+		<div class="col border">
+			<input type="date" name="beginMade" value="${param.beginMade}">
+			~ <input type="date" name="endMade" value="${param.endMade}">
+		</div>
+		<div class="col"></div>
+		<div class="col"></div>
+	</div>
+	<div class="row ">
+		<div class="col text-center border">정렬</div>
+		<div class="col border">
+			<select name="sort">
+				<option value="">선택하세요</option>
+				<option value="staff_name asc">이름 순</option>
+				<option value="department_name desc">의료진 분류 순</option>
+				<option value="staff_grade asc">직급 순</option>
+				<option value="attendance_start_time desc">최신 순</option>
+			</select>
+		</div>
+		<div class="col"></div>
+		<div class="col"></div>
+	</div>
 
+	<div class="row mt-3 px-3">
+		<div class="col   px-3">
+			<button type="submit" class="btn btn-primary">검색</button>
+		</div>
+		<div class="col "></div>
+		<div class="col"></div>
+		<div class="col"></div>
+	</div>
+
+</form>
 <div class="row p-3">
 	<div class="col">
 		<table class="table tbl paginated table-hover " id="tbl">
@@ -81,7 +132,9 @@
 						<td>${attendanceList.staffGrade}</td>
 						<td>${attendanceList.dapartmentName}</td>
 						<td>${attendanceList.staffName}</td>
-						<td>${attendanceList.attendanceStartTime}</td>
+						<fmt:parseDate value="${attendanceList.attendanceStartTime}" var="dateValue" pattern="yyyyMMdd" />
+						
+						<td><fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd" /></td>
 						<td>${attendanceList.startTime}</td>
 						<td>${attendanceList.endTime}</td>
 						<td>${attendanceList.attendanceWorkState}</td>

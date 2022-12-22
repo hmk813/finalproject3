@@ -5,7 +5,7 @@
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
+<jsp:include page="/WEB-INF/views/template/adminHeader.jsp">
 	<jsp:param value="내 정보 변경" name="title"/>
 </jsp:include>
 

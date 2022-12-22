@@ -61,6 +61,7 @@
 	.hospital-logo{
 	width: 300px;
 	heigth:300px;
+	margin-top: 50px;
 	}
 	.sp1{
 	font-size: 24px;

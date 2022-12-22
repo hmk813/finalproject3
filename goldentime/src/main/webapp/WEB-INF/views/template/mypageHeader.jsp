@@ -33,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="${pageContext.request.contextPath}/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -111,10 +111,10 @@
                                     <a class="nav-link" href="/attendance/list?attendanceStaffId=${attendanceDto.attendanceStaffId}"><span class="link-sp">근태관리</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/vacation/list"><span class="#">연차관리</span></a>
+                                    <a class="nav-link" href="/vacation/list"><span class="link-sp">휴가관리</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/calendar?calendarStaffId=${staffDto.staffId}"><span class="#">일정관리</span></a>
+                                    <a class="nav-link" href="/calendar?calendarStaffId=${staffDto.staffId}"><span class="link-sp">일정관리</span></a>
                                 </li>		
                                 </ul>
                         </div>

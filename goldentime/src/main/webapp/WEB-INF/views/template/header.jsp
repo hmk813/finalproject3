@@ -29,6 +29,14 @@
 	height: 50px;
 	transform: rorate(130deg);
 	}
+	.link-sp{
+	font-size: 18px;
+	color: #cfd2cf;
+	}
+	.link-sp:hover{
+		font-weight: 700;
+		color: #3f3f3f;
+	}
 </style>
 <body id="page-top">
     <!-- Page Wrapper -->
@@ -36,7 +44,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${pageContext.request.contextPath}/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                     <!-- <img class="logo" src="../image/logo.png"> -->
@@ -49,7 +57,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
@@ -58,10 +66,10 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="utilities-color.html">내과</a>
-                        <a class="collapse-item" href="utilities-border.html">외과</a>
-                        <a class="collapse-item" href="utilities-animation.html">정형외과</a>
-                        <a class="collapse-item" href="utilities-other.html">영상의학과</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/reservation">내과</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/reservation">외과</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/reservation">정형외과</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/reservation">영상의학과</a>
                     </div>
                 </div>
             </li>
@@ -69,14 +77,14 @@
             <hr class="sidebar-divider">
        
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>원무과</span></a>
             </li>
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="${pageContext.request.contextPath}/goods/goods">
                     <i class="fas fa-fw fa-table"></i>
                     <span>물품신청</span></a>
             </li>
@@ -110,15 +118,15 @@
                         <div class="input-group">
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="#"><span class="#">예약</span>
+                                    <a class="nav-link " href="${pageContext.request.contextPath}/reservation"><span class="link-sp">예약</span>
                                     <!-- <span class="visually-hidden">(current)</span> -->
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><span class="#">환자 현황</span></a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/internal/todaylist"><span class="link-sp">환자 현황</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><span class="#">환자 기록</span></a>
+                                    <a class="nav-link" href="#"><span class="link-sp">환자 기록</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="/operation/list"><span class="link-sp">수술 환자</span></a>
@@ -140,7 +148,6 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#"></a>
                                 <a class="dropdown-item" href="/staff/mypage">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -153,7 +160,6 @@
                                 </a>
                             </div>
                         </li>
-                    </ul>
                 </nav>
                 <!-- End of Topbar -->
                 

@@ -34,7 +34,7 @@ public class MypageController {
 			HttpSession session) {
 		StaffDto findDto = staffDao.selectOne(inputDto.getStaffId());
 		if(findDto == null) {
-			return "redirect:login?error";
+			return "redirect:/?error";
 		}
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		boolean passwordMatch = encoder.matches(inputDto.getStaffPw(), findDto.getStaffPw());
@@ -45,7 +45,7 @@ public class MypageController {
 			return "redirect:/staff/mypage";
 		}
 		else {
-			return "redirect:/staff/login?error";
+			return "redirect:/?error";
 		}
 	}
 

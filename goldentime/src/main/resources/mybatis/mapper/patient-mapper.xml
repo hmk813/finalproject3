@@ -102,6 +102,10 @@
 		select * from patient where patient_phone = #{patientPhone} and patient_name=#{patientName}
 	</select>
 	
+	<select id="selectOne" resultType="PatientDto">
+		select * from patient where patient_no = #{patientNo}
+	</select>
+	
 
 
 </mapper>

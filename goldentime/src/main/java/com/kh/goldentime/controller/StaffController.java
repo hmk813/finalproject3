@@ -245,11 +245,6 @@ public class StaffController {
 		//로그인 아이디를 이용하여 직원 정보를 불러온다
 		StaffDto staffDto = staffDao.selectOne(staffId);
 		model.addAttribute("staffDto", staffDto);
-		
-		//반환한 회원 아이디로 직원 이미지 테이블에서 첨부파일 번호를 조회한 후 모델에 넣음
-		int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
-		model.addAttribute("attachmentNo", attachmentNo);
-				
 		return "staff/detail";
 	}
 			

@@ -32,7 +32,7 @@
 		select 
     S.staff_name, S.staff_medical_department,
       P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
-      R.receive_date, R.receive_time, diagnosis_no
+      R.receive_date, R.receive_time, R.receive_no, diagnosis_no
       from 
       patient P inner join receive R on P.patient_no = R.patient_no
         inner join staff S on S.staff_id = R.staff_id
@@ -90,6 +90,71 @@
         inner join staff S on S.staff_id = R.staff_id
         LEFT outer join diagnosis D on R.receive_no = D.receive_no
       where R.receive_date = to_char(sysdate, 'yyyy-MM-dd') and S.staff_medical_department = '영상의학과'
+	</select>
+	
+	<!-- 원무과 환자 기록 리스트 -->
+	<select id="historylist" resultType="PatientReceiveListVO"> 
+		 select 
+        S.staff_id, S.staff_medical_department,
+		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+		R.receive_date
+		from 
+		patient P inner join receive R on P.patient_no = R.patient_no
+        inner join staff S on S.staff_id = R.staff_id 
+		where R.receive_date between to_char(to_date('2022-11-01', 'yyyy-MM-dd')) and to_char(to_date
+        (sysdate-1, 'yyyy-MM-dd'))
+	</select>
+	
+	<!-- 내과 환자 기록 리스트 -->
+	<select id="historylist2" resultType="PatientReceiveListVO"> 
+		 select 
+        S.staff_id, S.staff_medical_department,
+		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+		R.receive_date
+		from 
+		patient P inner join receive R on P.patient_no = R.patient_no
+        inner join staff S on S.staff_id = R.staff_id 
+		where R.receive_date between to_char(to_date('2022-11-01', 'yyyy-MM-dd')) and to_char(to_date
+        (sysdate-1, 'yyyy-MM-dd')) and S.staff_medical_department = '내과'
+	</select>
+	
+	<!-- 외과 환자 기록 리스트 -->
+	<select id="historylist3" resultType="PatientReceiveListVO"> 
+		 select 
+        S.staff_id, S.staff_medical_department,
+		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+		R.receive_date
+		from 
+		patient P inner join receive R on P.patient_no = R.patient_no
+        inner join staff S on S.staff_id = R.staff_id 
+		where R.receive_date between to_char(to_date('2022-11-01', 'yyyy-MM-dd')) and to_char(to_date
+        (sysdate-1, 'yyyy-MM-dd')) and S.staff_medical_department = '외과'
+	</select>
+	
+	<!-- 정형외과 환자 기록 리스트 -->
+	<select id="historylist4" resultType="PatientReceiveListVO"> 
+		 select 
+        S.staff_id, S.staff_medical_department,
+		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+		R.receive_date
+		from 
+		patient P inner join receive R on P.patient_no = R.patient_no
+        inner join staff S on S.staff_id = R.staff_id 
+		where R.receive_date between to_char(to_date('2022-11-01', 'yyyy-MM-dd')) and to_char(to_date
+        (sysdate-1, 'yyyy-MM-dd')) and S.staff_medical_department = '정형외과'
+	</select>
+	
+	<!-- 영상의학과 환자 기록 리스트 -->
+	<select id="historylist5" resultType="PatientReceiveListVO"> 
+		 select 
+        S.staff_id, S.staff_medical_department,
+		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
+		R.receive_date
+		from 
+		patient P inner join receive R on P.patient_no = R.patient_no
+        inner join staff S on S.staff_id = R.staff_id 
+		where R.receive_date between to_char(to_date('2022-11-01', 'yyyy-MM-dd')) and to_char(to_date
+        (sysdate-1, 'yyyy-MM-dd')) and S.staff_medical_department = '영상의학과'
 	</select>
 	
 	<!-- 환자 전체 조회 건들지 마셈 -->

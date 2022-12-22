@@ -7,7 +7,7 @@
 <mapper namespace="diagnosis">
 
 	<select id="seq" resultType="int">
-		select diagnosis_seq.nextval from dual
+		select diagnosis_seq.currval from dual
 	</select>
 	<!-- 환자 현황에서 수정하기 -->
 	<update id="edit" parameterType="DiagnosisDto">
@@ -26,8 +26,20 @@
 		insert into diagnosis
 		(diagnosis_no, diagnosis_staff_id, diagnosis_patient_no, diagnosis_title, 
 		diagnosis_content, diagnosis_memo, diagnosis_date, reservation_no, receive_no) 
-		values(#{diagnosisNo}, #{diagnosisStaffId}, #{diagnosisPatientNo}, #{diagnosisTitle}, #{diagnosisContent},
-		#{diagnosisMemo}, sysdate, #{reservationNo}, #{receiveNo})
+		values(diagnosis_seq.nextval, #{diagnosisStaffId}, #{diagnosisPatientNo}, #{diagnosisTitle}, #{diagnosisContent},
+		#{diagnosisMemo}, sysdate, null, #{receiveNo})
 	</insert>
+	
+	<insert id="insert1" parameterType="DiagnosisDto">
+		insert into diagnosis
+		(diagnosis_no, diagnosis_staff_id, diagnosis_patient_no, diagnosis_title, 
+		diagnosis_content, diagnosis_memo, diagnosis_date, reservation_no, receive_no) 
+		values(diagnosis_seq.nextval, #{diagnosisStaffId}, #{diagnosisPatientNo}, #{diagnosisTitle}, #{diagnosisContent},
+		#{diagnosisMemo}, sysdate, #{reservationNo}, null)
+	</insert>
+	
+	<select id="chartList" resultType="DiagnosisDto" parameterType="int">
+		select * from diagnosis where diagnosis_patient_no = #{diagnosisPatientNo}
+	</select>
 
 </mapper>

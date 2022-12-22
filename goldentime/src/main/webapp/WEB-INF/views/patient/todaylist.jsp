@@ -38,7 +38,14 @@
             <tbody>
             	<c:forEach var="PatientReservationListVO"  items="${PatientReservationListVO}" >
                <tr>
-                  <td>${PatientReservationListVO.patientName}</td>
+               <c:choose>
+               	<c:when test="${PatientReservationListVO.diagnosisNo != 0}">               	
+                  <td><a href="/diagnosis/detail?diagnosisNo=${PatientReservationListVO.diagnosisNo}">${PatientReservationListVO.patientName}</a></td>
+               	</c:when>
+               	<c:otherwise>
+               		<td><a href="/diagnosis/detail?reservationNo=${PatientReservationListVO.reservationNo}">${PatientReservationListVO.patientName}</a></td>
+               	</c:otherwise>
+               </c:choose>
                   <td>${PatientReservationListVO.patientGender}</td>
                   <td>${PatientReservationListVO.patientBlood}</td>
                   <td>${PatientReservationListVO.patientBirth}</td>
@@ -65,12 +72,20 @@
             <tbody>
             <c:forEach var="PatientReceiveListVO"  items="${PatientReceiveListVO}" >
                <tr>
+               <c:choose>
+               	<c:when test="${PatientReceiveListVO.diagnosisNo != 0}">
                   <td><a href="/diagnosis/detail?diagnosisNo=${PatientReceiveListVO.diagnosisNo}">${PatientReceiveListVO.patientName}</a></td>
+               	</c:when>
+               	<c:otherwise>
+               	 <td><a href="/diagnosis/detail?receiveNo=${PatientReceiveListVO.receiveNo}">${PatientReceiveListVO.patientName}</a></td>
+               	</c:otherwise>
+               </c:choose>
                   <td>${PatientReceiveListVO.patientGender}</td>
                   <td>${PatientReceiveListVO.patientBlood}</td>
                   <td>${PatientReceiveListVO.patientBirth}</td>
                   <td>${PatientReceiveListVO.receiveDate}</td>
                   <td>${PatientReceiveListVO.diagnosisNo}</td>
+                  <td>${PatientReceiveListVO.receiveNo}</td>
                </tr>
                </c:forEach>
             </tbody>

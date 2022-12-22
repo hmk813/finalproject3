@@ -25,7 +25,7 @@
         
         /* 디자인 */
         .calendar{
-        width: 700px;
+        width: 900px;
         height: 600px;
         }
     </style>

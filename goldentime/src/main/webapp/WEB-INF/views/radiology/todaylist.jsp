@@ -65,7 +65,7 @@
             <tbody>
             <c:forEach var="PatientDepartmentVO"  items="${PatientDepartmentVO}" >
                <tr>
-                  <td><a href="/diagnosis/detail?receiveNo=${PatientDepartmentVO.receiveNo}">${PatientDepartmentVO.patientName}</a></td>
+                  <td><a href="/diagnosis/detail?diagnosisNo=${PatientReceiveListVO.diagnosisNo}">${PatientDepartmentVO.patientName}</a></td>
                   <td>${PatientDepartmentVO.patientGender}</td>
                   <td>${PatientDepartmentVO.patientBlood}</td>
                   <td>${PatientDepartmentVO.patientBirth}</td>

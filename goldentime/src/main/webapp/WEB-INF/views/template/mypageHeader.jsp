@@ -72,7 +72,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/goods/item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/goods/goods">
                     <i class="fas fa-fw fa-table"></i>
                     <span>물품신청</span></a>
             </li>
@@ -111,10 +111,10 @@
                                     <a class="nav-link" href="/attendance/list?attendanceStaffId=${attendanceDto.attendanceStaffId}"><span class="link-sp">근태관리</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/vacation/list"><span class="#">연차관리</span></a>
+                                    <a class="nav-link" href="/vacation/list?vacationStaffId=${vacationDto.vacationStaffId}"><span class="link-sp">연차관리</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/calendar?calendarStaffId=${staffDto.staffId}"><span class="#">일정관리</span></a>
+                                    <a class="nav-link" href="/calendar?calendarStaffId=${staffDto.staffId}"><span class="link-sp">일정관리</span></a>
                                 </li>		
                                 </ul>
                         </div>
@@ -126,7 +126,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${staffDto.staffName}님</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${loginId}님</span>
                                 <img class="img-profile rounded-circle"
                                     src="/img/undraw_profile.svg">
                             </a>

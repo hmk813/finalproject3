@@ -25,82 +25,148 @@
 
 </head>
 <style>
-  
-	div.fixed {
-     border: 2px solid #B8860B;
-     width: 250px;
-     position: fixed;
-	}
+@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy");
+/* BODY */
+body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: skyblue;
+  background-image: -webkit-linear-gradient(90deg, skyblue 0%, steelblue 100%);
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  overflow: hidden;
+  font-family: "Luckiest Guy", cursive;
+  -webkit-font-smoothing: antialiased;
+}
 
-	.time{
-		position:absolute;
-		top:150px;
-		left:350px;
-	}
-	
-	.time1{
-		position:absolute;
-		top:250px;
-		left:450px;
-	}
-	
-	.title{
-		position:absolute;
-		top:150px;
-		right:200px;
-	}
-	
-	.paragraph{
-		position:absolute;
-		top:300px;
-		left:350px;
-	}
-	
-	.main-sp{
-	margin-top: 140px;
-	text-align: center;
-	font-size: 34px;
-	font-weight: 700;
-	}
-	.main-sp2{
-	text-align: center;
-	font-size: 34px;
-	font-weight: 700;
-	}
-	
-	.time{
-	margin-left: 370px;
-	margin-top: 250px;
-	font-size: 26px;
-	font-weight: 700;
-	color: #3f3f3f;
-	}
-	
-	.time1{
-	margin-left: 270px;
-	margin-top: 300px;
-	font-size: 50px;
-	border: 2px solid  #f4e081;
-	border-radius: 0.7em;
-	padding: 5px 5px 5px 5px;
-	}
-	
-	/*  */
-	
-	
-	
+::selection {
+  background: transparent;
+}
+/* CLOUDS */
+body:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  margin: auto;
+  border-radius: 100%;
+  background: transparent;
+  display: block;
+ /*  box-shadow: 0 0 150px 100px rgba(255, 255, 255, 0.6),
+    200px 0 200px 150px rgba(255, 255, 255, 0.6),
+    -250px 0 300px 150px rgba(255, 255, 255, 0.6),
+    550px 0 300px 200px rgba(255, 255, 255, 0.6),
+    -550px 0 300px 200px rgba(255, 255, 255, 0.6); */
+}
+/* JUMP */
+.h1 {
+  cursor: default;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+
+.h1 > span {
+  position: relative;
+  top: 20px;
+  display: inline-block;
+  -webkit-animation: bounce 0.3s ease infinite alternate;
+  font-size: 80px;
+  color: #fff;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+    0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+    0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+h1 span:nth-child(2) {
+  -webkit-animation-delay: 0.1s;
+}
+
+h1 span:nth-child(3) {
+  -webkit-animation-delay: 0.2s;
+}
+
+h1 span:nth-child(4) {
+  -webkit-animation-delay: 0.3s;
+}
+
+h1 span:nth-child(5) {
+  -webkit-animation-delay: 0.4s;
+}
+
+h1 span:nth-child(6) {
+  -webkit-animation-delay: 0.5s;
+}
+
+h1 span:nth-child(7) {
+  -webkit-animation-delay: 0.6s;
+}
+
+h1 span:nth-child(8) {
+  -webkit-animation-delay: 0.2s;
+}
+
+h1 span:nth-child(9) {
+  -webkit-animation-delay: 0.3s;
+}
+
+h1 span:nth-child(10) {
+  -webkit-animation-delay: 0.4s;
+}
+
+h1 span:nth-child(11) {
+  -webkit-animation-delay: 0.5s;
+}
+
+h1 span:nth-child(12) {
+  -webkit-animation-delay: 0.6s;
+}
+
+h1 span:nth-child(13) {
+  -webkit-animation-delay: 0.7s;
+}
+
+h1 span:nth-child(14) {
+  -webkit-animation-delay: 0.8s;
+}
+
+/* ANIMATION */
+@-webkit-keyframes bounce {
+  100% {
+    top: -20px;
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+      0 5px 0 #ccc, 0 6px 0 #ccc, 0 7px 0 #ccc, 0 8px 0 #ccc, 0 9px 0 #ccc,
+      0 50px 25px rgba(0, 0, 0, 0.2);
+  }
+}
 
 </style>
 
 
 	<body>
-		<div class="main-sp">
+
+<h1 class="h1">
 			<span style="color: #049ad7;">D</span>
 			<span style="color:#e0c024;">R</span>
 			<span style="color:#e22413;">E</span>
 			<span style="color:#44ab34;">A</span>
 			<span style="color:#e0c024;">M</span>
-			<br>
+</br>
 			<span style="color:#44ab34;">H</span>
 			<span style="color:#e0c024;">O</span>
 			<span style="color: #049ad7;">S</span>
@@ -109,59 +175,9 @@
 			<span style="color:#e0c024;">T</span>
 			<span style="color:#e22413;">A</span>
 			<span style="color:#44ab34;">L</span>
-		</div>
-		
-		<div class="main-sp2">
-			<span style="color: #049ad7;">드</span>
-			<span style="color:#e0c024;">림</span>
-			<span style="color:#e22413;">병</span>
-			<span style="color:#44ab34;">원</span>
-		</div>
-		
-		<div>
-				<p id="yoil" class="time"></p>
-		</div>
-			
-		<div>
-				<p style="font-weight: bold;" id="realTime" class="time1"></p>
-		</div>
-
-
+</h1>
 
 	<script>
-        $(function () {
-
-            setInterval(function () {
-                date = new Date();
-
-                year = date.getFullYear();
-                month = date.getMonth() + 1;
-                day = date.getDate();
-                hour = date.getHours();
-                minutes = date.getMinutes();
-                seconds = date.getSeconds();
-                week = new Array("일", "월", "화", "수", "목", "금", "토");
-
-                weekday = week[date.getDay()];
-
-                if (hour < 10) {
-                    hour = "0" + hour;
-                }
-                if (minutes < 10) {
-                    minutes = "0" + minutes;
-                }
-                if (seconds < 10) {
-                    seconds = "0" + seconds;
-                }
-
-                $("#realTime").html(
-                    hour + ":" + minutes + ":" + seconds
-                );
-                $("#yoil").html(
-                		year + "-" + month + "-" + day + " " + weekday + "요일"
-                );
-            });
-        });
     </script>
 
 

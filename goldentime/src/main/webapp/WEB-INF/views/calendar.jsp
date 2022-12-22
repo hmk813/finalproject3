@@ -18,7 +18,6 @@
    <jsp:param value="일정관리" name="title"/>
 </jsp:include>
 <style>
-	
    a{
       color:black;
    }
@@ -189,13 +188,9 @@
    </div>
    <div class="container-fluid">
    
-        <div class="row mt-80">
-            <div class="col-md-6 offset-md-3 col-sm-4 offset-sm-4 mt-4">
-                 <div class="text-center">
-                    <h3>일정관리</h3>
-                 </div>
-            </div>
-        </div>
+   <div class="row">
+   <p>일정관리</p>
+   </div>
  
        <div class="row mt-5">
             <div class="col-md-6 offset-md-3 col-sm-4 offset-sm-4">
@@ -235,12 +230,6 @@
             </div>
         </div>
         
-        <div class="row mt-3 mb-5">
-            <div class="col-md-6 offset-md-3 col-sm-4 offset-sm-4">
-                 <div class="text-center">
-                 </div>
-            </div>
-        </div>
         
     </div>
   <!-- 비동기화 출력을 위해 필요한 데이터 -->

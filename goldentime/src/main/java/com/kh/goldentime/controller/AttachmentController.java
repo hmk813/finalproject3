@@ -24,7 +24,7 @@ public class AttachmentController {
 	private AttachmentDao attachmentDao;
 	
 	//사원 첨부파일
-	@GetMapping("/download/staff")
+	@GetMapping("/download/{attachmentNo}")
 	public ResponseEntity<ByteArrayResource> downloadStaff(@RequestParam int attachmentNo) throws IOException {
 		//첨부파일 번호로 DB조회
 		AttachmentDto attachmentDto = attachmentDao.selectAttachment(attachmentNo);

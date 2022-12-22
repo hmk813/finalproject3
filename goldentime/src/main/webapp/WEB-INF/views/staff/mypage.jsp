@@ -273,7 +273,7 @@ a {
         
         <div class="myinfo">
 		<p class="p1">내 정보</p>
-		<img src="/attachment/download/staff?attachmentNo=${attachmentDto.attachmentNo}"
+		<img src="/attachment/download/staff?attachmentNo=${attachmentNo}"
 			class="myinfo-img">
 		<p class="p2">${staffDto.staffName}</p>
 		<p class="p3">${staffDto.staffMedicalDepartment}</p>

@@ -57,7 +57,6 @@
          
          let operationList = [];
          
-         hospitalizeLi
          // 수술 환자 목록 조회 
          function loadList(){
             $.ajax({

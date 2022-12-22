@@ -55,10 +55,11 @@
    .select-font{
       font-weight:bolder;
       font-size:20px;
+      color:#227093
    }
-   .schedule-table{
-      background-color:#f1c40f;
-      color:#f39c12;
+   .calendar-table{
+      background-color:#f8c291;
+      color:#2d3436;
    }
    table>tbody>tr>td{
       height:50px;

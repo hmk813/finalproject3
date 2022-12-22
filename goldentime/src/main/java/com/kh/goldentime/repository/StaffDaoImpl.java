@@ -82,6 +82,12 @@ public class StaffDaoImpl implements StaffDao{
 		int count = sqlSession.update("staff.edit", staffDto);
 		return count > 0;
 	}
+	
+	@Override//직원정보수정1
+	public boolean update1(StaffDto staffDto) {
+		int count = sqlSession.update("staff.edit1", staffDto);
+		return count > 0;
+	}
 
 	@Override//개인정보 변경
 	public boolean changeInformation(StaffDto staffDto) {

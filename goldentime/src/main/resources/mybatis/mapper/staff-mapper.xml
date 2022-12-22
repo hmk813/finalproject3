@@ -22,6 +22,18 @@
 				staff_id=#{staffId}
 	</update>
 	
+	<!-- 직원수정1 -->
+	<update id="edit1" parameterType="StaffDto">
+		update staff
+		set
+			staff_phone=#{staffPhone}, 
+			staff_address=#{staffAddress}, 
+			staff_grade=#{staffGrade}, 
+			staff_medical_department=#{staffMedicalDepartment}
+		where
+				staff_id=#{staffId}
+	</update>
+	
 	<!-- 직원등록 -->
 	<insert id="insert" parameterType="StaffDto">
 		insert into staff (

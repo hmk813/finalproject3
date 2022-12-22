@@ -80,11 +80,11 @@ public class StaffController {
 				
 				//직원 첨부파일 연결테이블 정보 저장
 				attachmentDao.insertStaffImg(staffDto.getStaffId(), attachmentNo);
-			}	
-		}	
+			}
+		}
 
 		attr.addAttribute("staffId", staffDto.getStaffId());
-		return "redirect:detail";
+		return "redirect:list";
 	}
 
 	@GetMapping("/join_finish")
@@ -247,7 +247,7 @@ public class StaffController {
 		model.addAttribute("staffDto", staffDto);
 		
 		//반환한 회원 아이디로 직원 이미지 테이블에서 첨부파일 번호를 조회한 후 모델에 넣음
-		int attachmentNo = attachmentDao.selectStaffAttachment(loginId);
+		int attachmentNo = attachmentDao.selectStaffAttachment(staffId);
 		model.addAttribute("attachmentNo", attachmentNo);
 				
 		return "staff/detail";

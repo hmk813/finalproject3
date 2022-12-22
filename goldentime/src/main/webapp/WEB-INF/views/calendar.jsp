@@ -18,10 +18,64 @@
    <jsp:param value="일정관리" name="title"/>
 </jsp:include>
 <style>
-	    .calendar{
-        width: 900px;
-        height: 600px;
-        }
+   a{
+      color:black;
+   }
+   .fc .fc-button-primary{
+      background-color:#81BDF1;
+      border-color:#81BDF1;
+   }
+   .fc .fc-button-primary:hover{
+      color: #fff;
+      background-color: #3498db;
+      border-color: #2980b9;
+   }
+   .fc .fc-button:focus{
+      border-color:none;
+      box-shadow: none;
+   }
+   .fc .fc-button-primary:not(:disabled):active:focus,
+     .fc .fc-button-primary:not(:disabled).fc-button-active:focus {
+       box-shadow: none;
+     }
+   .select-date{
+      border:1px solid rgba(0, 0, 0, 0.1);
+      width:95%;
+      padding:0.5rem 1.1rem;
+      outline:none;
+      font-size:15px;
+      border-radius: 0.5rem;
+   }
+   .margin-10{
+      margin-left:10px;
+      margin-right:10px;
+   }
+   
+   .select-font{
+      font-weight:bolder;
+      font-size:20px;
+      color:#227093
+   }
+   .calendar-table{
+      background-color:#f8c291;
+      color:#2d3436;
+   }
+   table>tbody>tr>td{
+      height:50px;
+      vertical-align: middle;
+   }
+   .fc-scrollgrid{
+      border-radius: 0.5rem;
+   }
+   .fc-theme-standard .fc-scrollgrid {
+    border: 1px solid #fff;
+  }
+  
+	.calendar{
+	max-width: 800px;
+	margin: 0 auto;
+	}
+	
 </style>
 <script>
 

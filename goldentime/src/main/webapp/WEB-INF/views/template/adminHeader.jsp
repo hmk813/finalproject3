@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <c:set var="login" value="${loginId != null}"></c:set>
-<%-- <c:set var="admin" value="${mg == '관리자'}"></c:set> --%>
+<c:set var="admin" value="${mg == '관리자'}"></c:set>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -41,43 +43,26 @@
             <hr class="sidebar-divider my-0">
             <!-- Divider -->
             <hr class="sidebar-divider">
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>진료과</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/internal">내과</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/surgeon">외과</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/orthopaedic">정형외과</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/radiology">영상의학과</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
        
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="list">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>원무과</span></a>
+                    <span>직원 목록</span>
+                </a>
             </li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/goods/goods">
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/attendance">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>물품신청</span></a>
+                    <span>근태 관리</span>
+                </a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/vacationView">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>마이페이지</span></a>
+                    <span>휴가 관리</span>
+            	</a>
             </li>
 
             <!-- Divider -->
@@ -102,7 +87,7 @@
                     </form>
                     <!-- Topbar Search -->
                         <div class="input-group">
-                            <ul class="navbar-nav me-auto">
+                        	<ul class="navbar-nav me-auto">
                                 <li class="nav-item">
                                     <a class="nav-link " href="#"><span class="#">예약</span>
                                     <span class="visually-hidden">(current)</span>
@@ -123,9 +108,8 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/goods/item"><span class="#">중앙공급실물품</span></a>
                                 </li>
-                                </ul>
+                        	</ul>
                         </div>
-
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -133,7 +117,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${loginId}님</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${loginId} 님</span>
                                 <img class="img-profile rounded-circle"
                                     src="/img/undraw_profile.svg">
                             </a>
@@ -156,7 +140,7 @@
                 </nav>
                 <!-- End of Topbar -->
 
- <!-- Bootstrap core JavaScript-->
+ 	<!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

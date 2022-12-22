@@ -6,7 +6,7 @@
 
 <jsp:useBean id="now" class="java.util.Date" />
 
-<jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
+<jsp:include page="/WEB-INF/views/template/adminHeader.jsp">
 	<jsp:param value="마이페이지" name="title" />
 </jsp:include>
 

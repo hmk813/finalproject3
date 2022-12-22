@@ -84,6 +84,11 @@ public class PatientDaoImpl implements PatientDao{
 	public List<PatientDto> patientConfirm(PatientPhoneNameVO patientPhoneNameVO) {
 		return sqlSession.selectList("patient.patientConfirm", patientPhoneNameVO);
 	}
+
+	@Override
+	public PatientDto selectOne(int patientNo) {
+		return sqlSession.selectOne("patient.selectOne", patientNo);
+	}
 		
 	
 }

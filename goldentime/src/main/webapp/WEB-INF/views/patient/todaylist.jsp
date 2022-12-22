@@ -65,11 +65,12 @@
             <tbody>
             <c:forEach var="PatientReceiveListVO"  items="${PatientReceiveListVO}" >
                <tr>
-                  <td><a href="/diagnosis/detail?receiveNo=${PatientReceiveListVO.receiveNo}">${PatientReceiveListVO.patientName}</a></td>
+                  <td><a href="/diagnosis/detail?diagnosisNo=${PatientReceiveListVO.diagnosisNo}">${PatientReceiveListVO.patientName}</a></td>
                   <td>${PatientReceiveListVO.patientGender}</td>
                   <td>${PatientReceiveListVO.patientBlood}</td>
                   <td>${PatientReceiveListVO.patientBirth}</td>
                   <td>${PatientReceiveListVO.receiveDate}</td>
+                  <td>${PatientReceiveListVO.diagnosisNo}</td>
                </tr>
                </c:forEach>
             </tbody>

@@ -7,16 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.goldentime.entity.PatientDto;
 import com.kh.goldentime.entity.ReceiveDto;
 import com.kh.goldentime.repository.PatientDao;
 import com.kh.goldentime.repository.ReceiveDao;
 import com.kh.goldentime.repository.ReservationDao;
-import com.kh.goldentime.vo.PatientListSearchVO;
-import com.kh.goldentime.vo.PatientReceiveListVO;
 
 @Controller
 @RequestMapping("/patient")
@@ -38,38 +34,7 @@ public class PatientController {
 		model.addAttribute("PatientReservationListVO", reservationDao.todayList());
 	    return "patient/todaylist";
 	}
-	
-	//내과에서 볼 수 있는 금일 내과 접수 현황
-	@GetMapping("/internal")
-	public String internal(Model model) {
-		model.addAttribute("PatientDepartmentVO", patientDao.internalList());
-		model.addAttribute("PatientReservationDepartmentVO");
-	    return "patient/internal";
-	}
-	
-	//외과에서 볼 수 있는 금일 외과 접수 현황
-		@GetMapping("/surgeon")
-		public String surgeon(Model model) {
-			model.addAttribute("PatientDepartmentVO", patientDao.surgeonList());
-			model.addAttribute("PatientReservationDepartmentVO", reservationDao.toDayListSurgery());
-		    return "patient/surgeon";
-		}
-	
-		//정형외과에서 볼 수 있는 금일 정형외과 접수 현황 
-		@GetMapping("/orthopaedic")
-		public String orthopaedic(Model model) {
-			model.addAttribute("PatientDepartmentVO", patientDao.orthopaedicList());
-			model.addAttribute("PatientReservationDepartmentVO", reservationDao.toDayListOrthopedic());
-			return "patient/orthopaedic";
-		}
 		
-		//영상의학과에서 볼 수 있는 금일 영상의학과 접수 현황 
-		@GetMapping("/radiology")
-		public String radiology(Model model) {
-			model.addAttribute("PatientDepartmentVO", patientDao.radiologyList());
-			model.addAttribute("PatientReservationDepartmentVO", reservationDao.toDayListRadiology());
-			return "patient/radiology";
-		}
 		
 	@GetMapping("/insert")
 	public String insert() {

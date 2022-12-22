@@ -153,7 +153,10 @@
 				
 				<br>
 				
-			<div class="form-floating mb-1">사진 선택</div>
+			<div class="form-floating mb-1">
+				사진 선택
+				<i class="fa-solid fa-asterisk text-danger" style="font-size: 13px"></i>
+			</div>
 			<div>
 				<input type="file" name="staffImg" accept=".png, .jpg" multiple="multiple">
 			</div>

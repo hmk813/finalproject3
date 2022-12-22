@@ -21,8 +21,10 @@ public class OperationController {
 	@GetMapping("/list")
 	public String list(Model model) {
 		model.addAttribute("operationInformationVO", operationDao.selectList());
-//		model.addAttribute("operationInformationVO", operationDao.selectOne(0));
+//		System.out.println(model+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//		model.addAttribute("operationInformationVO", operationDao.selectOne(0))
 		return"operation";
 	}
+	
 	
 }

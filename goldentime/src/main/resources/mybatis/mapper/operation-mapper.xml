@@ -6,7 +6,7 @@
 
 <mapper namespace="operation">
 
-	<select id="list" resultType="OperationInformationVO">
+	<select id="list" resultType="OperationInformationVO" >
 	select 
 	O.*, 
 	P.patient_name, P.patient_birth, P.patient_gender, P.patient_blood,
@@ -24,6 +24,15 @@
 	 </select> -->
 	 
 	<select id="one" resultType="OperationInformationVO" parameterType="int">
-		select * from operation where patient_no=#{patientNo}
+		select 
+	O.*, 
+	P.patient_name, P.patient_birth, P.patient_gender, P.patient_blood,
+	D.diagnosis_staff_id, D.diagnosis_title, D.diagnosis_date,
+	R.operation_room_no, R.operation_state
+	from operation O 
+	join operation_room R on O.operation_no = R.operation_origin_no
+	join patient P on O.patient_no = P.patient_no
+	join diagnosis D on O.operation_diagnosis_no = d.diagnosis_no
+	where P.patient_no = #{patientNo}
 	</select>
 </mapper>

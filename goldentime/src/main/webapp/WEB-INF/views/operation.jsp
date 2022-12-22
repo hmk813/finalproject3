@@ -61,6 +61,10 @@
 	<div class="div2">
     	  <span class="sp1">수술 환자 상세</span>
       	<div class="operation-detail"></div>
+      	<div class="h3">
+      		<!-- 정보붙임 -->
+      	</div>
+      	
      </div>
      
 </div>
@@ -95,7 +99,7 @@
                tag.addClass("div1"); // 클래스 이름 추가 
                var button = $("<button>").text("click!").attr("data-patient-no", patient.patientNo);
                button.addClass("detail-btn");
-               button.click(function(){
+               button.click(function(){  	   
                var patientNo = $(this).data("patient-no");
 				showDetail(patientNo);
                });
@@ -109,11 +113,20 @@
                url:"${pageContext.request.contextPath}/rest/operationlist/"+patientNo,
                method:"get",
                success:function(resp) {
+            	   var test = $(".h3");
+					console.log("resp"+resp);
+					
                   if(!resp) {//증상 정보가 없는 경우 - 없다는 표시를 추가하면 된다
-                     $(".operation-detail").html("증상정보없음");
+                     $("[name=patientName]").val("");
+                     $("[name=patientGender]").val("");
+                     $("[name=patientBlood]").val("");
+                     $("[name=patientBirth]").val("");
                   }
                   else {//증상 정보가 있는 경우 - resp를 이용해서 태그를 만들어서 추가하면 된다
-                     $(".operation-detail").html("증상정보발견");
+                	  $("[name=patientName]").val(resp.patientName);
+                      $("[name=patientGender]").val(resp.patientGender);
+                      $("[name=patientBlood]").val(resp.patientBlood);
+                      $("[name=patientBirth]").val(resp.patientBirth);
                   }
                }
             })
@@ -122,5 +135,15 @@
          //마지막 
       });
       </script>   
-
+		
+	<form class="detail-view">
+		<input type="text" name="patientName" placeholder="이름">
+		<input type="text" name="patientGender" placeholder="성별">
+		<input type="text" name="patientBlood" placeholder="혈액형">
+		<input type="text" name="patientBirth" placeholder="생년월일">
+	</form>	
+		
+	<div class="list-view">	
+    </div>
+      
       </body>

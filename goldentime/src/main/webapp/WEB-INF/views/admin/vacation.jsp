@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="now" class="java.util.Date" />
+
+<jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
+	<jsp:param value="마이페이지" name="title" />
+</jsp:include>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -127,15 +134,6 @@
 
                     </tbody>
                 </table>
-                <form name="search-form" autocomplete="off">
-                    <select name="type">
-                        <option selected value="">검색 내용 선택</option>
-                        <option value="staffName">이름</option>
-                        <option value="staffMedicalDepartment">부서</option>
-                    </select>
-                    <input type="text" name="keyword">
-                    <input type="button" onclick="vacationList1()" value="검색"></input>
-                </form>
             </div>
         </div>
 

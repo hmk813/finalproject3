@@ -53,10 +53,10 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/internal">내과</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/surgeon">외과</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/orthopaedic">정형외과</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/radiology">방사선과</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/reservation">내과</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/reservation">외과</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/reservation">정형외과</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/reservation">방사선과</a>
                     </div>
                 </div>
             </li>

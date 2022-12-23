@@ -93,20 +93,18 @@
 	</select>
 	
 	<!-- 원무과 환자 기록 리스트 -->
-	<select id="historylist" resultType="PatientReceiveListVO"> 
-		 select 
+	<select id="historylist" resultType="DiagnosisHistoryListVO"> 
+		  select 
         S.staff_id, S.staff_medical_department,
 		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
-		R.receive_date
+		D.diagnosis_date
 		from 
-		patient P inner join receive R on P.patient_no = R.patient_no
-        inner join staff S on S.staff_id = R.staff_id 
-		where R.receive_date between to_char(to_date('2022-11-01', 'yyyy-MM-dd')) and to_char(to_date
-        (sysdate-1, 'yyyy-MM-dd'))
+		patient P inner join diagnosis D on P.patient_no = D.diagnosis_patient_no 
+        inner join staff S on S.staff_id = D.diagnosis_staff_id;
 	</select>
 	
 	<!-- 내과 환자 기록 리스트 -->
-	<select id="historylist2" resultType="PatientReceiveListVO"> 
+	<select id="historylist2" resultType="DiagnosisHistoryListVO"> 
 		 select 
         S.staff_id, S.staff_medical_department,
 		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
@@ -119,7 +117,7 @@
 	</select>
 	
 	<!-- 외과 환자 기록 리스트 -->
-	<select id="historylist3" resultType="PatientReceiveListVO"> 
+	<select id="historylist3" resultType="DiagnosisHistoryListVO"> 
 		 select 
         S.staff_id, S.staff_medical_department,
 		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
@@ -132,7 +130,7 @@
 	</select>
 	
 	<!-- 정형외과 환자 기록 리스트 -->
-	<select id="historylist4" resultType="PatientReceiveListVO"> 
+	<select id="historylist4" resultType="DiagnosisHistoryListVO"> 
 		 select 
         S.staff_id, S.staff_medical_department,
 		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,
@@ -145,7 +143,7 @@
 	</select>
 	
 	<!-- 영상의학과 환자 기록 리스트 -->
-	<select id="historylist5" resultType="PatientReceiveListVO"> 
+	<select id="historylist5" resultType="DiagnosisHistoryListVO"> 
 		 select 
         S.staff_id, S.staff_medical_department,
 		P.patient_no, P.patient_name, P.patient_gender, P.patient_blood, P.patient_birth,

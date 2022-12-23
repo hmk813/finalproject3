@@ -17,174 +17,112 @@
     <script type="text/javascript"></script>
 <style>
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
-
-body {
-  background-color: #3e94ec;
-  font-family: "Roboto", helvetica, arial, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  text-rendering: optimizeLegibility;
+.sp1{
+font-size: 34px;
+font-weight: 700;
+color: #3f3f3f;
+}
+.result{
+	text-align:center;
+	font-size: 30px;
+	font-weight: 700;
+	color: #3f3f3f;
+}
+.depbox{
+margin-top: 20px;
+margin-left: 670px;
+}
+.catebox{
+margin-left: 10px;
 }
 
-div.table-title {
-   display: block;
-  margin: auto;
-  max-width: 600px;
-  padding:5px;
+/*  */
+	
+	table {
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
   width: 100%;
-}
-
-.table-title h3 {
-   color: #34ace0;
-   font-size: 30px;
-   font-weight: 400;
-   font-style:normal;
-   font-family: "Roboto", helvetica, arial, sans-serif;
-   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
-   text-transform:uppercase;
-   text-align:center;
-}
-
-
-/*** Table Styles **/
-
-.table-fill {
-  background: white;
-  border-radius:3px;
   border-collapse: collapse;
-  height: 320px;
-  margin: auto;
-  max-width: 600px;
-  padding:5px;
-  width: 100%;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  animation: float 5s infinite;
-}
- 
-th {
-  color:#D5DDE5;;
-  background:#1b1e24;
-  border-bottom:4px solid #9ea7af;
-  border-right: 1px solid #343a45;
-  font-size:23px;
-  font-weight: 100;
-  padding:24px;
-  text-align:left;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  vertical-align:middle;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-th:first-child {
-  border-top-left-radius:3px;
-}
- 
-th:last-child {
-  border-top-right-radius:3px;
-  border-right:none;
+th {
+  text-align: left;
 }
   
-tr {
-  border-top: 1px solid #C1C3D1;
-  border-bottom-: 1px solid #C1C3D1;
-  color:#666B85;
-  font-size:16px;
-  font-weight:normal;
-  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+thead {
+  font-weight: bold;
+  color: #fff;
+  background: #73685d;
 }
- 
-tr:hover td {
-  background:#4E5066;
-  color:#FFFFFF;
-  border-top: 1px solid #22262e;
+  
+ td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
 }
- 
-tr:first-child {
-  border-top:none;
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
 }
 
-tr:last-child {
-  border-bottom:none;
+a {
+  color: #73685d;
 }
- 
-tr:nth-child(odd) td {
-  background:#EBEBEB;
-}
- 
-tr:nth-child(odd):hover td {
-  background:#4E5066;
-}
-
-tr:last-child td:first-child {
-  border-bottom-left-radius:3px;
-}
- 
-tr:last-child td:last-child {
-  border-bottom-right-radius:3px;
-}
- 
-td {
-  background:#FFFFFF;
-  padding:20px;
-  text-align:left;
-  vertical-align:middle;
-  font-weight:300;
-  font-size:18px;
-  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
-  border-right: 1px solid #C1C3D1;
-}
-
-td:last-child {
-  border-right: 0px;
-}
-
-th.text-left {
-  text-align: left;
-}
-
-th.text-center {
-  text-align: center;
-}
-
-th.text-right {
-  text-align: right;
-}
-
-td.text-left {
-  text-align: left;
-}
-
-td.text-center {
-  text-align: center;
-}
-
-td.text-right {
-  text-align: right;
-}
-
-.depbox{
-	position:absolute;
-	left:750px;
-	bottom:200px;
-}
-
-.catebox{
-	position:absolute;
-	left:950px;
-	bottom:200px;
-}
-
-.input1{
-	position:absolute;
-	right:500px;
-	bottom:200px;
-}
-
-.result{
-	position:absolute;
-	bottom:100px;
-	left:950px;
-}
+  
+ @media all and (max-width: 768px) {
+    
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  th {
+    text-align: right;
+  }
+  
+  table {
+    position: relative; 
+    padding-bottom: 0;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+  }
+  
+  thead {
+    float: left;
+    white-space: nowrap;
+  }
+  
+  tbody {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  th {
+    border-bottom: 1px solid #a39485;
+  }
+  
+  td {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .btn1{
+       border: 1px solid #4e73df;
+       border-radius: 0.7em;
+       background-color: #4e73df;
+       color: #FFF;
+  }
+  .btn-div{
+  margin-left: 400px;
+  }
 </style>
 </head>
   
@@ -208,41 +146,39 @@ $(function(){
     
 });
 
+
 </script>
 <body>
-   
-		<div class="table-title">
-		<h3>물품신청</h3>
-		</div>
-		<table class="table-fill">
+   <span class="sp1">의료장비</span>
+   <div>
+		<table class="table">
 		<thead>
 		<tr>
-		<th class="text-center">부서</th>
-		<th class="text-center">분류</th>
+		<th>부서</th>
+		<th>분류</th>
 		</tr>
 		</thead>
-		<tbody class="table-hover">
+		<tbody>
 		<tr>
-		<td class="text-center">내과</td>
-		<td class="text-center">심실세동기</td>
+		<td>내과</td>
+		<td>심실세동기</td>
 		</tr>
 		<tr>
-		<td class="text-center">외과</td>
-		<td class="text-center">혈압기</td>
+		<td>외과</td>
+		<td>혈압기</td>
 		</tr>
 		<tr>
-		<td class="text-center">정형외과</td>
-		<td class="text-center">휠체어</td>
+		<td>정형외과</td>
+		<td>휠체어</td>
 		</tr>
 		<tr>
-		<td class="text-center">영상의학과</td>
-		<td class="text-center">MRI</td>
+		<td>영상의학과</td>
+		<td>MRI</td>
 		</tr>
 		</tbody>
 		</table>
-		  </body> 
-     
-    <select class="depbox" size="5" aria-label="size 5 select example" name="selectedBox">
+   </div>
+    <select class="depbox" size="5"  name="selectedBox">
 	  <option selected>선택하세요</option>
 	  <option value="1">내과</option>
 	  <option value="2">외과</option>
@@ -250,7 +186,7 @@ $(function(){
 	  <option value="4">영상의학과</option>
 	</select>
      
-    <select class="catebox" size="5" aria-label="size 5 select example" name="selectedBox1">
+    <select class="catebox" size="5" name="selectedBox1">
         <option selected>선택하세요</option>
         <option value="0">심실세동기</option>
         <option value="1">혈압기</option>
@@ -261,11 +197,12 @@ $(function(){
     <input class="input1" type="number" name="number_select" min="1" max="10" value="0"><br><br>                
   
     <div class="result">
-        부서 : <span class="dep"></span>,
-        분류 : <span class="cate"></span>,
-        수량 : <span class="count"></span>
+        부서 : <span class="dep"></span><br>
+        분류 : <span class="cate"></span><br>
+        수량 : <span class="count"></span><br>
+   	<button type="button" class="btn1">신청</button>
     </div>
-           
+   
    
 </body>
 

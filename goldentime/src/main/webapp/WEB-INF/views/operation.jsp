@@ -22,6 +22,12 @@
       font-weigth:700;
       margin-left: 200px;
       }
+      .sp2{
+	  color:#3f3f3f;
+      font-size:24px;
+      font-weigth:700;
+      margin-left: 200px;
+      }
       .div1{
       margin-top: 10px;
       margin-left: 200px;
@@ -43,31 +49,54 @@
       .div2{
       position: relative;
       left:450;
-      bottom: 3115;
-      border: 1px solid #4e73df;
+      bottom: 3238;
       }
-      
+      .div3{
+      margin-top: 10px;
+      margin-left: 170px;
+      position: relative;
+      left:450;
+      bottom: 3238;
+      }
       .oper-list{
       color: #3f3f3f;
+      }
+      .info-box{
+      border: 1px solid #4e73df;
+      border-radius: 0.7em;
+      width: 300px;
+      height: 30px;
       }
       </style>
 
 
       <body>
-<div>
-	      <span class="sp1">수술 환자 목록</span>
-	      <div class="operation-list"></div>
+	<span class="sp1">수술 환자 목록</span>
+		<div class="operation-list"></div>
 
 	<div class="div2">
-    	  <span class="sp1">수술 환자 상세</span>
-      	<div class="operation-detail"></div>
-      	<div class="h3">
-      		<!-- 정보붙임 -->
-      	</div>
-      	
+    	  <span class="sp2">수술 환자 상세</span>
+	</div>
+	<div class="div3">
+      	<form class="detail-view">
+      	<label class="lab"> 환자명
+			<input type="text" name="patientName" class="info-box" >
+      	</label>
+      	<br>
+      	<label class="lab2">성&nbsp;&nbsp;&nbsp;별
+			<input type="text" name="patientGender" class="info-box" >
+      	</label>
+      	<br>
+      	<label class="lab"> 혈액형 
+			<input type="text" name="patientBlood"  class="info-box">
+		</label>
+		<br>
+      	<label class="lab"> 생년월일
+			<input type="text" name="patientBirth"  class="info-box">
+		</label>
+	</form>	
      </div>
      
-</div>
       <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
       <script>
@@ -136,12 +165,7 @@
       });
       </script>   
 		
-	<form class="detail-view">
-		<input type="text" name="patientName" placeholder="이름">
-		<input type="text" name="patientGender" placeholder="성별">
-		<input type="text" name="patientBlood" placeholder="혈액형">
-		<input type="text" name="patientBirth" placeholder="생년월일">
-	</form>	
+
 		
 	<div class="list-view">	
     </div>

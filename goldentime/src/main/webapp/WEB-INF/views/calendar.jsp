@@ -50,12 +50,6 @@
       margin-left:10px;
       margin-right:10px;
    }
-   
-   .select-font{
-      font-weight:bolder;
-      font-size:20px;
-      color:#227093
-   }
    .calendar-table{
       background-color:#f8c291;
       color:#2d3436;
@@ -71,9 +65,35 @@
     border: 1px solid #fff;
   }
   
-	.calendar{
-	max-width: 800px;
-	margin: 0 auto;
+	  .calendar{
+        width: 700px;
+        font-size: 14px;
+		color: #3f3f3f;
+        }
+        
+   	.infor-table {
+   		position: relative;
+   		bottom: 460;
+   		left: 780;
+		border-radius: 0.7em;
+		background-color: #4e73df;
+		font-size: 14px;
+		color: #FFF;
+		width: 280px;
+	}
+	
+	.date {
+	position: relative;
+	bottom: 480;
+	left: 780;
+	
+	border: 2px solid #4e73df;
+	border-radius: 0.7em;
+	background-color: #4e73df;
+	color: #FFF;
+	width: 280px;
+	font-size: 14px;
+	font-weight: 700;
 	}
 	
 </style>
@@ -186,35 +206,22 @@
        </div>
      </div>
    </div>
-   <div class="container-fluid">
    
-   <div class="row">
-   <p>일정관리</p>
-   </div>
- 
-       <div class="row mt-5">
-            <div class="col-md-6 offset-md-3 col-sm-4 offset-sm-4">
-                 <div class="text-center" id="calendar"></div>
+   <div class="calendar">
+		<div class="text-center" id="calendar"></div>
                  <div class="text-center mt-2">
-                 </div>
-            </div>
         </div>
+	</div>
         
-      <div class="row mt-5">
-            <div class="col-md-6 offset-md-3 col-sm-4 offset-sm-4">
-                 <div class="text-center">
+                 <div class="date">
                     <span class="select-font">날짜 : </span>
                     <span class="reservationDate select-font green"></span>
                  </div>
-            </div>
-        </div>
         
-        <div class="row mt-5">
-            <div class="col-md-6 offset-md-3 col-sm-4 offset-sm-4">
                  <div class="text-center">
-                    <table class="table text-center">
+                    <table class="infor-table">
                        <thead>
-                          <tr class="align-middle calendar-table">
+                          <tr>
                              <th>예약환자</th>
                              <th>증상</th>
                              <th>예약날짜</th>
@@ -227,11 +234,8 @@
                        </tbody>
                     </table>
                  </div>
-            </div>
-        </div>
         
         
-    </div>
   <!-- 비동기화 출력을 위해 필요한 데이터 -->
    <input type="hidden" name="reservationStaffId" value="${staffDto.staffId}">
    

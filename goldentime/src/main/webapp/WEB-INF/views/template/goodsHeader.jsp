@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="login" value="${loginId != null}"></c:set>
-<%-- <c:set var="admin" value="${mg == '관리자'}"></c:set> --%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -22,6 +21,13 @@
     <!-- Custom styles for this page -->
     <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+<style>
+.link-sp:hover{
+	color: #3f3f3f;
+	weight: 700;
+}
+
+</style>
 </head>
 
 <body id="page-top">
@@ -31,7 +37,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${pageContext.request.contextPath}/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -42,7 +48,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
@@ -51,10 +57,10 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/internal">내과</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/surgeon">외과</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/orthopaedic">정형외과</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/radiology">영상의학과</a>
+                        <a class="collapse-item"  href="${pageContext.request.contextPath}/reservation">내과</a>
+                        <a class="collapse-item"  href="${pageContext.request.contextPath}/reservation">외과</a>
+                        <a class="collapse-item"  href="${pageContext.request.contextPath}/reservation">정형외과</a>
+                        <a class="collapse-item"  href="${pageContext.request.contextPath}/reservation">영상의학과</a>
                     </div>
                 </div>
             </li>
@@ -62,8 +68,8 @@
             <hr class="sidebar-divider">
        
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item active" >
+                <a class="nav-link" href="${pageContext.request.contextPath}/patient/insert">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>원무과</span></a>
             </li>
@@ -75,7 +81,7 @@
                     <span>물품신청</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="${pageContext.request.contextPath}/staff/mypage">
                     <i class="fas fa-fw fa-table"></i>
                     <span>마이페이지</span></a>
             </li>
@@ -104,24 +110,19 @@
                         <div class="input-group">
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="#"><span class="#">예약</span>
-                                    <span class="visually-hidden">(current)</span>
-                                    </a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/goods/item"><span class="link-sp">의료장비</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/goods/item"><span class="#">의료장비</span></a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/goods/item"><span class="link-sp">의료비품</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/goods/item"><span class="#">의료비품</span></a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/goods/item"><span class="link-sp">의료소모품</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/goods/item"><span class="#">의료소모품</span></a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/goods/item"><span class="link-sp">일반소모품 및 사무용품</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/goods/item"><span class="#">일반소모품 및 사무용품</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/goods/item"><span class="#">중앙공급실물품</span></a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/goods/item"><span class="link-sp">중앙공급실물품</span></a>
                                 </li>
                                 </ul>
                         </div>
@@ -140,7 +141,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/staff/mypage">
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/staff/mypage">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>

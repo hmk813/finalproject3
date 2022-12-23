@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="login" value="${loginId != null}"></c:set>
-<%-- <c:set var="admin" value="${mg == '관리자'}"></c:set> --%>
-
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -24,6 +21,12 @@
     <!-- Custom styles for this page -->
     <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+<style>
+.link-sp:hover{
+	color: #3f3f3f;
+	font-weight: 700;
+}
+</style>
 </head>
 
 <body id="page-top">
@@ -33,7 +36,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="${pageContext.request.contextPath}/home">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${pageContext.request.contextPath}/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -53,10 +56,10 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/internal">내과</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/surgeon">외과</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/orthopaedic">정형외과</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/patient/radiology">방사선과</a>
+                        <a class="collapse-item"  href="${pageContext.request.contextPath}/reservation">내과</a>
+                        <a class="collapse-item"  href="${pageContext.request.contextPath}/reservation">외과</a>
+                        <a class="collapse-item"  href="${pageContext.request.contextPath}/reservation">정형외과</a>
+                        <a class="collapse-item"  href="${pageContext.request.contextPath}/reservation">영상의학과</a>
                     </div>
                 </div>
             </li>
@@ -64,7 +67,7 @@
             <hr class="sidebar-divider">
        
             <!-- Nav Item - Charts -->
-            <li class="nav-item active">
+            <li class="nav-item active" >
                 <a class="nav-link" href="${pageContext.request.contextPath}/patient/insert">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>원무과</span></a>
@@ -76,13 +79,12 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>물품신청</span></a>
             </li>
-
-			 <li class="nav-item active">
+            <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/staff/mypage">
                     <i class="fas fa-fw fa-table"></i>
                     <span>마이페이지</span></a>
             </li>
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Sidebar Toggler (Sidebar) -->
@@ -106,16 +108,18 @@
                     <!-- Topbar Search -->
                         <div class="input-group">
                             <ul class="navbar-nav me-auto">
-
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/attendance/list?attendanceStaffId=${attendanceDto.attendanceStaffId}"><span class="link-sp">근태관리</span></a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/patient/insert"><span class="link-sp">예약/접수</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/vacation/list"><span class="link-sp">휴가관리</span></a>
+                                    <a class="nav-link" href="/goods/item"><span class="link-sp">환자현황</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/calendar?calendarStaffId=${staffDto.staffId}"><span class="link-sp">일정관리</span></a>
-                                </li>		
+                                    <a class="nav-link" href="/goods/item"><span class="link-sp">입/퇴원관리</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/goods/item"><span class="link-sp">의무기록관리</span></a>
+                                </li>
                                 </ul>
                         </div>
 
@@ -133,9 +137,9 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/home">
+                                <a class="dropdown-item" href="/staff/mypage">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Home
+                                    Profile
                                 </a>
 
                                 <div class="dropdown-divider"></div>
@@ -145,6 +149,7 @@
                                 </a>
                             </div>
                         </li>
+                    </ul>
                 </nav>
                 <!-- End of Topbar -->
 

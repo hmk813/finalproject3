@@ -6,7 +6,7 @@
 
 <jsp:useBean id="now" class="java.util.Date" />
 
-<jsp:include page="/WEB-INF/views/template/mypageHeader.jsp">
+<jsp:include page="/WEB-INF/views/template/adminHeader.jsp">
 	<jsp:param value="마이페이지" name="title" />
 </jsp:include>
 
@@ -132,9 +132,7 @@
 						<td>${attendanceList.staffGrade}</td>
 						<td>${attendanceList.dapartmentName}</td>
 						<td>${attendanceList.staffName}</td>
-						<fmt:parseDate value="${attendanceList.attendanceStartTime}" var="dateValue" pattern="yyyyMMdd" />
-						
-						<td><fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd" /></td>
+						<td>${attendanceList.attendanceStartTime}</td>
 						<td>${attendanceList.startTime}</td>
 						<td>${attendanceList.endTime}</td>
 						<td>${attendanceList.attendanceWorkState}</td>

@@ -13,4 +13,8 @@
 		values(receive_seq.nextval, #{staffId}, 
 		#{patientNo}, to_char(sysdate, 'YYYY-MM-DD'), to_char(sysdate, 'HH24:MI:SS'))
 	</insert>
+	
+	<select id="selectOne" resultType="ReceiveDto">
+		select * from receive where receive_no = #{receiveNo}
+	</select>
 </mapper>

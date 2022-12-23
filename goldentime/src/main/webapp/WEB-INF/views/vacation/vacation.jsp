@@ -346,7 +346,7 @@ select::-ms-expand {
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-bs-dismiss="modal">닫기</button>
-						<button type="submit" class="btn btn-primary vacation">수정하기</button>
+						<button type="submit" class="btn btn-primary vacation1">수정하기</button>
 					</div>
 				</div>
 			</div>

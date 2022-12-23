@@ -21,6 +21,7 @@ public interface StaffDao {
 	StaffDto selectOne(String staffId);//직원 아이디로 단일조회(직원 상세, 마이페이지)
 	
 	boolean update(StaffDto staffDto);//수정
+	boolean update1(StaffDto staffDto);//직원정보수정1
 	boolean changeInformation(StaffDto staffDto);//개인정보 변경
 	boolean changePassword(String staffId, String afterPw);//비밀번호 변경
 	

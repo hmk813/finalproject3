@@ -34,4 +34,14 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 	public void insert(DiagnosisDto diagnosisDto) {
 		sqlSession.insert("diagnosis.insert", diagnosisDto);
 	}
+
+	@Override
+	public List<DiagnosisDto> chartList(int diagnosisPatientNo) {
+		return sqlSession.selectList("diagnosis.chartList", diagnosisPatientNo);
+	}
+
+	@Override
+	public void insert1(DiagnosisDto diagnosisDto) {
+		sqlSession.insert("diagnosis.insert1", diagnosisDto);
+	}
 }

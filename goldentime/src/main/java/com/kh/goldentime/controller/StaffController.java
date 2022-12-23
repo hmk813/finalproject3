@@ -29,7 +29,7 @@ import com.kh.goldentime.vo.StaffSearchVO;
 @RequestMapping("/staff")
 public class StaffController {
 	@Autowired
-	private PasswordEncoder encoder;
+	private PasswordEncoder encoder;//암호화복호화
 	
 	@Autowired
 	private StaffDao staffDao;
@@ -195,34 +195,43 @@ public class StaffController {
 //		
 	//개인정보 변경 기능(자기자신)
 	@GetMapping("/information")
-	public String information(HttpSession session,Model model) {
-		String staffId = (String) session.getAttribute(SessionConstant.ID);
-		StaffDto staffDto = staffDao.selectOne(staffId);
-		model.addAttribute("staffDto", staffDto);
+	public String information(Model model, @RequestParam String staffId) {
+		model.addAttribute("staffDto", staffDao.selectOne(staffId));
 		return "staff/information";
 			
 	}
 	
 	@PostMapping("/information")
-	public String information(HttpSession session,
-			@ModelAttribute StaffDto inputDto) {
-		String staffId = (String)session.getAttribute(SessionConstant.ID);
-		inputDto.setStaffId(staffId);
-		
-		//비밀번호 검사
-		StaffDto findDto = staffDao.selectOne(staffId);
-		boolean passwordMatch = 
-				inputDto.getStaffPw().equals(findDto.getStaffPw());
-		
-		//비밀번호 검사 통과했다면 개인정보 처리 가능
-		if(passwordMatch) {
-			staffDao.changeInformation(inputDto);
-			return "redirect:mypage";
+	public String information(@ModelAttribute StaffDto staffDto, RedirectAttributes attr) {
+		boolean result = staffDao.update1(staffDto);
+		if(result) {
+			attr.addAttribute("staffId", staffDto.getStaffId());
+			return "redirect:detail";
 		}
-		else { //비밀번호 불일치
+		else {
 			return "redirect:information?error";
 		}
 	}
+//	public String information(HttpSession session,
+//			@ModelAttribute StaffDto inputDto) {
+//		//staffDto에 staffId가 없으니 세션에서 구해서 추가 설정
+//		String staffId = (String)session.getAttribute(SessionConstant.ID);
+//		inputDto.setStaffId(staffId);
+//		
+//		//비밀번호 검사
+//		StaffDto findDto = staffDao.selectOne(staffId);
+//		boolean passwordMatch = 
+//				inputDto.getStaffPw().equals(findDto.getStaffPw());
+//		
+//		//비밀번호 검사 통과했다면 개인정보 처리 가능
+//		if(passwordMatch) {
+//			staffDao.changeInformation(inputDto);
+//			return "redirect:mypage";
+//		}
+//		else { //비밀번호 불일치
+//			return "redirect:information?error";
+//		}
+//	}
 	
 	//직원 삭제
 	@GetMapping("/delete")

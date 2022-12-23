@@ -8,10 +8,82 @@
 </jsp:include>
 <html>
 <head>
-	<style type="text/css">
-		div{
-			border: 1px solid gray;
-		}
+	<style>
+table {
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+th {
+  text-align: left;
+}
+  
+thead {
+  font-weight: bold;
+  color: #fff;
+  background: #73685d;
+}
+  
+ td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
+}
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+}
+
+a {
+  color: #73685d;
+}
+  
+ @media all and (max-width: 768px) {
+    
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  th {
+    text-align: right;
+  }
+  
+  table {
+    position: relative; 
+    padding-bottom: 0;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+  }
+  
+  thead {
+    float: left;
+    white-space: nowrap;
+  }
+  
+  tbody {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  th {
+    border-bottom: 1px solid #a39485;
+  }
+  
+  td {
+    border-bottom: 1px solid #e5e5e5;
+  }
 	</style>
 	<c:set var="now" value="<%=new java.util.Date()%>" />
 	<c:set var="Year"><fmt:formatDate value="${now}" pattern="yyyy" /></c:set>
@@ -44,6 +116,7 @@
                </tr>
 				</tbody>
 			</table>
+			
 			<form action="detail" method="post">
 			<c:if test="${diagnosisDto.diagnosisNo != 0 && diagnosisDto.receiveNo != 0}">
 				<input name="diagnosisNo" type="hidden" value="${diagnosisDto.diagnosisNo}">
@@ -62,11 +135,11 @@
 					<button type="submit">입력</button>
 			</c:if>
 			<c:if test="${diagnosisDto.diagnosisNo != 0 && diagnosisDto.reservationNo != 0}">
-			<input name="diagnosisNo" type="hidden" value="${diagnosisDto.diagnosisNo}">
-					<input name="diagnosisContent" type="text" placeholder="진단명" required value="${diagnosisDto.diagnosisContent}"><br><br>
-					<input name="diagnosisTitle" type="text" placeholder="진료내용" required value="${diagnosisDto.diagnosisTitle}"><br><br>
-					<input name="diagnosisMemo" type="text" placeholder="메모" required value="${diagnosisDto.diagnosisMemo}">
-					<button type="submit">입력</button>
+					<input name="diagnosisNo" type="hidden" value="${diagnosisDto.diagnosisNo}">
+					<input class="input1" name="diagnosisContent" type="text" placeholder="진단명" required value="${diagnosisDto.diagnosisContent}"><br><br>
+					<input class="input1" name="diagnosisTitle" type="text" placeholder="진료내용" required value="${diagnosisDto.diagnosisTitle}"><br><br>
+					<input class="input1" name="diagnosisMemo" type="text" placeholder="메모" required value="${diagnosisDto.diagnosisMemo}">
+					<button type="submit" class="btn1">입력</button>
 			</c:if>
 			<c:if test="${diagnosisDto.diagnosisNo == 0 && diagnosisDto.reservationNo != 0}">
 					<input name="diagnosisStaffId" type="text" value="${reservationDto.reservationStaffId}">
@@ -85,7 +158,6 @@
 		${chartList.diagnosisDate}
 		${chartList.diagnosisTime}
 	</c:forEach>
-	
 	</div>
 </body>
 </html>

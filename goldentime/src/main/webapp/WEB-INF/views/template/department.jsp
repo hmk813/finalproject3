@@ -112,7 +112,7 @@
                                     <a class="nav-link" href="${pageContext.request.contextPath}/patient/insert"><span class="link-sp">예약/접수</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/goods/item"><span class="link-sp">환자현황</span></a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/patient/todaylist"><span class="link-sp">환자현황</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="/goods/item"><span class="link-sp">입/퇴원관리</span></a>

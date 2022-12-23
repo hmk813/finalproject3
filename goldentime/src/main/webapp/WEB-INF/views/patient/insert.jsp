@@ -21,7 +21,7 @@
 
 <style>
 .div1{
-	margin-left: 460px;
+	margin-left: 633px;
 }
 .p1{
 	font-size: 34px;

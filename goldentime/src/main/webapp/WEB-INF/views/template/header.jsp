@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="login" value="${loginId != null}"></c:set>
-<%-- <c:set var="admin" value="${mg == '관리자'}"></c:set>  관리자 헤더는 관리자용 따로 만들어서 쓰세요. --%>
 
 <html>
 <head>
@@ -78,7 +77,7 @@
        
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="${pageContext.request.contextPath}/patient/insert">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>원무과</span></a>
             </li>

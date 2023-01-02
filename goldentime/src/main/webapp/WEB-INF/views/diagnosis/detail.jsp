@@ -92,7 +92,7 @@ a {
 <body>
 	<div class="container-1200">
 		<div>
-			<table>
+			<table class="mb-3">
 				<thead>
 					<tr>
 						<th>차트번호</th>
@@ -117,7 +117,7 @@ a {
 				</tbody>
 			</table>
 			
-			<form action="detail" method="post">
+			<form action="detail" method="post" >
 			<c:if test="${diagnosisDto.diagnosisNo != 0 && diagnosisDto.receiveNo != 0}">
 				<input name="diagnosisNo" type="hidden" value="${diagnosisDto.diagnosisNo}">
 					<input name="diagnosisContent" type="text" placeholder="진단명" required value="${diagnosisDto.diagnosisContent}"><br><br>
@@ -126,9 +126,9 @@ a {
 					<button type="submit">입력</button>
 			</c:if>
 			<c:if test="${diagnosisDto.diagnosisNo == 0 && diagnosisDto.receiveNo != 0}">
-					<input name="diagnosisStaffId" type="text" value="${receiveDto.staffId}">
-					<input name="diagnosisPatientNo" type="text" value="${patientDto.patientNo}">
-					<input name="receiveNo" type="text" value="${receiveDto.receiveNo}">
+					<input name="diagnosisStaffId" type="hidden" value="${receiveDto.staffId}">
+					<input name="diagnosisPatientNo" type="hidden" value="${patientDto.patientNo}">
+					<input name="receiveNo" type="hidden" value="${receiveDto.receiveNo}">
 					<input name="diagnosisContent" type="text" placeholder="진단명" required><br><br>
 					<input name="diagnosisTitle" type="text" placeholder="진료내용" required><br><br>
 					<input name="diagnosisMemo" type="text" placeholder="메모" required>
@@ -136,19 +136,19 @@ a {
 			</c:if>
 			<c:if test="${diagnosisDto.diagnosisNo != 0 && diagnosisDto.reservationNo != 0}">
 					<input name="diagnosisNo" type="hidden" value="${diagnosisDto.diagnosisNo}">
-					<input class="input1" name="diagnosisContent" type="text" placeholder="진단명" required value="${diagnosisDto.diagnosisContent}"><br><br>
-					<input class="input1" name="diagnosisTitle" type="text" placeholder="진료내용" required value="${diagnosisDto.diagnosisTitle}"><br><br>
-					<input class="input1" name="diagnosisMemo" type="text" placeholder="메모" required value="${diagnosisDto.diagnosisMemo}">
-					<button type="submit" class="btn1">입력</button>
+					<input class="form-control mb-2" name="diagnosisContent" type="text" placeholder="진단명" required value="${diagnosisDto.diagnosisContent}">
+					<textarea class="form-control h-25 mb-2" name="diagnosisTitle"  placeholder="진료내용" required>${diagnosisDto.diagnosisTitle}</textarea>
+					<textarea class="form-control h-25 mb-2" name="diagnosisMemo"  placeholder="메모" required>${diagnosisDto.diagnosisMemo}</textarea>
+					<button type="submit" class="btn btn-primary"">입력</button>
 			</c:if>
 			<c:if test="${diagnosisDto.diagnosisNo == 0 && diagnosisDto.reservationNo != 0}">
-					<input name="diagnosisStaffId" type="text" value="${reservationDto.reservationStaffId}">
-					<input name="diagnosisPatientNo" type="text" value="${patientDto.patientNo}">
-					<input name="reservationNo" type="text" value="${reservationDto.reservationNo}">
-					<input name="diagnosisContent" type="text" placeholder="진단명" required><br><br>
-					<input name="diagnosisTitle" type="text" placeholder="진료내용" required><br><br>
-					<input name="diagnosisMemo" type="text" placeholder="메모" required>
-					<button type="submit">입력</button>
+					<input name="diagnosisStaffId" type="hidden" value="${reservationDto.reservationStaffId}">
+					<input name="diagnosisPatientNo" type="hidden" value="${patientDto.patientNo}">
+					<input name="reservationNo" type="hidden" value="${reservationDto.reservationNo}">
+					<input class="form-control mb-2" name="diagnosisContent" type="text" placeholder="진단명" required>
+					<textarea class="form-control h-25 mb-2" name="diagnosisTitle" placeholder="진료내용" required></textarea>
+					<textarea class="form-control h-25 mb-2" name="diagnosisMemo"  placeholder="메모" required></textarea>
+					<button class="btn btn-primary" type="submit">입력</button>
 			</c:if>
 			</form>
 		</div>
